@@ -16,7 +16,7 @@
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">Authentification</h3>
+                                            <h3 class="text-center">{{ __('Authentification') }}</h3>
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
@@ -57,7 +57,9 @@
                                     </div>
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Se Connecter</button>
+                                            <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">
+                                            {{ __('Se Connecter') }}
+                                            </button>
                                         </div>
                                     </div>
                                     <hr>
