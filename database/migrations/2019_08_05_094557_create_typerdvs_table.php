@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrganisationsTable extends Migration
+class CreateTyperdvsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateOrganisationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organisations', function (Blueprint $table) {
+        Schema::create('typerdvs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('libelle');
-            $table->string('adresse');
-            $table->string('telephone');
-            $table->string('email');
+            $table->string('type_rdv');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateOrganisationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organisations');
+        Schema::dropIfExists('typerdvs');
     }
 }
