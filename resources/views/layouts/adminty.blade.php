@@ -26,9 +26,12 @@
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
     <!-- Style.css -->
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
 
+
+    @yield('css')
 </head>
 
 <body>
