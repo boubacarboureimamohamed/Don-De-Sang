@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css\style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css\jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss\partials\menu\_pcmenu.htm') }}">
+    @yield('css')
 </head>
 
 <body>
@@ -276,6 +277,7 @@
 
   gtag('config', 'UA-23581568-13');
 </script>
+@yield('js')
 </body>
 
 </html>
