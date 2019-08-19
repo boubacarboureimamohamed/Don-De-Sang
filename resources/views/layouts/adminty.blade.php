@@ -11,41 +11,62 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Don Du Sang') }}</title>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('images\favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\bootstrap\css\bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap.min.css') }}">
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('icon\themify-icons\themify-icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('icon/themify-icons/themify-icons.css') }}">
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('icon\icofont\css\icofont.css') }}">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('icon/icofont/css/icofont.css') }}">
     <!-- feather Awesome -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('icon\feather\css\feather.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css\style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css\jquery.mCustomScrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('scss\partials\menu\_pcmenu.htm') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
+
 </head>
 
 <body>
-
+@yield('css')
+<!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
-             <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="theme3" pcoded-header-position="fixed"">
+             <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="theme2" pcoded-header-position="fixed"">
                 <div class="navbar-wrapper">
 
                 <div class="navbar-logo">
                     <a class="mobile-menu" id="mobile-collapse" href="#!">
                         <i class="feather icon-menu"></i>
                     </a>
-                    <a href="index-1.htm">
+                    <a href="{{ route('home') }}">
                         <img class="img-fluid" src="{{ asset('images\logo.png') }}" alt="Theme-Logo">
                     </a>
                     <a class="mobile-options">
@@ -94,13 +115,14 @@
                                 </div>
                                 <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                     <li>
-                                        <a href="user-profile.htm">
-                                            <i class="feather icon-user"></i> Mon profile
+                                        <a href="{{ route('profile') }}">
+                                            <i class="feather icon-user"></i> {{ __('Mon profile') }}
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="auth-lock-screen.htm">
-                                            <i class="feather icon-settings"></i> Paramétres
+                                        <a class="dropdown-item" href="#">
+                                            <i class="feather icon-settings"></i>
+                                        {{ __('Paramétres') }}
                                         </a>
                                     </li>
                                     <li>
@@ -125,19 +147,19 @@
 
              <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                    <nav class="pcoded-navbar">
-                        <div class="pcoded-inner-navbar main-menu">
-                            <div class="pcoded-navigatio-lavel"></div>
+                    <nav class="pcoded-navbar" navbar-theme="themelight1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+                        <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" id="" style="height: calc(100% - 80px);">
+                            <div class="pcoded-navigatio-lavel" menu-title-theme="theme5">Navigation</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="navbar-light.htm">
+                                    <a href="{{ route('home') }}">
                                         <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                                         <span class="pcoded-mtext">Tableau de bord</span>
                                     </a>
                                 </li>
                                 <li class="">
                                     <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
+                                        <span class="pcoded-micon"><i class="feather icon-box"></i></span>
                                         <span class="pcoded-mtext">Gestion Des Prélèvements</span>
                                     </a>
                                 </li>
@@ -216,8 +238,14 @@
                                 </li>
                                 <li class="">
                                     <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="feather icon-bell"></i></span>
+                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
                                         <span class="pcoded-mtext">Bénéciaire</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ route('users.index') }}">
+                                        <span class="pcoded-micon"><i class="feather icon-users"></i></i></span>
+                                        <span class="pcoded-mtext">Utilisateurs</span>
                                     </a>
                                 </li>
                             </ul>
@@ -246,26 +274,25 @@
 </div>
 
 <!-- Required Jquery -->
-<script type="text/javascript" src="{{ asset('bower_components\jquery\js\jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\jquery-ui\js\jquery-ui.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\popper.js\js\popper.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\bootstrap\js\bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jquery/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/popper.js/js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- jquery slimscroll js -->
-<script type="text/javascript" src="{{ asset('bower_components\jquery-slimscroll\js\jquery.slimscroll.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
 <!-- modernizr js -->
-<script type="text/javascript" src="{{ asset('bower_components\modernizr\js\modernizr.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\modernizr\js\css-scrollbars.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
 <!-- i18next.min.js -->
-<script type="text/javascript" src="{{ asset('bower_components\i18next\js\i18next.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\jquery-i18next\js\jquery-i18next.min.js') }}"></script>
-<script src="{{ asset('js\pcoded.min.js') }}"></script>
-<script src="{{ asset('js\vartical-layout.min.js') }}"></script>
-<script src="{{ asset('js\jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
+<script src="{{ asset('js/vartical-layout.min.js') }}"></script>
+<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <!-- Custom js -->
-    <script type="text/javascript" src="{{ asset('js\script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+     <script type="text/javascript" src="{{ asset('js/pcoded.min.js') }}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
@@ -276,6 +303,7 @@
 
   gtag('config', 'UA-23581568-13');
 </script>
+@yield('js')
 </body>
 
 </html>
