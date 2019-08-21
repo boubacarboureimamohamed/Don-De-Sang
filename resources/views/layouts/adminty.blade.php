@@ -14,23 +14,27 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('images\favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\bootstrap\css\bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap.min.css') }}">
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('icon\themify-icons\themify-icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('icon/themify-icons/themify-icons.css') }}">
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('icon\icofont\css\icofont.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('icon/icofont/css/icofont.css') }}">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <!-- feather Awesome -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('icon\feather\css\feather.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css\style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css\jquery.mCustomScrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('scss\partials\menu\_pcmenu.htm') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('scss/partials/menu/_pcmenu.htm') }}">
+ 
+     <!-- Select2 --> 
+     <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
+    @yield('css')
 </head>
 
 <body>
@@ -246,26 +250,31 @@
 </div>
 
 <!-- Required Jquery -->
-<script type="text/javascript" src="{{ asset('bower_components\jquery\js\jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\jquery-ui\js\jquery-ui.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\popper.js\js\popper.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\bootstrap\js\bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jquery/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/popper.js/js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- jquery slimscroll js -->
-<script type="text/javascript" src="{{ asset('bower_components\jquery-slimscroll\js\jquery.slimscroll.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
 <!-- modernizr js -->
-<script type="text/javascript" src="{{ asset('bower_components\modernizr\js\modernizr.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\modernizr\js\css-scrollbars.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
 
 <!-- i18next.min.js -->
-<script type="text/javascript" src="{{ asset('bower_components\i18next\js\i18next.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bower_components\jquery-i18next\js\jquery-i18next.min.js') }}"></script>
-<script src="{{ asset('js\pcoded.min.js') }}"></script>
-<script src="{{ asset('js\vartical-layout.min.js') }}"></script>
-<script src="{{ asset('js\jquery.mCustomScrollbar.concat.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
+<script src="{{ asset('js/pcoded.min.js') }}"></script>
+<script src="{{ asset('js/vartical-layout.min.js') }}"></script>
+<script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <!-- Custom js -->
-    <script type="text/javascript" src="{{ asset('js\script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+
+    <!-- select2 -->
+   
+    <script src="{{ asset('dist/js/select2.full.min.js') }}"></script>
+
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
@@ -276,6 +285,7 @@
 
   gtag('config', 'UA-23581568-13');
 </script>
+@yield('js')
 </body>
 
 </html>
