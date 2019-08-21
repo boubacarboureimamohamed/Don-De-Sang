@@ -64,12 +64,12 @@
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-md-10">
-                                            <p class="text-inverse text-left m-b-0">Thank you.</p>
-                                            <p class="text-inverse text-left"><a href="index-1.htm"><b class="f-w-600">Back to website</b></a></p>
+                                        <div class="col-md-9">
+                                            <p class="text-inverse text-left m-b-0">Don Du Sang</p>
+                                            <p class="text-inverse text-left">Blood Donation</a></p>
                                         </div>
-                                        <div class="col-md-2">
-                                            <img src="{{ asset('images\auth\Logo-small-bottom.png') }}" alt="small-logo.png">
+                                        <div class="col-md-3">
+                                            <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
                                         </div>
                                     </div>
                                 </div>
