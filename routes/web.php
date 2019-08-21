@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+route::resource('rdvs', 'RdvController');
 
 Route::resource('users', 'UsersController');
 
@@ -39,5 +40,4 @@ Route::get('donneurs/{donneur}/edit', 'DonneurController@edit')->name('donneurs.
 Route::PUT('donneurs/{donneur}', 'DonneurController@update')->name('donneurs.update');
 
 Route::get('donneurs/{donneur}/show', 'DonneurController@show')->name('donneurs.show');
-
 

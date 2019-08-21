@@ -15,7 +15,7 @@ class CreateRdvsTable extends Migration
     {
         Schema::create('rdvs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->dateTime('date_heure');
+            $table->datetime('date_heure');
             $table->string('lieu');
             $table->bigInteger('typerdv_id')->unsigned()->index();
             $table->foreign('typerdv_id')->references('id')->on('typerdvs');
