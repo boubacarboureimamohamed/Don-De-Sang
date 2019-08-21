@@ -20,3 +20,24 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 route::resource('rdvs', 'RdvController');
+
+Route::resource('users', 'UsersController');
+
+Route::get('user/profile', 'UsersController@profile')->name('profile');
+
+
+
+Route::get('donneurs.add', 'DonneurController@adddonneur')->name('donneurs.add');
+
+Route::post('donneurs', 'DonneurController@store')->name('donneurs.store');
+
+Route::get('donneurs', 'DonneurController@index')->name('donneurs.index');
+
+Route::delete('donneurs/{donneur}', 'DonneurController@destroy')->name('donneurs.destroy');
+
+Route::get('donneurs/{donneur}/edit', 'DonneurController@edit')->name('donneurs.edit');
+
+Route::PUT('donneurs/{donneur}', 'DonneurController@update')->name('donneurs.update');
+
+Route::get('donneurs/{donneur}/show', 'DonneurController@show')->name('donneurs.show');
+

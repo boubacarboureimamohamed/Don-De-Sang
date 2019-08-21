@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Don Du Sang') }}</title>
 
     <!-- Favicon icon -->
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
@@ -34,22 +34,47 @@
  
      <!-- Select2 --> 
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
     @yield('css')
 </head>
 
 <body>
-
+@yield('css')
+<!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+                <div class="ring">
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
-             <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="theme3" pcoded-header-position="fixed"">
+             <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="theme2" pcoded-header-position="fixed"">
                 <div class="navbar-wrapper">
 
                 <div class="navbar-logo">
                     <a class="mobile-menu" id="mobile-collapse" href="#!">
                         <i class="feather icon-menu"></i>
                     </a>
-                    <a href="index-1.htm">
+                    <a href="{{ route('home') }}">
                         <img class="img-fluid" src="{{ asset('images\logo.png') }}" alt="Theme-Logo">
                     </a>
                     <a class="mobile-options">
@@ -98,13 +123,14 @@
                                 </div>
                                 <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                     <li>
-                                        <a href="user-profile.htm">
-                                            <i class="feather icon-user"></i> Mon profile
+                                        <a href="{{ route('profile') }}">
+                                            <i class="feather icon-user"></i> {{ __('Mon profile') }}
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="auth-lock-screen.htm">
-                                            <i class="feather icon-settings"></i> Paramétres
+                                        <a class="dropdown-item" href="#">
+                                            <i class="feather icon-settings"></i>
+                                        {{ __('Paramétres') }}
                                         </a>
                                     </li>
                                     <li>
@@ -129,19 +155,19 @@
 
              <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                    <nav class="pcoded-navbar">
-                        <div class="pcoded-inner-navbar main-menu">
-                            <div class="pcoded-navigatio-lavel"></div>
+                    <nav class="pcoded-navbar" navbar-theme="themelight1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
+                        <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" id="" style="height: calc(100% - 80px);">
+                            <div class="pcoded-navigatio-lavel" menu-title-theme="theme5">Navigation</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="navbar-light.htm">
+                                    <a href="{{ route('home') }}">
                                         <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                                         <span class="pcoded-mtext">Tableau de bord</span>
                                     </a>
                                 </li>
                                 <li class="">
                                     <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
+                                        <span class="pcoded-micon"><i class="feather icon-box"></i></span>
                                         <span class="pcoded-mtext">Gestion Des Prélèvements</span>
                                     </a>
                                 </li>
@@ -220,8 +246,14 @@
                                 </li>
                                 <li class="">
                                     <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="feather icon-bell"></i></span>
+                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
                                         <span class="pcoded-mtext">Bénéciaire</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ route('users.index') }}">
+                                        <span class="pcoded-micon"><i class="feather icon-users"></i></i></span>
+                                        <span class="pcoded-mtext">Utilisateurs</span>
                                     </a>
                                 </li>
                             </ul>
@@ -260,6 +292,7 @@
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
 
+
 <!-- i18next.min.js -->
 <script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
@@ -274,7 +307,6 @@
     <!-- select2 -->
    
     <script src="{{ asset('dist/js/select2.full.min.js') }}"></script>
-
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
