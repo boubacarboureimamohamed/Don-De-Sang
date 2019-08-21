@@ -11,10 +11,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Don Du Sang') }}</title>
+    <title>{{ config('app.name', 'Don-De-Sang') }}</title>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/DDS/favicon.png') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <!-- Required Fremwork -->
@@ -70,7 +70,7 @@
                         <i class="feather icon-menu"></i>
                     </a>
                     <a href="{{ route('home') }}">
-                        <img class="img-fluid" src="{{ asset('images\logo.png') }}" alt="Theme-Logo">
+                        <img class="img-fluid" src="{{ asset('images/DDS/logo.png') }}" alt="Theme-Logo">
                     </a>
                     <a class="mobile-options">
                         <i class="feather icon-more-horizontal"></i>
@@ -167,7 +167,7 @@
                                     </a>
                                 </li>
                                 <li class="">
-                                    <a href="navbar-light.htm">
+                                    <a href="{{ route('donneurs.index') }}">
                                         <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
                                         <span class="pcoded-mtext">Liste Des Donneurs</span>
                                     </a>

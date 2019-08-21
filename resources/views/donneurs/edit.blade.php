@@ -16,189 +16,193 @@
 @endsection
 @section('content')
 
-<div class="container">
-        <form role="form" action="{{ route('donneurs.update', $donneur) }}" method="POST">
+<div class="col-sm-12">
+    <form role="form" action="{{ route('donneurs.update', $donneur) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
-            <div class="row setup-content" id="step-1">
-                <div class="col-xs-12">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="j-label">Numéro donneur</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                    <i class="icofont icofont-ui-password"></i>
-                                </label>
-                                <input type="text" id="num_donneur" name="num_donneur" value="{{ $donneur->num_donneur }}">
+        <div class="auth-box card">
+          <div class="card-block">
+               <div class="row m-b-30">
+                     <div class="col-md-12">
+                          <h3 class="text-center txt-primary">{{ __('Ajout d\'un nouveau donneur') }}</h3>
+                     </div>
+               </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                        <input type="text" id="num_donneur" name="num_donneur" class="form-control" value="{{ $donneur->num_donneur }}" required="" placeholder="Numéro donneur">
+                                        @if($errors->has('num_donneur'))
+                                            <p style="color: red">  {{ $errors->first('num_donneur')}} </p>
+                                        @endif
                             </div>
-                            @if($errors->has('num_donneur'))
-                                <p style="color: red">  {{ $errors->first('num_donneur')}} </p>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Nom</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                    <i class="icofont icofont-ui-user"></i>
-                                </label>
-                                <input type="text" id="nom" name="nom" value="{{ $donneur->nom }}">
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                    <select name="typedonneur_id" id="typedonneur_id" class="form-control">
+                                        @foreach($ts as $t)
+                                            <option value="{{ $t->id }}" @if($t->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
+                                               {{ $t->type_donneur }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                             </div>
-                            @if($errors->has('nom'))
-                                <p style="color: red">  {{ $errors->first('nom')}} </p>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Prénom</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                    <i class="icofont icofont-ui-user"></i>
-                                </label>
-                                <input type="text" id="prenom" name="prenom" value="{{ $donneur->prenom }}">
-                            </div>
-                            @if($errors->has('prenom'))
-                                <p style="color: red">  {{ $errors->first('prenom')}} </p>
-                            @endif
-                        </div>
-                        <div lass="form-group">
-                            <label class="j-label">Email</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                        <i class="icofont icofont-envelope"></i>
-                                </label>
-                                <input type="email" id="" name="email" value="{{ $donneur->email }}">
-                            </div>
-                        </div>
-                        <div lass="form-group">
-                            <label class="j-label">Phone/Mobile</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="phone">
-                                    <i class="icofont icofont-phone"></i>
-                                </label>
-                                <input type="text" id="telephone" name="telephone" value="{{ $donneur->telephone }}">
-                            </div>
-                        </div>
-                    </div>
+                         </div>
+                     </div>
                 </div>
-            </div>
-            <div class="row setup-content" id="step-2">
-                <div class="col-xs-12">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="j-label">Date de naissance</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="adults">
-                                        <i class="icofont icofont-ui-calendar"></i>
-                                </label>
-                                <input id="dropper-dangercolor" class="form-control" type="text" name="date_naiss" placeholder="Select your animation" value="{{ $donneur->date_naiss }}">
-                                <span class="j-tooltip j-tooltip-right-top">Date de naissance</span>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                        <input type="text" id="nom" name="nom" class="form-control" value="{{ $donneur->nom }}" required="" placeholder="Nom donneur">
+
+                                        @if($errors->has('nom'))
+                                            <p style="color: red">  {{ $errors->first('nom')}} </p>
+                                        @endif
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Lieu de naissance</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="children">
-                                    <i class="zmdi zmdi-pin"></i>
-                                </label>
-                                <input type="text" id="" name="lieu_naiss" value="{{ $donneur->lieu_naiss }}">
-                                <span class="j-tooltip j-tooltip-right-top">Lieu de naissance</span>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                        <input type="text" id="prenom" name="prenom" class="form-control" value="{{ $donneur->prenom }}" required="" placeholder="Prénom donneur">
+                                        @if($errors->has('prenom'))
+                                            <p style="color: red">  {{ $errors->first('prenom')}} </p>
+                                        @endif
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Nationnalite</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="date_from">
-                                    <i class="icofont icofont-ui-calendar"></i>
-                                </label>
-                                <input type="text" id="" name="nationalite" value="{{ $donneur->nationalite }}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Profession</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="date_to">
-                                    <i class="icofont icofont-ui-calendar"></i>
-                                </label>
-                                <input type="text" id="" name="profession" value="{{ $donneur->profession }}">
-                            </div>
-                        </div>
-                    </div>
+                         </div>
+                     </div>
                 </div>
-            </div>
-            <div class="row setup-content" id="step-3">
-                <div class="col-xs-12">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="j-label">Sexe</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                    <i class="fa fa-venus-mars"></i>
-                                </label>
-                                <input type="text" id="sexe" name="sexe" value="{{ $donneur->sexe }}">
+                <div class="row">
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-ui-calendar"></i></span>
+                                    <input type="text" name="date_naiss" class="form-control" value="{{ $donneur->date_naiss }}" required="" placeholder="Date de naissance">
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Type donneur</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                    <i class="fa fa-venus-mars"></i>
-                                </label>
-                                <select name="typedonneur_id" id="typedonneur_id" class="form-control" >
-                                    @foreach($ts as $t)
-                                        <option value="{{ $t->id }}" @if($t->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
-                                            {{ $t->type_donneur }}
+                         </div>
+                     </div>
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
+                                        <input type="text" id="" name="lieu_naiss" class="form-control" value="{{ $donneur->lieu_naiss }}" required="" placeholder="Lieu de naissance">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="form-radio">
+                                <div class="group-add-on">
+                                    <div class="radio radiofill radio-inline">
+                                      <label>
+                                        <input type="radio" id="sexe" name="sexe" value="{{ $donneur->sexe }}"><i class="helper"></i> Homme
+                                      </label>
+                                    </div>
+                                    <div class="radio radiofill radio-inline">
+                                       <label>
+                                          <input type="radio" id="sexe" name="sexe" value="{{ $donneur->sexe }}"><i class="helper"></i> Femme
+                                        </label>
+                                    </div>
+                                      @if($errors->has('sexe'))
+                                            <p style="color: red">  {{ $errors->first('sexe')}} </p>
+                                        @endif
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <select name="situation_mat_id" id="situation_mat_id" class="form-control">
+                                    @foreach($ps as $p)
+                                        <option value="{{ $p->id }}" @if($p->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
+                                            {{ $p->situation_matrimoniale }}
                                         </option>
                                     @endforeach
-                              </select>
+                                </select>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Situation matrimoniale</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                    <i class="fa fa-venus-mars"></i>
-                                </label>
-                                <select name="situation_matrimoniale" id="situation_matrimoniale" class="form-control">
-                                    @foreach($ps as $p)
-                                    <option value="{{ $p->id }}" @if($p->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
-                                            {{ $p->situation_matrimoniale }}
-                                    </option>
-                                    @endforeach
-                              </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Adresse</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                    <i class="icofont icofont-ui-user"></i>
-                                </label>
-                                <input type="text" id="adresse" name="adresse" value="{{ $donneur->adresse }}">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="j-label">Organisation</label>
-                            <div class="j-input">
-                                <label class="j-icon-right" for="email">
-                                    <i class="icofont icofont-ui-user"></i>
-                                </label>
-                                <select name="organisation_id" id="typedonneur" class="form-control">
-                                    @foreach($os as $o)
-                                    <option value="{{ $o->id }}" @if($o->id == $donneur->organisation_id) {{ 'selected' }} @endif>
-                                            {{ $o->libelle }}
-                                    </option>
-                                    @endforeach
-                              </select>
-                            </div>
-                        </div>
-                        <button type="Submit" class="btn btn-success alert-success-msg m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);">Success</button>
-                        {{-- <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button> --}}
-                    </div>
+                         </div>
+                     </div>
                 </div>
-            </div>
-            @csrf
-        </form>
-        </div>
-
+                <div class="row">
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-flag"></i></span>
+                                    <input type="text" id="" name="nationalite" value="{{ $donneur->nationalite }}" class="form-control" required="" placeholder="Nationalité">
+                            </div>
+                         </div>
+                     </div>
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
+                                        <input type="text" id="adresse" name="adresse" class="form-control" value="{{ $donneur->adresse }}" required="" placeholder="Adresse domicile">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                        <input type="text" id="" name="profession" class="form-control" value="{{ $donneur->profession }}" required="" placeholder="Profession">
+                            </div>
+                         </div>
+                     </div>
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                    <select name="organisation_id" id="organisation_id" class="form-control">
+                                        @foreach($os as $o)
+                                            <option value="{{ $o->id }}" @if($o->id == $donneur->organisation_id) {{ 'selected' }} @else {{ '' }} @endif>
+                                               {{ $o->libelle }}
+                                            </option>
+                                        @endforeach
+                                   </select>
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
+                                    <input type="email" id="" name="email" value="{{ $donneur->email }}" class="form-control" required="" placeholder="Adresse mail">
+                            </div>
+                         </div>
+                     </div>
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                                        <input type="text" id="telephone" name="telephone" value="{{ $donneur->telephone }}" class="form-control" required="" placeholder="Téléphone">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="text-center">
+                     <a href="{{ route('donneurs.index') }}" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
+                        <button type="Submit" class="btn btn-primary waves-effect waves-light m-r-20" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);">Modifier</button>
+                        {{-- <button class="btn btn-success btn-lg pull-right" type="submit">Submit</button> --}}
+                </div>
+           </div>
+       </div>
+    </form>
+</div>
 
 @endsection
 

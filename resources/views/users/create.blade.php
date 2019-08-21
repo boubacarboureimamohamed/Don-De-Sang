@@ -81,7 +81,7 @@
                                                     <div class="row">
                                                         <div class="col-sm-12 col-xl-6 m-b-30">
                                                             <h4 class="sub-title">Permissions</h4>
-                                                            <select id='custom-headers' class="searchable" multiple='multiple'>
+                                                            <select id='custom-headers' class="searchable" name="permissions[]" multiple='multiple'>
                                                                 <option value='elem_1' selected="">elem 1</option>
                                                                 <option value='elem_2'>elem 2</option>
                                                                 <option value='elem_3'>elem 3</option>
@@ -96,7 +96,7 @@
                                                         </div>
                                                         <div class="col-sm-12 col-xl-6 m-b-30">
                                                             <h4 class="sub-title">Rôles</h4>
-                                                            <select id='custom-headers' class="searchable" multiple='multiple'>
+                                                            <select id='custom-headers' class="searchable" name="roles[]" ultiple='multiple'>
                                                                 <option value='elem_1' selected="">elem 1</option>
                                                                 <option value='elem_2'>elem 2</option>
                                                                 <option value='elem_3'>elem 3</option>
@@ -129,12 +129,12 @@
                  </div>
                  </div> <hr>
                   <div class="row">
-                      <div class="col-md-11">
+                      <div class="col-md-10">
                         <p class="text-inverse text-left m-b-0">Don Du Sang</p>
                         <p class="text-inverse text-left">Blood Donation</a></p>
                       </div>
-                      <div class="col-md-1">
-                         <img src="{{ asset('images\auth\Logo-small-bottom.png') }}" alt="small-logo.png">
+                      <div class="col-md-2">
+                         <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
                       </div>
                  </div>
             </div>

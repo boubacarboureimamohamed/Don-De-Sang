@@ -19,7 +19,7 @@
 
     <!-- Styles -->
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('images\favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/DDS/favicon.ico') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <!-- Required Fremwork -->
