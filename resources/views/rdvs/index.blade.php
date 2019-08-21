@@ -11,9 +11,7 @@
             <!-- Zero config.table start -->
             <div class="card">
             <div class="card-header">
-            <h5>Zero Configuration</h5>
-            <span>DataTables has most features enabled by default, so all you need to do to use it with your own ables is to call the construction function: $().DataTable();.</span>
-
+                <h2 style="text-align: center;">Liste des Planifications</h2>
             </div>
             <div class="card-block">
                 <div class="btn-group btn-group-sm" style="float: none;">
@@ -33,7 +31,7 @@
                         <th>Email</th>
                         <th>modifier</th>
                         <th>supprimer</th>
-                        
+
                     </tr>
                     </thead>
                     <tbody>
@@ -54,25 +52,25 @@
                             <form action="{{ route('rdvs.destroy', $rdv) }}" method="post" onsubmit=" return confirm('voulez vous supprimer cet enregistrement?');">
                             {{ csrf_field()}}
                             {{ method_field('Delete') }}
-                            
+
                             <button  class="btn btn-danger"><span class="icofont icofont-ui-delete"></span></button>
                             </form>
                         </th>
                             </tr>
                             @endforeach
                 </tbody>
-                
+
                 </table>
                                 </div>
                             </div>
                         </div>
                         <!-- Default ordering table end -->
-                    
-                                                    
-                                                    
-                                                    
-                                                        
-                  
+
+
+
+
+
+
  </div>
 
 @endsection
