@@ -11,11 +11,11 @@
 <div class="col-sm-12">
 <div class="card">
 <div class="card-header">
-<h2 style="text-align: center;">Liste des utilisateurs</h2>
+<h2 style="text-align: center;">Liste des rôles</h2>
 </div>
 <div class="card-block">
 <div class="btn-group btn-group-sm" style="float: none; ">
-    <a href="{{ route('users.create') }}" class="btn btn-success"  style="float: none;margin: 5px;">
+    <a href="{{ route('roles.create') }}" class="btn btn-success"  style="float: none;margin: 5px;">
        <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
     </a>
 </div>
@@ -23,31 +23,25 @@
 <table class="table table-striped table-bordered" id="example-2">
 <thead>
 <tr>
-<th>Nom et Prénom</th>
-<th>Email </th>
-<th>Rôle</th>
+<th>Rôles</th>
+<th>Permissions </th>
 <th class="tabledit-toolbar-column">Modifier</th>
 <th class="tabledit-toolbar-column">Supprimer</th>
 </tr>
 </thead>
 <tbody>
-@foreach ($users as $user)
+@foreach ($roles as $role)
     <tr>
-<td class="tabledit-view-mode"><span class="tabledit-span" style="">{{ $user->name }}</span></td>
-<td class="tabledit-view-mode"><span class="tabledit-span" style="">{{ $user->email }}</span></td>
-<th scope="row">
-@foreach ($user->roles as $role)
-
-<span class="tabledit-span" style="">
-{{ $role->name }}<br>
-</span>
-
+<td class="tabledit-view-mode"><span class="tabledit-span" style="">{{ $role->name }}</span></td>
+<td class="tabledit-view-mode">
+@foreach ($role->permissions as $permission)
+<button class="btn btn-primary btn-round">{{ $permission->name }}</button>
 @endforeach
-</th>
+</td>
 <td style="white-space: nowrap; width: 1%;">
 <div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
     <div class="btn-group btn-group-sm" style="float: none;">
-    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary waves-effect waves-light" style="float: none;margin: 5px;">
+    <a href="{{ route('roles.edit', $role) }}" class="btn btn-primary waves-effect waves-light" style="float: none;margin: 5px;">
     <span class="icofont icofont-ui-edit"></span></a>
     </div>
 </div>
@@ -55,7 +49,7 @@
 <td style="white-space: nowrap; width: 1%;">
 <div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
     <div class="btn-group btn-group-sm" style="float: none;">
-    <form method="POST" action="{{ route('users.destroy', $user) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+    <form method="POST" action="{{ route('roles.destroy', $role) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
 
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
@@ -68,7 +62,6 @@
 </td>
 </tr>
 @endforeach
-
 </tbody>
 </table>
 </div>

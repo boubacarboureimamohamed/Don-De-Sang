@@ -31,8 +31,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/partials/menu/_pcmenu.htm') }}">
- 
-     <!-- Select2 --> 
+
+     <!-- Select2 -->
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
@@ -177,23 +177,11 @@
                                         <span class="pcoded-mtext">Liste Des Donneurs</span>
                                     </a>
                                 </li>
-                                <li class="pcoded-hasmenu">
-                                    <a href="javascript:void(0)">
+                                <li class="">
+                                    <a href="{{ route('rdvs.index') }}">
                                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                                        <span class="pcoded-mtext">Planifier Des Collectes</span>
+                                        <span class="pcoded-mtext">Planification Des Collectes</span>
                                     </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="navbar-light.htm">
-                                                <span class="pcoded-mtext">Collecte Mobile</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="navbar-light.htm">
-                                                <span class="pcoded-mtext">Collecte Fixe</span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)">
@@ -250,11 +238,23 @@
                                         <span class="pcoded-mtext">Bénéciaire</span>
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="{{ route('users.index') }}">
+                                <li class="pcoded-hasmenu">
+                                    <a href="#!">
                                         <span class="pcoded-micon"><i class="feather icon-users"></i></i></span>
-                                        <span class="pcoded-mtext">Utilisateurs</span>
+                                        <span class="pcoded-mtext">Utilisateurs Et Rôles</span>
                                     </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="{{ route('users.index') }}">
+                                                <span class="pcoded-mtext">Les utilisateurs</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{{ route('roles.index') }}">
+                                                <span class="pcoded-mtext">Les rôles</span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                      </nav>
@@ -305,7 +305,7 @@
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 
     <!-- select2 -->
-   
+
     <script src="{{ asset('dist/js/select2.full.min.js') }}"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

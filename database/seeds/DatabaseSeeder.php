@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         //$this->call(TypedonneursTableSeeder::class);
        // $this->call(OrganisationsTableSeeder::class);
        // $this->call(SituationsmatsTableSeeder::class);
-       $this->call(TyperdvsTableSeeder::class);
+       //$this->call(TyperdvsTableSeeder::class);
+       //$this->call(PermissionsTableSeeder::class);
     }
 }

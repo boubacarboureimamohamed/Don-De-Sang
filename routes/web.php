@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); 
 });
 
 Auth::routes();
@@ -24,6 +24,13 @@ route::resource('rdvs', 'RdvController');
 Route::resource('users', 'UsersController');
 
 Route::get('user/profile', 'UsersController@profile')->name('profile');
+
+Route::resource('roles', 'RolesController');
+
+Route::resource('permissions', 'PermissionsController');
+
+
+
 
 
 
