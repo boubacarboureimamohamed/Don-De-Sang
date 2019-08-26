@@ -1,5 +1,6 @@
 @extends('layouts.adminty')
 @section('css')
+
   <!-- jpro forms css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
@@ -16,7 +17,7 @@
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Liste des Donneurs inapte</h5>
+            <h5>Liste des Donneurs apte</h5>
         </div>
         <div class="card-block">
             <div class="table-responsive">
@@ -26,22 +27,22 @@
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Modifier</th>
+                            <th>Prélevée</th>
                             <th>Detail</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($donneur_inaptes as $donneur_inapte)
-                            @if($donneur_inapte->approbation == '0')
+                        @foreach($dossiers as $dossier)
+                            @if($dossier->approbation == '1')
                             <tr>
-                                <td>{{ $donneur_inapte->donneur->num_donneur }}</td>
-                                <td>{{ $donneur_inapte->donneur->nom }}</td>
-                                <td>{{ $donneur_inapte->donneur->prenom }}</td>
+                                <td>{{ $dossier->donneur->num_donneur }}</td>
+                                <td>{{ $dossier->donneur->nom }}</td>
+                                <td>{{ $dossier->donneur->prenom }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></a>
+                                    <a href="{{ route('prelevement.prelever', $dossier) }}" class="btn btn-sm btn-warning"><i class="icofont icofont-icu icofont-lg"></i></a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                    <a href="{{ route('dossierM.show_apte', $dossier) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
                                 </td>
                             </tr>
                             @endif

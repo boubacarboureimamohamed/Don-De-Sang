@@ -15,7 +15,7 @@
     <div class="page-body">
         <div class="card">
             <div class="card-header">
-                <h5>Donneur N²{{ $as->id }}</h5>
+                <h5>Donneur N°{{ $as->id }}</h5>
             </div>
             <div class="card-block">
                 <div class="row">
@@ -77,33 +77,33 @@
                                         </tr>
                                         <tr>
                                             <th scope="row">Organisation</th>
-                                            <td>{{ $as->organisation->libelle }}</td>
+                                            <td>{{ $ls->organisation ? $ls->organisation->libelle : '' }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div>
-                                    <div class="table-responsive">
-                                        <table class="table m-0">
-                                            <tbody>
-                                                @foreach ($as->situationmats as $a)
-                                                <tr>
-                                                    <th scope="row">Date</th>
-                                                    <td>{{ $a->pivot->date }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Situation matrimoniale </th>
-                                                    <td>{{ $a->situation_matrimoniale }}</td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="table-responsive">
+                                    <table class="table m-0">
+                                        <tbody>
+                                            @foreach ($as->situationmats as $a)
+                                            <tr>
+                                                <th scope="row">Date</th>
+                                                <td>{{ $a->pivot->date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Situation matrimoniale </th>
+                                                <td>{{ $a->situation_matrimoniale }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
+                            </div>
                         </div>
                      </div>
             </div>
         </div>
     </div>
-    <!-- Extra Large table end -->Mom1996@
+    <!-- Extra Large table end -->
 @endsection

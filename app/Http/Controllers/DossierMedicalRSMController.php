@@ -5,12 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Donneur;
 use App\Models\DossierMedical;
+use Illuminate\Support\Carbon;
 
-class DossierMedicalRController extends Controller
+class DossierMedicalRSMController extends Controller
 {
     public function index()
     {
-        $donneurs = Donneur::with('typedonneur','situationmats','organisation')->get();
+        $donneurs = Donneur::with('typedonneur','situationmats','organisation','dossierMedicals')->get();
+
+        $donneurs = $donneurs->filter(function($donneur) {
+
+            $last = $donneur->dossierMedicals->last();
+            if($last)
+            {
+                $ago = $last->created_at->addMonths(3);
+                 $current = Carbon::today();
+                 return $current->greaterThanOrEqualTo($ago);
+
+            }else {
+                return true;
+            }
+
+        });
+
         return view('dossierM.index', compact('donneurs'));
     }
     public function examiner($id)
@@ -33,7 +50,7 @@ class DossierMedicalRController extends Controller
             'poid' => $request->poid,
             'temperature' => $request->temperature,
             'tension_arterielle' => $request->tension_arterielle,
-            'date_dossier_medical' => $request->date_dossier_medical,
+            'date_dossier_medical' => date('Y-m-d'),
             'approbation' => $request->approbation,
             'observation_approbation' => $request->observation_approbation,
             'num_don' => $request->num_don,
@@ -45,12 +62,14 @@ class DossierMedicalRController extends Controller
     }
     public function donneur_apte()
     {
-        $donneur_aptes = DossierMedical::with('donneur')->get();
-        return view('dossierM.donneur_apte',compact('donneur_aptes'));
+        //$donneur_aptes = DossierMedical::with('donneur')->get();
+        $donneurs= Donneur::with('dossierMedicals')->get();
+        return view('dossierM.donneur_apte',compact('donneurs'));
     }
     public function donneur_inapte()
     {
-        $donneur_inaptes = DossierMedical::with('donneur')->get();
+        //$donneur_aptes = DossierMedical::with('donneur')->get();
+        $donneur_inaptes= DossierMedical::with('donneur')->get();
         return view('dossierM.donneur_inapte',compact('donneur_inaptes'));
     }
     public function show_apte(DossierMedical $donneur_apte)

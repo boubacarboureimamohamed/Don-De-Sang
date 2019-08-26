@@ -32,17 +32,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($donneur_aptes as $donneur_apte)
-                            @if($donneur_apte->approbation == '1')
+                        @foreach($donneurs as $donneur)
+                            @php
+                            $approbation = $donneur->dossierMedicals->last()->approbation ?? 0 ;
+                            @endphp
+                            @if($donneur->dossierMedicals->count() > 0 && $approbation ==1)
+
                             <tr>
-                                <td>{{ $donneur_apte->donneur->num_donneur }}</td>
-                                <td>{{ $donneur_apte->donneur->nom }}</td>
-                                <td>{{ $donneur_apte->donneur->prenom }}</td>
+                                <td>{{ $donneur->num_donneur }}</td>
+                                <td>{{ $donneur->nom }}</td>
+                                <td>{{ $donneur->prenom }}</td>
                                 <td>
                                     <a href="#" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('dossierM.show_apte', $donneur_apte) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                    <a href="{{ route('dossierM.show_apte', $donneur) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
                                 </td>
                             </tr>
                             @endif

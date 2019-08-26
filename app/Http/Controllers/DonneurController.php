@@ -59,7 +59,7 @@ class DonneurController extends Controller
     public function update(Request $request, Donneur $donneur)
     {
          //dd($request);
-         $this->validate($request, [
+         /* $this->validate($request, [
             'num_donneur' => 'required|string|max:20',
             'nom' => 'required|max:255',
             'prenom' => 'required|max:255',
@@ -67,7 +67,7 @@ class DonneurController extends Controller
             'lieu_naiss' => 'required|string|max:255',
             'sexe' => 'required'
         ]);
-
+ */
         $donneur->update([
             'num_donneur' => $request->num_donneur,
             'nom' => $request->nom,
@@ -86,7 +86,6 @@ class DonneurController extends Controller
         ]);
         $donneur->situationmats()->updateExistingPivot($request->situation_mat_id,['date' => date('Y-m-d')]);
         /* flash("success, L'donneur a été modifier.")->success(); */
-            dd($donneur);
         return redirect(route('donneurs.index'));
     }
 
