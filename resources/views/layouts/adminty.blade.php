@@ -184,12 +184,12 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
-                                            <a href="navbar-light.htm">
+                                            <a href="{{ route('rdvs.rdv_mobile_liste')}}">
                                                 <span class="pcoded-mtext">Collecte Mobile</span>
                                             </a>
                                         </li>
                                         <li class="">
-                                            <a href="navbar-light.htm">
+                                            <a href="{{ route('rdvs.rdv_fixe_liste')}}">
                                                 <span class="pcoded-mtext">Collecte Fixe</span>
                                             </a>
                                         </li>

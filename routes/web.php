@@ -19,7 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-route::resource('rdvs', 'RdvController');
+Route::resource('rdvs', 'RdvController');
+
+Route::get('planificationsfixe', 'RdvController@rdvfixeliste')->name('rdvs.rdv_fixe_liste');
+
+Route::get('planificationsmobile', 'RdvController@rdvmobileliste')->name('rdvs.rdv_mobile_liste');
 
 Route::resource('users', 'UsersController');
 
