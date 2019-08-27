@@ -31,7 +31,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/partials/menu/_pcmenu.htm') }}">
-
+    <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/animate.css/css/animate.css') }}">
+   <!-- Notification.css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/notification/notification.css') }}">
      <!-- Select2 -->
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
     <!-- feather Awesome -->
@@ -165,10 +168,34 @@
                                         <span class="pcoded-mtext">Tableau de bord</span>
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
+                                <li class="pcoded-hasmenu">
+                                    <a href="#!">
                                         <span class="pcoded-micon"><i class="feather icon-box"></i></span>
                                         <span class="pcoded-mtext">Gestion Des Prélèvements</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="#!">
+                                                <span class="pcoded-mtext">Liste Des Prélèvements</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{{ route('prelevement.donneur_apte_a_prelevee') }}">
+                                                <span class="pcoded-mtext">Liste d'attente</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
+                                    <a href="{{ route('dossierM.index') }}">
+                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
+                                        <span class="pcoded-mtext">Consultation Médicale </span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="navbar-light.htm">
+                                        <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
+                                        <span class="pcoded-mtext">Gestion Des Dossiers Médicales </span>
                                     </a>
                                 </li>
                                 <li class="">
@@ -232,12 +259,6 @@
 
                                     </ul>
                                 </li>
-                                <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
-                                        <span class="pcoded-mtext">Bénéciaire</span>
-                                    </a>
-                                </li>
                                 <li class="pcoded-hasmenu">
                                     <a href="#!">
                                         <span class="pcoded-micon"><i class="feather icon-users"></i></i></span>
@@ -255,6 +276,12 @@
                                             </a>
                                         </li>
                                     </ul>
+                                </li>
+                                <li class="">
+                                    <a href="navbar-light.htm">
+                                        <span class="pcoded-micon"><i class="feather icon-mail"></i></span>
+                                        <span class="pcoded-mtext">Notifications</span>
+                                    </a>
                                 </li>
                             </ul>
                      </nav>
@@ -292,6 +319,9 @@
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
 
+    <!-- notification js -->
+<script type="text/javascript" src="{{ asset('bower_components/notification/notification.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap-growl.min.js') }}"></script>
 
 <!-- i18next.min.js -->
 <script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>

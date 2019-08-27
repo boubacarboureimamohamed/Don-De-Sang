@@ -1,9 +1,9 @@
 @extends('layouts.adminty')
 
 @section('css')
-    <!-- animation nifty modal window effects css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/component.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/css/sweetalert.min.css') }}">
+
+    <!-- Data Table Css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
@@ -19,8 +19,8 @@
        <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
     </a>
 </div>
-<div class="table-responsive">
-<table class="table table-striped table-bordered" id="example-2">
+<div class="data_table_main table-responsive dt-responsive">
+<table id="simpletable" class="table  table-striped table-bordered nowrap">
 <thead>
 <tr>
 <th>Nom et Prénom</th>
@@ -47,7 +47,7 @@
 <td style="white-space: nowrap; width: 1%;">
 <div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
     <div class="btn-group btn-group-sm" style="float: none;">
-    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary waves-effect waves-light" style="float: none;margin: 5px;">
+    <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-primary waves-effect waves-light" style="float: none;margin: 5px;">
     <span class="icofont icofont-ui-edit"></span></a>
     </div>
 </div>
@@ -60,7 +60,7 @@
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
 
-    <button type="submit" class="btn btn-danger waves-effect waves-light" style="float: none;margin: 5px;">
+    <button type="submit" class="btn btn-danger waves-effect" data-type="danger" data-from="top" data-align="right" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">
     <span class="icofont icofont-ui-delete"></span></button>
     </form>
     </div>
@@ -80,14 +80,9 @@
 @endsection
 
 @section('js')
-    <!-- Editable-table js -->
-    <script type="text/javascript" src="{{ asset('js/edit-table/jquery.tabledit.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('jsedit-table/editable.js') }}"></script>
-    <!-- sweet alert js -->
-    <script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/modal.js') }}"></script>
-    <!-- sweet alert modal.js intialize js -->
-    <!-- modalEffects js nifty modal window effects -->
-    <script type="text/javascript" src="{{ asset('js/modalEffects.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
+    <!-- data-table js -->
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
 @endsection

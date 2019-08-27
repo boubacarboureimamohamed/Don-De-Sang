@@ -269,14 +269,16 @@
                                                                             <div class="card-header">
                                                                                 <div class="service-header">
                                                                                     <a href="#">
-                                                                                        <h5 class="card-header-text">Permissions</h5>
+                                                                                        <h5 class="card-header-text">Rôles</h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="card-block">
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12">
-                                                                                        <p class="task-detail">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+
+                                                                                        <p class="task-detail">Monsieur {{ Auth::user()->name }},<br> Vous avez le rôle d'un </p>
+
                                                                                     </div>
                                                                                     <!-- end of col-sm-8 -->
                                                                                 </div>
@@ -290,14 +292,14 @@
                                                                             <div class="card-header">
                                                                                 <div class="service-header">
                                                                                     <a href="#">
-                                                                                        <h5 class="card-header-text">Rôles</h5>
+                                                                                        <h5 class="card-header-text">Permissions</h5>
                                                                                     </a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="card-block">
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12">
-                                                                                        <p class="task-detail">Lorem ipsum dolor sit amet, consectet ur adipisicing elit, sed do eiusmod temp or incidi dunt ut labore et.Lorem ipsum dolor sit amet, consecte.</p>
+                                                                                        <p class="task-detail">Les permissions qui vous sont attribuées sont :<br></p>
                                                                                     </div>
                                                                                     <!-- end of col-sm-8 -->
                                                                                 </div>

@@ -24,4 +24,9 @@ class Donneur extends Model
             'date'
         ]);
     }
+
+    public function dossierMedicals()
+    {
+        return $this->hasMany('App\Models\DossierMedical');
+    }
 }
