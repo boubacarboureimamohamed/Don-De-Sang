@@ -192,6 +192,24 @@
                                         <span class="pcoded-mtext">Consultation Médicale </span>
                                     </a>
                                 </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="#!">
+                                        <span class="pcoded-micon"><i class="feather icon-calendar"></i></span>
+                                        <span class="pcoded-mtext">Planification Des Collectes</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="{{ route('rdvs.rdv_mobile_liste')}}">
+                                                <span class="pcoded-mtext">Collectes Mobiles</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{{ route('rdvs.rdv_fixe_liste')}}">
+                                                <span class="pcoded-mtext">Collectes Fixes</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="">
                                     <a href="navbar-light.htm">
                                         <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
@@ -202,12 +220,6 @@
                                     <a href="{{ route('donneurs.index') }}">
                                         <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
                                         <span class="pcoded-mtext">Liste Des Donneurs</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="{{ route('rdvs.index') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                                        <span class="pcoded-mtext">Planification Des Collectes</span>
                                     </a>
                                 </li>
                                 <li class="pcoded-hasmenu">

@@ -56,7 +56,14 @@ class RdvController extends Controller
             'organisation_id' => $organisation->id
         ]);
         
-     return redirect(route('rdvs.index'));
+        if($request->typerdv_id == 1)
+        {
+            return redirect(route('rdvs.rdv_fixe_liste'));
+        }
+        elseif($request->typerdv_id == 2)
+        {
+            return redirect(route('rdvs.rdv_mobile_liste'));
+        }
     }
 
     /**
@@ -78,8 +85,8 @@ class RdvController extends Controller
      */
     public function edit($id)
     {
-         $typerdvs = Typerdv::all();
-         $organisations = Organisation::all();
+        $typerdvs = Typerdv::all();
+        $organisations = Organisation::all();
         $rdv = Rdv::find($id);
         return view('rdvs.edit', compact('typerdvs', 'rdv', 'organisations'));
       
@@ -107,7 +114,15 @@ class RdvController extends Controller
             'typerdv_id' => $request->typerdv_id,
             'organisation_id' => $organisation->id
         ]);
-        return redirect(route('rdvs.index'));
+
+        if($request->typerdv_id == 1)
+        {
+            return redirect(route('rdvs.rdv_fixe_liste'));
+        }
+        elseif($request->typerdv_id == 2)
+        {
+            return redirect(route('rdvs.rdv_mobile_liste'));
+        }
     }
 
     /**
@@ -120,5 +135,17 @@ class RdvController extends Controller
     {
         Rdv::destroy($id);
         return redirect()->back();
+    }
+
+    public function rdvfixeliste()
+    {
+        $rdvsfixes = Rdv::with('typerdv')->with('organisation')->get();
+        return view('rdvs.rdv_fixe_liste', compact('rdvsfixes'));
+    }
+
+    public function rdvmobileliste()
+    {
+        $rdvsmobiles = Rdv::with('typerdv', 'organisation')->get();
+        return view('rdvs.rdv_mobile_liste', compact('rdvsmobiles'));
     }
 }
