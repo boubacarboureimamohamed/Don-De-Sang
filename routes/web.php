@@ -64,3 +64,9 @@ Route::get('prelevement/donneur_apte_a_prelevee', 'DossierMedicalPrelevementCont
 Route::get('prelevement/{donneur}/prelever', 'DossierMedicalPrelevementController@prelever')->name('prelevement.prelever');
 
 Route::PUT('prelevement/{dossier}', 'DossierMedicalPrelevementController@store')->name('prelevement.store');
+
+Route::get('prelevement/donneur_prelevee', 'DossierMedicalPrelevementController@donneur_prelevee')->name('prelevement.donneur_prelevee');
+
+Route::get('prelevement/{prelevement}/show', 'DossierMedicalPrelevementController@show_prelevement')->name('prelevement.show_prelevement');
+
+Route::get('prelevement/{prelevement}/edit', 'DossierMedicalPrelevementController@edit')->name('prelevement.edit');
