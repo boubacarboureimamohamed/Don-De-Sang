@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); 
 });
 
 Auth::routes();
@@ -28,6 +28,13 @@ Route::get('planificationsmobile', 'RdvController@rdvmobileliste')->name('rdvs.r
 Route::resource('users', 'UsersController');
 
 Route::get('user/profile', 'UsersController@profile')->name('profile');
+
+Route::resource('roles', 'RolesController');
+
+Route::resource('permissions', 'PermissionsController');
+
+
+
 
 
 

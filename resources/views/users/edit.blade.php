@@ -22,78 +22,53 @@
           <div class="card-block">
                <div class="row m-b-30">
                      <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ __('Modification d\'un utilisateur') }}</h3>
+                          <h3 class="text-center txt-primary">{{ ('Modification d\'un utilisateur') }}</h3>
                      </div>
                </div>
                 <div class="row">
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                       <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required="" placeholder="Username">
-
-                                        @error('name')
-                                        <span class="form-bar" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required="" placeholder="Username">
+                                 @error('name')
+                                   <span class="form-bar" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                   </span>
+                                @enderror
                             </div>
                          </div>
                      </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required="" placeholder="Your Email Address">
-
-                                        @error('email')
-                                            <span class="form-bar" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                                </div>
+                                <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required="" placeholder="Your Email Address">
+                                  @error('email')
+                                    <span class="form-bar" role="alert">
+                                       <strong>{{ $message }}</strong>
+                                    </span>
+                                  @enderror
+                             </div>
                          </div>
                      </div>
                 </div>
                 <!-- Multi-select start -->
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <div class="row">
-                                                        <div class="col-sm-12 col-xl-6 m-b-30">
-                                                            <h4 class="sub-title">Permissions</h4>
-                                                            <select id='custom-headers' class="searchable" multiple='multiple'>
-                                                                <option value='elem_1' selected="">elem 1</option>
-                                                                <option value='elem_2'>elem 2</option>
-                                                                <option value='elem_3'>elem 3</option>
-                                                                <option value='elem_4' selected="">elem 4</option>
-                                                                <option value='elem_5'>elem 5</option>
-                                                                <option value='elem_6'>elem 6</option>
-                                                                <option value='elem_7'>elem 7</option>
-                                                                <option value='elem_8'>elem 8</option>
-                                                                <option value='elem_9'>elem 9</option>
-                                                                <option value='elem_10'>elem 10</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-sm-12 col-xl-6 m-b-30">
-                                                            <h4 class="sub-title">Rôles</h4>
-                                                            <select id='custom-headers' class="searchable" multiple='multiple'>
-                                                                <option value='elem_1' selected="">elem 1</option>
-                                                                <option value='elem_2'>elem 2</option>
-                                                                <option value='elem_3'>elem 3</option>
-                                                                <option value='elem_4' selected="">elem 4</option>
-                                                                <option value='elem_5'>elem 5</option>
-                                                                <option value='elem_6'>elem 6</option>
-                                                                <option value='elem_7'>elem 7</option>
-                                                                <option value='elem_8'>elem 8</option>
-                                                                <option value='elem_9'>elem 9</option>
-                                                                <option value='elem_10'>elem 10</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <!-- Multi-select end -->
+                 <div class="card">
+                     <div class="card-block">
+                         <div class="row">
+                              <div class="col-sm-12">
+                                  <h4 class="sub-title">Rôles</h4>
+                                  <select id='custom-headers' class="searchable" name="roles[]" multiple='multiple'>
+                                     @foreach ($roles as $role)
+                                        <option @if(in_array($role->id, $user->roles->pluck('id')->toArray())) {{ 'selected' }} @endif value='{{ $role->id }}'>{{ $role->name }}</option>
+                                     @endforeach
+                                  </select>
+                               </div>
+                          </div>
+                     </div>
+                 </div>
+                <!-- Multi-select end -->
                 <div class="row m-t-30">
                       <div class="col-md-5">
 

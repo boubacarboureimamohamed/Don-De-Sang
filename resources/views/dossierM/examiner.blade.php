@@ -16,143 +16,163 @@
 @endsection
 @section('content')
 
-<div class="row">
-    <form role="form" action="{{ route('dossierM.store') }}" method="POST">
-        <div class="tab-pane active" id="personal" role="tabpanel">
-            <div class="col-lg-12">
-                <div class="general-info">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <table class="table">
-                                <tbody>
-                                        <input type="text"value="{{ $donneur->id }}"name="donneur_id" hidden>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->nom }}" placeholder="{{ $donneur->nom }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-key"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->num_donneur }}" placeholder="{{ $donneur->nom }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-radio">
-                                                <div class="group-add-on">
-                                                    <div class="radio radiofill radio-inline">
-                                                        <label>
-                                                            <input type="radio" value="1" name="approbation" checked=""><i class="helper"></i> Apte
-                                                        </label>
-                                                    </div>
-                                                    <div class="radio radiofill radio-inline">
-                                                        <label>
-                                                            <input type="radio" value="0" name="approbation"><i class="helper"></i> Inapte
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input id="dropper-default" class="form-control" type="text" placeholder="Date dossier medical" name="date_dossier_medical">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
-                                                <textarea placeholder="Comments" spellcheck="false" id="observation_approbation" name="observation_approbation"></textarea>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-key"></i></span>
-                                                <input type="text" class="form-control" placeholder="num_don" name="num_don">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- end of table col-lg-6 -->
-                        <div class="col-lg-6">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->prenom }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-ui-settings"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" placeholder="{{ $donneur->nom }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"></span>
-                                                <input type="text" class="form-control" placeholder="Poid" name="poid">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-thermometer-alt"></i></span>
-                                                <input type="text" class="form-control" placeholder="Température" name="temperature">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-heartbeat"></i></i></span>
-                                                <input type="text" class="form-control" placeholder="Tension artérielle" name="tension_arterielle">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                                <input type="text" class="form-control" placeholder="Quantité à prélevée" name="quantite_a_prelevee">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- end of table col-lg-6 -->
-                    </div>
-                    <!-- end of row -->
-                    <div class="text-center">
-                            <button type="Submit" class="btn btn-primary waves-effect waves-light m-r-20" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);">Enregistrer</button>
-                        {{-- <a href="{{ route('dossierM.index') }}" id="edit-cancel" class="btn btn-default waves-effect">Cancel</a> --}}
-                    </div>
+<div class="col-sm-12">
+   <form role="form" action="{{ route('dossierM.store') }}" method="POST">
+       <div class="auth-box card">
+          <div class="card-block">
+          <div class="card-block">
+               <div class="row m-b-30">
+                     <div class="col-md-12">
+                          <h3 class="text-center txt-primary">{{ ('Entretien médical') }}</h3>
+                     </div>
+               </div>
+                <div class="row">
+                    <input type="text"value="{{ $donneur->id }}"name="donneur_id" hidden>
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                 <input id="" type="text" class="form-control" value="{{ $donneur->num_donneur }}" placeholder="{{ $donneur->nom }}" readonly="" required="" placeholder="">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" name="num_don" required="" placeholder="Numéro du don">
+                            </div>
+                         </div>
+                     </div>
                 </div>
-                <!-- end of edit info -->
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $donneur->nom }}" readonly="" required="" placeholder="Username">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $donneur->prenom }}" readonly="" required="" placeholder="">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" placeholder="Poid du Donneur" name="poid" required="">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-thermometer-alt"></i></span>
+                                <input id="" type="text" class="form-control" placeholder="Température" name="temperature" required="" placeholder="Type de Poche">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-heartbeat"></i></span>
+                                <input id="" type="text" class="form-control" placeholder="Tension artérielle" name="tension_arterielle" required="" placeholder="Quantité Prélèvée">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
+                                <input id="" type="text" class="form-control" placeholder="Quantité à prélevée" name="quantite_a_prelevee" required="">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
+                                <input id="dropper-default" class="form-control" type="text" placeholder="Date dossier medical" name="date_dossier_medical" required="">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                               <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
+                               <textarea placeholder="Observations" class="form-control" spellcheck="false" id="observation_approbation" name="observation_approbation"></textarea>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-radio">
+                            <div class="group-add-on">
+                                <div class="radio radiofill radio-inline">
+                                    <label>
+                                       <input type="radio" value="1" name="approbation"><i class="helper"></i> Apte
+                                    </label>
+                                </div>
+                                 <div class="radio radiofill radio-inline">
+                                     <label>
+                                        <input type="radio" value="0" name="approbation"><i class="helper"></i> Inapte
+                                     </label>
+                                </div>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row m-t-30">
+                      <div class="col-md-5">
+
+                      </div>
+                      <div class="col-md-7">
+                         <a href="{{ route('dossierM.index') }}" class="btn btn-grd-disabled">
+                               {{ ('Annuler') }}
+                         </a>
+                          <button type="submit" class="btn btn-success">
+                               {{ __('Enregistrer') }}
+                          </button>
+                      </div>
+                 </div>
+                 </div> <hr>
+                  <div class="row">
+                      <div class="col-md-10">
+                        <p class="text-inverse text-left m-b-0">Don Du Sang</p>
+                        <p class="text-inverse text-left">Blood Donation</a></p>
+                      </div>
+                      <div class="col-md-2">
+                         <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
+                      </div>
+                 </div>
             </div>
-        <!-- end of col-lg-12 -->
-        @csrf
+        </div>
     </form>
-    </div>
+
+</div>
+
+
 @endsection
 
 @section('js')

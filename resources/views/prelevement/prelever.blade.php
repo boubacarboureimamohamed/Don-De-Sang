@@ -16,121 +16,140 @@
 @endsection
 @section('content')
 
-<div class="row">
-    <form role="form" action="{{ route('prelevement.store', $dossier) }}" method="POST">
-        @method('PUT')
-        <div class="tab-pane active" id="personal" role="tabpanel">
-            <div class="col-lg-12">
-                <div class="general-info">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <table class="table">
-                                <tbody>
-                                        <input type="text"value="{{ $donneur->id }}"name="donneur_id" hidden>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->nom }}" placeholder="{{ $donneur->nom }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-key"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->num_donneur }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-key"></i></span>
-                                                <input type="text" class="form-control" value="{{ $dossier->num_don }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-key"></i></span>
-                                                <input type="text" class="form-control" placeholder="type de prevelement" name="type_prelevement">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                                <input type="text" class="form-control" placeholder="Quantité prélevée" name="quantite_prelevee">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- end of table col-lg-6 -->
-                        <div class="col-lg-6">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->prenom }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-ui-settings"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"></span>
-                                                <input type="text" class="form-control" value="{{ $dossier->quantite_a_prelevee }}" readonly="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-heartbeat"></i></i></span>
-                                                <input type="text" class="form-control" placeholder="Type de poche" name="type_poche">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-thermometer-alt"></i></span>
-                                                <input type="text" class="form-control" placeholder="Observation du prelevemrnt" name="observation_prelevement">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- end of table col-lg-6 -->
-                    </div>
-                    <!-- end of row -->
-                    <div class="text-center">
-                            <button type="Submit" class="btn btn-primary waves-effect waves-light m-r-20" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);">Enregistrer</button>
-                        {{-- <a href="{{ route('dossierM.index') }}" id="edit-cancel" class="btn btn-default waves-effect">Cancel</a> --}}
-                    </div>
+<div class="col-sm-12">
+   <form role="form" action="{{ route('prelevement.store', $dossier) }}" method="POST">
+
+        {{ csrf_field() }}
+        {{ method_field('PUT') }}
+
+       <div class="auth-box card">
+          <div class="card-block">
+          <div class="card-block">
+               <div class="row m-b-30">
+                     <div class="col-md-12">
+                          <h3 class="text-center txt-primary">{{ ('Le don / Le prélèvement') }}</h3>
+                     </div>
+               </div>
+                <div class="row">
+                     <input type="text"value="{{ $donneur->id }}"name="donneur_id" hidden>
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                 <input id="" type="text" class="form-control" value="{{ $donneur->num_donneur }}" readonly="" required="" placeholder="">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $dossier->num_don }}" readonly="" required="" placeholder="">
+                            </div>
+                         </div>
+                     </div>
                 </div>
-                <!-- end of edit info -->
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $donneur->nom }}" placeholder="{{ $donneur->nom }}" readonly="" required="" placeholder="Username">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $donneur->prenom }}" readonly="" required="" placeholder="">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $dossier->quantite_a_prelevee }}" readonly="" required="" placeholder="">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" placeholder="Type de poche" name="type_poche" required="" placeholder="Type de Poche">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" placeholder="Quantité prélevée" name="quantite_prelevee" required="" placeholder="Quantité Prélèvée">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id=""  type="text" class="form-control" placeholder="type de prevelement" name="type_prelevement" required="" placeholder="Type de Prélèvement">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" placeholder="Observation du prelevemrnt" name="observation_prelevement" required="">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row m-t-30">
+                      <div class="col-md-5">
+
+                      </div>
+                      <div class="col-md-7">
+                         <a href="{{ route('prelevement.donneur_apte_a_prelevee') }}" class="btn btn-grd-disabled">
+                               {{ ('Annuler') }}
+                         </a>
+                          <button type="submit" class="btn btn-success">
+                               {{ __('Effectuer') }}
+                          </button>
+                      </div>
+                 </div>
+                 </div> <hr>
+                  <div class="row">
+                      <div class="col-md-10">
+                        <p class="text-inverse text-left m-b-0">Don Du Sang</p>
+                        <p class="text-inverse text-left">Blood Donation</a></p>
+                      </div>
+                      <div class="col-md-2">
+                         <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
+                      </div>
+                 </div>
             </div>
-        <!-- end of col-lg-12 -->
-        @csrf
+        </div>
     </form>
-    </div>
+
+</div>
+
 @endsection
 
 @section('js')

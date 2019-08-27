@@ -17,18 +17,18 @@
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Liste des Donneurs apte</h5>
+            <h2 style="text-align: center;">Liste des donneurs aptes</h2>
         </div>
         <div class="card-block">
             <div class="table-responsive">
-                <table class="table table-xl">
+                <table class="table table-striped table-bordered" id="example-2">
                     <thead>
                         <tr>
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Modifier</th>
                             <th>Detail</th>
+                            <th>Modifier</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,17 +43,17 @@
                                 <td>{{ $donneur->nom }}</td>
                                 <td>{{ $donneur->prenom }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
+                                    <a href="{{ route('dossierM.show_apte', $donneur) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('dossierM.show_apte', $donneur) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                    <a href="#" class="btn btn-sm btn-primary"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
                                 </td>
                             </tr>
                             @endif
                         @endforeach
                     </tbody>
-                    <a href="{{ route('dossierM.index')}}" class="btn btn-xs pull-right btn-success"><i class="icofont icofont-arrow-left"></i></a>
                 </table>
+                <a href="{{ route('dossierM.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
     </div>

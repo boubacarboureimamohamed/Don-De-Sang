@@ -21,7 +21,7 @@
           <div class="card-block">
                <div class="row m-b-30">
                      <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ __('Ajout d\'un nouveau utilisateur') }}</h3>
+                          <h3 class="text-center txt-primary">{{ ('Ajout d\'un nouveau utilisateur') }}</h3>
                      </div>
                </div>
                 <div class="row">
@@ -79,34 +79,14 @@
                                             <div class="card">
                                                 <div class="card-block">
                                                     <div class="row">
-                                                        <div class="col-sm-12 col-xl-6 m-b-30">
-                                                            <h4 class="sub-title">Permissions</h4>
-                                                            <select id='custom-headers' class="searchable" name="permissions[]" multiple='multiple'>
-                                                                <option value='elem_1' selected="">elem 1</option>
-                                                                <option value='elem_2'>elem 2</option>
-                                                                <option value='elem_3'>elem 3</option>
-                                                                <option value='elem_4' selected="">elem 4</option>
-                                                                <option value='elem_5'>elem 5</option>
-                                                                <option value='elem_6'>elem 6</option>
-                                                                <option value='elem_7'>elem 7</option>
-                                                                <option value='elem_8'>elem 8</option>
-                                                                <option value='elem_9'>elem 9</option>
-                                                                <option value='elem_10'>elem 10</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-sm-12 col-xl-6 m-b-30">
+                                                        <div class="col-sm-12">
                                                             <h4 class="sub-title">Rôles</h4>
-                                                            <select id='custom-headers' class="searchable" name="roles[]" ultiple='multiple'>
-                                                                <option value='elem_1' selected="">elem 1</option>
-                                                                <option value='elem_2'>elem 2</option>
-                                                                <option value='elem_3'>elem 3</option>
-                                                                <option value='elem_4' selected="">elem 4</option>
-                                                                <option value='elem_5'>elem 5</option>
-                                                                <option value='elem_6'>elem 6</option>
-                                                                <option value='elem_7'>elem 7</option>
-                                                                <option value='elem_8'>elem 8</option>
-                                                                <option value='elem_9'>elem 9</option>
-                                                                <option value='elem_10'>elem 10</option>
+                                                            <select id='custom-headers' class="searchable" name="roles[]" multiple='multiple'>
+
+                                                            @foreach ($roles as $role)
+
+                                                                <option value='{{ $role->id }}'>{{ $role->name }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -122,7 +102,7 @@
                          <a href="{{ route('users.index') }}" class="btn btn-grd-disabled">
                                {{ ('Annuler') }}
                          </a>
-                          <button type="submit" class="btn btn-success">
+                          <button type="submit" class="btn btn-success waves-effect" data-type="success" data-from="top" data-align="right" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">
                                {{ __('Enregistrer') }}
                           </button>
                       </div>

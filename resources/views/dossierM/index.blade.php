@@ -18,16 +18,18 @@
     <div class="card">
         <div class="card-block">
             <div class="table-responsive">
-                    <a href="{{ route('dossierM.donneur_apte')}}" class="btn btn-success btn-outline-success">
-                        <span class="icofont icofont-check-circled"></span> {{ (' Donneurs Apte') }}
+                <div class="card-header">
+                    <h2 style="text-align: center;">Liste des donneurs</h2>
+                </div>
+                <div class="btn-group btn-group-sm" style="float: none; ">
+                    <a href="{{ route('dossierM.donneur_apte')}}" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
+                        <span class="icofont icofont-check-circled"></span> {{ (' Donneurs Aptes') }}
                     </a>
-                    <a href="{{ route('dossierM.donneur_inapte')}}" class="btn btn-warning btn-outline-warning">
-                        <span class="icofont icofont-warning-alt"></span> {{ (' Donneurs Inapte') }}
+                    <a href="{{ route('dossierM.donneur_inapte')}}" class="btn btn-warning btn-outline-warning" style="float: none;margin: 5px;">
+                        <span class="icofont icofont-warning-alt"></span> {{ (' Donneurs Inaptes') }}
                     </a>
-                    <div class="card-header">
-                        <h5>Liste des Donneurs</h5>
-                    </div>
-                <table class="table table-xl">
+                </div>
+                <table class="table table-striped table-bordered" id="example-2">
                     <thead>
                         <tr>
                             <th>N° de donneur</th>
