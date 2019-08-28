@@ -26,20 +26,16 @@
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Detail</th>
                             <th>Prélever</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($dossiers as $dossier)
-                            @if($dossier->approbation == '1')
+                            @if($dossier->approbation == 1)
                             <tr>
                                 <td>{{ $dossier->donneur->num_donneur }}</td>
                                 <td>{{ $dossier->donneur->nom }}</td>
                                 <td>{{ $dossier->donneur->prenom }}</td>
-                                <td>
-                                    <a href="{{ route('dossierM.show_apte', $dossier) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
-                                </td>
                                 <td>
                                     <a href="{{ route('prelevement.prelever', $dossier)}}" class="btn btn-sm btn-primary"><i class="icofont icofont-icu icofont-lg"></i></a>
                                 </td>

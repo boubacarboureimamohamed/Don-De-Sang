@@ -17,7 +17,7 @@
 @section('content')
 
 <div class="row">
-    <form role="form" action="{{ route('prelevement.store', $dossier) }}" method="POST">
+    <form role="form" action="{{ route('prelevement.update', $prelevement) }}" method="POST">
         @method('PUT')
         <div class="tab-pane active" id="personal" role="tabpanel">
             <div class="col-lg-12">
@@ -26,12 +26,12 @@
                         <div class="col-lg-6">
                             <table class="table">
                                 <tbody>
-                                        <input type="text"value="{{ $donneur->id }}"name="donneur_id" hidden>
+                                        <input type="text"value="{{ $prelevement->donneur->id }}"name="donneur_id" hidden>
                                     <tr>
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->nom }}" placeholder="{{ $donneur->nom }}" readonly="">
+                                                <input type="text" class="form-control" value="{{ $prelevement->donneur->num_donneur }}" readonly="">
                                             </div>
                                         </td>
                                     </tr>
@@ -39,7 +39,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-key"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->num_donneur }}" readonly="">
+                                                <input type="text" class="form-control" value="{{ $prelevement->donneur->nom }}" readonly="">
                                             </div>
                                         </td>
                                     </tr>
@@ -47,7 +47,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-key"></i></span>
-                                                <input type="text" class="form-control" value="{{ $dossier->num_don }}" readonly="">
+                                                <input type="text" class="form-control" value="{{ $prelevement->num_don }}" readonly="">
                                             </div>
                                         </td>
                                     </tr>
@@ -55,7 +55,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-key"></i></span>
-                                                <input type="text" class="form-control" placeholder="type de prevelement" name="type_prelevement">
+                                                <input type="text" class="form-control" value="{{ $prelevement->type_prelevement }}" name="type_prelevement">
                                             </div>
                                         </td>
                                     </tr>
@@ -63,7 +63,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                                <input type="text" class="form-control" placeholder="Quantité prélevée" name="quantite_prelevee">
+                                                <input type="text" class="form-control" value="{{ $prelevement->quantite_prelevee }}" name="quantite_prelevee">
                                             </div>
                                         </td>
                                     </tr>
@@ -78,7 +78,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->prenom }}" readonly="">
+                                                <input type="text" class="form-control" value="{{ $prelevement->donneur->prenom }}" readonly="">
                                             </div>
                                         </td>
                                     </tr>
@@ -86,7 +86,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-ui-settings"></i></span>
-                                                <input type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="">
+                                                <input type="text" class="form-control" value="{{ $prelevement->donneur->typedonneur->type_donneur }}" readonly="">
                                             </div>
                                         </td>
                                     </tr>
@@ -94,7 +94,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"></span>
-                                                <input type="text" class="form-control" value="{{ $dossier->quantite_a_prelevee }}" readonly="">
+                                                <input type="text" class="form-control" value="{{ $prelevement->quantite_a_prelevee }}" readonly="">
                                             </div>
                                         </td>
                                     </tr>
@@ -102,7 +102,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-heartbeat"></i></i></span>
-                                                <input type="text" class="form-control" placeholder="Type de poche" name="type_poche">
+                                                <input type="text" class="form-control" value="{{ $prelevement->type_poche }}" name="type_poche">
                                             </div>
                                         </td>
                                     </tr>
@@ -110,7 +110,7 @@
                                         <td>
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-thermometer-alt"></i></span>
-                                                <input type="text" class="form-control" placeholder="Observation du prelevemrnt" name="observation_prelevement">
+                                                <input type="text" class="form-control" value="{{ $prelevement->observation_prelevement }}" name="observation_prelevement">
                                             </div>
                                         </td>
                                     </tr>

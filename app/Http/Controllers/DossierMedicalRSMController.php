@@ -27,7 +27,7 @@ class DossierMedicalRSMController extends Controller
             }
 
         });
-
+            dd($donneurs);
         return view('dossierM.index', compact('donneurs'));
     }
     public function examiner($id)
@@ -37,15 +37,15 @@ class DossierMedicalRSMController extends Controller
     }
     public function store(Request $request)
     {
-        /* dd($request); */
-        /* $this->validate($request, [
-            'poid' => 'required|integer|max:2',
+        $this->validate($request, [
+            'poid' => 'required|integer|max:3',
             'temperature' => 'required|integer|max:2',
             'tension_arterielle' => 'required|integer|max:2',
-            'num_don' => 'required|string|max:255|unique:dossier_medicals',
-            'observation_approbation' => 'required|string|max:255',
-
-        ]); */
+            'observation_approbation' => 'required|string',
+            'num_don' => 'required|integer|max:12|unique:dossier_medicals',
+            'quantite_a_prelevee' => 'required|integer|max:3',
+            'approbation' => 'required',
+        ]);
         DossierMedical::create([
             'poid' => $request->poid,
             'temperature' => $request->temperature,
@@ -58,7 +58,6 @@ class DossierMedicalRSMController extends Controller
             'donneur_id' => $request->donneur_id
         ]);
         return redirect(route('dossierM.index'));
-        dd($request);
     }
     public function donneur_apte()
     {

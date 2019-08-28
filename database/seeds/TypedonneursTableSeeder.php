@@ -11,11 +11,14 @@ class TypedonneursTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 3 ;$i++ )
-        {
             \Illuminate\Support\Facades\DB::table('typedonneurs')->insert([
-                'type_donneur' => "Collecte$i"
+                'type_donneur' => "Collecte"
             ]);
-        }
+            \Illuminate\Support\Facades\DB::table('typedonneurs')->insert([
+                'type_donneur' => "Volontaire"
+            ]);
+            \Illuminate\Support\Facades\DB::table('typedonneurs')->insert([
+                'type_donneur' => "Famille"
+            ]);
     }
 }

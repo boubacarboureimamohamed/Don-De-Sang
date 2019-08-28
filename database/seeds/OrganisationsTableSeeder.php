@@ -11,14 +11,17 @@ class OrganisationsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=0; $i < 9 ;$i++ )
-        {
             \Illuminate\Support\Facades\DB::table('organisations')->insert([
-                'libelle' => "IAI$i",
-                'adresse' => "Quartier$i",
-                'telephone' => "9033982$i",
-                'email' => "IAI$i.com"
+                'libelle' => "IAI-Niger",
+                'adresse' => "Plateau",
+                'telephone' => "20192890",
+                'email' => "IAI-Niger@.com"
             ]);
-        }
+            \Illuminate\Support\Facades\DB::table('organisations')->insert([
+                'libelle' => "SynetCom",
+                'adresse' => "Dar-Est-Salam",
+                'telephone' => "20192834",
+                'email' => "SynetCom@.com"
+            ]);
     }
 }

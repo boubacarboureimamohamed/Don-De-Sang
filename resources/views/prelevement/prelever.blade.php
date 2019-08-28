@@ -31,12 +31,12 @@
                      </div>
                </div>
                 <div class="row">
-                     <input type="text"value="{{ $donneur->id }}"name="donneur_id" hidden>
+                     <input type="text"value="{{ $dossier->donneur->id }}"name="donneur_id" hidden>
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                 <input id="" type="text" class="form-control" value="{{ $donneur->num_donneur }}" readonly="" required="" placeholder="">
+                                 <input id="" type="text" class="form-control" value="{{ $dossier->donneur->num_donneur }}" readonly="" required="" placeholder="">
                             </div>
                          </div>
                      </div>
@@ -54,7 +54,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text" class="form-control" value="{{ $donneur->nom }}" placeholder="{{ $donneur->nom }}" readonly="" required="" placeholder="Username">
+                                <input id="" type="text" class="form-control" value="{{ $dossier->donneur->nom }}" readonly="" required="" placeholder="Username">
                             </div>
                          </div>
                      </div>
@@ -62,7 +62,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text" class="form-control" value="{{ $donneur->prenom }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" class="form-control" value="{{ $dossier->donneur->prenom }}" readonly="" required="" placeholder="">
                             </div>
                          </div>
                      </div>
@@ -72,7 +72,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" class="form-control" value="{{ $dossier->donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
                             </div>
                          </div>
                      </div>

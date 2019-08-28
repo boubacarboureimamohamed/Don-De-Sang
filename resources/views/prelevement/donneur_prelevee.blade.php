@@ -40,7 +40,7 @@
                                 <td>{{ $prelevement->donneur->nom }}</td>
                                 <td>{{ $prelevement->donneur->prenom }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
+                                    <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
                                 </td>
                                 <td>
                                     <a href="{{ route('prelevement.show_prelevement', $prelevement) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>

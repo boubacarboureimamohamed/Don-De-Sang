@@ -18,6 +18,7 @@
 
 <div class="col-sm-12">
    <form role="form" action="{{ route('dossierM.store') }}" method="POST">
+    @csrf
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
@@ -37,13 +38,13 @@
                          </div>
                      </div>
                      <div class="col-sm-6">
-                         <div class="form-group form-primary">
+                        <div class="form-group form-primary">
                             <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" class="form-control" name="num_don" required="" placeholder="Numéro du don">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
                             </div>
-                         </div>
-                     </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
@@ -65,13 +66,13 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
+                        <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" class="form-control" name="num_don" required="" placeholder="Numéro du don">
                             </div>
-                         </div>
-                     </div>
+                        </div>
+                    </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
@@ -109,13 +110,21 @@
                          </div>
                      </div>
                      <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                <input id="dropper-default" class="form-control" type="text" placeholder="Date dossier medical" name="date_dossier_medical" required="">
+                        <div class="form-radio">
+                           <div class="group-add-on">
+                               <div class="radio radiofill radio-inline">
+                                   <label>
+                                      <input type="radio" value="1" name="approbation"><i class="helper"></i> Apte
+                                   </label>
+                               </div>
+                                <div class="radio radiofill radio-inline">
+                                    <label>
+                                       <input type="radio" value="0" name="approbation"><i class="helper"></i> Inapte
+                                    </label>
+                               </div>
                             </div>
-                         </div>
-                     </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
@@ -124,22 +133,6 @@
                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
                                <textarea placeholder="Observations" class="form-control" spellcheck="false" id="observation_approbation" name="observation_approbation"></textarea>
                             </div>
-                         </div>
-                     </div>
-                     <div class="col-sm-6">
-                         <div class="form-radio">
-                            <div class="group-add-on">
-                                <div class="radio radiofill radio-inline">
-                                    <label>
-                                       <input type="radio" value="1" name="approbation"><i class="helper"></i> Apte
-                                    </label>
-                                </div>
-                                 <div class="radio radiofill radio-inline">
-                                     <label>
-                                        <input type="radio" value="0" name="approbation"><i class="helper"></i> Inapte
-                                     </label>
-                                </div>
-                             </div>
                          </div>
                      </div>
                 </div>
