@@ -81,3 +81,14 @@ Route::get('prelevement/{prelevement}/show', 'DossierMedicalPrelevementControlle
 Route::get('prelevement/{prelevement}/edit', 'DossierMedicalPrelevementController@edit')->name('prelevement.edit');
 
 Route::PUT('prelevement/{prelevement}', 'DossierMedicalPrelevementController@update')->name('prelevement.update');
+
+Route::get('validation', 'DossierMedicalValidationController@donneur_a_valider')->name('validation.donneur_a_valider');
+
+Route::get('validation/{validation}', 'DossierMedicalValidationController@validation')->name('validation.validation');
+
+Route::PUT('validation/{dossier}', 'DossierMedicalValidationController@store')->name('validation.store');
+
+Route::get('demande.create', 'DemandeController@create')->name('demande.create');
+
+Route::post('demande.store', 'DemandeController@store')->name('demande.store');
+

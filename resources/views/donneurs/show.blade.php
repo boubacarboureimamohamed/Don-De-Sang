@@ -15,7 +15,7 @@
     <div class="page-body">
         <div class="card">
             <div class="card-header">
-                <h5>Donneur N°{{ $as->id }}</h5>
+                <h5>Donneur N°{{ $as->num_donneur }}</h5>
             </div>
             <div class="card-block">
                 <div class="row">

@@ -33,7 +33,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                 <input id="" type="text" class="form-control" value="{{ $donneur->num_donneur }}" placeholder="{{ $donneur->nom }}" readonly="" required="" placeholder="">
+                                 <input id="" type="text" title="Le numéro du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->num_donneur }}" placeholder="{{ $donneur->nom }}" readonly="" required="" placeholder="">
                             </div>
                          </div>
                      </div>
@@ -41,7 +41,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text" class="form-control" value="{{ $donneur->nom }}" readonly="" required="" placeholder="Username">
+                                <input id="" type="text" title="Le nom du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->nom }}" readonly="" required="" placeholder="Username">
                             </div>
                          </div>
                      </div>
@@ -59,7 +59,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text" class="form-control" value="{{ $donneur->prenom }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" title="Le prénom du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->prenom }}" readonly="" required="" placeholder="">
                             </div>
                          </div>
                      </div>
@@ -69,7 +69,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" class="form-control" name="num_don" required="" placeholder="Numéro du don">
+                                <input id="" type="text" title="Entrer le numéro de don du donneur" data-toggle="tooltip" class="form-control" name="num_don" placeholder="Numéro du don">
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" class="form-control" placeholder="Poid du Donneur" name="poid" required="">
+                                <input id="" type="text" title="Entrer le poid du donneur" data-toggle="tooltip" class="form-control" placeholder="Poid du Donneur" name="poid" required="">
                             </div>
                          </div>
                      </div>
@@ -87,7 +87,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-thermometer-alt"></i></span>
-                                <input id="" type="text" class="form-control" placeholder="Température" name="temperature" required="" placeholder="Type de Poche">
+                                <input id="" type="text" title="Entrer la température du donneur" data-toggle="tooltip" class="form-control" placeholder="Température" name="temperature" required="" placeholder="Type de Poche">
                             </div>
                          </div>
                      </div>
@@ -95,7 +95,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-heartbeat"></i></span>
-                                <input id="" type="text" class="form-control" placeholder="Tension artérielle" name="tension_arterielle" required="" placeholder="Quantité Prélèvée">
+                                <input id="" type="text" title="Entrer la tension artérielle" data-toggle="tooltip" class="form-control" placeholder="Tension artérielle" name="tension_arterielle" required=""">
                             </div>
                          </div>
                      </div>
@@ -105,7 +105,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                <input id="" type="text" class="form-control" placeholder="Quantité à prélevée" name="quantite_a_prelevee" required="">
+                                <input id="" type="text" title="Entrer la quantité à prélevée" data-toggle="tooltip" class="form-control" placeholder="Quantité à prélevée" name="quantite_a_prelevee">
                             </div>
                          </div>
                      </div>
@@ -131,7 +131,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
-                               <textarea placeholder="Observations" class="form-control" spellcheck="false" id="observation_approbation" name="observation_approbation"></textarea>
+                               <textarea placeholder="Observations" title="Entrer votre observation" data-toggle="tooltip" class="form-control" spellcheck="false" id="observation_approbation" name="observation_approbation"></textarea>
                             </div>
                          </div>
                      </div>

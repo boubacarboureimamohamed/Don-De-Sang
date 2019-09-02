@@ -27,23 +27,24 @@
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Modifier</th>
-                            <th>Detail</th>
+                            <th>Numéro de don</th>
+                            <th>Véridique final </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($prelevements as $prelevement)
+                        @foreach($validations as $validation)
+                           {{--  @if($validation->quantite_prelevee != null) --}}
+
                             <tr>
-                                <td>{{ $prelevement->donneur->num_donneur }}</td>
-                                <td>{{ $prelevement->donneur->nom }}</td>
-                                <td>{{ $prelevement->donneur->prenom }}</td>
+                                <td>{{ $validation->donneur->num_donneur }}</td>
+                                <td>{{ $validation->donneur->nom }}</td>
+                                <td>{{ $validation->donneur->prenom }}</td>
+                                <td>{{ $validation->num_don }}</td>
                                 <td>
-                                    <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('prelevement.show_prelevement', $prelevement) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                    <a href="{{ route('validation.validation', $validation)}}" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
                                 </td>
                             </tr>
+                            {{-- @endif --}}
                         @endforeach
                     </tbody>
                     <a href="{{ route('dossierM.index')}}" class="btn btn-xs pull-right btn-success"><i class="icofont icofont-arrow-left"></i></a>

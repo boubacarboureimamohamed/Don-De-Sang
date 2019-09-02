@@ -32,7 +32,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                        <input type="text" id="num_donneur" name="num_donneur" class="form-control" value="{{ $donneur->num_donneur }}" required="" placeholder="Numéro donneur">
+                                        <input type="text" title="Entrer le numéro du donneur" data-toggle="tooltip" id="num_donneur" name="num_donneur" class="form-control" value="{{ $donneur->num_donneur }}" required="" placeholder="Numéro donneur">
                                         @if($errors->has('num_donneur'))
                                             <p style="color: red">  {{ $errors->first('num_donneur')}} </p>
                                         @endif
@@ -43,7 +43,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="typedonneur_id" id="typedonneur_id" class="form-control">
+                                    <select name="typedonneur_id" title="Entrer le type de donneur" data-toggle="tooltip" id="typedonneur_id" class="form-control">
                                         @foreach($ts as $t)
                                             <option value="{{ $t->id }}" @if($t->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
                                                {{ $t->type_donneur }}
@@ -59,7 +59,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                        <input type="text" id="nom" name="nom" class="form-control" value="{{ $donneur->nom }}" required="" placeholder="Nom donneur">
+                                        <input type="text" title="Entrer le nom du donneur" data-toggle="tooltip" id="nom" name="nom" class="form-control" value="{{ $donneur->nom }}" required="" placeholder="Nom donneur">
 
                                         @if($errors->has('nom'))
                                             <p style="color: red">  {{ $errors->first('nom')}} </p>
@@ -71,7 +71,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                        <input type="text" id="prenom" name="prenom" class="form-control" value="{{ $donneur->prenom }}" required="" placeholder="Prénom donneur">
+                                        <input type="text" title="Entrer le prénom du donneur" data-toggle="tooltip" id="prenom" name="prenom" class="form-control" value="{{ $donneur->prenom }}" required="" placeholder="Prénom donneur">
                                         @if($errors->has('prenom'))
                                             <p style="color: red">  {{ $errors->first('prenom')}} </p>
                                         @endif
@@ -84,7 +84,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-ui-calendar"></i></span>
-                                    <input type="text" name="date_naiss" class="form-control" value="{{ $donneur->date_naiss }}" required="" placeholder="Date de naissance">
+                                    <input type="text" title="Entrer la date de naissance du donneur" data-toggle="tooltip" name="date_naiss" class="form-control" value="{{ $donneur->date_naiss }}" required="" placeholder="Date de naissance">
                             </div>
                          </div>
                      </div>
@@ -92,7 +92,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                        <input type="text" id="" name="lieu_naiss" class="form-control" value="{{ $donneur->lieu_naiss }}" required="" placeholder="Lieu de naissance">
+                                        <input type="text" title="Entrer le lieu de naissance du donneur" data-toggle="tooltip" id="" name="lieu_naiss" class="form-control" value="{{ $donneur->lieu_naiss }}" required="" placeholder="Lieu de naissance">
                             </div>
                          </div>
                      </div>
@@ -123,7 +123,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select name="situation_mat_id" id="situation_mat_id" class="form-control">
+                                <select name="situation_mat_id" title="Entrer la situation matrimonial du donneur" data-toggle="tooltip" id="situation_mat_id" class="form-control">
                                     @foreach($ps as $p)
                                         <option value="{{ $p->id }}" @if($p->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
                                             {{ $p->situation_matrimoniale }}
@@ -139,7 +139,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-flag"></i></span>
-                                    <input type="text" id="" name="nationalite" value="{{ $donneur->nationalite }}" class="form-control" required="" placeholder="Nationalité">
+                                    <input type="text" title="Entrer la nationalité du donneur" data-toggle="tooltip" id="" name="nationalite" value="{{ $donneur->nationalite }}" class="form-control" required="" placeholder="Nationalité">
                             </div>
                          </div>
                      </div>
@@ -147,7 +147,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                        <input type="text" id="adresse" name="adresse" class="form-control" value="{{ $donneur->adresse }}" required="" placeholder="Adresse domicile">
+                                        <input type="text" title="Entrer l'adresse du donneur" data-toggle="tooltip" id="adresse" name="adresse" class="form-control" value="{{ $donneur->adresse }}" required="" placeholder="Adresse domicile">
                             </div>
                          </div>
                      </div>
@@ -157,7 +157,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                        <input type="text" id="" name="profession" class="form-control" value="{{ $donneur->profession }}" required="" placeholder="Profession">
+                                        <input type="text" title="Entrer la profession du donneur" data-toggle="tooltip" id="" name="profession" class="form-control" value="{{ $donneur->profession }}" required="" placeholder="Profession">
                             </div>
                          </div>
                      </div>
@@ -165,7 +165,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                  <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="organisation_id" id="organisation_id" class="form-control">
+                                    <select name="organisation_id" name="organisation_id" title="Entrer l'organisation du donneur" data-toggle="tooltip" id="organisation_id" class="form-control">
                                         @foreach($os as $o)
                                             <option value="{{ $o->id }}" @if($o->id == $donneur->organisation_id) {{ 'selected' }} @else {{ '' }} @endif>
                                                {{ $o->libelle }}
@@ -181,7 +181,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                    <input type="email" id="" name="email" value="{{ $donneur->email }}" class="form-control" required="" placeholder="Adresse mail">
+                                    <input type="email" title="Entrer l'email du donneur" data-toggle="tooltip" id="" name="email" value="{{ $donneur->email }}" class="form-control" required="" placeholder="Adresse mail">
                             </div>
                          </div>
                      </div>
@@ -189,7 +189,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                        <input type="text" id="telephone" name="telephone" value="{{ $donneur->telephone }}" class="form-control" required="" placeholder="Téléphone">
+                                        <input type="text" title="Entrer le numéro de téléphone du donneur" data-toggle="tooltip" id="telephone" name="telephone" value="{{ $donneur->telephone }}" class="form-control" required="" placeholder="Téléphone">
                             </div>
                          </div>
                      </div>
