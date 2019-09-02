@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Alfa6661\AutoNumber\AutoNumberTrait;
 
 class Donneur extends Model
 {
-    protected $fillable =['num_donneur', 'nom', 'prenom','date_naiss','lieu_naiss','sexe','adresse','nationalite','profession','telephone', 'email','typedonneur_id','organisation_id'];
+    use AutoNumberTrait;
+    protected $fillable =['num_donneur', 'nom', 'prenom','date_naiss','lieu_naiss','sexe','adresse',
+    'nationalite','profession','telephone', 'email','typedonneur_id','organisation_id'];
 
     public function organisation()
     {
@@ -28,5 +31,16 @@ class Donneur extends Model
     public function dossierMedicals()
     {
         return $this->hasMany('App\Models\DossierMedical');
+    }
+    public function getAutoNumberOptions()
+    {
+        return [
+            'num_donneur' => [
+                'format' => function () {
+                    return 'Do.' . date('Ymd') . '.?'; // autonumber format. '?' will be replaced with the generated number.
+                }
+                /* 'length' => 5 */ // The number of digits in the autonumber
+            ]
+        ];
     }
 }

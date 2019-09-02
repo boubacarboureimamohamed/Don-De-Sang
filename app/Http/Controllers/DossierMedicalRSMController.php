@@ -27,7 +27,6 @@ class DossierMedicalRSMController extends Controller
             }
 
         });
-            dd($donneurs);
         return view('dossierM.index', compact('donneurs'));
     }
     public function examiner($id)
@@ -37,7 +36,7 @@ class DossierMedicalRSMController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, [
+        /* $this->validate($request, [
             'poid' => 'required|integer|max:3',
             'temperature' => 'required|integer|max:2',
             'tension_arterielle' => 'required|integer|max:2',
@@ -45,18 +44,23 @@ class DossierMedicalRSMController extends Controller
             'num_don' => 'required|integer|max:12|unique:dossier_medicals',
             'quantite_a_prelevee' => 'required|integer|max:3',
             'approbation' => 'required',
-        ]);
-        DossierMedical::create([
-            'poid' => $request->poid,
-            'temperature' => $request->temperature,
-            'tension_arterielle' => $request->tension_arterielle,
-            'date_dossier_medical' => date('Y-m-d'),
-            'approbation' => $request->approbation,
-            'observation_approbation' => $request->observation_approbation,
-            'num_don' => $request->num_don,
-            'quantite_a_prelevee' => $request->quantite_a_prelevee,
-            'donneur_id' => $request->donneur_id
-        ]);
+        ]); */
+            $dossier = DossierMedical::create([
+                'poid' => $request->poid,
+                'temperature' => $request->temperature,
+                'tension_arterielle' => $request->tension_arterielle,
+                'date_dossier_medical' => date('Y-m-d'),
+                'approbation' => $request->approbation,
+                'observation_approbation' => $request->observation_approbation,
+                'quantite_a_prelevee' => $request->quantite_a_prelevee,
+                'donneur_id' => $request->donneur_id,
+            ]);
+            if ($dossier->approbation == 1)
+            {
+                $dossier->update([
+                    'num_don' => 'Don-' . date('Y-m-d') . '-' . $dossier->id
+                ]);
+            }
         return redirect(route('dossierM.index'));
     }
     public function donneur_apte()

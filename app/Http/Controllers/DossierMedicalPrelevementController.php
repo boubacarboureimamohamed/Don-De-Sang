@@ -12,7 +12,7 @@ class DossierMedicalPrelevementController extends Controller
 {
     public function donneur_apte_a_prelevee()
     {
-        $dossiers = DossierMedical::with('donneur')->get();
+        $dossiers = DossierMedical::with('donneur')->where('quantite_prelevee', null)->get();
         return view('prelevement.donneur_apte_a_prelevee', compact('dossiers'));
     }
     public function prelever($id)
@@ -33,7 +33,7 @@ class DossierMedicalPrelevementController extends Controller
     }
     public function donneur_prelevee()
     {
-        $prelevements = DossierMedical::with('donneur')->get();
+        $prelevements = DossierMedical::with('donneur')->whereNotNull('quantite_prelevee')->get();
         return view('prelevement.donneur_prelevee', compact('prelevements'));
     }
     public function show_prelevement(DossierMedical $prelevement)

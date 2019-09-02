@@ -21,7 +21,7 @@ class CreateDossierMedicalsTable extends Migration
             $table->date('date_dossier_medical');
             $table->boolean('approbation');
             $table->string('observation_approbation');
-            $table->integer('num_don')->nullable();
+            $table->string('num_don')->nullable();
             $table->integer('quantite_a_prelevee')->nullable();
             $table->dateTime('date_heure_prelevement')->nullable();
             $table->integer('quantite_prelevee')->nullable();
