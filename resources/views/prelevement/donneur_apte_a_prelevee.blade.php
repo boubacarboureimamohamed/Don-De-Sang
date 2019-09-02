@@ -16,7 +16,7 @@
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h2 style="text-align: center;">Liste des donneurs aptes au don</h2>
+            <h3 style="text-align: center;">Liste des donneurs aptes au don</h3>
         </div>
         <div class="card-block">
             <div class="table-responsive">

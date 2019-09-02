@@ -16,28 +16,32 @@
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">{{ __('Authentification') }}</h3>
+                                            <h3 class="text-center">{{ ('Authentification') }}</h3>
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required="" placeholder="Votre Adresse Mail">
+                                        <div class="input-group">
+                                                <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
+                                                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required="" placeholder="Votre Adresse Mail">
 
-                                         @error('email')
-                                        <span class="form-bar" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                         @enderror
-
+                                                    @error('email')
+                                                    <span class="form-bar" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                        </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required="" placeholder="Votre Mot de Pass">
+                                        <div class="input-group">
+                                                <span class="input-group-addon"><i class="icofont icofont-lock"></i></span>
+                                                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required="" placeholder="Votre Mot de Pass">
 
-                                         @error('password')
-                                         <span class="form-bar" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                         </span>
-                                        @enderror
-
+                                                    @error('password')
+                                                    <span class="form-bar" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                        </div>
                                     </div>
                                     <div class="row m-t-25 text-left">
                                         <div class="col-12">

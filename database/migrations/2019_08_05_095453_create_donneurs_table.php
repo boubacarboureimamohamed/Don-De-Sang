@@ -15,7 +15,7 @@ class CreateDonneursTable extends Migration
     {
         Schema::create('donneurs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('num_donneur')->unique();
+            $table->string('num_donneur')->unique()->nullable();
             $table->string('nom');
             $table->string('prenom');
             $table->date('date_naiss');

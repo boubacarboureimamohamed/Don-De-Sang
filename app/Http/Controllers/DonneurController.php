@@ -20,7 +20,9 @@ class DonneurController extends Controller
 
     public function store(Request $request)
     {
-       /*  dd($request); */
+
+
+
         /* $this->validate($request, [
             'num_donneur' => 'required|string|max:20',
             'nom' => 'required|max:255',
@@ -32,10 +34,14 @@ class DonneurController extends Controller
             'nationalite' => 'required|string',
             'profession' => 'required|string',
             'telephone' => 'required|integer|max:8|min:8',
+
         ]); */
 
-        $donneur= Donneur::create($request->all());
 
+        $donneur= Donneur::create($request->all());
+        $donneur->update([
+            'num_donneur' => 'Do/' . date('Ymd') . '/' . $donneur->id
+        ]);
         $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);
             /* dd($donneur); */
         return redirect(route('donneurs.index'));

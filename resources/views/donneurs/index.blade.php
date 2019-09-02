@@ -2,14 +2,6 @@
 
 @section('css')
 
-  <!-- jpro forms css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\j-pro-modern.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\advance-elements\css\bootstrap-datetimepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\bootstrap-daterangepicker\css\daterangepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\datedropper\css\datedropper.min.css') }}">
-
 @endsection
 
 @section('content')
@@ -30,8 +22,8 @@
                         <span class="icofont icofont-warning-alt"></span> {{ (' Donneurs Inaptes') }}
                     </a>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered" id="example-2">
+                <div class="dt-responsive table-responsive">
+                    <table id="simpletable" class="table table-striped table-bordered nowrap">
                         <thead>
                             <tr>
                                 <th>Numéro</th>

@@ -7,7 +7,7 @@ use Alfa6661\AutoNumber\AutoNumberTrait;
 
 class Donneur extends Model
 {
-    use AutoNumberTrait;
+    /* use AutoNumberTrait; */
     protected $fillable =['num_donneur', 'nom', 'prenom','date_naiss','lieu_naiss','sexe','adresse',
     'nationalite','profession','telephone', 'email','typedonneur_id','organisation_id'];
 
@@ -32,15 +32,5 @@ class Donneur extends Model
     {
         return $this->hasMany('App\Models\DossierMedical');
     }
-    public function getAutoNumberOptions()
-    {
-        return [
-            'num_donneur' => [
-                'format' => function () {
-                    return 'Do.' . date('Ymd') . '.?'; // autonumber format. '?' will be replaced with the generated number.
-                }
-                /* 'length' => 5 */ // The number of digits in the autonumber
-            ]
-        ];
-    }
+    
 }

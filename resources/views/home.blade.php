@@ -227,6 +227,40 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- Sweet alert start -->
+                                            <div class="col-sm-12">
+ <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>Bootstrap Modals</h5>
+
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <p>use button<code> onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-1']);"</code> to use effect.</p>
+                                                        <ul>
+                                                            <li>
+                                                                <button type="button" class="btn btn-primary sweet-1 m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-1']);">Basic</button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="button" class="btn btn-success alert-success-msg m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);">Success</button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="button" class="btn btn-warning alert-confirm m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-confirm']);">Confirm</button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="button" class="btn btn-danger alert-success-cancel m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success-cancel']);">Success or Cancel</button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="button" class="btn btn-primary alert-prompt m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-prompt']);">Prompt</button>
+                                                            </li>
+                                                            <li>
+                                                                <button type="button" class="btn btn-success alert-ajax m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-ajax']);">Ajax</button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                </div>
+
                                             <!-- task, page, download counter  end -->
   </div>
 </div>
