@@ -21,7 +21,7 @@ class DonneurController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        $this->validate($request, [
+        /* $this->validate($request, [
             'num_donneur' => 'required|string|max:20',
             'nom' => 'required|max:255',
             'prenom' => 'required|string|max:255',
@@ -33,7 +33,7 @@ class DonneurController extends Controller
             'profession' => 'required|string',
             'telephone' => 'required|integer|max:8|min:8',
         ]);
-
+ */
         $donneur= Donneur::create($request->all());
 
         $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);

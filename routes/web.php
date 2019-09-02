@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome'); 
+    return view('welcome');
 });
 
 Auth::routes();
@@ -65,6 +65,8 @@ Route::get('dossier/donneur_inapte', 'DossierMedicalRSMController@donneur_inapte
 Route::get('dossier/show_inapte', 'DossierMedicalRSMController@show_inapte')->name('dossierM.show_inapte');
 
 Route::get('dossier/{donneur_apte}/show_apte', 'DossierMedicalRSMController@show_apte')->name('dossierM.show_apte');
+
+Route::get('donneursexaminer', 'DossierMedicalRSMController@donneurs_examiner')->name('dossierM.donneursexaminer');
 
 Route::get('prelevement/donneur_apte_a_prelevee', 'DossierMedicalPrelevementController@donneur_apte_a_prelevee')->name('prelevement.donneur_apte_a_prelevee');
 

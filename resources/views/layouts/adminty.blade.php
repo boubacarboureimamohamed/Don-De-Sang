@@ -39,34 +39,42 @@
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
+    <!-- sweet alert framework -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/css/sweetalert.css') }}">
+    <!-- animation nifty modal window effects css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/component.css') }}">
+    <!-- Data Table Css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/data-table/css/buttons.dataTables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}">
     @yield('css')
 </head>
 
 <body>
 @yield('css')
 <!-- Pre-loader start -->
-    <div class="theme-loader">
-        <div class="ball-scale">
-            <div class='contain'>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
-                <div class="ring">
-                    <div class="frame"></div>
-                </div>
+<div class="theme-loader">
+    <div class="ball-scale">
+        <div class='contain'>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
+            </div>
+            <div class="ring">
+                <div class="frame"></div>
             </div>
         </div>
     </div>
-    <!-- Pre-loader end -->
+</div>
+<!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
@@ -160,13 +168,15 @@
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar" navbar-theme="themelight1" active-item-theme="theme1" sub-item-theme="theme2" active-item-style="style0" pcoded-navbar-position="fixed">
                         <div class="pcoded-inner-navbar main-menu mCustomScrollbar _mCS_1" id="" style="height: calc(100% - 80px);">
-                            <div class="pcoded-navigatio-lavel" menu-title-theme="theme5">Navigation</div>
+                            <div class="pcoded-navigatio-lavel" menu-title-theme="theme5">
+                                <span class="text-white">Navigation</span>
+                            </div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
-                                    <a href="{{ route('home') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
-                                        <span class="pcoded-mtext">Tableau de bord</span>
-                                    </a>
+                                    <h5 class="card-footer bg-c-pink">
+                                        <span class="text-white"><i class="feather icon-home"></i></span>
+                                        <span class="text-white">Tableau de bord</span>
+                                    </h5>
                                 </li>
                                 <li class="pcoded-hasmenu">
                                     <a href="#!">
@@ -175,7 +185,7 @@
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
-                                            <a href="#!">
+                                            <a href="{{ route('prelevement.donneur_prelevee') }}">
                                                 <span class="pcoded-mtext">Liste Des Prélèvements</span>
                                             </a>
                                         </li>
@@ -213,7 +223,7 @@
                                 <li class="">
                                     <a href="navbar-light.htm">
                                         <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
-                                        <span class="pcoded-mtext">Gestion Des Dossiers Médicales </span>
+                                        <span class="pcoded-mtext">Dossiers Médicaux </span>
                                     </a>
                                 </li>
                                 <li class="">
@@ -330,10 +340,29 @@
 <!-- modernizr js -->
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
-
+<!-- sweet alert js -->
+<script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert.min.js') }}"></script>
+<script src="{{ asset('js/modal.js') }}"></script>
+    <!-- sweet alert modal.js intialize js -->
+    <!-- modalEffects js nifty modal window effects -->
+<script src="{{ asset('js/modalEffects.js') }}"></script>
+<script src="{{ asset('js/classie.js') }}"></script>
     <!-- notification js -->
 <script type="text/javascript" src="{{ asset('bower_components/notification/notification.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap-growl.min.js') }}"></script>
+
+  <!-- data-table js -->
+    <script type="text/javascript" src="{{ asset('bower_components/data-table/js/jszip.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/data-table/js/pdfmake.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/data-table/js/vfs_fonts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/data-table/js/data-table-custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-buttonsjs/buttons.html5.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-buttonsjs/js/buttons.print.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/datatables.net-buttonsjs/js/dataTables.buttons.min.js') }}"></script>
 
 <!-- i18next.min.js -->
 <script type="text/javascript" src="{{ asset('bower_components/i18next/js/i18next.min.js') }}"></script>

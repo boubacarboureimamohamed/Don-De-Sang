@@ -83,4 +83,10 @@ class DossierMedicalRSMController extends Controller
         //dd($donneur_apte->donneur);
         return view('dossierM.show_apte',compact('aptes','a'));
     }
+
+    public function donneurs_examiner()
+    {
+        $donneursexaminers = DossierMedical::with('donneur')->where('approbation', 'Inapte')->orWhere('approbation', 'Apte')->get();
+        return view('dossierM.donneursexaminer', compact('donneursexaminers'));
+    }
 }

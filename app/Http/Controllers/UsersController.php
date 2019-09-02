@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
@@ -55,8 +56,13 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-       User::destroy($id);
-       return redirect(route('users.index'));
+        $user = Auth::user();
+        if ($id == $user->id) { echo 'Vous ne pouvez pas supprimer votre propre compte, Désolé!!!'; }
+        else {
+
+            User::destroy($id);
+            return redirect(route('users.index'));
+        }
     }
 
     public function profile()
