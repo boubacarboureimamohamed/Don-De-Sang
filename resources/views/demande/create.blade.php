@@ -75,7 +75,7 @@
                                         <div class="form-group form-primary">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                                <select name="groupement[]" id="groupement[]" class="form-control">
+                                                <select name="groupe_sanguin[]" id="groupe_sanguin[]" class="form-control">
                                                     <option value="A+">A+</option>
                                                     <option value="B+">B+</option>
                                                     <option value="AB+">AB+</option>
@@ -137,7 +137,7 @@ function addLigne() {
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
                         ' <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>'+
-                        '<select name="groupement[]" id="groupement[]" class="form-control">'+
+                        '<select name="groupe_sanguin[]" id="groupe_sanguin[]" class="form-control">'+
                             '<option value="A+">A+</option>'+
                             '<option value="B+">B+</option>'+
                             '<option value="AB+">AB+</option>'+

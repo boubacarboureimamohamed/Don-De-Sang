@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class LigneDemande extends Model
 {
+    protected $fillable =['quantite_demandee', 'demande_id', 'groupement_id','livraison_id'];
+
     public function demande()
     {
         return $this->belongsTo('App\Models\Demande');
