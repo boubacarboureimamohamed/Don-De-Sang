@@ -14,15 +14,17 @@ class DossierMedicalValidationController extends Controller
     }
     public function validation($id)
     {
-        $dossier = DossierMedical::with('donneur')->find($id);
+        $dossier = DossierMedical::find($id);
         return view('validation.validation', compact('dossier'));
     }
     public function store(Request $request, DossierMedical $dossier)
     {
+        dd($dossier);
         $dossier->update([
             'rejet' => $request->rejet,
             'motif_rejet' => $request->motif_rejet,
         ]);
+
         return redirect(route('validation.donneur_a_valider'));
     }
 }

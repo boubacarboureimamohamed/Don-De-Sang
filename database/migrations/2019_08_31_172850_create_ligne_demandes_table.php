@@ -20,7 +20,7 @@ class CreateLigneDemandesTable extends Migration
             $table->foreign('demande_id')->references('id')->on('demandes');
             $table->bigInteger('groupement_id')->unsigned()->index();
             $table->foreign('groupement_id')->references('id')->on('groupements');
-            $table->bigInteger('livraison_id')->unsigned()->index();
+            $table->bigInteger('livraison_id')->unsigned()->index()->nullable();
             $table->foreign('livraison_id')->references('id')->on('livraisons');
             $table->timestamps();
         });

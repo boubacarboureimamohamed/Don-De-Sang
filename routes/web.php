@@ -31,7 +31,10 @@ Route::get('user/profile', 'UsersController@profile')->name('profile');
 
 Route::resource('roles', 'RolesController');
 
-Route::resource('permissions', 'PermissionsController');
+Route::resource('permissions', 'PermissionsController');/*
+
+Route::resource('ligne', 'LignedemandeController'); */
+
 
 
 
@@ -84,11 +87,22 @@ Route::PUT('prelevement/{prelevement}', 'DossierMedicalPrelevementController@upd
 
 Route::get('validation', 'DossierMedicalValidationController@donneur_a_valider')->name('validation.donneur_a_valider');
 
-Route::get('validation/{validation}', 'DossierMedicalValidationController@validation')->name('validation.validation');
+Route::get('validation/{dossier}', 'DossierMedicalValidationController@validation')->name('validation.validation');
 
-Route::PUT('validation/{dossier}', 'DossierMedicalValidationController@store')->name('validation.store');
+Route::PUT('validation/{dossierMedical}', 'DossierMedicalValidationController@store')->name('validation.store');
 
 Route::get('demande.create', 'DemandeController@create')->name('demande.create');
 
 Route::post('demande.store', 'DemandeController@store')->name('demande.store');
 
+Route::get('demande', 'DemandeController@index')->name('demande.index');
+
+Route::get('demande/{demande}/show', 'DemandeController@show')->name('demande.show');
+
+Route::get('demande/{demande}/edit', 'DemandeController@edit')->name('demande.edit');
+
+Route::PUT('demande/{demande}', 'DemandeController@update')->name('demande.update');
+
+Route::PUT('demande/{demande}', 'DemandeController@update1')->name('demande.update1');
+
+Route::post('demande.lignestorestore', 'DemandeController@lignestore')->name('demande.lignestorestore');
