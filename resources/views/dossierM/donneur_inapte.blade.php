@@ -19,15 +19,14 @@
             <h2 style="text-align: center;">Liste des donneurs inaptes</h2>
         </div>
         <div class="card-block">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="example-2">
+        <div class="dt-responsive table-responsive">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Detail</th>
-                            <th>Modifier</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -37,12 +36,7 @@
                                 <td>{{ $donneur_inapte->donneur->num_donneur }}</td>
                                 <td>{{ $donneur_inapte->donneur->nom }}</td>
                                 <td>{{ $donneur_inapte->donneur->prenom }}</td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-primary"><i class="icofont icofont-ui-edit icofont-lg"></i></a>
-                                </td>
+                                
                             </tr>
                             @endif
                         @endforeach

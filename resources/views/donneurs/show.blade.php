@@ -95,6 +95,10 @@
                                                 <th scope="row">Situation matrimoniale </th>
                                                 <td>{{ $a->situation_matrimoniale }}</td>
                                             </tr>
+                                            <tr>
+                                                <th scope="row">Situation marié </th>
+                                                <td>{{ $a->situationmariee }}</td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>

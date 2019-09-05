@@ -15,7 +15,7 @@
             </div>
             <div class="card-block">
                 <div class="btn-group btn-group-sm" style="float: none;">
-                    <a href="{{ route('rdvs.create')}}" class="btn btn-success" style="float: none; margin: 5px;">
+                    <a href="{{ route('rdvs.create')}}" class="btn btn-success btn-outline-success" style="float: none; margin: 5px;">
                     <span class="icofont icofont-plus"></span>{{ ('Nouveau') }}</a>
                 </div>
             <div class="data_table_main table-responsive dt-responsive">
@@ -45,7 +45,7 @@
                         <td>{{ $rdv->organisation->telephone }}</td>
                         <td>{{ $rdv->organisation->email }}</td>
                                 <th>
-                        <a href="{{ route('rdvs.edit', $rdv) }}"><button class="btn btn-success"><span class="icofont icofont-ui-edit"></span></button></a>
+                        <a href="{{ route('rdvs.edit', $rdv) }}"><button class="btn btn-warning btn-outline-warining"><span class="icofont icofont-ui-edit"></span></button></a>
                         </th>
 
                         <th>
@@ -53,7 +53,7 @@
                             {{ csrf_field()}}
                             {{ method_field('Delete') }}
 
-                            <button  class="btn btn-danger"><span class="icofont icofont-ui-delete"></span></button>
+                            <button  class="btn btn-danger btn-outline-danger"><span class="icofont icofont-ui-delete"></span></button>
                             </form>
                         </th>
                             </tr>

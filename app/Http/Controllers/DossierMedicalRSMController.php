@@ -58,7 +58,7 @@ class DossierMedicalRSMController extends Controller
             if ($dossier->approbation == 1)
             {
                 $dossier->update([
-                    'num_don' => 'Don-' . date('Y-m-d') . '-' . $dossier->id
+                    'num_don' => 'DON-' . date('Y-m-d') . '-' . $dossier->id
                 ]);
             }
         return redirect(route('dossierM.index'));
@@ -90,7 +90,37 @@ class DossierMedicalRSMController extends Controller
 
     public function donneurs_examiner()
     {
-        $donneursexaminers = Donneur::with('dossierMedicals')->get();
+        $donneursexaminers = DossierMedical::with('donneur')->get();
         return view('dossierM.donneursexaminer', compact('donneursexaminers'));
     }
+
+    public function edit_donneursexaminer($id)
+    {
+      $donneurexaminer = DossierMedical::with('donneur')->find($id);
+      
+      return view('dossierM.editdonneursexaminer', compact('donneurexaminer'));
+    }
+
+    public function update_donneursexaminer(Request $request, DossierMedical $donneurexaminer)
+    {
+       
+     $donneurexaminer->update([
+        'poid'=>$request->poid,
+        'temperature'=>$request->temperature,
+        'tension_arterielle'=>$request->tension_arterielle,
+        'date_dossier_medical'=>$request->date_dossier_medical,
+        'approbation'=> $request->approbation,
+        'quantite_a_prelevee'=>$request->quantite_a_prelevee
+       
+     ]);
+
+     return redirect(route('dossierM.donneursexaminer'));
+    }
+
+    public function show_donneursexaminer($id)
+    {
+        $donneursexaminer = DossierMedical::with('donneur')->find($id);
+        return view('dossierM.showdonneursexaminer', compact('donneursexaminer'));
+    }
+
 }

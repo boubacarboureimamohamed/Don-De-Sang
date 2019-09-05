@@ -40,10 +40,14 @@ class DonneurController extends Controller
 
         $donneur= Donneur::create($request->all());
         $donneur->update([
-            'num_donneur' => 'Do/' . date('Ymd') . '/' . $donneur->id
+            'num_donneur' => 'DO/' . date('Ymd') . '/' . $donneur->id
+        ]);
+       SituationMat::create([
+                'situation_matrimoniale'=>$request->situation_matrimoniale,
+                'situationmariee'=>$request->situationmariee
         ]);
         $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);
-            /* dd($donneur); */
+         
         return redirect(route('donneurs.index'));
     }
     public function index()
@@ -96,6 +100,7 @@ class DonneurController extends Controller
             'typedonneur_id' => $request->typedonneur_id,
             'organisation_id' => $request->organisation_id,
         ]);
+      
         $donneur->situationmats()->updateExistingPivot($request->situation_mat_id,['date' => date('Y-m-d')]);
         /* flash("success, L'donneur a été modifier.")->success(); */
         return redirect(route('donneurs.index'));

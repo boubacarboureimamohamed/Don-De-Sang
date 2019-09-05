@@ -19,8 +19,8 @@
             <h3 style="text-align: center;">Liste des donneurs aptes au don</h3>
         </div>
         <div class="card-block">
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="example-2">
+            <div class="dt-responsive table-responsive">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
                             <th>N° de donneur</th>
@@ -37,7 +37,7 @@
                                 <td>{{ $dossier->donneur->nom }}</td>
                                 <td>{{ $dossier->donneur->prenom }}</td>
                                 <td>
-                                    <a href="{{ route('prelevement.prelever', $dossier)}}" class="btn btn-sm btn-primary"><i class="icofont icofont-icu icofont-lg"></i></a>
+                                    <a href="{{ route('prelevement.prelever', $dossier)}}" class="btn btn-primary btn-outline-primary"><i class="icofont icofont-icu icofont-lg"></i></a>
                                 </td>
                             </tr>
                             @endif

@@ -17,34 +17,34 @@
 @section('content')
 
 <div class="col-sm-12">
-   <form role="form" action="{{ route('prelevement.store', $dossier) }}" method="POST">
-
-        {{ csrf_field() }}
-        {{ method_field('PUT') }}
-
+   <form role="form" action="{{ route('dossierM.updatedonneursexaminer', $donneurexaminer) }}" method="POST">
+     {{ csrf_field() }}
+     {{ method_field('PUT') }}
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
                <div class="row m-b-30">
                      <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Le don / Le prélèvement') }}</h3>
+                          <h3 class="text-center txt-primary">{{ ('Modification de donneur examiner') }}</h3>
                      </div>
                </div>
+               
+                
                 <div class="row">
-                     <input type="text"value="{{ $dossier->donneur->id }}"name="donneur_id" hidden>
-                    <div class="col-sm-6">
+                   
+                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                 <input id="" type="text" title="Le numéro du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->num_donneur }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" title="modifier le poid du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneurexaminer->poid }}" name="poid" required="">
                             </div>
                          </div>
                      </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le numéro de don du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->num_don }}" readonly="" required="" placeholder="">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text"  data-toggle="tooltip" value="{{ $donneurexaminer->date_dossier_medical }}" title="modifier la date du dossier du donneur" class="form-control"  name="date_dossier_medical" required="">
                             </div>
                          </div>
                      </div>
@@ -53,16 +53,16 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text" title="Le nom du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->nom }}" readonly="" required="" placeholder="Username">
+                                <span class="input-group-addon"><i class="icofont icofont-thermometer-alt"></i></span>
+                                <input id="" type="text" value="{{ $donneurexaminer->temperature }}" title="modifier la température du donneur" data-toggle="tooltip" class="form-control" placeholder="Température" name="temperature" required="" placeholder="Type de Poche">
                             </div>
                          </div>
                      </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text" title="Le prénom du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->prenom }}" readonly="" required="" placeholder="">
+                                <span class="input-group-addon"><i class="icofont icofont-heartbeat"></i></span>
+                                <input id="" type="text" value="{{ $donneurexaminer->tension_arterielle }}" title="Entrer la tension artérielle" data-toggle="tooltip" class="form-control" placeholder="Tension artérielle" name="tension_arterielle" required=""">
                             </div>
                          </div>
                      </div>
@@ -71,72 +71,49 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                                <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
+                                <input id="" type="text" value="{{ $donneurexaminer->quantite_a_prelevee }}" title="modifier la quantité à prélevée" data-toggle="tooltip" class="form-control" placeholder="Quantité à prélevée" name="quantite_a_prelevee">
                             </div>
                          </div>
                      </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="La quantité à prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_a_prelevee }}" readonly="" required="" placeholder="">
+                            <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
+                                <input id="" type="text" value="{{ $donneurexaminer->observation_approbation }}" title="modifier l'observation de l'approbation" data-toggle="tooltip" class="form-control"  name="observation_approbation">
                             </div>
                          </div>
                      </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select type="text"title="Entrer le type de poche" data-toggle="tooltip" class="form-control" placeholder="Type de poche" name="type_poche" required="" placeholder="Type de Poche" class="form-control form-control-default">
-                                    <option value="Double">Double</option>
-                                    <option value="Simple">Simple</option>
-                                </select>
-                                </div>
-                         </div>
-                     </div>
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Entrer la quantité prélevée" data-toggle="tooltip" class="form-control" placeholder="Quantité prélevée" name="quantite_prelevee" required="" placeholder="Quantité Prélèvée">
-                            </div>
-                         </div>
-                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select id="" title="Entrer le type de prélèvement" data-toggle="tooltip" type="text" class="form-control" placeholder="type de prélèment" name="type_prelevement" required="" placeholder="Type de Prélèvement" class="form-control form-control-default">
-                                    <option value="Normale">Normal</option>
-                                    <option value="Anormale">Anormale</option>
-                                </select>
+                <div class="col-sm-6">
+                        <div class="form-radio">
+                           <div class="group-add-on">
+                               <div class="radio radiofill radio-inline">
+                                   <label>
+                               
+                                      <input type="radio" value="1" checked name="approbation"><i class="helper"></i> Apte
+                                   </label>
                                </div>
-                         </div>
-                     </div>
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" title="Entrer l'Observation" data-toggle="tooltip" type="text" class="form-control" placeholder="Observation du prelevemrnt" name="observation_prelevement" required="">
+                                 
+                                <div class="radio radiofill radio-inline">
+                                    <label>
+                                       <input type="radio" value="0" name="approbation"><i class="helper"></i> Inapte
+                                
+                                    </label>
+                               </div>
                             </div>
-                         </div>
-                     </div>
-                </div>
+                        </div>
+                    </div>
                 <div class="row m-t-30">
                       <div class="col-md-5">
 
                       </div>
                       <div class="col-md-7">
-                         <a href="{{ route('prelevement.donneur_apte_a_prelevee') }}" class="btn btn-grd-disabled">
+                         <a href="{{ route('dossierM.donneursexaminer') }}" class="btn btn-grd-disabled">
                                {{ ('Annuler') }}
                          </a>
                           <button type="submit" class="btn btn-success">
-                               {{ __('Effectuer') }}
+                               {{ __('Modifier') }}
                           </button>
                       </div>
                  </div>
@@ -155,6 +132,7 @@
     </form>
 
 </div>
+
 
 @endsection
 
@@ -184,3 +162,6 @@
 
 
 @endsection
+
+
+

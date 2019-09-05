@@ -30,9 +30,9 @@
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Type de donneur</th>
+                                <th class="tabledit-toolbar-column">Detail</th>
                                 <th class="tabledit-toolbar-column">Modifier</th>
                                 <th class="tabledit-toolbar-column">Supprimer</th>
-                                <th class="tabledit-toolbar-column">Detail</th>
                                 <th class="tabledit-toolbar-column">Examiner</th>
                             </tr>
                         </thead>
@@ -59,45 +59,29 @@
                                         {{ $donneur->typedonneur->type_donneur }}
                                     </span>
                                 </td>
-                                <td style="white-space: nowrap; width: 1%;">
-                                    <div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
-                                        <div class="btn-group btn-group-sm" style="float: none;">
-                                            <a href="{{ route('donneurs.edit', $donneur) }}" class="btn btn-warning btn-outline-warning waves-effect waves-light">
-                                                <span class="icofont icofont-ui-edit"></span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <td>
+                                    <a href="{{ route('donneurs.show', $donneur) }}" class="btn btn-info btn-outline-info waves-effect waves-light">
+                                       <span class="icofont icofont-eye-alt"></span>
+                                    </a>
                                 </td>
-                                <td style="white-space: nowrap; width: 1%;">
-                                    <div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
-                                        <div class="btn-group btn-group-sm" style="float: none;">
-                                            <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
-                                                    <span class="icofont icofont-ui-delete"></span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
+                                <td>
+                                    <a href="{{ route('donneurs.edit', $donneur) }}" class="btn btn-warning btn-outline-warning waves-effect waves-light">
+                                        <span class="icofont icofont-ui-edit"></span>
+                                    </a>
                                 </td>
-                                <td style="white-space: nowrap; width: 1%;">
-                                    <div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
-                                        <div class="btn-group btn-group-sm" style="float: none;">
-                                            <a href="{{ route('donneurs.show', $donneur) }}" class="btn btn-info btn-outline-info waves-effect waves-light">
-                                                <span class="icofont icofont-eye-alt"></span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <td>
+                                    <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                            <span class="icofont icofont-ui-delete"></span>
+                                        </button>
+                                    </form>
                                 </td>
-                                <td style="white-space: nowrap; width: 1%;">
-                                    <div class="tabledit-toolbar btn-toolbar" style="text-align: left;">
-                                        <div class="btn-group btn-group-sm" style="float: none;">
-                                        <a href="{{ route('dossierM.examiner', $donneur) }}" class="btn btn-sm btn-outline-primary waves-effect waves-light">
-                                                <span class="icofont icofont-stethoscope-alt icofont-lg"></span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <td>
+                                    <a href="{{ route('dossierM.examiner', $donneur) }}" class="btn btn-primary btn-outline-primary waves-effect waves-light">
+                                        <span class="icofont icofont-stethoscope-alt"></span>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

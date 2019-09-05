@@ -33,7 +33,7 @@
                         <td>{{ $rdvsfixe->lieu }}</td>
                         <td>{{ $rdvsfixe->organisation->libelle }}</td>
                         <td>
-                        <a href="{{ route('rdvs.edit', $rdvsfixe) }}"><button class="btn btn-primary btn-outline-primary"><span class="icofont icofont-ui-edit"></span></button></a>
+                        <a href="{{ route('rdvs.edit', $rdvsfixe) }}"><button class="btn btn-warning btn-outline-warning"><span class="icofont icofont-ui-edit"></span></button></a>
                         </td>
                         <td>
                             <form action="{{ route('rdvs.destroy', $rdvsfixe) }}" method="post" onsubmit=" return confirm('voulez vous supprimer cet enregistrement?');">

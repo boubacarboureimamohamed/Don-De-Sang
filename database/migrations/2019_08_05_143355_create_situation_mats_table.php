@@ -16,6 +16,7 @@ class CreateSituationMatsTable extends Migration
         Schema::create('situation_mats', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('situation_matrimoniale');
+            $table->boolean('situationmariee')->nullable();
             $table->timestamps();
         });
 

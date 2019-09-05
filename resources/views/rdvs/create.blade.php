@@ -17,7 +17,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                <input type="datetime-local" class="form-control" name="date_heure" id="date_heure" placeholder="Date et Heure">
+                                <input type="datetime-local" class="form-control" name="date_heure"  placeholder="Date et Heure">
                             </div>
                          </div>
                      </div>

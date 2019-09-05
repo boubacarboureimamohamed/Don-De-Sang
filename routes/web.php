@@ -68,6 +68,12 @@ Route::get('dossier/{donneur_apte}/show_apte', 'DossierMedicalRSMController@show
 
 Route::get('donneursexaminer', 'DossierMedicalRSMController@donneurs_examiner')->name('dossierM.donneursexaminer');
 
+Route::get('donneurexaminers/{donneurexaminer}/modifier', 'DossierMedicalRSMController@edit_donneursexaminer')->name('dossierM.editdonneursexaminer');
+
+Route::PUT('donneursexaminer/{donneurexaminer}', 'DossierMedicalRSMController@update_donneursexaminer')->name('dossierM.updatedonneursexaminer');
+
+Route::get('detailsdonneurexaminer/{donneursexaminer}', 'DossierMedicalRSMController@show_donneursexaminer')->name('dossierM.showdonneursexaminer');
+
 Route::get('prelevement/donneur_apte_a_prelevee', 'DossierMedicalPrelevementController@donneur_apte_a_prelevee')->name('prelevement.donneur_apte_a_prelevee');
 
 Route::get('prelevement/{donneur}/prelever', 'DossierMedicalPrelevementController@prelever')->name('prelevement.prelever');
@@ -91,4 +97,6 @@ Route::PUT('validation/{dossier}', 'DossierMedicalValidationController@store')->
 Route::get('demande.create', 'DemandeController@create')->name('demande.create');
 
 Route::post('demande.store', 'DemandeController@store')->name('demande.store');
+
+
 

@@ -28,31 +28,6 @@
                      </div>
                </div>
                 <div class="row">
-                    {{-- <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                        <input type="text" title="Entrer le numéro du donneur" data-toggle="tooltip" id="num_donneur" name="num_donneur" class="form-control" required="" placeholder="Numéro donneur">
-                                        @if($errors->has('num_donneur'))
-                                            <p style="color: red">  {{ $errors->first('num_donneur')}} </p>
-                                        @endif
-                            </div>
-                         </div>
-                     </div> --}}
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="typedonneur_id" title="Entrer le type de donneur" data-toggle="tooltip" id="typedonneur_id" class="form-control">
-                                        @foreach($ts as $t)
-                                            <option value="{{ $t->id }}"> {{ $t->type_donneur }} </option>
-                                        @endforeach
-                                    </select>
-                            </div>
-                         </div>
-                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
@@ -96,38 +71,6 @@
                      </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="form-radio">
-                                <div class="group-add-on">
-                                    <div class="radio radiofill radio-inline">
-                                      <label>
-                                        <input type="radio" id="sexe" name="sexe" value="homme"><i class="helper"></i> Homme
-                                      </label>
-                                    </div>
-                                    <div class="radio radiofill radio-inline">
-                                       <label>
-                                          <input type="radio" id="sexe" name="sexe" value="femme"><i class="helper"></i> Femme
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                         </div>
-                     </div>
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select name="situation_mat_id" title="Entrer la situation matrimonial du donneur" data-toggle="tooltip" id="situation_mat_id" class="form-control">
-                                    @foreach($ps as $p)
-                                        <option value="{{ $p->id }}"> {{ $p->situation_matrimoniale }} </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                         </div>
-                     </div>
-                </div>
-                <div class="row">
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
@@ -157,12 +100,8 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="organisation_id" title="Entrer l'organisation du donneur" data-toggle="tooltip" id="organisation_id" class="form-control">
-                                        @foreach($os as $o)
-                                        <option value="{{ $o->id }}"> {{ $o->libelle }} </option>
-                                        @endforeach
-                                   </select>
+                                <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                                <input type="text" title="Entrer le numéro de téléphone du donneur" data-toggle="tooltip-effect-9 tooltip-content-3" id="telephone" name="telephone" class="form-control" required="" placeholder="Téléphone">
                             </div>
                          </div>
                      </div>
@@ -171,16 +110,95 @@
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                    <input type="email" title="Entrer l'email du donneur" data-toggle="tooltip" id="" name="email" class="form-control" required="" placeholder="Adresse mail">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <select name="typedonneur_id" title="Entrer le type de donneur" size="1" onChange="mafonction(this.selectedIndex);" data-toggle="tooltip" id="typedonneur_id"  class="form-control">
+                                        @foreach($ts as $t)
+                                       
+                                            <option value="{{ $t->id }}"> {{ $t->type_donneur }} </option>
+                                        @endforeach
+                                       
+                                    </select>
                             </div>
                          </div>
                      </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6" style="display:none;" id="divorg">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                        <input type="text" title="Entrer le numéro de téléphone du donneur" data-toggle="tooltip-effect-9 tooltip-content-3" id="telephone" name="telephone" class="form-control" required="" placeholder="Téléphone">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <select name="organisation_id" title="Entrer l'organisation du donneur" data-toggle="tooltip"  id="organisation_id" class="form-control">
+                                    @foreach($os as $o)
+                                    <option selected="selected"></option>
+                                    <option value="{{ $o->id }}"> {{ $o->libelle }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                             <div class="input-group">
+                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <select name="situation_matrimoniale" title="Entrer la situation matrimonial du donneur" onChange="mafonction1(this.selectedIndex);" data-toggle="tooltip" id="situation_matrimoniale" class="form-control">
+                                   <option value="Célibataire">Célibataire</option>
+                                   <option value="Veuf(ve)">Veuf(ve)</option>
+                                   <option value="Divorcé(e)">Divorcé(e)</option>
+                                   <option value="Marié(e)">Marié(e)</option>
+                                </select>
+                            </div>
+                         </div>
+                     </div> 
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
+                                <input type="email" title="Entrer l'email du donneur" data-toggle="tooltip" id="" name="email" class="form-control" required="" placeholder="Adresse mail">
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="form-radio">
+                                <div class="group-add-on">
+                                    <div class="radio radiofill radio-inline">
+                                      <label id="homme">
+                                        <input type="radio" id="sexe" name="sexe" value="homme"><i class="helper"></i> Homme
+                                      </label>
+                                    </div>
+                                    <div class="radio radiofill radio-inline" id="femme">
+                                       <label >
+                                          <input type="radio" id="sexe" name="sexe" value="femme"><i class="helper"></i> Femme
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                    <div class="col-sm-6" id="divS" style="display:none;">
+                         <div class="form-group form-primary">
+                            <div class="form-radio">
+                                <div class="group-add-on">
+                                    <div class="radio radiofill radio-inline">
+                                      <label>
+                                        <input type="radio" id="situationmariee" name="situationmariee" value="0"><i class="helper"></i> Monogame
+                                      </label>
+                                    </div>
+                                    <div class="radio radiofill radio-inline">
+                                       <label>
+                                          <input type="radio" id="situationmariee" name="situationmariee" value="1"><i class="helper"></i> Polygame
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                   
                             </div>
                          </div>
                      </div>
@@ -221,6 +239,39 @@
     <script type="text/javascript" src="{{ asset('assets\js\modalEffects.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets\js\classie.js') }}"></script>
 
+
+    <script type="text/javascript">
+	function mafonction(i) {
+		var divorg = document.getElementById('divorg');
+		switch(i) {
+			case 2 : divorg.style.display = ''; break;
+			default: divorg.style.display = 'none'; break;
+		}
+	}
+</script>
+ <script type="text/javascript">
+	function mafonction1(i) {
+		var divS = document.getElementById('divS');
+		switch(i) {
+			case 3 : divS.style.display = ''; break;
+			default: divS.style.display = 'none'; break;
+		}
+	}
+</script>
+
+<script>
+
+$(document).ready(function(){
+    $('#divS').hide();
+ $('#femme').click(function(){
+  $('#divS').hide();
+ });
+ $('#homme').click(function(){
+    $('#divS').show();
+ });
+});
+
+</script>
 
 @endsection
 

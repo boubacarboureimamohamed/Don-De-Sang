@@ -33,7 +33,7 @@
                         <td>{{ $rdvsmobile->lieu }}</td>
                         <td>{{ $rdvsmobile->organisation->libelle }}</td>
                         <td>
-                        <a href="{{ route('rdvs.edit', $rdvsmobile) }}"><button class="btn btn-primary btn-outline-primary"><span class="icofont icofont-ui-edit"></span></button></a>
+                        <a href="{{ route('rdvs.edit', $rdvsmobile) }}"><button class="btn btn-warning btn-outline-warning"><span class="icofont icofont-ui-edit"></span></button></a>
                         </td>
 
                         <td>

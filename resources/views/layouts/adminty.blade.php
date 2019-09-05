@@ -178,6 +178,12 @@
                                         <span class="text-white">Tableau de bord</span>
                                     </h5>
                                 </li>
+                                <li class="">
+                                    <a href="navbar-light.htm">
+                                        <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
+                                        <span class="pcoded-mtext">Dossiers Médicaux </span>
+                                    </a>
+                                </li>
                                 <li class="pcoded-hasmenu">
                                     <a href="#!">
                                         <span class="pcoded-micon"><i class="feather icon-box"></i></span>
@@ -197,9 +203,9 @@
                                     </ul>
                                 </li>
                                 <li class="">
-                                    <a href="{{ route('dossierM.index') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
-                                        <span class="pcoded-mtext">Consultation Médicale </span>
+                                    <a href="{{ route('dossierM.donneursexaminer') }}">
+                                        <span class="pcoded-micon"><i class="feather icon-list"></i></span>
+                                        <span class="pcoded-mtext">Donneurs examinés </span>
                                     </a>
                                 </li>
                                 <li class="pcoded-hasmenu">
@@ -221,65 +227,22 @@
                                     </ul>
                                 </li>
                                 <li class="">
-                                    <a href="navbar-light.htm">
-                                        <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
-                                        <span class="pcoded-mtext">Dossiers Médicaux </span>
+                                    <a href="{{ route('prelevement.donneur_prelevee') }}">
+                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
+                                        <span class="pcoded-mtext">????????????</span>
                                     </a>
                                 </li>
                                 <li class="">
                                     <a href="{{ route('donneurs.index') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
+                                        <span class="pcoded-micon"><i class="feather icon-list"></i></span>
                                         <span class="pcoded-mtext">Liste Des Donneurs</span>
                                     </a>
                                 </li>
-                                <li class="pcoded-hasmenu">
+                                <li class="">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
                                         <span class="pcoded-mtext">Banque De Sang</span>
                                     </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="widget-statistic.htm">
-                                                <span class="pcoded-mtext">Groupe A+</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="widget-data.htm">
-                                                <span class="pcoded-mtext">Groupe A-</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="widget-chart.htm">
-                                                <span class="pcoded-mtext">Groupe B+</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="widget-chart.htm">
-                                                <span class="pcoded-mtext">Groupe B-</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="widget-chart.htm">
-                                                <span class="pcoded-mtext">Groupe AB+</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="widget-chart.htm">
-                                                <span class="pcoded-mtext">Groupe AB-</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="widget-chart.htm">
-                                                <span class="pcoded-mtext">Groupe O+</span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="widget-chart.htm">
-                                                <span class="pcoded-mtext">Groupe O-</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
                                 </li>
                                 <li class="pcoded-hasmenu">
                                     <a href="#!">

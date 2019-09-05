@@ -17,18 +17,19 @@
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Liste des Prélèvement</h5>
+            <h2 style="text-align: center;">Liste des Prélèvements </h2>
         </div>
         <div class="card-block">
-            <div class="table-responsive">
-                <table class="table table-xl">
+            <div class="dt-responsive table-responsive">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Modifier</th>
                             <th>Detail</th>
+                            <th>Modifier</th>
+                            <th>Analyser</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,15 +39,17 @@
                                 <td>{{ $prelevement->donneur->nom }}</td>
                                 <td>{{ $prelevement->donneur->prenom }}</td>
                                 <td>
-                                    <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
+                                    <a href="{{ route('prelevement.show_prelevement', $prelevement) }}" class="btn btn-info btn-outline-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('prelevement.show_prelevement', $prelevement) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                    <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-warning btn-outline-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
+                                </td>
+                                <td>
+                                    <a href="" class="btn btn-primary btn-outline-primary"><i class="icofont icofont- icofont-lg"></i></a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
-                    <a href="{{ route('dossierM.index')}}" class="btn btn-xs pull-right btn-success"><i class="icofont icofont-arrow-left"></i></a>
                 </table>
             </div>
         </div>
