@@ -12,4 +12,8 @@ class Groupement extends Model
     {
     	return $this->hasMany('App\Models\LigneDemande');
     }
+    public function dossierMedicals()
+    {
+        return $this->hasMany('App\Models\DossierMedical');
+    }
 }

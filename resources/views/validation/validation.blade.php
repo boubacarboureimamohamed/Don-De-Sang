@@ -148,6 +148,20 @@
                             </div>
                          </div>
                      </div>
+                     <div class="col-sm-6">
+                            <div class="form-group form-primary">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                                    <select name="groupement_id" id="groupement_id" class="form-control">
+                                        @foreach($groupements as $groupement)
+                                            <option value="{{ $groupement->id }}">
+                                                {{ $groupement->groupe_sanguin }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                 </div>
                 <div class="row m-t-30">
                       <div class="col-md-5">

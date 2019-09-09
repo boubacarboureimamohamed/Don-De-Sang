@@ -93,9 +93,11 @@ Route::PUT('prelevement/{prelevement}', 'DossierMedicalPrelevementController@upd
 
 Route::get('validation', 'DossierMedicalValidationController@donneur_a_valider')->name('validation.donneur_a_valider');
 
+Route::get('validation/donneur_valider', 'DossierMedicalValidationController@donneur_valider')->name('validation.donneur_valider');
+
 Route::get('validation/{dossier}', 'DossierMedicalValidationController@validation')->name('validation.validation');
 
-Route::PUT('validation/{dossierMedical}', 'DossierMedicalValidationController@store')->name('validation.store');
+Route::PUT('validation/{dossier}', 'DossierMedicalValidationController@store')->name('validation.store');
 
 Route::get('demande.create', 'DemandeController@create')->name('demande.create');
 
@@ -111,9 +113,16 @@ Route::get('demande/{demande}/show', 'DemandeController@show')->name('demande.sh
 
 Route::get('demande/{demande}/edit', 'DemandeController@edit')->name('demande.edit');
 
-Route::PUT('demande/{demande}', 'DemandeController@update')->name('demande.update');
+Route::PUT('demande/{demande}', 'DemandeController@demandeupdate')->name('demande.demandeupdate');
 
-Route::PUT('demande/{demande}', 'DemandeController@update1')->name('demande.update1');
+Route::PUT('ligne/{ligne}', 'DemandeController@ligneupdate')->name('demande.ligneupdate');
 
-Route::post('demande.lignestorestore', 'DemandeController@lignestore')->name('demande.lignestorestore');
+Route::post('ligne/lignestore', 'DemandeController@lignestore')->name('demande.lignestore');
 
+Route::delete('demande/{demande}', 'DemandeController@demandedestroy')->name('demande.demandedestroy');
+
+Route::delete('ligne/{ligne}', 'DemandeController@lignedestroy')->name('ligne.lignedestroy');
+
+Route::get('stock', 'DossierMedicalValidationController@stock')->name('validation.stock');
+
+Route::post('livraison/{ligne}', 'DemandeController@livraison')->name('demande.livraison');

@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="col-sm-12">
- <form id="main" method="post" action="{{ route('demande.update', $demande) }}" novalidate="">
+ <form id="main" method="post" action="{{ route('demande.demandeupdate', $demande) }}" novalidate="">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
     <div class="auth-box card">
@@ -57,7 +57,7 @@
                             <input type="text" class="form-control" id="adresse" name="adresse" value="{{ $demande->beneficiaire->adresse }}" placeholder="Adresse">
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary m-b-0">Modifier</button>

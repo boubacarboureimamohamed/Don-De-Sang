@@ -29,9 +29,11 @@ class CreateDossierMedicalsTable extends Migration
             $table->string('type_poche')->nullable();
             $table->string('observation_prelevement')->nullable();
             $table->boolean('rejet')->nullable();
-            $table->integer('motif_rejet')->nullable();
+            $table->string('motif_rejet')->nullable();
             $table->bigInteger('donneur_id')->unsigned()->index();
             $table->foreign('donneur_id')->references('id')->on('donneurs');
+            $table->bigInteger('groupement_id')->unsigned()->index()->nullable();
+            $table->foreign('groupement_id')->references('id')->on('groupements');
             $table->timestamps();
         });
     }
