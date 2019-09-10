@@ -9,6 +9,7 @@
             </div>
             <div class="card-block">
                 <div class="btn-group btn-group-sm" style="float: none;">
+                
                     <a href="{{ route('rdvs.create')}}" class="btn btn-success btn-outline-success" style="float: none; margin: 5px;">
                     <span class="icofont icofont-plus"></span>{{ ('Nouveau') }}</a>
                 </div>

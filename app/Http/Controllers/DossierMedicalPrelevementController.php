@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\DossierMedical;
 use App\Models\Donneur;
 use Illuminate\Support\Carbon;
-
 use Illuminate\Http\Request;
+
+use Twilio\Rest\Client;
+use Twilio\Jwt\ClientToken;
+
 
 class DossierMedicalPrelevementController extends Controller
 {
@@ -29,6 +32,31 @@ class DossierMedicalPrelevementController extends Controller
             'quantite_prelevee' => $request->quantite_prelevee,
             'date_heure_prelevement' => date('Y-m-d')
         ]);
+
+        $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
+        $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
+        $client = new Client($accountSid, $authToken);
+        try
+        {
+            // Use the client to do fun stuff like send text messages!
+            $client->messages->create(
+            // the number you'd like to send the message to
+                $dossier->donneur->telephone,
+           array(
+                 // A Twilio phone number you purchased at twilio.com/console
+                 'from' => '+12056512557',
+                 // the body of the text message you'd like to send
+                 'body' => 'Bonjour M/Mme'. $dossier->donneur->nom . $dossier->donneur->prenom .'nous vous remercions du don effectué. Sachez que vous sauvez une vie!'
+             )
+         );
+   }
+        catch (Exception $e)
+        {
+            echo "Error: " . $e->getMessage();
+        }
+    
+
+
         return redirect(route('prelevement.donneur_apte_a_prelevee'));
     }
     public function donneur_prelevee()

@@ -72,18 +72,18 @@ class DonneurController extends Controller
 
     public function update(Request $request, Donneur $donneur)
     {
-        $this->validate($request, [
-            'num_donneur' => 'required|string|max:20',
-            'nom' => 'required|max:255',
-            'prenom' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:donneurs',
-            'lieu_naiss' => 'required|string|max:255',
-            'sexe' => 'required',
-            'adresse' => 'required|string',
-            'nationalite' => 'required|string',
-            'profession' => 'required|string',
-            'telephone' => 'required|integer|max:8|min:8',
-        ]);
+        // $this->validate($request, [
+        //     'num_donneur' => 'required|string|max:20',
+        //     'nom' => 'required|max:255',
+        //     'prenom' => 'required|string|max:255',
+        //     'email' => 'required|email|max:255|unique:donneurs',
+        //     'lieu_naiss' => 'required|string|max:255',
+        //     'sexe' => 'required',
+        //     'adresse' => 'required|string',
+        //     'nationalite' => 'required|string',
+        //     'profession' => 'required|string',
+        //     'telephone' => 'required|string|max:12|min:12',
+        // ]);
         $donneur->update([
             'num_donneur' => $request->num_donneur,
             'nom' => $request->nom,
