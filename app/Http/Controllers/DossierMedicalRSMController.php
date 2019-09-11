@@ -60,7 +60,7 @@ class DossierMedicalRSMController extends Controller
                 'num_don' => 'DON-' . date('Y-m-d') . '-' . $dossier->id
             ]);
         }
-        return redirect(route('dossierM.index'));
+        return redirect(route('donneurs.index'));
     }
     public function donneur_apte()
     {

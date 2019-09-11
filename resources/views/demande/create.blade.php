@@ -16,15 +16,18 @@
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                            <input type="date" class="form-control" name="date" id="date" placeholder="Date et Heure">
+                            <input type="date" title="Date de la demande" class="form-control" name="date" id="date" placeholder="Date et Heure">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse">
+                            <select class="form-control select2" name="libelle">
+                                @foreach($beneficiaires as $beneficiaire)
+                                    <option  title="Bénéficiaire" value="{{ $beneficiaire->libelle }}">{{ $beneficiaire->libelle }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -33,11 +36,8 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <select class="form-control select2" name="libelle">
-                                    @foreach($beneficiaires as $beneficiaire)
-                                        <option value="{{ $beneficiaire->libelle }}">{{ $beneficiaire->libelle }}</option>
-                                    @endforeach
-                                </select>
+                                <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                                <input type="text" title="Téléphone Bénéficiaire" class="form-control" id="telephone" name="telephone" placeholder="Telephone">
                             </div>
                          </div>
                      </div>
@@ -45,33 +45,38 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                <input type="email" title="Email Bénéficiaire" class="form-control" id="email" name="email" placeholder="Email">
                             </div>
                         </div>
                      </div>
                 </div>
                 <div class="row">
                      <div class="col-sm-6">
-                         <div class="form-group form-primary">
+                        <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone">
+                                <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
+                                <input type="text" title="Adresse Bénéficiaire" class="form-control" id="adresse" name="adresse" placeholder="Adresse">
                             </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                                <h4 class="text-center">{{ ('Les lignes de demande') }}</h4></th>
                          </div>
                      </div>
                 </div>
-                <table class="table table-bordered">
+                <table id="example-2" class="table table-striped table-bordered nowrap">
                         <thead>
                             <tr>
                                 <th>Group sanguin:</th>
                                 <th>Quantité demandée:</th>
-                                <th style="text-align: center"><a href="#" class="btn btn-info" id="addLigne"><i class="icofont icofont-plus"></i></a></th>
+                                <th style="text-align: center"><a href="#" class="btn btn-success btn-outline-success" id="addLigne"><i class="icofont icofont-plus"></i></a></th>
                             </tr>
                         </thead>
                         <tbody id="ligne">
                             <tr>
                                 <td>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8">
                                         <div class="form-group form-primary">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
@@ -87,7 +92,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="form-group form-primary">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
@@ -96,13 +101,13 @@
                                     </div>
                                 </div>
                                 </td>
-                                <td style="text-align: center"><a href="#" class="btn btn-danger remove"><i class="icofont icofont-minus"></i></i></a></td>
+                                <td style="text-align: center"><a href="#" class="btn btn-danger btn-outline-danger remove"><i class="icofont icofont-minus"></i></i></a></td>
                             </tr>
                         </tbody>
                     </table>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary m-b-0">Enregistrer</button>
-                    <a href="{{  route('rdvs.index')}}" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
+                    <a href="{{  route('demande.index')}}" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
+                    <button type="submit" class="btn btn-success m-b-0">Enregistrer</button>
                 </div>
              </div>
            </div>
@@ -130,7 +135,7 @@ $('#addLigne').on('click', function (f) {
 function addLigne() {
     var tr = '<tr>'+
         '<td>'+
-            '<div class="col-sm-6">'+
+            '<div class="col-sm-8">'+
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
                         ' <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>'+
@@ -146,16 +151,16 @@ function addLigne() {
             '</div>'+
         '</td>'+
         '<td>' +
-            '<div class="col-sm-4">'+
+            '<div class="col-sm-6">'+
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
                         ' <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>'+
-                        '<input type="text" name="quantite_demandee[]" id="quantite_demandee" class="form-control" placeholder="Quantité prise"value="{{ old('quantite_demandee') }}">'+
+                        '<input type="text" name="quantite_demandee[]" id="quantite_demandee" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">'+
                     '</div>' +
                 '</div>' +
             '</div>' +
         '</td>' +
-        '<td style="text-align: center"><a href="#" class="btn btn-danger remove"><i class="icofont icofont-minus"></i></a></td>'+
+        '<td style="text-align: center"><a href="#" class="btn btn-danger btn-outline-danger remove"><i class="icofont icofont-minus"></i></a></td>'+
         '</tr>';
     $('#ligne').append(tr);
 };

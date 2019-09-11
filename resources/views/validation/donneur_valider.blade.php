@@ -17,18 +17,25 @@
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Liste des Validation</h5>
+            <h3 style="text-align: center;">Liste des prélèvements validés</h3>
         </div>
         <div class="card-block">
-            <div class="table-responsive">
-                <table class="table table-xl">
+            <div class="btn-group btn-group-sm" style="float: none; ">
+                <a href="#" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
+                    <span class="icofont icofont-check-circled"></span> {{ ('Dons Acceptés') }}
+                </a>
+                <a href="#" class="btn btn-warning btn-outline-warning" style="float: none;margin: 5px;">
+                    <span class="icofont icofont-warning-alt"></span> {{ ('Dons Rejetés') }}
+                </a>
+            </div>
+            <div  class="dt-responsive table-responsive">
+                <table id="simpletable" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
-                            <th>N° de donneur</th>
+                            <th>Numéro du donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Numéro de don</th>
-                            <th>Véridique final </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,14 +47,10 @@
                                 <td>{{ $validation->donneur->nom }}</td>
                                 <td>{{ $validation->donneur->prenom }}</td>
                                 <td>{{ $validation->num_don }}</td>
-                                <td>
-                                    <a href="{{ route('validation.validation', $validation)}}" class="btn btn-sm btn-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
-                                </td>
                             </tr>
                             {{-- @endif --}}
                         @endforeach
                     </tbody>
-                    <a href="{{ route('dossierM.index')}}" class="btn btn-xs pull-right btn-success"><i class="icofont icofont-arrow-left"></i></a>
                 </table>
             </div>
         </div>

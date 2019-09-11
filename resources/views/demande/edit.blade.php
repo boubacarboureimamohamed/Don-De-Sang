@@ -12,12 +12,12 @@
                     <h3 class="text-center txt-primary">{{ ('Modification d\'une Demande') }}</h3>
                 </div>
             </div>
-            <div class="row">
+             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                            <input type="text" class="form-control" name="date" id="date" value="{{ $demande->date }}" placeholder="Date et Heure">
+                            <input type="date" title="Date de la demande" class="form-control" value="{{ $demande->date }}" name="date" id="date" placeholder="Date et Heure">
                         </div>
                     </div>
                 </div>
@@ -26,42 +26,44 @@
                         <div class="input-group">
                             <select class="form-control select2" name="libelle">
                                 @foreach($beneficiaires as $beneficiaire)
-                                    <option value="{{ $beneficiaire->libelle }}" @if($beneficiaire->id == $demande->beneficiaire_id) {{ 'selected' }} @endif>{{ $beneficiaire->libelle }}</option>
+                                    <option  title="Bénéficiaire" value="{{ $beneficiaire->libelle }}" @if($beneficiaire->id == $demande->beneficiaire_id) {{ 'selected' }} @endif>{{ $beneficiaire->libelle }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group form-primary">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ $demande->beneficiaire->email}}" placeholder="Email">
+                <div class="row">
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                                <input type="text" title="Téléphone Bénéficiaire"  value="{{ $demande->beneficiaire->telephone}}" class="form-control" id="telephone" name="telephone" placeholder="Telephone">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
+                                <input type="email" title="Email Bénéficiaire" class="form-control" value="{{ $demande->beneficiaire->email}}" id="email" name="email" placeholder="Email">
+                            </div>
                         </div>
-                    </div>
+                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group form-primary">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                            <input type="text" class="form-control" id="telephone" name="telephone" value="{{ $demande->beneficiaire->telephone}}" placeholder="Telephone">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group form-primary">
-                        <div class="input-group">
+                <div class="row">
+                     <div class="col-sm-6">
+                        <div class="form-group form-primary">
+                            <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                            <input type="text" class="form-control" id="adresse" name="adresse" value="{{ $demande->beneficiaire->adresse }}" placeholder="Adresse">
+                                <input type="text" title="Adresse Bénéficiaire" class="form-control" value="{{ $demande->beneficiaire->adresse }}" id="adresse" name="adresse" placeholder="Adresse">
+                            </div>
                         </div>
-                    </div>
+                     </div>
                 </div>
-            </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-primary m-b-0">Modifier</button>
                 <a href="{{  route('demande.index')}}" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
+                <button type="submit" class="btn btn-primary m-b-0">Modifier</button>
             </div>
       </div>
     </div>
