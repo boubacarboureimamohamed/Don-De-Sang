@@ -31,8 +31,11 @@ Route::get('user/profile', 'UsersController@profile')->name('profile');
 
 Route::resource('roles', 'RolesController');
 
-Route::resource('permissions', 'PermissionsController');/*
+Route::resource('permissions', 'PermissionsController');
 
+Route::resource('seuilsms', 'SeuilSmsController');
+
+/*
 Route::resource('ligne', 'LignedemandeController'); */
 
 

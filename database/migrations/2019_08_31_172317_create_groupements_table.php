@@ -16,6 +16,7 @@ class CreateGroupementsTable extends Migration
         Schema::create('groupements', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('groupe_sanguin');
+            $table->integer('seuil');
             $table->timestamps();
         });
     }

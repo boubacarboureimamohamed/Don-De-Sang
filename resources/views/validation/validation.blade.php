@@ -126,12 +126,12 @@
                         <div class="form-group form-primary">
                           <div class="form-radio">
                               <div class="group-add-on">
-                                <div class="radio radiofill radio-inline">
+                                <div class="radio radiofill radio-inline" id="accepter">
                                     <label>
                                         <input type="radio" value="1" name="rejet"><i class="helper"></i> Accepter
                                     </label>
                                 </div>
-                                <div class="radio radiofill radio-inline">
+                                <div class="radio radiofill radio-inline" id="refuser">
                                         <label>
                                         <input type="radio" value="0" name="rejet"><i class="helper"></i> Refuser
                                         </label>
@@ -148,7 +148,7 @@
                             </div>
                          </div>
                      </div>
-                     <div class="col-sm-6">
+                     <div class="col-sm-6" id="groupe">
                             <div class="form-group form-primary">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
@@ -217,6 +217,21 @@
     <!-- modalEffects js nifty modal window effects -->
     <script type="text/javascript" src="{{ asset('assets\js\modalEffects.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets\js\classie.js') }}"></script>
+
+
+    <script>
+    $(document).ready(function(){
+     $('#groupe').hide();
+     $('#accepter').click(function(){
+      $('#groupe').show();
+     $('#refuser').click(function(){
+      $('#groupe').hide();
+     });
+     });
+    });
+
+
+</script>
 
 
 @endsection

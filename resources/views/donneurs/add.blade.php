@@ -112,7 +112,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select name="typedonneur_id" title="Entrer le type de donneur" size="1" onChange="mafonction(this.selectedIndex);" data-toggle="tooltip" id="typedonneur_id"  class="form-control">
+                                <select name="typedonneur_id" title="Selectionner le type de donneur" size="1" onChange="mafonction(this.selectedIndex);" data-toggle="tooltip" id="typedonneur_id"  class="form-control">
                                         @foreach($ts as $t)
                                        
                                             <option value="{{ $t->id }}"> {{ $t->type_donneur }} </option>
@@ -141,7 +141,7 @@
                          <div class="form-group form-primary">
                              <div class="input-group">
                                  <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select name="situation_matrimoniale" title="Entrer la situation matrimonial du donneur" onChange="mafonction1(this.selectedIndex);" data-toggle="tooltip" id="situation_matrimoniale" class="form-control">
+                                <select name="situation_matrimoniale" title="Selectionner la situation matrimonial du donneur" onChange="mafonction1(this.selectedIndex);" data-toggle="tooltip" id="situation_matrimoniale" class="form-control">
                                    <option value="Célibataire">Célibataire</option>
                                    <option value="Veuf(ve)">Veuf(ve)</option>
                                    <option value="Divorcé(e)">Divorcé(e)</option>
@@ -171,7 +171,7 @@
                                     </div>
                                     <div class="radio radiofill radio-inline" id="femme">
                                        <label >
-                                          <input type="radio" id="sexe" name="sexe" value="femme"><i class="helper"></i> Femme
+                                          <input type="radio" id="sexe"  name="sexe" value="femme"><i class="helper"></i> Femme
                                         </label>
                                     </div>
                                 </div>
@@ -254,22 +254,24 @@
 	function mafonction1(i) {
 		var divS = document.getElementById('divS');
 		switch(i) {
-			case 3 : divS.style.display = ''; break;
+            case 0 : divS.style.display = 'none'; break;
+            case 1 : divS.style.display = 'none'; break;
+            case 2 : divS.style.display = 'none'; break;
+            case 3 : divS.style.display = ''; break;
 			default: divS.style.display = 'none'; break;
 		}
 	}
 </script>
 
 <script>
-
 $(document).ready(function(){
-    $('#divS').hide();
- $('#femme').click(function(){
   $('#divS').hide();
- });
- $('#homme').click(function(){
-    $('#divS').show();
- });
+$('#femme').click(function(){
+$('#divS').hide();
+});
+$('#homme').click(function(){
+$('#divS').show();
+});
 });
 
 </script>

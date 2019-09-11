@@ -101,6 +101,9 @@
                      </div>
                 </div>
                 <div class="row">
+
+                <div class="col-sm-6">
+
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
@@ -110,14 +113,15 @@
                          </div>
                      </div>
                      <div class="col-sm-6">
+
                         <div class="form-radio">
                            <div class="group-add-on">
-                               <div class="radio radiofill radio-inline">
+                               <div class="radio radiofill radio-inline" id="apte">
                                    <label>
                                       <input type="radio" value="1" name="approbation"><i class="helper"></i> Apte
                                    </label>
                                </div>
-                                <div class="radio radiofill radio-inline">
+                                <div class="radio radiofill radio-inline" id="inapte">
                                     <label>
                                        <input type="radio" value="0" name="approbation"><i class="helper"></i> Inapte
                                     </label>
@@ -125,6 +129,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-6" id="quantite">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
+                                <input id="" type="text" title="Entrer la quantité à prélevée" data-toggle="tooltip" class="form-control" placeholder="Quantité à prélevée" name="quantite_a_prelevee">
+                            </div>
+                         </div>
+                     </div>
+                     
                 </div>
                 <div class="row m-t-20">
                       <div class="col-md-5">
@@ -181,6 +194,21 @@
     <!-- modalEffects js nifty modal window effects -->
     <script type="text/javascript" src="{{ asset('assets\js\modalEffects.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets\js\classie.js') }}"></script>
+
+
+<script>
+    $(document).ready(function(){
+     $('#quantite').hide();
+     $('#apte').click(function(){
+      $('#quantite').show();
+     $('#inapte').click(function(){
+      $('#quantite').hide();
+     });
+     });
+    });
+
+
+</script>
 
 
 @endsection
