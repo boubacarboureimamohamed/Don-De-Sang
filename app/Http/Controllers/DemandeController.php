@@ -6,6 +6,7 @@ use App\Models\Beneficiaire;
 use App\Models\Demande;
 use App\Models\Groupement;
 use App\Models\LigneDemande;
+use App\Models\Livraison;
 use Illuminate\Http\Request;
 
 class DemandeController extends Controller
@@ -14,7 +15,7 @@ class DemandeController extends Controller
     {
         $beneficiaires = Beneficiaire::all();
         $groupements = Groupement::all();
-        return view('demande.create', compact('beneficiaires','groupements'));
+        return view('demande.create', compact('beneficiaires','groupements', 'lignedemande'));
     }
     public function store(Request $request)
     {
@@ -36,6 +37,7 @@ class DemandeController extends Controller
             'groupement_id' => $request->groupement[$j]
         ]);
         }
+        return redirect('demande');
     }
     public function index()
     {
@@ -57,25 +59,59 @@ class DemandeController extends Controller
         $demande = Demande::find($id);
         return view('demande.edit', compact('beneficiaires','demande'));
     }
-    public function update1(Request $request, LigneDemande $demande)
+    public function demandeupdate(Request $request, Demande $demande, Beneficiaire $beneficiaire)
     {
-        $demande->update([
-            'date_heure' => $request->quantite_demandee,
-            'typerdv_id' => $request->groupement,
+        $benefi = $beneficiaire->updateOrCreate([
+            'libelle'=>$request->libelle,
+            'telephone'=>$request->telephone,
+            'adresse'=>$request->adresse,
+            'email'=>$request->email
         ]);
-        dd($demande);
+
+        $demande->update([
+            'date' => $request->date,
+            'beneficiaire_id' => $benefi->id
+        ]);
+        return redirect(route('demande.index'));
     }
     public function lignestore(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'groupe_sanguin' => 'required|string',
+        $this->validate($request, [
+            'groupement_id' => 'required|string',
             'quantite_demandee' => 'required|integer',
+
         ]);
-        if ($validator->fails()) {
-            return response()->json(['errors'=>$validator->errors()->all()]);
-        }
        /*  $user = \App\User::find(Auth::user()->getAuthIdentifier()); */
-        $success = Contact::Create($request->all());
-        return response()->json(['success'=>'Data is successfully added']);
+        $success = LigneDemande::Create($request->all());
+        $success->load('groupement');
+        return response()->json(['ligne'=> $success]);
+    }
+    public function ligneupdate(Request $request, LigneDemande $ligne)
+    {
+        $ligne->update([
+            'goupement_id' => $request->groupement_id,
+            'quantite_demandee' =>$request->quantite_demandee
+        ]);
+        return back();
+    }
+    public function demandedestroy($id)
+    {
+        Demande::destroy($id);
+        return redirect()->back();
+    }
+    public function lignedestroy($id)
+    {
+        LigneDemande::destroy($id);
+        return redirect()->back();
+    }
+    public function livraison(Request $request, LigneDemande $ligne)
+    {
+        $livraison = Livraison::create([
+            'quantite_livree' => $request->quantite_livree,
+            'date' => $request->date
+        ]);
+        $ligne->update([
+            'livraison_id' => $livraison->id
+        ]);
     }
 }

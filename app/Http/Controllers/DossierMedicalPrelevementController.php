@@ -40,13 +40,13 @@ class DossierMedicalPrelevementController extends Controller
         {
             // Use the client to do fun stuff like send text messages!
             $client->messages->create(
-            // the number you'd like to send the message to
+            // the number you'd like to send the message to 
                 $dossier->donneur->telephone,
            array(
                  // A Twilio phone number you purchased at twilio.com/console
                  'from' => '+12056512557',
                  // the body of the text message you'd like to send
-                 'body' => 'Bonjour M/Mme'. $dossier->donneur->nom . $dossier->donneur->prenom .'nous vous remercions du don effectué. Sachez que vous sauvez une vie!'
+                 'body' => 'Bonjour M./Mme ' .$dossier->donneur->nom. ' ' .$dossier->donneur->prenom. ' nous vous remercions du don effectué. Sachez que vous sauvez une vie!'
              )
          );
    }

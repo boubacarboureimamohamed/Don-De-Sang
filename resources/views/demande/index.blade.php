@@ -32,7 +32,9 @@
                             <th>Date demande</th>
                             <th>Benéficiaire</th>
                             <th>Adresse benéficiaire</th>
-                            <th>Action</th>
+                            <th>Detail</th>
+                            <th>Modifier</th>
+                            <th>supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,8 +45,18 @@
                             <td>{{ $demande->beneficiaire->adresse }}</td>
                             <td>
                                 <a href="{{ route('demande.show', $demande) }}" class="btn btn-primary btn-outline-primary"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                            </td>
+                            <td>
                                 <a href="{{ route('demande.edit', $demande) }}" class="btn btn-warning btn-outline-warning"><i class="icofont icofont-ui-edit"></i></a>
-                                <a href="#" class="btn btn-danger btn-outline-danger"><i class="icofont icofont-ui-delete"></i></a>
+                            </td>
+                            <td>
+                                <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                        <span class="icofont icofont-ui-delete"></span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

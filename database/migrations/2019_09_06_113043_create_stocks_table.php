@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupementsTable extends Migration
+class CreateStocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateGroupementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('groupements', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('groupe_sanguin');
-            $table->integer('seuil');
+            $table->integer('quantite_sortie')->nullable();
+            $table->integer('quantite_reelle');
+            $table->bigInteger('groupement_id')->unsigned()->index();
+            $table->foreign('groupement_id')->references('id')->on('groupements');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateGroupementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('groupements');
+        Schema::dropIfExists('stocks');
     }
 }

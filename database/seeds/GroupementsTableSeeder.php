@@ -12,28 +12,36 @@ class GroupementsTableSeeder extends Seeder
     public function run()
     {
         \Illuminate\Support\Facades\DB::table('groupements')->insert([
-            'groupe_sanguin' => "A+"
+            'groupe_sanguin' => "A+",
+            'seuil' => 10
         ]);
         \Illuminate\Support\Facades\DB::table('groupements')->insert([
-            'groupe_sanguin' => "B+"
+            'groupe_sanguin' => "B+",
+            'seuil' => 10
         ]);
         \Illuminate\Support\Facades\DB::table('groupements')->insert([
-            'groupe_sanguin' => "AB+"
+            'groupe_sanguin' => "AB+",
+            'seuil' => 10
         ]);
         \Illuminate\Support\Facades\DB::table('groupements')->insert([
-            'groupe_sanguin' => "O+"
+            'groupe_sanguin' => "O+",
+            'seuil' => 10
         ]);
         \Illuminate\Support\Facades\DB::table('groupements')->insert([
-            'groupe_sanguin' => "A-"
+            'groupe_sanguin' => "A-",
+            'seuil' => 10
         ]);
         \Illuminate\Support\Facades\DB::table('groupements')->insert([
-            'groupe_sanguin' => "B-"
+            'groupe_sanguin' => "B-",
+            'seuil' => 10
         ]);
         \Illuminate\Support\Facades\DB::table('groupements')->insert([
-            'groupe_sanguin' => "AB-"
+            'groupe_sanguin' => "AB-",
+            'seuil' => 10
         ]);
         \Illuminate\Support\Facades\DB::table('groupements')->insert([
-            'groupe_sanguin' => "O-"
+            'groupe_sanguin' => "O-",
+            'seuil' => 10
         ]);
     }
 }

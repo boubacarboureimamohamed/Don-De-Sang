@@ -47,7 +47,7 @@ class DonneurController extends Controller
                 'situationmariee'=>$request->situationmariee
         ]);
         $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);
-         
+
         return redirect(route('donneurs.index'));
     }
     public function index()
@@ -72,6 +72,7 @@ class DonneurController extends Controller
 
     public function update(Request $request, Donneur $donneur)
     {
+
         // $this->validate($request, [
         //     'num_donneur' => 'required|string|max:20',
         //     'nom' => 'required|max:255',
@@ -84,6 +85,7 @@ class DonneurController extends Controller
         //     'profession' => 'required|string',
         //     'telephone' => 'required|string|max:12|min:12',
         // ]);
+
         $donneur->update([
             'num_donneur' => $request->num_donneur,
             'nom' => $request->nom,
@@ -100,7 +102,7 @@ class DonneurController extends Controller
             'typedonneur_id' => $request->typedonneur_id,
             'organisation_id' => $request->organisation_id,
         ]);
-      
+
         $donneur->situationmats()->updateExistingPivot($request->situation_mat_id,['date' => date('Y-m-d')]);
         /* flash("success, L'donneur a été modifier.")->success(); */
         return redirect(route('donneurs.index'));
