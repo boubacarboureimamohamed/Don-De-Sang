@@ -36,31 +36,30 @@ class DossierMedicalRSMController extends Controller
     }
     public function store(Request $request)
     {
-        /* $this->validate($request, [
-            'poid' => 'required|integer|max:3',
-            'temperature' => 'required|integer|max:2',
-            'tension_arterielle' => 'required|integer|max:2',
+        $this->validate($request, [
+            'poid' => 'required|integer',
+            'temperature' => 'required|integer',
+            'tension_arterielle' => 'required|integer',
             'observation_approbation' => 'required|string',
-            'num_don' => 'required|integer|max:12|unique:dossier_medicals',
-            'quantite_a_prelevee' => 'required|integer|max:3',
+            'quantite_a_prelevee' => 'required|integer',
             'approbation' => 'required',
-        ]); */
-            $dossier = DossierMedical::create([
-                'poid' => $request->poid,
-                'temperature' => $request->temperature,
-                'tension_arterielle' => $request->tension_arterielle,
-                'date_dossier_medical' => date('Y-m-d'),
-                'approbation' => $request->approbation,
-                'observation_approbation' => $request->observation_approbation,
-                'quantite_a_prelevee' => $request->quantite_a_prelevee,
-                'donneur_id' => $request->donneur_id,
+        ]);
+        $dossier = DossierMedical::create([
+            'poid' => $request->poid,
+            'temperature' => $request->temperature,
+            'tension_arterielle' => $request->tension_arterielle,
+            'date_dossier_medical' => date('Y-m-d'),
+            'approbation' => $request->approbation,
+            'observation_approbation' => $request->observation_approbation,
+            'quantite_a_prelevee' => $request->quantite_a_prelevee,
+            'donneur_id' => $request->donneur_id,
+        ]);
+        if ($dossier->approbation == 1)
+        {
+            $dossier->update([
+                'num_don' => 'DON-' . date('Y-m-d') . '-' . $dossier->id
             ]);
-            if ($dossier->approbation == 1)
-            {
-                $dossier->update([
-                    'num_don' => 'DON-' . date('Y-m-d') . '-' . $dossier->id
-                ]);
-            }
+        }
         return redirect(route('dossierM.index'));
     }
     public function donneur_apte()
@@ -90,28 +89,35 @@ class DossierMedicalRSMController extends Controller
 
     public function donneurs_examiner()
     {
-        $donneursexaminers = DossierMedical::with('donneur')->get();
+        $donneursexaminers = DossierMedical::with('donneur')->where('quantite_prelevee', null)->get();
         return view('dossierM.donneursexaminer', compact('donneursexaminers'));
     }
 
     public function edit_donneursexaminer($id)
     {
       $donneurexaminer = DossierMedical::with('donneur')->find($id);
-      
+
       return view('dossierM.editdonneursexaminer', compact('donneurexaminer'));
     }
 
     public function update_donneursexaminer(Request $request, DossierMedical $donneurexaminer)
     {
-       
-     $donneurexaminer->update([
+        $this->validate($request, [
+            'poid' => 'required|integer',
+            'temperature' => 'required|integer',
+            'tension_arterielle' => 'required|integer',
+            'observation_approbation' => 'required|string',
+            'quantite_a_prelevee' => 'required|integer',
+            'approbation' => 'required',
+        ]);
+        $donneurexaminer->update([
         'poid'=>$request->poid,
         'temperature'=>$request->temperature,
         'tension_arterielle'=>$request->tension_arterielle,
         'date_dossier_medical'=>$request->date_dossier_medical,
         'approbation'=> $request->approbation,
         'quantite_a_prelevee'=>$request->quantite_a_prelevee
-       
+
      ]);
 
      return redirect(route('dossierM.donneursexaminer'));
@@ -121,6 +127,10 @@ class DossierMedicalRSMController extends Controller
     {
         $donneursexaminer = DossierMedical::with('donneur')->find($id);
         return view('dossierM.showdonneursexaminer', compact('donneursexaminer'));
+    }
+    public function destroy($id)
+    {
+        Donneur::destroy($id);
     }
 
 }

@@ -19,24 +19,76 @@
         <div class="card-header">
             <h5>Le stock</h5>
         </div>
-        <div class="card-block">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Groupe Sanguin</th>
-                            <th>Quantité en stock</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($stocks as $stock)
-                            <tr>
-                                <td>{{ $stock->groupe_sanguin }}</td>
-                                <td>{{ $stock->quantite_reelle }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+        <div class="page-body">
+            <div class="row">
+                @php
+                $color = '';
+                @endphp
+                @foreach($stocks as $stock)
+                    @switch ($stock->groupe_sanguin)
+                        @case('A+')
+                            @php
+                            $color = 'pink';
+                            @endphp
+                            @break;
+                        @case('B+')
+                            @php
+                            $color = 'blue';
+                            @endphp
+                            @break;
+                        @case('AB+')
+                            @php
+                            $color = 'green';
+                            @endphp
+                            @break;
+                        @case('O+')
+                            @php
+                            $color = 'yellow';
+                            @endphp
+                            @break;
+                        @case('A-')
+                            @php
+                            $color = 'orange';
+                            @endphp
+                            @break;
+                        @case('B-')
+                            @php
+                            $color = 'white';
+                            @endphp
+                            @break;
+                        @case('AB-')
+                            @php
+                            $color = 'purple';
+                            @endphp
+                            @break;
+                        @case('O-')
+                            @php
+                            $color = 'pink';
+                            @endphp
+                            @break;
+                    @endswitch
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h4 class="text-c-{{ $color }} f-w-600">{{ $stock->groupe_sanguin }}</h4>
+                                        </div>
+                                        <div class="col-4 text-right">
+                                            <i class="feather icon-calendar f-28"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-c-{{$color}}">
+                                    <div class="row align-items-center">
+                                        <div class="col-9">
+                                            <p class="text-white m-b-0">{{ $stock->quantite_reelle }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ class DossierMedicalValidationController extends Controller
     public function donneur_a_valider()
     {
         /* dd($stock); */
-        $validations = DossierMedical::with('donneur')->where('rejet', null)->get();
+        $validations = DossierMedical::with('donneur')->where('rejet', null)->whereNotNull('quantite_prelevee')->get();
         return view('validation.donneur_a_valider', compact('validations'));
     }
     public function validation($id)

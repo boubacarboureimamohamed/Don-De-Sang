@@ -31,15 +31,16 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                        <input type="text" title="Entrer le nom du donneur" data-toggle="tooltip" id="nom" name="nom" class="form-control" required="" placeholder="Nom donneur">
-
-                                        @if($errors->has('nom'))
-                                            <p style="color: red">  {{ $errors->first('nom')}} </p>
-                                        @endif
+                                <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                <input class="form-control @error('nom') is-invalid @enderror" type="text" title="Entrer le nom du donneur" data-toggle="tooltip" id="nom" name="nom" class="form-control" placeholder="Nom donneur">
+                                @error('nom')
+                                    <span class="form-bar" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                         </div>
-                     </div>
+                        </div>
+                    </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">

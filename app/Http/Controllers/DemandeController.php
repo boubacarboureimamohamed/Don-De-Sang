@@ -15,7 +15,7 @@ class DemandeController extends Controller
     {
         $beneficiaires = Beneficiaire::all();
         $groupements = Groupement::all();
-        return view('demande.create', compact('beneficiaires','groupements', 'lignedemande'));
+        return view('demande.create', compact('beneficiaires','groupements'));
     }
     public function store(Request $request)
     {

@@ -22,6 +22,12 @@ class DossierMedicalPrelevementController extends Controller
     }
     public function store(Request $request, DossierMedical $dossier)
     {
+        $this->validate($request, [
+            'type_prelevement' => 'required|string',
+            'type_poche' => 'required|string',
+            'quantite_prelevee' => 'required|integer',
+            'observation_prelevement' => 'required|string'
+        ]);
         $dossier->update([
             'type_prelevement' => $request->type_prelevement,
             'type_poche' => $request->type_poche,
@@ -33,7 +39,7 @@ class DossierMedicalPrelevementController extends Controller
     }
     public function donneur_prelevee()
     {
-        $prelevements = DossierMedical::with('donneur')->whereNotNull('quantite_prelevee')->get();
+        $prelevements = DossierMedical::with('donneur')->whereNotNull('quantite_prelevee')->where('rejet', null)->get();
         return view('prelevement.donneur_prelevee', compact('prelevements'));
     }
     public function show_prelevement(DossierMedical $prelevement)
@@ -47,6 +53,12 @@ class DossierMedicalPrelevementController extends Controller
     }
     public function update(Request $request, DossierMedical $prelevement)
     {
+        $this->validate($request, [
+            'type_prelevement' => 'required|string',
+            'type_poche' => 'required|string',
+            'quantite_prelevee' => 'required|integer',
+            'observation_prelevement' => 'required|string'
+        ]);
         $prelevement->update([
             'type_prelevement' => $request->type_prelevement,
             'type_poche' => $request->type_poche,

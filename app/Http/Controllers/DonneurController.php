@@ -7,6 +7,7 @@ use App\Models\Donneur;
 use App\Models\Typedonneur;
 use App\Models\Organisation;
 use App\Models\SituationMat;
+use Illuminate\Support\Carbon;
 
 class DonneurController extends Controller
 {
@@ -20,11 +21,7 @@ class DonneurController extends Controller
 
     public function store(Request $request)
     {
-
-
-
-        /* $this->validate($request, [
-            'num_donneur' => 'required|string|max:20',
+        $this->validate($request, [
             'nom' => 'required|max:255',
             'prenom' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:donneurs',
@@ -33,11 +30,9 @@ class DonneurController extends Controller
             'adresse' => 'required|string',
             'nationalite' => 'required|string',
             'profession' => 'required|string',
-            'telephone' => 'required|integer|max:8|min:8',
+            /* 'telephone' => 'required|integer|max:8|min:8', */
 
-        ]); */
-
-
+        ]);
         $donneur= Donneur::create($request->all());
         $donneur->update([
             'num_donneur' => 'DO/' . date('Ymd') . '/' . $donneur->id
@@ -52,7 +47,22 @@ class DonneurController extends Controller
     }
     public function index()
     {
-        $donneurs = Donneur::with('typedonneur','situationmats','organisation')->get();
+        $donneurs = Donneur::with('typedonneur','situationmats','organisation','dossierMedicals')->get();
+
+       /*  $donneurs = $donneurs->filter(function($donneur) {
+
+            $last = $donneur->dossierMedicals->last();
+            if($last)
+            {
+                $ago = $last->created_at->addMonths(3);
+                 $current = Carbon::today();
+                 return $current->greaterThanOrEqualTo($ago);
+
+            }else {
+                return true;
+            }
+
+        }); */
         return view('donneurs.index', compact('donneurs'));
     }
     public function destroy($id)
@@ -72,9 +82,18 @@ class DonneurController extends Controller
 
     public function update(Request $request, Donneur $donneur)
     {
-        
+        $this->validate($request, [
+            'nom' => 'required|max:255',
+            'prenom' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:donneurs',
+            'lieu_naiss' => 'required|string|max:255',
+            'sexe' => 'required',
+            'adresse' => 'required|string',
+            'nationalite' => 'required|string',
+            'profession' => 'required|string',
+            /* 'telephone' => 'required|integer|max:8|min:8', */
+        ]);
         $donneur->update([
-            'num_donneur' => $request->num_donneur,
             'nom' => $request->nom,
             'PrenomA' => $request->PrenomA,
             'prenom' => $request->prenom,
@@ -91,7 +110,6 @@ class DonneurController extends Controller
         ]);
 
         $donneur->situationmats()->updateExistingPivot($request->situation_mat_id,['date' => date('Y-m-d')]);
-        /* flash("success, L'donneur a été modifier.")->success(); */
         return redirect(route('donneurs.index'));
     }
 
