@@ -37,7 +37,11 @@
                                 <td>{{ $dossier->donneur->nom }}</td>
                                 <td>{{ $dossier->donneur->prenom }}</td>
                                 <td>
-                                    <a href="{{ route('prelevement.prelever', $dossier)}}" class="btn btn-primary btn-outline-primary"><i class="icofont icofont-icu icofont-lg"></i></a>
+                                    @can('prelever_donneur')
+                                        <a href="{{ route('prelevement.prelever', $dossier)}}" class="btn btn-primary btn-outline-primary">
+                                            <i class="icofont icofont-icu icofont-lg"></i>
+                                        </a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endif

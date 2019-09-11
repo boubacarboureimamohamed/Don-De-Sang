@@ -17,115 +17,114 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function() {
 
-Route::resource('rdvs', 'RdvController');
+        Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('planificationsfixe', 'RdvController@rdvfixeliste')->name('rdvs.rdv_fixe_liste');
+        Route::resource('rdvs', 'RdvController');
 
-Route::get('planificationsmobile', 'RdvController@rdvmobileliste')->name('rdvs.rdv_mobile_liste');
+        Route::get('planificationsfixe', 'RdvController@rdvfixeliste')->name('rdvs.rdv_fixe_liste');
 
-Route::resource('users', 'UsersController');
+        Route::get('planificationsmobile', 'RdvController@rdvmobileliste')->name('rdvs.rdv_mobile_liste');
 
-Route::get('user/profile', 'UsersController@profile')->name('profile');
+        Route::resource('users', 'UsersController');
 
-Route::resource('roles', 'RolesController');
+        Route::get('user/profile', 'UsersController@profile')->name('profile');
 
-Route::resource('permissions', 'PermissionsController');
+        Route::resource('roles', 'RolesController');
 
-Route::resource('seuilsms', 'SeuilSmsController');
+        Route::resource('permissions', 'PermissionsController');
 
-/*
-Route::resource('ligne', 'LignedemandeController'); */
+        Route::resource('seuilsms', 'SeuilSmsController');
 
+        /*
+        Route::resource('ligne', 'LignedemandeController'); */
 
+        Route::get('donneurs.add', 'DonneurController@adddonneur')->name('donneurs.add');
 
+        Route::post('donneurs', 'DonneurController@store')->name('donneurs.store');
 
+        Route::get('donneurs', 'DonneurController@index')->name('donneurs.index');
 
+        Route::delete('donneurs/{donneur}', 'DonneurController@destroy')->name('donneurs.destroy');
 
+        Route::get('donneurs/{donneur}/edit', 'DonneurController@edit')->name('donneurs.edit');
 
-Route::get('donneurs.add', 'DonneurController@adddonneur')->name('donneurs.add');
+        Route::PUT('donneurs/{donneur}', 'DonneurController@update')->name('donneurs.update');
 
-Route::post('donneurs', 'DonneurController@store')->name('donneurs.store');
+        Route::get('donneurs/{donneur}/show', 'DonneurController@show')->name('donneurs.show');
 
-Route::get('donneurs', 'DonneurController@index')->name('donneurs.index');
+        Route::get('dossier', 'DossierMedicalRSMController@index')->name('dossierM.index');
 
-Route::delete('donneurs/{donneur}', 'DonneurController@destroy')->name('donneurs.destroy');
+        Route::get('dossier/{donneur}/examiner', 'DossierMedicalRSMController@examiner')->name('dossierM.examiner');
 
-Route::get('donneurs/{donneur}/edit', 'DonneurController@edit')->name('donneurs.edit');
+        Route::post('dossier', 'DossierMedicalRSMController@store')->name('dossierM.store');
 
-Route::PUT('donneurs/{donneur}', 'DonneurController@update')->name('donneurs.update');
+        Route::get('dossier/donneur_apte', 'DossierMedicalRSMController@donneur_apte')->name('dossierM.donneur_apte');
 
-Route::get('donneurs/{donneur}/show', 'DonneurController@show')->name('donneurs.show');
+        Route::get('dossier/donneur_inapte', 'DossierMedicalRSMController@donneur_inapte')->name('dossierM.donneur_inapte');
 
-Route::get('dossier', 'DossierMedicalRSMController@index')->name('dossierM.index');
+        Route::get('dossier/show_inapte', 'DossierMedicalRSMController@show_inapte')->name('dossierM.show_inapte');
 
-Route::get('dossier/{donneur}/examiner', 'DossierMedicalRSMController@examiner')->name('dossierM.examiner');
+        Route::get('dossier/{donneur_apte}/show_apte', 'DossierMedicalRSMController@show_apte')->name('dossierM.show_apte');
 
-Route::post('dossier', 'DossierMedicalRSMController@store')->name('dossierM.store');
+        Route::get('donneursexaminer', 'DossierMedicalRSMController@donneurs_examiner')->name('dossierM.donneursexaminer');
 
-Route::get('dossier/donneur_apte', 'DossierMedicalRSMController@donneur_apte')->name('dossierM.donneur_apte');
+        Route::get('donneurexaminers/{donneurexaminer}/modifier', 'DossierMedicalRSMController@edit_donneursexaminer')->name('dossierM.editdonneursexaminer');
 
-Route::get('dossier/donneur_inapte', 'DossierMedicalRSMController@donneur_inapte')->name('dossierM.donneur_inapte');
+        Route::PUT('donneursexaminer/{donneurexaminer}', 'DossierMedicalRSMController@update_donneursexaminer')->name('dossierM.updatedonneursexaminer');
 
-Route::get('dossier/show_inapte', 'DossierMedicalRSMController@show_inapte')->name('dossierM.show_inapte');
+        Route::get('detailsdonneurexaminer/{donneursexaminer}', 'DossierMedicalRSMController@show_donneursexaminer')->name('dossierM.showdonneursexaminer');
 
-Route::get('dossier/{donneur_apte}/show_apte', 'DossierMedicalRSMController@show_apte')->name('dossierM.show_apte');
+        Route::get('prelevement/donneur_apte_a_prelevee', 'DossierMedicalPrelevementController@donneur_apte_a_prelevee')->name('prelevement.donneur_apte_a_prelevee');
 
-Route::get('donneursexaminer', 'DossierMedicalRSMController@donneurs_examiner')->name('dossierM.donneursexaminer');
+        Route::get('prelevement/{donneur}/prelever', 'DossierMedicalPrelevementController@prelever')->name('prelevement.prelever');
 
-Route::get('donneurexaminers/{donneurexaminer}/modifier', 'DossierMedicalRSMController@edit_donneursexaminer')->name('dossierM.editdonneursexaminer');
+        Route::PUT('prelevement/{dossier}', 'DossierMedicalPrelevementController@store')->name('prelevement.store');
 
-Route::PUT('donneursexaminer/{donneurexaminer}', 'DossierMedicalRSMController@update_donneursexaminer')->name('dossierM.updatedonneursexaminer');
+        Route::get('prelevement/donneur_prelevee', 'DossierMedicalPrelevementController@donneur_prelevee')->name('prelevement.donneur_prelevee');
 
-Route::get('detailsdonneurexaminer/{donneursexaminer}', 'DossierMedicalRSMController@show_donneursexaminer')->name('dossierM.showdonneursexaminer');
+        Route::get('prelevement/{prelevement}/show', 'DossierMedicalPrelevementController@show_prelevement')->name('prelevement.show_prelevement');
 
-Route::get('prelevement/donneur_apte_a_prelevee', 'DossierMedicalPrelevementController@donneur_apte_a_prelevee')->name('prelevement.donneur_apte_a_prelevee');
+        Route::get('prelevement/{prelevement}/edit', 'DossierMedicalPrelevementController@edit')->name('prelevement.edit');
 
-Route::get('prelevement/{donneur}/prelever', 'DossierMedicalPrelevementController@prelever')->name('prelevement.prelever');
+        Route::PUT('prelevement/{prelevement}', 'DossierMedicalPrelevementController@update')->name('prelevement.update');
 
-Route::PUT('prelevement/{dossier}', 'DossierMedicalPrelevementController@store')->name('prelevement.store');
+        Route::get('validation', 'DossierMedicalValidationController@donneur_a_valider')->name('validation.donneur_a_valider');
 
-Route::get('prelevement/donneur_prelevee', 'DossierMedicalPrelevementController@donneur_prelevee')->name('prelevement.donneur_prelevee');
+        Route::get('validation/donneur_valider', 'DossierMedicalValidationController@donneur_valider')->name('validation.donneur_valider');
 
-Route::get('prelevement/{prelevement}/show', 'DossierMedicalPrelevementController@show_prelevement')->name('prelevement.show_prelevement');
+        Route::get('validation/{dossier}', 'DossierMedicalValidationController@validation')->name('validation.validation');
 
-Route::get('prelevement/{prelevement}/edit', 'DossierMedicalPrelevementController@edit')->name('prelevement.edit');
+        Route::PUT('validation/{dossier}', 'DossierMedicalValidationController@store')->name('validation.store');
 
-Route::PUT('prelevement/{prelevement}', 'DossierMedicalPrelevementController@update')->name('prelevement.update');
+        Route::get('demande.create', 'DemandeController@create')->name('demande.create');
 
-Route::get('validation', 'DossierMedicalValidationController@donneur_a_valider')->name('validation.donneur_a_valider');
-
-Route::get('validation/donneur_valider', 'DossierMedicalValidationController@donneur_valider')->name('validation.donneur_valider');
-
-Route::get('validation/{dossier}', 'DossierMedicalValidationController@validation')->name('validation.validation');
-
-Route::PUT('validation/{dossier}', 'DossierMedicalValidationController@store')->name('validation.store');
-
-Route::get('demande.create', 'DemandeController@create')->name('demande.create');
-
-Route::post('demande.store', 'DemandeController@store')->name('demande.store');
+        Route::post('demande.store', 'DemandeController@store')->name('demande.store');
 
 
 
 
 
-Route::get('demande', 'DemandeController@index')->name('demande.index');
+        Route::get('demande', 'DemandeController@index')->name('demande.index');
 
-Route::get('demande/{demande}/show', 'DemandeController@show')->name('demande.show');
+        Route::get('demande/{demande}/show', 'DemandeController@show')->name('demande.show');
 
-Route::get('demande/{demande}/edit', 'DemandeController@edit')->name('demande.edit');
+        Route::get('demande/{demande}/edit', 'DemandeController@edit')->name('demande.edit');
 
-Route::PUT('demande/{demande}', 'DemandeController@demandeupdate')->name('demande.demandeupdate');
+        Route::PUT('demande/{demande}', 'DemandeController@demandeupdate')->name('demande.demandeupdate');
 
-Route::PUT('ligne/{ligne}', 'DemandeController@ligneupdate')->name('demande.ligneupdate');
+        Route::PUT('ligne/{ligne}', 'DemandeController@ligneupdate')->name('demande.ligneupdate');
 
-Route::post('ligne/lignestore', 'DemandeController@lignestore')->name('demande.lignestore');
+        Route::post('ligne/lignestore', 'DemandeController@lignestore')->name('demande.lignestore');
 
-Route::delete('demande/{demande}', 'DemandeController@demande destroy')->name('demande.demandedestroy');
+        Route::delete('demande/{demande}', 'DemandeController@demande destroy')->name('demande.demandedestroy');
 
-Route::delete('ligne/{ligne}', 'DemandeController@lignedestroy')->name('ligne.lignedestroy');
+        Route::delete('ligne/{ligne}', 'DemandeController@lignedestroy')->name('ligne.lignedestroy');
 
-Route::get('stock', 'DossierMedicalValidationController@stock')->name('validation.stock');
+        Route::get('stock', 'DossierMedicalValidationController@stock')->name('validation.stock');
 
-Route::post('livraison/{ligne}', 'DemandeController@livraison')->name('demande.livraison');
+        Route::post('livraison/{ligne}', 'DemandeController@livraison')->name('demande.livraison');
+
+});
+

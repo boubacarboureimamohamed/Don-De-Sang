@@ -15,9 +15,11 @@
 </div>
 <div class="card-block">
 <div class="btn-group btn-group-sm" style="float: none; ">
-    <a href="{{ route('roles.create') }}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
-       <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
-    </a>
+     @can('creer_role')
+        <a href="{{ route('roles.create') }}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
+        <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
+        </a>
+     @endcan
 </div>
 <div class="dt-responsive table-responsive">
 <table id="simpletable" class="table table-striped table-bordered nowrap">
@@ -35,22 +37,31 @@
 <td>{{ $role->name }}</span></td>
 <td>
 @foreach ($role->permissions as $permission)
-<button class="btn btn-primary btn-round">{{ $permission->name }}</button>
+<button class="btn btn-primary btn-round btn-mini">{{ $permission->name }}</button><br>
 @endforeach
 </td>
 <td>
-    <a href="{{ route('roles.edit', $role) }}" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
-    <span class="icofont icofont-ui-edit"></span></a>
+    @can('editer_role')
+         <a href="{{ route('roles.edit', $role) }}" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
+             <span class="icofont icofont-ui-edit"></span>
+         </a>
+    @endcan
+
 </td>
 <td>
-    <form method="POST" action="{{ route('roles.destroy', $role) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
 
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
+    @can('supprimer_role')
+        <form method="POST" action="{{ route('roles.destroy', $role) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
 
-    <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
-    <span class="icofont icofont-ui-delete"></span></button>
-    </form>
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+
+            <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
+                <span class="icofont icofont-ui-delete"></span>
+            </button>
+        </form>
+    @endcan
+
 </td>
 </tr>
 @endforeach

@@ -14,9 +14,11 @@
 </div>
 <div class="card-block">
 <div class="btn-group btn-group-sm">
-    <a href="{{ route('users.create') }}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
-       <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
-    </a>
+     @can('creer_user')
+        <a href="{{ route('users.create') }}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
+            <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
+        </a>
+    @endcan
 </div>
 <div class="dt-responsive table-responsive">
 <table id="simpletable" class="table table-striped table-bordered nowrap">
@@ -44,18 +46,28 @@
 @endforeach
 </td>
 <td>
-    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
-    <span class="icofont icofont-ui-edit"></span></a>
+
+    @can('editer_user')
+        <a href="{{ route('users.edit', $user) }}" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
+            <span class="icofont icofont-ui-edit"></span>
+        </a>
+    @endcan
+
 </td>
 <td>
-    <form method="POST" action="{{ route('users.destroy', $user) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
 
-        {{ csrf_field() }}
-        {{ method_field('DELETE') }}
+    @can('supprimer_user')
+        <form method="POST" action="{{ route('users.destroy', $user) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
 
-    <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
-    <span class="icofont icofont-ui-delete"></span></button>
-    </form>
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+
+            <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
+                <span class="icofont icofont-ui-delete"></span>
+            </button>
+        </form>
+    @endcan
+
 </td>
 </tr>
 @endforeach

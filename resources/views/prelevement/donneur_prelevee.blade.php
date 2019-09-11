@@ -39,13 +39,25 @@
                                 <td>{{ $prelevement->donneur->nom }}</td>
                                 <td>{{ $prelevement->donneur->prenom }}</td>
                                 <td>
-                                    <a href="{{ route('prelevement.show_prelevement', $prelevement) }}" class="btn btn-info btn-outline-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                    @can('consulter_prelevement')
+                                        <a href="{{ route('prelevement.show_prelevement', $prelevement) }}" class="btn btn-info btn-outline-info">
+                                            <i class="icofont icofont-eye-alt icofont-lg"></i>
+                                        </a>
+                                    @endcan
                                 </td>
                                 <td>
-                                    <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-warning btn-outline-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
+                                    @can('editer_prelevement')
+                                         <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-warning btn-outline-warning">
+                                            <i class="icofont icofont-ui-edit icofont-lg"></i></i>
+                                        </a>
+                                    @endcan
                                 </td>
                                 <td>
-                                    <a href="{{ route('validation.validation', $prelevement)}}" class="btn btn-primary btn-outline-primary"><i class="icofont icofont- icofont-lg"></i></a>
+                                    @can('valider_prelevement')
+                                        <a href="{{ route('validation.validation', $prelevement)}}" class="btn btn-primary btn-outline-primary">
+                                            <i class="icofont icofont- icofont-lg"></i>
+                                        </a>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

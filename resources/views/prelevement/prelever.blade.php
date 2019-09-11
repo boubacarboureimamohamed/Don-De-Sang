@@ -122,7 +122,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" title="Entrer l'Observation" data-toggle="tooltip" type="text" class="form-control" placeholder="Observation du prelevemrnt" name="observation_prelevement" required="">
+                                <textarea placeholder="Observations" rows="1" title="Entrer votre observation" data-toggle="tooltip" class="form-control" spellcheck="false"  name="observation_prelevement"></textarea>
                             </div>
                          </div>
                      </div>

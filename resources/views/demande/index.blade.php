@@ -22,9 +22,11 @@
                     <h2 style="text-align: center;">Liste des demandes</h2>
                 </div>
                 <div class="btn-group btn-group-sm" style="float: none; ">
-                    <a href="{{ route('demande.create')}}" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
-                        <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
-                    </a>
+                    @can('ajouter_demande')
+                        <a href="{{ route('demande.create')}}" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
+                            <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
+                        </a>
+                    @endcan
                 </div>
                 <table id="simpletable" class="table table-striped table-bordered nowrap">
                     <thead>
@@ -44,19 +46,29 @@
                             <td>{{ $demande->beneficiaire->libelle }}</td>
                             <td>{{ $demande->beneficiaire->adresse }}</td>
                             <td>
-                                <a href="{{ route('demande.show', $demande) }}" class="btn btn-primary btn-outline-primary"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                @can('consulter_demande')
+                                    <a href="{{ route('demande.show', $demande) }}" class="btn btn-primary btn-outline-primary">
+                                        <i class="icofont icofont-eye-alt icofont-lg"></i>
+                                    </a>
+                                @endcan
                             </td>
                             <td>
-                                <a href="{{ route('demande.edit', $demande) }}" class="btn btn-warning btn-outline-warning"><i class="icofont icofont-ui-edit"></i></a>
+                                @can('editer_demande')
+                                    <a href="{{ route('demande.edit', $demande) }}" class="btn btn-warning btn-outline-warning">
+                                        <i class="icofont icofont-ui-edit"></i>
+                                    </a>
+                                @endcan
                             </td>
                             <td>
-                                <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
-                                        <span class="icofont icofont-ui-delete"></span>
-                                    </button>
-                                </form>
+                                @can('supprimer_demande')
+                                    <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                            <span class="icofont icofont-ui-delete"></span>
+                                        </button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
