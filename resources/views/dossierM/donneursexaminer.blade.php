@@ -28,9 +28,9 @@
             <tbody>
             @foreach ($donneursexaminers as $donneursexaminer)
                 <tr>
-            <td>{{ $donneursexaminer->donneur->num_donneur }}</span></td>
-            <td>{{ $donneursexaminer->donneur->nom }}</span></td>
-            <td>{{ $donneursexaminer->donneur->prenom }}</span></td>
+            <td>{{ $donneursexaminer->donneur->num_donneur }}</td>
+            <td>{{ $donneursexaminer->donneur->nom }}</td>
+            <td>{{ $donneursexaminer->donneur->prenom }}</td>
             <td>
                 <a href="{{ route('dossierM.showdonneursexaminer', $donneursexaminer)}}" class="btn btn-info btn-outline-info" style="float: none;margin: 5px;">
                 <span class="icofont icofont-eye-alt"></span></a>

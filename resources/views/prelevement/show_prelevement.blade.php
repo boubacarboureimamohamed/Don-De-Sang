@@ -1,56 +1,100 @@
 @extends('layouts.adminty')
+
 @section('css')
 
-  <!-- jpro forms css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\j-pro-modern.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\advance-elements\css\bootstrap-datetimepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\bootstrap-daterangepicker\css\daterangepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\datedropper\css\datedropper.min.css') }}">
-
 @endsection
+
 @section('content')
 <div class="col-sm-12">
-<div class="page-body">
-
-    <!-- Extra Large table start -->
-    <div class="card">
-        <div class="card-header">
-            <h5>Donneur N²{{ $prelevement->donneur->num_donneur }}</h5>
-        </div>
-        <div class="card-block">
-            <div class="table-responsive">
-                <table class="table table-xl">
-                    <thead>
-                        <tr>
-                            <th>N° de donneur</th>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>Type de Prélèvement</th>
-                            <th>Type de poche</th>
-                            <th>Quantité prélèvée</th>
-                            <th>Date de Prélèvement</th>
-                            <th>Observation Prélèvement</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            <tr>
-                                <td>{{ $prelevement->donneur->num_donneur }}</td>
-                                <td>{{ $prelevement->donneur->nom }}</td>
-                                <td>{{ $prelevement->donneur->prenom }}</td>
-                                <td>{{ $prelevement->type_prelevement }}</td>
-                                <td>{{ $prelevement->type_poche }}</td>
-                                <td>{{ $prelevement->quantite_prelevee }}</td>
-                                <td>{{ $prelevement->date_heure_prelevement }}</td>
-                                <td>{{ $prelevement->observation_prelevement }}</td>
-                            </tr>
-                    </tbody>
-                    <a href="{{ route('prelevement.donneur_prelevee')}}" class="btn btn-xs pull-right btn-success"><i class="icofont icofont-arrow-left"></i></a>
-                </table>
+    <div class="page-body">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-center txt-primary">{{ ('Détail sur le prélèvement du donneur') }}</h3>
+            </div>
+            <div class="card-block">
+            <div class="view-info">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="general-info">
+                            <div class="row">
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="table-responsive">
+                                        <table class="table m-0">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Numéro </th>
+                                                    <td>{{ $prelevement->donneur->num_donneur }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Nom</th>
+                                                    <td>{{ $prelevement->donneur->nom }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Type de poche</th>
+                                                    <td>{{ $prelevement->type_poche }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Type de Prélèvement</th>
+                                                    <td>{{ $prelevement->date_heure_prelevement }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Date du Prélèvement</th>
+                                                    <td>{{ $prelevement->date_heure_prelevement }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end of table col-lg-6 -->
+                                <div class="col-lg-12 col-xl-6">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Numéro de don</th>
+                                                    <td>{{ $prelevement->num_don }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Prénom</th>
+                                                    <td>{{ $prelevement->donneur->prenom }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Quantité prélèvée</th>
+                                                    <td>{{ $prelevement->quantite_prelevee }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Observation Prélèvement</th>
+                                                    <td>{{ $prelevement->observation_prelevement }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"></th>
+                                                    <td>
+                                                        <a href="{{ route('prelevement.donneur_prelevee')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end of table col-lg-6 -->
+                            </div>
+                            <!-- end of row -->
+                        </div>
+                        <!-- end of general info -->
+                    </div>
+                    <!-- end of col-lg-12 -->
+                </div>
+                <!-- end of row -->
+            </div>
+            <!-- end of view-info -->
+            </div>
             </div>
         </div>
     </div>
 </div>
     <!-- Extra Large table end -->
+@endsection
+
+@section('js')
+
 @endsection

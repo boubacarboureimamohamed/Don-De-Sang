@@ -15,7 +15,7 @@
     <div class="page-body">
         <div class="card">
             <div class="card-header">
-                <h5>Donneur N°{{ $as->num_donneur }}</h5>
+                <h3 class="text-center txt-primary">{{ ('Détail sur le donneur') }}</h3>
             </div>
             <div class="card-block">
                 <div class="row">
@@ -24,16 +24,44 @@
                             <table class="table m-0">
                                 <tbody>
                                     <tr>
+                                        <th scope="row">Numéro</th>
+                                        <td>{{ $as->num_donneur }}</td>
+                                    </tr>
+                                    <tr>
                                         <th scope="row">Nom</th>
                                         <td>{{ $as->nom }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Prénom </th>
-                                        <td>{{ $as->prenom }}</td>
-                                    </tr>
-                                    <tr>
                                         <th scope="row">Date de naissance</th>
                                         <td>{{ $as->date_naiss }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Nationalite</th>
+                                        <td>{{ $as->nationalite }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Téléphone</th>
+                                        <td>{{ $as->telephone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Type de donneur</th>
+                                        <td>{{ $as->typedonneur->type_donneur }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-xl-6">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Profession</th>
+                                        <td>{{ $as->profession }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Prénom </th>
+                                        <td>{{ $as->prenom }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Lieu de naissance</th>
@@ -44,68 +72,42 @@
                                         <td>{{ $as->sexe }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Type de donneur</th>
-                                        <td>{{ $as->typedonneur->type_donneur }}</td>
+                                        <th scope="row">Email</th>
+                                        <td>{{ $as->email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Organisation</th>
+                                        <td>{{ $ls->organisation ? $ls->organisation->libelle : '' }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                        <div class="col-lg-12 col-xl-6">
+                        <div>
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table m-0">
                                     <tbody>
+                                        @foreach ($as->situationmats as $a)
                                         <tr>
-                                            <th scope="row">Adresse</th>
-                                            <td>{{ $as->adresse }}</td>
+                                            <th scope="row">Date</th>
+                                            <td>{{ $a->pivot->date }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Nationalite</th>
-                                            <td>{{ $as->nationalite }}</td>
+                                            <th scope="row">Situation matrimoniale </th>
+                                            <td>{{ $a->situation_matrimoniale }}</td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">Profession</th>
-                                            <td>{{ $as->profession }}</td>
+                                            <th scope="row">Situation marié </th>
+                                            <td>{{ $a->situationmariee }}</td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">Téléphone</th>
-                                            <td>{{ $as->telephone }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Email</th>
-                                            <td>{{ $as->email }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">Organisation</th>
-                                            <td>{{ $ls->organisation ? $ls->organisation->libelle : '' }}</td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            <div>
-                                <div class="table-responsive">
-                                    <table class="table m-0">
-                                        <tbody>
-                                            @foreach ($as->situationmats as $a)
-                                            <tr>
-                                                <th scope="row">Date</th>
-                                                <td>{{ $a->pivot->date }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Situation matrimoniale </th>
-                                                <td>{{ $a->situation_matrimoniale }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Situation marié </th>
-                                                <td>{{ $a->situationmariee }}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
-                     </div>
+                    </div>
+                </div>
+                                   <a href="{{ route('donneurs.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
+
             </div>
         </div>
     </div>

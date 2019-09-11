@@ -45,7 +45,7 @@
                                     <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-warning btn-outline-warning"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-primary btn-outline-primary"><i class="icofont icofont- icofont-lg"></i></a>
+                                    <a href="{{ route('validation.validation', $prelevement)}}" class="btn btn-primary btn-outline-primary"><i class="icofont icofont- icofont-lg"></i></a>
                                 </td>
                             </tr>
                         @endforeach
