@@ -17,8 +17,10 @@
         <div class="col-lg-6">
             <div class="card user-card">
                 <div class="card-header">
-                    <h5>Top Image Cap</h5>
+                    <h5>Message</h5>
                 </div>
+            <form action="{{ route('seuilsms.store') }}" method="post">
+            {{ csrf_field() }}
                 <div class="card-block">
                     <div class="top-cap-text">
                     <div class="row">
@@ -26,28 +28,33 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                <textarea name="" id="" cols="50" rows="2"></textarea>
+                                <textarea name="message" id="" cols="60" title="entrez le message a envoyer" rows="2" placeholder="Ecrivez le message" ></textarea>
                             </div>
                                <h4 class="sub-title">Groupe Sanguin</h4>
-                                <select id='custom-headers' class="searchable" name="permissions[]" multiple='multiple'>
+                                <select id='custom-headers' class="searchable" name="groupe[]" multiple='multiple'>
 
                                     @foreach ($groupes as $groupe)
                                     <option value='{{ $groupe->id }}'>{{ $groupe->groupe_sanguin }}</option>
                                     @endforeach
                                                         
                                 </select>
-                         </div>
+                            </div>
                      </div>
-                    
+                     <div class="text-center">
+                     <a href="" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
+                        <button type="Submit" class="btn btn-primary waves-effect waves-light m-r-20" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);">Envoyer le message</button>
+            </form>  
+                </div>
                 </div>
                     </div>
                 </div>
             </div>
+            
         </div>
         <div class="col-lg-6">
             <div class="card user-card">
                 <div class="card-header">
-                    <h5>Bottom Image Cap</h5>
+                    <h5>Stock des poches de sang</h5>
                 </div>
                 <div class="card-block">
                     <div class="top-cap-text">
