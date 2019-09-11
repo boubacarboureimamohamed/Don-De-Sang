@@ -26,7 +26,7 @@
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
@@ -36,13 +36,13 @@
                                 <td>{{ $donneur_inapte->donneur->num_donneur }}</td>
                                 <td>{{ $donneur_inapte->donneur->nom }}</td>
                                 <td>{{ $donneur_inapte->donneur->prenom }}</td>
-                                
+
                             </tr>
                             @endif
                         @endforeach
                     </tbody>
                 </table>
-              <a href="{{ route('dossierM.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>            </div>
+           </div>
         </div>
     </div>
 </div>

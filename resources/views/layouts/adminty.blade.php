@@ -139,12 +139,6 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="feather icon-settings"></i>
-                                        {{ __('Paramétres') }}
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -179,6 +173,48 @@
                                     </h5>
                                 </li>
                                 <li class="">
+                                    <a href="{{ route('validation.donneur_valider') }}">
+                                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                                        <span class="pcoded-mtext">Gestion Des Dons</span>
+                                    </a>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="#!">
+                                        <span class="pcoded-micon"><i class="feather icon-list"></i></span>
+                                        <span class="pcoded-mtext">Liste Des Donneurs</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="{{ route('donneurs.index') }}">
+                                                <span class="pcoded-mtext">Donneurs Actives</span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="{{ route('dossierM.donneursexaminer') }}">
+                                                <span class="pcoded-mtext">Donneurs Examinés</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="#!">
+                                        <span class="pcoded-micon"><i class="feather icon-calendar"></i></span>
+                                        <span class="pcoded-mtext">Planification Des Collectes</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="{{ route('rdvs.rdv_fixe_liste')}}">
+                                                <span class="pcoded-mtext">Collectes Fixes</span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="{{ route('rdvs.rdv_mobile_liste')}}">
+                                                <span class="pcoded-mtext">Collectes Mobiles</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
                                     <a href="navbar-light.htm">
                                         <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
                                         <span class="pcoded-mtext">Dossiers Médicaux </span>
@@ -190,58 +226,28 @@
                                         <span class="pcoded-mtext">Gestion Des Prélèvements</span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="{{ route('prelevement.donneur_prelevee') }}">
-                                                <span class="pcoded-mtext">Liste Des Prélèvements</span>
-                                            </a>
-                                        </li>
                                         <li class="">
                                             <a href="{{ route('prelevement.donneur_apte_a_prelevee') }}">
                                                 <span class="pcoded-mtext">Liste d'attente</span>
                                             </a>
                                         </li>
-                                    </ul>
-                                </li>
-                                <li class="">
-                                    <a href="{{ route('dossierM.donneursexaminer') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-list"></i></span>
-                                        <span class="pcoded-mtext">Donneurs examinés </span>
-                                    </a>
-                                </li>
-                                <li class="pcoded-hasmenu">
-                                    <a href="#!">
-                                        <span class="pcoded-micon"><i class="feather icon-calendar"></i></span>
-                                        <span class="pcoded-mtext">Planification Des Collectes</span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
                                         <li class=" ">
-                                            <a href="{{ route('rdvs.rdv_mobile_liste')}}">
-                                                <span class="pcoded-mtext">Collectes Mobiles</span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="{{ route('rdvs.rdv_fixe_liste')}}">
-                                                <span class="pcoded-mtext">Collectes Fixes</span>
+                                            <a href="{{ route('prelevement.donneur_prelevee') }}">
+                                                <span class="pcoded-mtext">Liste Des Prélèvements</span>
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="">
-                                    <a href="{{ route('prelevement.donneur_prelevee') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
-                                        <span class="pcoded-mtext">????????????</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="{{ route('donneurs.index') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-list"></i></span>
-                                        <span class="pcoded-mtext">Liste Des Donneurs</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="javascript:void(0)">
+                                    <a href="{{ route('validation.stock') }}">
                                         <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
                                         <span class="pcoded-mtext">Banque De Sang</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ route('demande.index') }}">
+                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
+                                        <span class="pcoded-mtext">Demande De Sang</span>
                                     </a>
                                 </li>
                                 <li class="pcoded-hasmenu">
@@ -263,7 +269,13 @@
                                     </ul>
                                 </li>
                                 <li class="">
-                                    <a href="navbar-light.htm">
+                                    <a href="#">
+                                        <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
+                                        <span class="pcoded-mtext">Paramétrages</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#">
                                         <span class="pcoded-micon"><i class="feather icon-mail"></i></span>
                                         <span class="pcoded-mtext">Notifications</span>
                                     </a>

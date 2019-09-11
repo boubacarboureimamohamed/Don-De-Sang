@@ -21,7 +21,7 @@
 
         {{ csrf_field() }}
         {{ method_field('PUT') }}
-
+ 
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
