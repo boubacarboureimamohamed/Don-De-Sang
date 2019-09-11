@@ -21,12 +21,16 @@
         </div>
         <div class="card-block">
             <div class="btn-group btn-group-sm" style="float: none; ">
-                <a href="#" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
-                    <span class="icofont icofont-check-circled"></span> {{ ('Dons Acceptés') }}
-                </a>
-                <a href="#" class="btn btn-warning btn-outline-warning" style="float: none;margin: 5px;">
-                    <span class="icofont icofont-warning-alt"></span> {{ ('Dons Rejetés') }}
-                </a>
+                @can('don_accepte')
+                    <a href="#" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
+                        <span class="icofont icofont-check-circled"></span> {{ ('Dons Acceptés') }}
+                    </a>
+                @endcan
+                @can('don_rejete')
+                    <a href="#" class="btn btn-warning btn-outline-warning" style="float: none;margin: 5px;">
+                        <span class="icofont icofont-warning-alt"></span> {{ ('Dons Rejetés') }}
+                    </a>
+                @endcan
             </div>
             <div  class="dt-responsive table-responsive">
                 <table id="simpletable" class="table table-striped table-bordered nowrap">

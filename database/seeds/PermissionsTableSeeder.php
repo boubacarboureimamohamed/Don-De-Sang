@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 
 class PermissionsTableSeeder extends Seeder
 {
@@ -11,22 +12,87 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-        \Illuminate\Support\Facades\DB::table('permissions')->insert([
+        Permission::create([
+             'name' => "ajouter_donneur"]);
+
+        Permission::create([
+             'name' => "editer_donneur"]);
+
+        Permission::create([
+             'name' => "supprimer_donneur"]);
+
+        Permission::create([
             'name' => "consulter_donneur"]);
 
-        \Illuminate\Support\Facades\DB::table('permissions')->insert([
-                'name' => "creer_donneur"]);
+        Permission::create([
+            'name' => "examiner_donneur"]);
 
-         \Illuminate\Support\Facades\DB::table('permissions')->insert([
-                    'name' => "editer_donneur"]);
+        Permission::create([
+            'name' => "prelever_donneur"]);
 
-                    \Illuminate\Support\Facades\DB::table('permissions')->insert([
-                        'name' => "consulter_collecte" ]);
+        Permission::create([
+            'name' => "valider_prelevement"]);
 
-                    \Illuminate\Support\Facades\DB::table('permissions')->insert([
-                            'name' => "creer_collecte" ]);
+        Permission::create([
+            'name' => "editer_prelevement"]);
 
-                     \Illuminate\Support\Facades\DB::table('permissions')->insert([
-                                'name' => "editer_collecte"]);
+        Permission::create([
+            'name' => "consulter_prelevement"]);
+
+        Permission::create([
+             'name' => "planifier_collecte" ]);
+
+        Permission::create([
+             'name' => "editer_planification"]);
+
+        Permission::create([
+             'name' => "supprimer_planification"]);
+
+        Permission::create([
+             'name' => "consulter_planification" ]);
+
+        Permission::create([
+        'name' => "ajouter_demande"]);
+
+        Permission::create([
+            'name' => "editer_demande"]);
+
+        Permission::create([
+                'name' => "supprimer_demande"]);
+
+        Permission::create([
+            'name' => "consulter_demande"]);
+
+        Permission::create([
+            'name' => "donneur_apte"]);
+
+        Permission::create([
+            'name' => "donneur_inapte"]);
+
+        Permission::create([
+            'name' => "don_accepte"]);
+
+        Permission::create([
+            'name' => "don_rejete"]);
+
+        Permission::create([
+            'name' => "creer_user" ]);
+
+        Permission::create([
+            'name' => "editer_user"]);
+
+        Permission::create([
+            'name' => "supprimer_user" ]);
+
+        Permission::create([
+            'name' => "creer_role" ]);
+
+        Permission::create([
+            'name' => "editer_role"]);
+
+        Permission::create([
+            'name' => "supprimer_role" ]);
+
+
     }
 }
