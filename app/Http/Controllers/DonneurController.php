@@ -42,7 +42,7 @@ class DonneurController extends Controller
                 'situationmariee'=>$request->situationmariee
         ]);
         $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);
-
+       
         return redirect(route('donneurs.index'));
     }
     public function index()

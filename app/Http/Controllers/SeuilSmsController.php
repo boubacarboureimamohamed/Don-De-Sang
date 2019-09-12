@@ -8,6 +8,9 @@ use App\Models\Donneur;
 use App\Models\DossierMedical;
 use Illuminate\Support\Carbon;
 
+use Twilio\Rest\Client;
+use Twilio\Jwt\ClientToken;
+
 class SeuilSmsController extends Controller
 {
     /**
@@ -52,8 +55,32 @@ class SeuilSmsController extends Controller
         where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id in (select max(id) 
         from dossier_medicals where donneur_id in (select id from donneurs) and dossier_medicals.groupement_id in ($groupe) 
         group by donneur_id) and DATEDIFF(CURRENT_DATE, dossier_medicals.created_at) >= 90;");
-
-        dd($donneurs);
+        foreach($donneurs as $donneur)
+        {
+            $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
+            $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
+            $client = new Client($accountSid, $authToken);
+            try
+            {
+                //Utilisez le client pour faire des choses amusantes comme envoyer des messages texte!
+                $client->messages->create(
+                //le numéro auquel vous souhaitez envoyer le message 
+                    $donneur->telephone,
+            array(
+                    // le numéro de téléphone Twilio que vous avez acheté sur twilio.com/console
+                    'from' => '+12056512557',
+                    // le corps du message texte que vous souhaitez envoyer
+                    'body' => $message
+                )
+            );
+            }
+            catch (Exception $e)
+            {
+                echo "Error: " . $e->getMessage();
+            }
+        }
+        
+    
         
     }
 
@@ -101,4 +128,5 @@ class SeuilSmsController extends Controller
     {
         //
     }
+   
 }

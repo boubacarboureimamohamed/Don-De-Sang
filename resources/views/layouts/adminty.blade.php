@@ -52,6 +52,8 @@
 
 <body>
 @yield('css')
+
+
 <!-- Pre-loader start -->
 <div class="theme-loader">
     <div class="ball-scale">
@@ -74,6 +76,8 @@
         </div>
     </div>
 </div>
+
+@include('flash-message')
 <!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
