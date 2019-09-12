@@ -84,36 +84,6 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Entrer le poid du donneur" data-toggle="tooltip" class="form-control" placeholder="Poid du Donneur" name="poid" required="">
-                            </div>
-                         </div>
-                     </div>
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                <input id="" type="text" title="Entrer la quantité à prélevée" data-toggle="tooltip" class="form-control" placeholder="Quantité à prélevée" name="quantite_a_prelevee">
-                            </div>
-                         </div>
-                     </div>
-                </div>
-                <div class="row">
-
-                <div class="col-sm-6">
-
-                    <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
-                               <textarea placeholder="Observations" title="Entrer votre observation" data-toggle="tooltip" class="form-control" spellcheck="false" id="observation_approbation" name="observation_approbation"></textarea>
-                            </div>
-                         </div>
-                     </div>
-                     <div class="col-sm-6">
-
                         <div class="form-radio">
                            <div class="group-add-on">
                                <div class="radio radiofill radio-inline" id="apte">
@@ -128,8 +98,18 @@
                                </div>
                             </div>
                         </div>
+                     </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" title="Entrer le poid du donneur" data-toggle="tooltip" class="form-control" placeholder="Poid du Donneur" name="poid" required="">
+                            </div>
+                         </div>
                     </div>
-                    <div class="col-sm-6" id="quantite">
+                </div>
+                <div class="row">
+                     <div class="col-sm-6" id="quantite">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
@@ -137,7 +117,17 @@
                             </div>
                          </div>
                      </div>
-                     
+                    <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
+                               <textarea placeholder="Observations" rows="1" title="Entrer votre observation" data-toggle="tooltip" class="form-control" spellcheck="false" id="observation_approbation" name="observation_approbation"></textarea>
+                            </div>
+                         </div>
+                     </div>
+                </div>
+                <div class="row">
+
                 </div>
                 <div class="row m-t-20">
                       <div class="col-md-5">
