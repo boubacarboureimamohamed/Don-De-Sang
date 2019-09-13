@@ -68,7 +68,9 @@
                                                 <tr>
                                                     <th scope="row"> </th>
                                                     <td>
-                                                        <button type="button" class="btn btn-success btn-outline-success" data-toggle="modal" data-target="#Modal" id="open">Ajouter</button>
+                                                        @can('ajouter_ligne_demande')
+                                                          <button type="button" class="btn btn-success btn-outline-success" data-toggle="modal" data-target="#Modal" id="open">Ajouter</button>
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -92,9 +94,13 @@
                     <tr>
                         <th>Groupe sanguin</th>
                         <th>Quantitée demandé</th>
+                             @can('editer_ligne_demande')
                         <th>Modifier</th>
+                             @endcan
+                            @can('supprimer_ligne_demande')
                         <th>supprimer</th>
-                        <th>Livrée</th>
+                            @endcan
+                        <th>Livrer</th>
                     </tr>
                 </thead>
                 <tbody id="bodyLignes">
@@ -102,6 +108,7 @@
                     <tr>
                         <td>{{ $ligne->groupement->groupe_sanguin }}</td>
                         <td>{{ $ligne->quantite_demandee }}</td>
+                             @can('editer_ligne_demande')
                         <td>
                             <a href="#"
                                 id="ligne{{ $ligne->id }}" data-toggle="modal" data-target="#ModifierModal"
@@ -112,6 +119,8 @@
                                 class="btn btn-primary btn-outline-primary"><i class="icofont icofont-ui-edit"></i>
                             </a>
                         </td>
+                            @endcan
+                            @can('supprimer_ligne_demande')
                         <td>
                             <form method="POST" action="{{ route('ligne.lignedestroy', $ligne) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
                                 {{ csrf_field() }}
@@ -121,6 +130,7 @@
                                 </button>
                             </form>
                         </td>
+                            @endcan
                         <td>
                             <a href="#"
                             id="l{{ $ligne->id }}" data-toggle="modal" data-target="#LivreerModal"
@@ -128,7 +138,7 @@
                             data-group_sanguinL="{{ $ligne->groupement_id}}"
                             data-quantiteL="{{ $ligne->quantite_demandee }}"
                             onclick="updateL('#l{{ $ligne->id }}')"
-                            class="btn btn-warning btn-outline-warning"><i class="icofont icofont-ui-edit"></i>
+                            class="btn btn-success btn-outline-success"><i class="icofont icofont-"></i>
                             </a>
                         </td>
                     </tr>

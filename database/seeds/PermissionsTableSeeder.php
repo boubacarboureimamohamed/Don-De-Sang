@@ -64,6 +64,18 @@ class PermissionsTableSeeder extends Seeder
             'name' => "consulter_demande"]);
 
         Permission::create([
+            'name' => "ajouter_ligne_demande"]);
+
+        Permission::create([
+            'name' => "editer_ligne_demande"]);
+
+        Permission::create([
+                'name' => "supprimer_ligne_demande"]);
+
+        Permission::create([
+            'name' => "livrer_ligne_demande"]);
+
+        Permission::create([
             'name' => "donneur_apte"]);
 
         Permission::create([

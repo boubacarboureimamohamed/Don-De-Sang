@@ -26,7 +26,9 @@
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
+                                @can('prelever_donneur')
                             <th>Prélever</th>
+                                @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -36,13 +38,13 @@
                                 <td>{{ $dossier->donneur->num_donneur }}</td>
                                 <td>{{ $dossier->donneur->nom }}</td>
                                 <td>{{ $dossier->donneur->prenom }}</td>
-                                <td>
                                     @can('prelever_donneur')
-                                        <a href="{{ route('prelevement.prelever', $dossier)}}" class="btn btn-primary btn-outline-primary">
-                                            <i class="icofont icofont-icu icofont-lg"></i>
-                                        </a>
-                                    @endcan
+                                <td>
+                                    <a href="{{ route('prelevement.prelever', $dossier)}}" class="btn btn-primary btn-outline-primary">
+                                        <i class="icofont icofont-icu icofont-lg"></i>
+                                    </a>
                                 </td>
+                                    @endcan
                             </tr>
                             @endif
                         @endforeach

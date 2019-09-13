@@ -47,7 +47,7 @@ class DossierMedicalValidationController extends Controller
             }
 
         }
-        return redirect(route('validation.donneur_a_valider'));
+        return redirect(route('prelevement.donneur_prelevee'));
     }
     public function donneur_valider()
     {

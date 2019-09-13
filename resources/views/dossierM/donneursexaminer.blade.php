@@ -13,8 +13,27 @@
             <h3 style="text-align: center;">Liste des donneurs examinés</h3>
             </div>
             <div class="card-block">
+                <div class="btn-group btn-group-sm" style="float: none; ">
+                    @can('ajouter_donneur')
+                        <a href="{{ route('donneurs.add')}}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
+                            <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
+                        </a>
+                    @endcan
+
+                    @can('donneur_apte')
+                        <a href="{{ route('prelevement.donneur_apte_a_prelevee')}}" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
+                            <span class="icofont icofont-check-circled"></span> {{ (' Donneurs Aptes') }}
+                        </a>
+                    @endcan
+
+                    @can('donneur_inapte')
+                        <a href="{{ route('dossierM.donneur_inapte')}}" class="btn btn-warning btn-outline-warning" style="float: none;margin: 5px;">
+                            <span class="icofont icofont-warning-alt"></span> {{ (' Donneurs Inaptes') }}
+                        </a>
+                    @endcan
+                </div>
             <div class="dt-responsive table-responsive">
-            <table id="tab" class="table table-striped table-bordered nowrap">
+            <table id="simpletable" class="table table-striped table-bordered nowrap">
             <thead>
             <tr>
             <th>Numéo du donneur</th>

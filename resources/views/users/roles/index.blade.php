@@ -40,29 +40,26 @@
 <button class="btn btn-primary btn-round btn-mini">{{ $permission->name }}</button><br>
 @endforeach
 </td>
-<td>
     @can('editer_role')
-         <a href="{{ route('roles.edit', $role) }}" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
-             <span class="icofont icofont-ui-edit"></span>
-         </a>
-    @endcan
-
-</td>
 <td>
-
-    @can('supprimer_role')
-        <form method="POST" action="{{ route('roles.destroy', $role) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
-
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
-
-            <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
-                <span class="icofont icofont-ui-delete"></span>
-            </button>
-        </form>
-    @endcan
-
+    <a href="{{ route('roles.edit', $role) }}" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
+        <span class="icofont icofont-ui-edit"></span>
+    </a>
 </td>
+    @endcan
+    @can('supprimer_role')
+<td>
+    <form method="POST" action="{{ route('roles.destroy', $role) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+
+        <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
+            <span class="icofont icofont-ui-delete"></span>
+        </button>
+    </form>
+</td>
+    @endcan
 </tr>
 @endforeach
 </tbody>

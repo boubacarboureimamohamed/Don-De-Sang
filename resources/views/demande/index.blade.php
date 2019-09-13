@@ -34,9 +34,15 @@
                             <th>Date demande</th>
                             <th>Benéficiaire</th>
                             <th>Adresse benéficiaire</th>
+                                @can('consulter_demande')
                             <th>Detail</th>
+                                @endcan
+                                @can('editer_demande')
                             <th>Modifier</th>
+                                @endcan
+                                @can('supprimer_demande')
                             <th>supprimer</th>
+                                @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -45,31 +51,31 @@
                             <td>{{ $demande->date }}</td>
                             <td>{{ $demande->beneficiaire->libelle }}</td>
                             <td>{{ $demande->beneficiaire->adresse }}</td>
-                            <td>
                                 @can('consulter_demande')
-                                    <a href="{{ route('demande.show', $demande) }}" class="btn btn-primary btn-outline-primary">
-                                        <i class="icofont icofont-eye-alt icofont-lg"></i>
-                                    </a>
-                                @endcan
-                            </td>
                             <td>
+                                <a href="{{ route('demande.show', $demande) }}" class="btn btn-primary btn-outline-primary">
+                                    <i class="icofont icofont-eye-alt icofont-lg"></i>
+                                </a>
+                            </td>
+                                @endcan
                                 @can('editer_demande')
-                                    <a href="{{ route('demande.edit', $demande) }}" class="btn btn-warning btn-outline-warning">
-                                        <i class="icofont icofont-ui-edit"></i>
-                                    </a>
-                                @endcan
-                            </td>
                             <td>
-                                @can('supprimer_demande')
-                                    <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
-                                            <span class="icofont icofont-ui-delete"></span>
-                                        </button>
-                                    </form>
-                                @endcan
+                                <a href="{{ route('demande.edit', $demande) }}" class="btn btn-warning btn-outline-warning">
+                                    <i class="icofont icofont-ui-edit"></i>
+                                </a>
                             </td>
+                                @endcan
+                                @can('supprimer_demande')
+                            <td>
+                                <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                        <span class="icofont icofont-ui-delete"></span>
+                                    </button>
+                                </form>
+                            </td>
+                                @endcan
                         </tr>
                     @endforeach
                     </tbody>
