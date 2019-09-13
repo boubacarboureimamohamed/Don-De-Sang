@@ -1,42 +1,35 @@
-@if ($message = Session::get('success'))
-<div class="alert alert-success alert-block">
-	<button type="button" class="close" data-dismiss="alert">×</button>	
-        <strong>{{ $message }}</strong>
-</div>
-@endif
 
 
-@if ($message = Session::get('error'))
-<div class="alert alert-danger alert-block">
-	<button type="button" class="close" data-dismiss="alert">×</button>	
-        <strong>{{ $message }}</strong>
-</div>
-@endif
+
+<script>
 
 
-@if ($message = Session::get('warning'))
-<div class="alert alert-warning alert-block">
-	<button type="button" class="close" data-dismiss="alert">×</button>	
-	<strong>{{ $message }}</strong>
-</div>
-@endif
 
 
-@if ($message = Session::get('info'))
-<div class="alert alert-info alert-block">
-	<button type="button" class="close" data-dismiss="alert">×</button>	
-	<strong>{{ $message }}</strong>
-</div>
-@endif
 
+$(document).ready(function(){
 
-@if ($errors->any())
-<div class="alert alert-danger">
-	<button type="button" class="close" data-dismiss="alert">×</button>	
-	Please check the form below for errors
-</div>
-@endif
+	@if (Session::has('critique'))
+	$.toast({ 
+		heading: 'Avertissement',
+		text : '{{ Session::get("critique") }}', 
+		icon: 'warning',
+		position : 'top-right'       // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page
+		})
+	
+	@endif
 
-@if(Session::has('message'))
-<p class="alert alert-info">{{ Session::get('message') }}</p>
-@endif
+	@if (Session::has('success'))
+	swal('succès', '{{Session::get("success")}}', 'success')
+	@endif
+
+	@if (Session::has('error'))
+	swal('error', '{{Session::get("error")}}', 'error')
+	@endif
+
+ $('#sms').click(function(){
+  $('#bouton').hide();
+ });
+});
+
+</script>

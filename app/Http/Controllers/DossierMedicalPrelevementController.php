@@ -38,7 +38,7 @@ class DossierMedicalPrelevementController extends Controller
             'quantite_prelevee' => $request->quantite_prelevee,
             'date_heure_prelevement' => date('Y-m-d')
         ]);
-/* 
+
         $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
         $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
         $client = new Client($accountSid, $authToken);
@@ -59,7 +59,7 @@ class DossierMedicalPrelevementController extends Controller
         catch (Exception $e)
         {
             echo "Error: " . $e->getMessage();
-        } */
+        } 
     
 
 

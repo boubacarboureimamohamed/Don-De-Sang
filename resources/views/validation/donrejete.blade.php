@@ -17,45 +17,42 @@
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h3 style="text-align: center;">Liste des prélèvements validés</h3>
+            <h2 style="text-align: center;">Liste des dons Refusés</h2>
         </div>
         <div class="card-block">
-            <div class="btn-group btn-group-sm" style="float: none; ">
-                @can('don_accepte')
-                    <a href="{{ route('validation.donaccepter') }}" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
-                        <span class="icofont icofont-check-circled"></span> {{ ('Dons Acceptés') }}
-                    </a>
-                @endcan
-                @can('don_rejete')
-                    <a href="{{ route('validation.donrejete') }}" class="btn btn-warning btn-outline-warning" style="float: none;margin: 5px;">
-                        <span class="icofont icofont-warning-alt"></span> {{ ('Dons Rejetés') }}
-                    </a>
-                @endcan
-            </div>
-            <div  class="dt-responsive table-responsive">
+            <div class="table-responsive">
                 <table id="simpletable" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
-                            <th>Numéro du donneur</th>
+                            <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Numéro de don</th>
+                            <th>Numéro du don</th>
+                            <th>Detail</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($validations as $validation)
-                           {{--  @if($validation->quantite_prelevee != null) --}}
+                        @foreach($dons as $don)
+                           
 
                             <tr>
-                                <td>{{ $validation->donneur->num_donneur }}</td>
-                                <td>{{ $validation->donneur->nom }}</td>
-                                <td>{{ $validation->donneur->prenom }}</td>
-                                <td>{{ $validation->num_don }}</td>
+                                <td>{{ $don->donneur->num_donneur }}</td>
+                                <td>{{ $don->donneur->nom }}</td>
+                                <td>{{ $don->donneur->prenom }}</td>
+                                <td>{{ $don->num_don }}</td>
+                               
+                                
+                                <td>
+                                    <a href="" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                </td>
+                                
                             </tr>
-                            {{-- @endif --}}
+                           
                         @endforeach
                     </tbody>
                 </table>
+                <a href="" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
     </div>

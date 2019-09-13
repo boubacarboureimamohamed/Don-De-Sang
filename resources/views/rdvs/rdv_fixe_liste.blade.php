@@ -44,7 +44,7 @@
                         </td>
                         <td>
                             @can('supprimer_planification')
-                                <form action="{{ route('rdvs.destroy', $rdvsfixe) }}" method="post" onsubmit=" return confirm('voulez vous supprimer cet enregistrement?');">
+                                <form action="{{ route('rdvs.destroy', $rdvsfixe) }}" method="post">
                                 {{ csrf_field()}}
                                 {{ method_field('Delete') }}
 
