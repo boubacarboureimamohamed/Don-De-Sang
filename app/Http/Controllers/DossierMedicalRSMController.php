@@ -123,11 +123,7 @@ class DossierMedicalRSMController extends Controller
      return redirect(route('dossierM.donneursexaminer'));
     }
 
-    public function show_donneursexaminer($id)
-    {
-        $donneursexaminer = DossierMedical::with('donneur')->find($id);
-        return view('dossierM.showdonneursexaminer', compact('donneursexaminer'));
-    }
+    
     public function destroy($id)
     {
         Donneur::destroy($id);

@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::get('/home', 'HomeController@index')->name('home');
 
@@ -91,6 +91,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::PUT('prelevement/{prelevement}', 'DossierMedicalPrelevementController@update')->name('prelevement.update');
 
         Route::get('validation', 'DossierMedicalValidationController@donneur_a_valider')->name('validation.donneur_a_valider');
+
+        Route::get('donsaccepter', 'DossierMedicalValidationController@don_accepter')->name('validation.donaccepter');
+
+        Route::get('donsrejete', 'DossierMedicalValidationController@don_rejete')->name('validation.donrejete');
+
+        Route::get('showdonaccepter/{don}', 'DossierMedicalValidationController@show_donaccepter')->name('validation.showdonaccepter');
+
+        Route::get('showdonrefuse/{don}', 'DossierMedicalValidationController@show_donrefuse')->name('validation.showdonrefuse');
 
         Route::get('validation/donneur_valider', 'DossierMedicalValidationController@donneur_valider')->name('validation.donneur_valider');
 

@@ -32,5 +32,8 @@ class Donneur extends Model
     {
         return $this->hasMany('App\Models\DossierMedical');
     }
-    
+    public function historisations()
+    {
+        return $this->hasMany('App\Models\Historisation');
+    }
 }

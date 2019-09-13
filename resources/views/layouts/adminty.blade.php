@@ -31,6 +31,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/partials/menu/_pcmenu.htm') }}">
+
+    <!-- jquery-toast plugin js-->
+    <link rel="stylesheet" href="{{ asset('toast/dist/jquery.toast.min.css') }}">
     <!-- Animate.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/animate.css/css/animate.css') }}">
      <!-- Select2 -->
@@ -50,6 +53,8 @@
 
 <body>
 @yield('css')
+
+
 <!-- Pre-loader start -->
 <div class="theme-loader">
     <div class="ball-scale">
@@ -72,6 +77,8 @@
         </div>
     </div>
 </div>
+
+
 <!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
@@ -306,7 +313,6 @@
                                 <div class="page-wrapper">
                                     <div class="page-body">
                                         <div class="row">
-
                                             @yield('content')
 
                                         </div>
@@ -361,6 +367,11 @@
 <script src="{{ asset('js/pcoded.min.js') }}"></script>
 <script src="{{ asset('js/vartical-layout.min.js') }}"></script>
 <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+
+<!-- jquery-toast plugin js-->
+<script src="{{ asset('toast/dist/jquery.toast.min.js') }}"></script>
+@include('flash-message')
+
     <!-- Custom js -->
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 
