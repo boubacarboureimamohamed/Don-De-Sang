@@ -48,7 +48,7 @@
                             @break;
                         @case('A-')
                             @php
-                            $color = 'orange;
+                            $color = 'orange';
                             @endphp
                             @break;
                         @case('B-')
@@ -58,7 +58,7 @@
                             @break;
                         @case('AB-')
                             @php
-                            $color = 'purple';
+                            $color = 'Purple';
                             @endphp
                             @break;
                         @case('O-')

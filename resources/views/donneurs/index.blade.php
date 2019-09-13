@@ -94,9 +94,11 @@
                                 </td>
                                 <td>
                                     @can('examiner_donneur')
-                                        <a href="{{ route('dossierM.examiner', $donneur) }}" class="btn btn-primary btn-outline-primary waves-effect waves-light">
-                                            <span class="icofont icofont-stethoscope-alt"></span>
-                                        </a>
+                                        @if($donneursapreleves->contains($donneur))
+                                            <a href="{{ route('dossierM.examiner', $donneur) }}" class="btn btn-primary btn-outline-primary waves-effect waves-light">
+                                                <span class="icofont icofont-stethoscope-alt"></span>
+                                            </a>
+                                        @endif
                                     @endcan
                                 </td>
                             </tr>

@@ -25,10 +25,11 @@ class DossierMedicalPrelevementController extends Controller
     }
     public function store(Request $request, DossierMedical $dossier)
     {
+        $quantite_prelevve = $dossier->quantite_a_prelevee;
         $this->validate($request, [
             'type_prelevement' => 'required|string',
             'type_poche' => 'required|string',
-            'quantite_prelevee' => 'required|integer',
+            'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve,
             'observation_prelevement' => 'required|string'
         ]);
         $dossier->update([
@@ -46,7 +47,7 @@ class DossierMedicalPrelevementController extends Controller
         {
             // Use the client to do fun stuff like send text messages!
             $client->messages->create(
-            // the number you'd like to send the message to 
+            // the number you'd like to send the message to
                 $dossier->donneur->telephone,
            array(
                  // A Twilio phone number you purchased at twilio.com/console
@@ -60,7 +61,7 @@ class DossierMedicalPrelevementController extends Controller
         {
             echo "Error: " . $e->getMessage();
         }
-    
+
 
 
         return redirect(route('prelevement.donneur_apte_a_prelevee'));

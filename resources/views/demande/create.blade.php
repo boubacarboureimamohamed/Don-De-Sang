@@ -79,7 +79,7 @@
                                     <div class="col-sm-8">
                                         <div class="form-group form-primary">
                                             <div class="input-group">
-                                                <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                                                <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>
                                                 <select name="groupement[]" id="groupement[]" class="form-control">
                                                     @foreach($groupements as $groupement)
                                                         <option value="{{ $groupement->id }}">
@@ -95,7 +95,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group form-primary">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                                            <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>
                                             <input type="text" name="quantite_demandee[]" id="quantite_demandee[]" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">
                                         </div>
                                     </div>
@@ -138,7 +138,7 @@ function addLigne() {
             '<div class="col-sm-8">'+
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
-                        ' <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>'+
+                        ' <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>'+
                         '<select name="groupement[]" id="groupement[]" class="form-control">'+
                             '@foreach($groupements as $groupement)'+
                                 '<option value="{{ $groupement->id }}">'+
@@ -154,7 +154,7 @@ function addLigne() {
             '<div class="col-sm-6">'+
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
-                        ' <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>'+
+                        ' <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>'+
                         '<input type="text" name="quantite_demandee[]" id="quantite_demandee" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">'+
                     '</div>' +
                 '</div>' +

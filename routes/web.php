@@ -114,9 +114,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::PUT('demande/{demande}', 'DemandeController@demandeupdate')->name('demande.demandeupdate');
 
-        Route::PUT('ligne/{ligne}', 'DemandeController@ligneupdate')->name('demande.ligneupdate');
-
-        Route::post('ligne/lignestore', 'DemandeController@lignestore')->name('demande.lignestore');
+        Route::post('ligne/lignestore', 'DemandeController@lignestore')->name('ligne.lignestore');
 
         Route::delete('demande/{demande}', 'DemandeController@demande destroy')->name('demande.demandedestroy');
 
