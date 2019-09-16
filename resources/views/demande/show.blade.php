@@ -71,6 +71,12 @@
                                                         <button type="button" class="btn btn-success btn-outline-success" data-toggle="modal" data-target="#Modal" id="open">Ajouter</button>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <th scope="row"> </th>
+                                                    <td>
+                                                        <button type="button" class="btn btn-success btn-outline-success" data-toggle="modal" data-target="#Modaldemandelivree" id="open">Ligne Livrée</button>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

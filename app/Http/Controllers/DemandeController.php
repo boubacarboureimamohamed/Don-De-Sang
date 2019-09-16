@@ -114,7 +114,7 @@ class DemandeController extends Controller
         $quantite = $ligne->quantite_demandee;
         $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->get();
         $this->validate($request, [
-            'quantite_livree' => 'required|integer|min:'.$quantite,
+            'quantite_livree' => 'required|integer|max:'.$quantite,
         ]);
             if(isset($last[0])){
                 if($last[0]->quantite_reelle > $request->quantite_livree )
@@ -124,7 +124,8 @@ class DemandeController extends Controller
                         'date' => $request->date
                     ]);
 
-                    $last->update([
+                    Stock::create([
+                        'quantite_sortie' => $request->quantite_livree,
                         'quantite_reelle' => $last[0]->quantite_reelle - $request->quantite_livree
                     ]);
                     $ligne->update([
@@ -135,5 +136,10 @@ class DemandeController extends Controller
                 return $request->session()->flash('warning', 'c pas marché');
             }
         return redirect()->back();
+    }
+    public function demandelivree()
+    {
+        $demandelivrees = LigneDemande::with('livraison')->whereNotNull('livraison_id');
+        return view('demande.demandelivree', compact('demandelivrees'));
     }
 }
