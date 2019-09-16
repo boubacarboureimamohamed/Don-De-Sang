@@ -35,24 +35,24 @@
                         <td>{{ $rdvsmobile->date_heure }}</td>
                         <td>{{ $rdvsmobile->lieu }}</td>
                         <td>{{ $rdvsmobile->organisation->libelle }}</td>
-                        <td>
                             @can('editer_planification')
-                                 <a href="{{ route('rdvs.edit', $rdvsmobile) }}">
-                                    <button class="btn btn-warning btn-outline-warning"><span class="icofont icofont-ui-edit"></span></button>
-                                </a>
-                            @endcan
-                        </td>
-
                         <td>
-                            @can('supprimer_planification')
-                                <form action="{{ route('rdvs.destroy', $rdvsmobile) }}" method="post" onsubmit=" return confirm('voulez vous supprimer cet enregistrement?');">
-                                {{ csrf_field()}}
-                                {{ method_field('Delete') }}
-
-                                <button  class="btn btn-danger btn-outline-danger"><span class="icofont icofont-ui-delete"></span></button>
-                                </form>
-                            @endcan
+                            <a href="{{ route('rdvs.edit', $rdvsmobile) }}">
+                                 <button class="btn btn-warning btn-outline-warning"><span class="icofont icofont-ui-edit"></span></button>
+                            </a>
                         </td>
+                            @endcan
+
+                            @can('supprimer_planification')
+                        <td>
+                            <form action="{{ route('rdvs.destroy', $rdvsmobile) }}" method="post" onsubmit=" return confirm('voulez vous supprimer cet enregistrement?');">
+                            {{ csrf_field()}}
+                            {{ method_field('Delete') }}
+
+                            <button  class="btn btn-danger btn-outline-danger"><span class="icofont icofont-ui-delete"></span></button>
+                            </form>
+                        </td>
+                            @endcan
                             </tr>
                             @endif
                             @endforeach

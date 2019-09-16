@@ -11,25 +11,6 @@
                 <h2 style="text-align: center;">Liste des donneurs</h2>
             </div>
             <div class="card-block">
-                <div class="btn-group btn-group-sm" style="float: none; ">
-                    @can('ajouter_donneur')
-                        <a href="{{ route('donneurs.add')}}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
-                            <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
-                        </a>
-                    @endcan
-
-                    @can('donneur_apte')
-                        <a href="{{ route('prelevement.donneur_apte_a_prelevee')}}" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
-                            <span class="icofont icofont-check-circled"></span> {{ (' Donneurs Aptes') }}
-                        </a>
-                    @endcan
-
-                    @can('donneur_inapte')
-                        <a href="{{ route('dossierM.donneur_inapte')}}" class="btn btn-warning btn-outline-warning" style="float: none;margin: 5px;">
-                            <span class="icofont icofont-warning-alt"></span> {{ (' Donneurs Inaptes') }}
-                        </a>
-                    @endcan
-                </div>
                 <div class="dt-responsive table-responsive">
                     <table id="simpletable" class="table table-striped table-bordered nowrap">
                         <thead>
@@ -38,10 +19,18 @@
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Type de donneur</th>
-                                <th class="tabledit-toolbar-column">Detail</th>
-                                <th class="tabledit-toolbar-column">Modifier</th>
-                                <th class="tabledit-toolbar-column">Supprimer</th>
-                                <th class="tabledit-toolbar-column">Examiner</th>
+                                    @can('consulter_donneur')
+                                <th>Detail</th>
+                                    @endcan
+                                    @can('editer_donneur')
+                                <th>Modifier</th>
+                                    @endcan
+                                    @can('supprimer_donneur')
+                                <th>Supprimer</th>
+                                    @endcan
+                                    @can('examiner_donneur')
+                                <th>Examiner</th>
+                                    @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -67,20 +56,20 @@
                                         {{ $donneur->typedonneur->type_donneur }}
                                     </span>
                                 </td>
-                                <td>
                                     @can('consulter_donneur')
-                                        <a href="{{ route('donneurs.show', $donneur) }}" class="btn btn-info btn-outline-info waves-effect waves-light">
-                                        <span class="icofont icofont-eye-alt"></span>
-                                        </a>
-                                    @endcan
-                                </td>
                                 <td>
-                                    @can('editer_donneur')
-                                        <a href="{{ route('donneurs.edit', $donneur) }}" class="btn btn-warning btn-outline-warning waves-effect waves-light">
-                                            <span class="icofont icofont-ui-edit"></span>
-                                        </a>
-                                    @endcan
+                                    <a href="{{ route('donneurs.show', $donneur) }}" class="btn btn-info btn-outline-info waves-effect waves-light">
+                                    <span class="icofont icofont-eye-alt"></span>
+                                    </a>
                                 </td>
+                                    @endcan
+                                    @can('editer_donneur')
+                                <td>
+                                    <a href="{{ route('donneurs.edit', $donneur) }}" class="btn btn-warning btn-outline-warning waves-effect waves-light">
+                                        <span class="icofont icofont-ui-edit"></span>
+                                    </a>
+                                </td>
+                                    @endcan
                                 <td>
                                     @can('supprimer_donneur')
                                         <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">

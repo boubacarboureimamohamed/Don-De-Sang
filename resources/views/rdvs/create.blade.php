@@ -84,9 +84,9 @@
                          </div>
                      </div>
                 </div>
-
+ 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary m-b-0">Enregistrer</button>
+                    <button type="submit"  class="btn btn-success alert-success-msg m-b-10">Enregistrer</button>
 
                     <a href="{{  route('rdvs.index')}}" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
                 </div>

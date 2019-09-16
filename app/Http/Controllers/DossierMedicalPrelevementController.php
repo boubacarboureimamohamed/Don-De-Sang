@@ -56,7 +56,7 @@ class DossierMedicalPrelevementController extends Controller
                  'body' => 'Bonjour M./Mme ' .$dossier->donneur->nom. ' ' .$dossier->donneur->prenom. ' nous vous remercions du don effectué. Sachez que vous sauvez une vie!'
              )
          );
-   }
+        }
         catch (Exception $e)
         {
             echo "Error: " . $e->getMessage();

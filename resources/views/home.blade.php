@@ -230,7 +230,7 @@
 
                                             <!-- Sweet alert start -->
                                             <div class="col-sm-12">
- <div class="card">
+                                                <div class="card">
                                                     <div class="card-header">
                                                         <h5>Bootstrap Modals</h5>
 
@@ -257,32 +257,11 @@
                                                                 <button type="button" class="btn btn-success alert-ajax m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-ajax']);">Ajax</button>
                                                             </li>
                                                         </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
+                                                 </div>
+                                             </div>
 
-                                            <!-- task, page, download counter  end -->
   </div>
 </div>
-
-                                                                <div class="sub-title">Notification Alert</div>
-                                                                <p>Change data-type : <code> data-type="primary"</code> to change notification color</p>
-                                                                <ul class="notifications">
-                                                                        <button class="btn btn-inverse waves-effect" data-type="inverse" data-from="top" data-align="right" data-icon="fa fa-check" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">Inverse</button>
-
-                                                                        <button class="btn btn-primary waves-effect" data-type="primary" data-from="top" data-align="right" data-icon="fa fa-comments" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">Primary</button>
-
-                                                                        <button class="btn btn-info waves-effect" data-type="info" data-from="top" data-align="right" data-icon="fa fa-comments" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">Info</button>
-
-                                                                        <button class="btn btn-success waves-effect" data-type="success" data-from="top" data-align="right" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">success</button>
-
-                                                                        <button class="btn btn-warning waves-effect" data-type="warning" data-from="top" data-align="right" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">Warning</button>
-
-                                                                        <button class="btn btn-danger waves-effect" data-type="danger" data-from="top" data-align="right" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">Danger</button>
-
-                                                                </ul>
-                                                            </div>
-
 </div>
 
 @endsection

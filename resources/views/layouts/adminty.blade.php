@@ -31,10 +31,11 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/partials/menu/_pcmenu.htm') }}">
+
+    <!-- jquery-toast plugin js-->
+    <link rel="stylesheet" href="{{ asset('toast/dist/jquery.toast.min.css') }}">
     <!-- Animate.css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/animate.css/css/animate.css') }}">
-   <!-- Notification.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/notification/notification.css') }}">
      <!-- Select2 -->
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
     <!-- feather Awesome -->
@@ -52,6 +53,8 @@
 
 <body>
 @yield('css')
+
+
 <!-- Pre-loader start -->
 <div class="theme-loader">
     <div class="ball-scale">
@@ -74,6 +77,8 @@
         </div>
     </div>
 </div>
+
+
 <!-- Pre-loader end -->
 <div id="pcoded" class="pcoded">
     <div class="pcoded-overlay-box"></div>
@@ -95,15 +100,6 @@
 
                 <div class="navbar-container container-fluid">
                     <ul class="nav-left">
-                        <li class="header-search">
-                            <div class="main-search morphsearch-search">
-                                <div class="input-group">
-                                    <span class="input-group-addon search-close"><i class="feather icon-x"></i></span>
-                                    <input type="text" class="form-control">
-                                    <span class="input-group-addon search-btn"><i class="feather icon-search"></i></span>
-                                </div>
-                            </div>
-                        </li>
                         <li>
                             <a href="#!" onclick="javascript:toggleFullScreen()">
                                 <i class="feather icon-maximize full-screen"></i>
@@ -172,30 +168,31 @@
                                         <span class="text-white">Tableau de bord</span>
                                     </h5>
                                 </li>
-                                <li class="">
-                                    <a href="{{ route('validation.donneur_valider') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                                        <span class="pcoded-mtext">Gestion Des Dons</span>
-                                    </a>
-                                </li>
+                                @role('Assistant Medical|Responsable Selection Médical')
                                 <li class="pcoded-hasmenu">
                                     <a href="#!">
-                                        <span class="pcoded-micon"><i class="feather icon-list"></i></span>
-                                        <span class="pcoded-mtext">Liste Des Donneurs</span>
+                                        <span class="pcoded-micon"><i class="feather icon-box"></i></span>
+                                        <span class="pcoded-mtext">Gestion Des Donneurs</span>
                                     </a>
                                     <ul class="pcoded-submenu">
+                                        @role('Assistant Medical|Responsable Selection Médical')
                                         <li class=" ">
                                             <a href="{{ route('donneurs.index') }}">
-                                                <span class="pcoded-mtext">Donneurs Actives</span>
+                                                <span class="pcoded-mtext">Donneurs</span>
                                             </a>
                                         </li>
+                                        @endrole
+                                        @role('Responsable Selection Médical')
                                         <li class="">
                                             <a href="{{ route('dossierM.donneursexaminer') }}">
                                                 <span class="pcoded-mtext">Donneurs Examinés</span>
                                             </a>
                                         </li>
+                                        @endrole
                                     </ul>
                                 </li>
+                                @endrole
+                                @role('Assistant Medical')
                                 <li class="pcoded-hasmenu">
                                     <a href="#!">
                                         <span class="pcoded-micon"><i class="feather icon-calendar"></i></span>
@@ -214,42 +211,64 @@
                                         </li>
                                     </ul>
                                 </li>
+                                @endrole
+                                @role('Responsable Selection Médical')
                                 <li class="">
-                                    <a href="navbar-light.htm">
+                                    <a href="#">
                                         <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
-                                        <span class="pcoded-mtext">Dossiers Médicaux </span>
+                                        <span class="pcoded-mtext">Gestion Des Dossiers Médicales </span>
                                     </a>
                                 </li>
+                                @endrole
+                                @role('Preleveur|Laborantin')
                                 <li class="pcoded-hasmenu">
                                     <a href="#!">
                                         <span class="pcoded-micon"><i class="feather icon-box"></i></span>
                                         <span class="pcoded-mtext">Gestion Des Prélèvements</span>
                                     </a>
                                     <ul class="pcoded-submenu">
+                                        @role('Preleveur')
                                         <li class="">
                                             <a href="{{ route('prelevement.donneur_apte_a_prelevee') }}">
                                                 <span class="pcoded-mtext">Liste d'attente</span>
                                             </a>
                                         </li>
+                                        @endrole
+                                        @role('Preleveur|Laborantin')
                                         <li class=" ">
                                             <a href="{{ route('prelevement.donneur_prelevee') }}">
                                                 <span class="pcoded-mtext">Liste Des Prélèvements</span>
                                             </a>
                                         </li>
+                                        @endrole
                                     </ul>
                                 </li>
+                                @endrole
+                                @role('Laborantin')
+                                <li class="">
+                                    <a href="{{ route('validation.donneur_valider') }}">
+                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
+                                        <span class="pcoded-mtext">Gestion Des Dons</span>
+                                    </a>
+                                </li>
+                                @endrole
+                                @role('Laborantin')
                                 <li class="">
                                     <a href="{{ route('validation.stock') }}">
                                         <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
                                         <span class="pcoded-mtext">Banque De Sang</span>
                                     </a>
                                 </li>
+                                @endrole
+                                @role('Assistant Medical|Laborantin')
                                 <li class="">
                                     <a href="{{ route('demande.index') }}">
-                                        <span class="pcoded-micon"><i class="feather icon-bookmark"></i></span>
+                                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                                         <span class="pcoded-mtext">Demande De Sang</span>
                                     </a>
                                 </li>
+                                @endrole
+                                @role('Admin')
                                 <li class="pcoded-hasmenu">
                                     <a href="#!">
                                         <span class="pcoded-micon"><i class="feather icon-users"></i></i></span>
@@ -268,18 +287,23 @@
                                         </li>
                                     </ul>
                                 </li>
+                                @endrole
+                                @role('Admin')
                                 <li class="">
                                     <a href="#">
                                         <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
                                         <span class="pcoded-mtext">Paramétrages</span>
                                     </a>
                                 </li>
+                                @endrole
+                                @role('Admin')
                                 <li class="">
                                     <a href="#">
                                         <span class="pcoded-micon"><i class="feather icon-mail"></i></span>
                                         <span class="pcoded-mtext">Notifications</span>
                                     </a>
                                 </li>
+                                @endrole
                             </ul>
                      </nav>
 
@@ -289,7 +313,6 @@
                                 <div class="page-wrapper">
                                     <div class="page-body">
                                         <div class="row">
-
                                             @yield('content')
 
                                         </div>
@@ -322,9 +345,6 @@
     <!-- modalEffects js nifty modal window effects -->
 <script src="{{ asset('js/modalEffects.js') }}"></script>
 <script src="{{ asset('js/classie.js') }}"></script>
-    <!-- notification js -->
-<script type="text/javascript" src="{{ asset('bower_components/notification/notification.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/bootstrap-growl.min.js') }}"></script>
 
   <!-- data-table js -->
     <script type="text/javascript" src="{{ asset('bower_components/data-table/js/jszip.min.js') }}"></script>
@@ -347,6 +367,11 @@
 <script src="{{ asset('js/pcoded.min.js') }}"></script>
 <script src="{{ asset('js/vartical-layout.min.js') }}"></script>
 <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+
+<!-- jquery-toast plugin js-->
+<script src="{{ asset('toast/dist/jquery.toast.min.js') }}"></script>
+@include('flash-message')
+
     <!-- Custom js -->
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 

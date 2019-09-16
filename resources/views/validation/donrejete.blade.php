@@ -11,47 +11,51 @@
 
 @endsection
 @section('content')
-
 <div class="col-sm-12">
+<div class="page-body">
+
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h3 style="text-align: center;">Liste des donneurs aptes au don</h3>
+            <h2 style="text-align: center;">Liste des dons Refusés</h2>
         </div>
         <div class="card-block">
-            <div class="dt-responsive table-responsive">
-            <table id="simpletable" class="table table-striped table-bordered nowrap">
+            <div class="table-responsive">
+                <table id="simpletable" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                                @can('prelever_donneur')
-                            <th>Prélever</th>
-                                @endcan
+                            <th>Numéro du don</th>
+                            <th>Detail</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($dossiers as $dossier)
-                            @if($dossier->approbation == 1)
+                        @foreach($dons as $don)
+                           
+
                             <tr>
-                                <td>{{ $dossier->donneur->num_donneur }}</td>
-                                <td>{{ $dossier->donneur->nom }}</td>
-                                <td>{{ $dossier->donneur->prenom }}</td>
-                                    @can('prelever_donneur')
+                                <td>{{ $don->donneur->num_donneur }}</td>
+                                <td>{{ $don->donneur->nom }}</td>
+                                <td>{{ $don->donneur->prenom }}</td>
+                                <td>{{ $don->num_don }}</td>
+                               
+                                
                                 <td>
-                                    <a href="{{ route('prelevement.prelever', $dossier)}}" class="btn btn-primary btn-outline-primary">
-                                        <i class="icofont icofont-icu icofont-lg"></i>
-                                    </a>
+                                    <a href="" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
                                 </td>
-                                    @endcan
+                                
                             </tr>
-                            @endif
+                           
                         @endforeach
                     </tbody>
                 </table>
+                <a href="" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
-    <!-- Extra Large table end -->
+    </div>
 </div>
+    <!-- Extra Large table end -->
 @endsection

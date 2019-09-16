@@ -8,6 +8,9 @@ use App\Models\Donneur;
 use App\Models\DossierMedical;
 use Illuminate\Support\Carbon;
 
+use Twilio\Rest\Client;
+use Twilio\Jwt\ClientToken;
+
 class SeuilSmsController extends Controller
 {
     /**
@@ -17,7 +20,48 @@ class SeuilSmsController extends Controller
      */
     public function index()
     {
-       
+        $groupes = DB::select("SELECT g.id
+        FROM stocks s, groupements g
+        WHERE s.groupement_id = g.id and s.id in
+       (select max(id) from stocks s where groupement_id in
+       (select id from groupements where seuil > s.quantite_reelle) group by groupement_id)");
+        
+        $donneurs = DB::select("select donneurs.telephone, donneurs.nom, donneurs.prenom, dossier_medicals.created_at as date_dernier_don from donneurs, dossier_medicals 
+        where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id in (select max(id) 
+        from dossier_medicals where donneur_id in (select id from donneurs) and dossier_medicals.groupement_id in (
+        SELECT g.id
+        FROM stocks s, groupements g
+        WHERE s.groupement_id = g.id and s.id in
+        (select max(id) from stocks s where groupement_id in
+        (select id from groupements where seuil > s.quantite_reelle) group by groupement_id)) 
+        group by donneur_id) and DATEDIFF(CURRENT_DATE, dossier_medicals.created_at) >= 90");
+
+        // foreach($donneurs as $donneur)
+        // {
+        //     $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
+        //     $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
+        //     $client = new Client($accountSid, $authToken);
+        //     try
+        //     {
+        //         //Utilisez le client pour faire des choses amusantes comme envoyer des messages texte!
+        //         $client->messages->create(
+        //         //le numéro auquel vous souhaitez envoyer le message 
+        //             $donneur->telephone,
+        //      array(
+        //             // le numéro de téléphone Twilio que vous avez acheté sur twilio.com/console
+        //             'from' => '+12056512557',
+        //             // le corps du message texte que vous souhaitez envoyer
+        //             'body' => 'Bonjour, le CTS a urgement besoin du sang de votre groupe!'
+        //         )
+        //      );
+        //     }
+        //     catch (Exception $e)
+        //     {
+        //         echo "Error: " . $e->getMessage();
+        //     }
+
+        // }
+        // return redirect()->back();
     }
 
     /**
@@ -52,8 +96,32 @@ class SeuilSmsController extends Controller
         where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id in (select max(id) 
         from dossier_medicals where donneur_id in (select id from donneurs) and dossier_medicals.groupement_id in ($groupe) 
         group by donneur_id) and DATEDIFF(CURRENT_DATE, dossier_medicals.created_at) >= 90;");
-
-        dd($donneurs);
+        foreach($donneurs as $donneur)
+        {
+            $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
+            $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
+            $client = new Client($accountSid, $authToken);
+            try
+            {
+                //Utilisez le client pour faire des choses amusantes comme envoyer des messages texte!
+                $client->messages->create(
+                //le numéro auquel vous souhaitez envoyer le message 
+                    $donneur->telephone,
+            array(
+                    // le numéro de téléphone Twilio que vous avez acheté sur twilio.com/console
+                    'from' => '+12056512557',
+                    // le corps du message texte que vous souhaitez envoyer
+                    'body' => $message
+                )
+            );
+            }
+            catch (Exception $e)
+            {
+                echo "Error: " . $e->getMessage();
+            }
+        }
+        
+    
         
     }
 
@@ -101,4 +169,5 @@ class SeuilSmsController extends Controller
     {
         //
     }
+   
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DossierMedical;
+use App\Models\Donneur;
 use App\Models\Groupement;
 use App\Models\Stock;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +48,7 @@ class DossierMedicalValidationController extends Controller
             }
 
         }
-        return redirect(route('validation.donneur_a_valider'));
+        return redirect(route('prelevement.donneur_prelevee'));
     }
     public function donneur_valider()
     {
@@ -63,5 +64,26 @@ class DossierMedicalValidationController extends Controller
                             (select id from groupements) group by groupement_id)");
         return view('validation.stock',compact('stocks'));
 
+    }
+    public function don_accepter()
+    {
+        $dons = DossierMedical::with('donneur')->where('rejet', '1')->get();
+        return view('validation.donaccepter', compact('dons'));
+    }
+     public function don_rejete()
+    {
+        $dons = DossierMedical::with('donneur')->where('rejet', '0')->get();
+        return view('validation.donrejete', compact('dons'));
+    }
+    public function show_donaccepter($id)
+    {
+        $don =  DossierMedical::with('donneur')->find($id);
+        return view('validation.showdonaccepter', compact('don'));
+    }
+    public function show_donrefuse($id)
+
+    {
+        $don =  DossierMedical::with('donneur')->find($id);
+        return view('validation.showdonrefuse', compact('don'));
     }
 }
