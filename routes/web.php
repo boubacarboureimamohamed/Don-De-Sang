@@ -134,3 +134,4 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
 });
 
+Route::get('stocks', 'StockChartController@index');

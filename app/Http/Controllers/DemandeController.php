@@ -48,11 +48,13 @@ class DemandeController extends Controller
     }
     public function show(Demande $demande)
     {
-        $lignes = LigneDemande::where('demande_id',$demande->id)->with('groupement')->where('livraison_id',null)->get();
+        $lignes = LigneDemande::where('demande_id',$demande->id)->with('groupement','livraison')->get();
         $groupements = Groupement::all();
+        $lignenonlivree = LigneDemande::with('livraison','groupement')->where('livraison_id', null)->get();
+        /* dd($demandelivrees); */
         /* $de = Demande::with('beneficiaire')->whereId($demande->id)->get(); */
         /* dd($lignes); */
-        return view('demande.show',compact('lignes','demande','groupements'));
+        return view('demande.show',compact('lignes','lignenonlivree','groupements','demande'));
     }
     public function edit($id)
     {
@@ -125,6 +127,7 @@ class DemandeController extends Controller
                     ]);
 
                     Stock::create([
+                        'groupement_id' => $request->groupement_id,
                         'quantite_sortie' => $request->quantite_livree,
                         'quantite_reelle' => $last[0]->quantite_reelle - $request->quantite_livree
                     ]);
@@ -136,10 +139,5 @@ class DemandeController extends Controller
                 return $request->session()->flash('warning', 'c pas marché');
             }
         return redirect()->back();
-    }
-    public function demandelivree()
-    {
-        $demandelivrees = LigneDemande::with('livraison')->whereNotNull('livraison_id');
-        return view('demande.demandelivree', compact('demandelivrees'));
     }
 }
