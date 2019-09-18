@@ -42,8 +42,8 @@ class DonneurController extends Controller
                 'situationmariee'=>$request->situationmariee
         ]);
         $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);
-       
-        return redirect(route('donneurs.index'));
+
+        return redirect(route('donneurs.index'))->with('success', 'Lenregistrement a été effetué avec succés!');
     }
     public function index()
     {
@@ -110,7 +110,7 @@ class DonneurController extends Controller
         ]);
 
         $donneur->situationmats()->updateExistingPivot($request->situation_mat_id,['date' => date('Y-m-d')]);
-        return redirect(route('donneurs.index'));
+        return redirect(route('donneurs.index'))->with('success', 'La modification a été effetué avec succés!');
     }
 
     public function show(Donneur $donneur)

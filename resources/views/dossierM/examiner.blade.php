@@ -24,7 +24,7 @@
           <div class="card-block">
                <div class="row m-b-30">
                      <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Entretien médical') }}</h3>
+                          <h3 tovenclass="text-center txt-primary">{{ ('Entretien médical') }}</h3>
                      </div>
                </div>
                 <div class="row">

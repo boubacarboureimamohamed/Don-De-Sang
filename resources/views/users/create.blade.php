@@ -99,14 +99,13 @@
 
                       </div>
                       <div class="col-md-7">
-                        <ul>
-                            <li>
-                                <a href="{{ route('users.index') }}" class="btn btn-grd-disabled">{{ ('Annuler') }} </a>
-                            </li>
-                            <li>
-                                <button type="submit" class="btn btn-success alert-success-msg m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);">{{ ('Enregistrer') }}</button>
-                            </li>
-                        </ul>
+                                <a href="{{ route('users.index') }}" class="btn btn-grd-disabled">
+                                    {{ ('Annuler') }}
+                                </a>
+
+                                <button type="submit" class="btn btn-success alert-success-msg m-b-10">
+                                    {{ ('Enregistrer') }}
+                                </button>
                       </div>
                  </div>
                  </div> <hr>

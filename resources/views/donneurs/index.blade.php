@@ -11,6 +11,11 @@
                 <h2 style="text-align: center;">Liste des donneurs</h2>
             </div>
             <div class="card-block">
+                @can('ajouter_donneur')
+                    <a href="{{ route('donneurs.add') }}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
+                    <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
+                    </a>
+                @endcan
                 <div class="dt-responsive table-responsive">
                     <table id="simpletable" class="table table-striped table-bordered nowrap">
                         <thead>
