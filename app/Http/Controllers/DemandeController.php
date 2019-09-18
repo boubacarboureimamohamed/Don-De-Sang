@@ -7,6 +7,7 @@ use App\Models\Demande;
 use App\Models\Groupement;
 use App\Models\LigneDemande;
 use App\Models\Livraison;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 
 class DemandeController extends Controller
@@ -47,7 +48,7 @@ class DemandeController extends Controller
     }
     public function show(Demande $demande)
     {
-        $lignes = Demande::whereId($demande->id)->with('ligne_demandes.groupement')->get()[0];
+        $lignes = LigneDemande::where('demande_id',$demande->id)->with('groupement')->where('livraison_id',null)->get();
         $groupements = Groupement::all();
         /* $de = Demande::with('beneficiaire')->whereId($demande->id)->get(); */
         /* dd($lignes); */
@@ -76,15 +77,19 @@ class DemandeController extends Controller
     }
     public function lignestore(Request $request)
     {
-        $this->validate($request, [
-            'groupement_id' => 'required|string',
-            'quantite_demandee' => 'required|integer',
+       $ligne = LigneDemande::where('demande_id', $request->demande_id)->where('groupement_id', $request->groupement_id)->get();
 
-        ]);
-       /*  $user = \App\User::find(Auth::user()->getAuthIdentifier()); */
-        $success = LigneDemande::Create($request->all());
-        $success->load('groupement');
-        return response()->json(['ligne'=> $success]);
+       if(isset($ligne[0]))
+       {
+            $qte = $request->quantite_demandee + $ligne[0]->quantite_demandee;
+            $success = $ligne[0]->update(['quantite_demandee' => $qte]);
+       }else {
+            $success =  LigneDemande::Create($request->all());
+       }
+       /*
+        $success->load('groupement'); */
+        //return response()->json(['ligne'=> $success]);
+        return redirect()->back();
     }
     public function ligneupdate(Request $request, LigneDemande $ligne)
     {
@@ -106,12 +111,35 @@ class DemandeController extends Controller
     }
     public function livraison(Request $request, LigneDemande $ligne)
     {
-        $livraison = Livraison::create([
-            'quantite_livree' => $request->quantite_livree,
-            'date' => $request->date
+        $quantite = $ligne->quantite_demandee;
+        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->get();
+        $this->validate($request, [
+            'quantite_livree' => 'required|integer|max:'.$quantite,
         ]);
-        $ligne->update([
-            'livraison_id' => $livraison->id
-        ]);
+            if(isset($last[0])){
+                if($last[0]->quantite_reelle > $request->quantite_livree )
+                {
+                    $livraison = Livraison::create([
+                        'quantite_livree' => $request->quantite_livree,
+                        'date' => $request->date
+                    ]);
+
+                    Stock::create([
+                        'quantite_sortie' => $request->quantite_livree,
+                        'quantite_reelle' => $last[0]->quantite_reelle - $request->quantite_livree
+                    ]);
+                    $ligne->update([
+                        'livraison_id' => $livraison->id
+                    ]);
+                }else { return $request->session()->flash('warning', 'c pas marché'); }
+            }else{
+                return $request->session()->flash('warning', 'c pas marché');
+            }
+        return redirect()->back();
+    }
+    public function demandelivree()
+    {
+        $demandelivrees = LigneDemande::with('livraison')->whereNotNull('livraison_id');
+        return view('demande.demandelivree', compact('demandelivrees'));
     }
 }

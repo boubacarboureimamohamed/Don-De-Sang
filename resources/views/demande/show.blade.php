@@ -73,6 +73,12 @@
                                                         @endcan
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <th scope="row"> </th>
+                                                    <td>
+                                                        <button type="button" class="btn btn-success btn-outline-success" data-toggle="modal" data-target="#Modaldemandelivree" id="open">Ligne Livrée</button>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -94,9 +100,6 @@
                     <tr>
                         <th>Groupe sanguin</th>
                         <th>Quantitée demandé</th>
-                             @can('editer_ligne_demande')
-                        <th>Modifier</th>
-                             @endcan
                             @can('supprimer_ligne_demande')
                         <th>supprimer</th>
                             @endcan
@@ -104,22 +107,10 @@
                     </tr>
                 </thead>
                 <tbody id="bodyLignes">
-                    @foreach ($lignes->ligne_demandes as $ligne)
+                    @foreach ($lignes as $ligne)
                     <tr>
                         <td>{{ $ligne->groupement->groupe_sanguin }}</td>
                         <td>{{ $ligne->quantite_demandee }}</td>
-                             @can('editer_ligne_demande')
-                        <td>
-                            <a href="#"
-                                id="ligne{{ $ligne->id }}" data-toggle="modal" data-target="#ModifierModal"
-                                data-route="{{ route('demande.ligneupdate', $ligne->id) }}"
-                                data-group_sanguin="{{ $ligne->groupement_id}}"
-                                data-quantite="{{ $ligne->quantite_demandee }}"
-                                onclick="update('#ligne{{ $ligne->id }}')"
-                                class="btn btn-primary btn-outline-primary"><i class="icofont icofont-ui-edit"></i>
-                            </a>
-                        </td>
-                            @endcan
                             @can('supprimer_ligne_demande')
                         <td>
                             <form method="POST" action="{{ route('ligne.lignedestroy', $ligne) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
@@ -152,7 +143,7 @@
     </div>
 </div>
 
-<form method="post" action="" id="form">
+<form method="post" action="{{ route('ligne.lignestore') }}" id="form">
     <input type="hidden" value="{{ $demande->id }}" name="demande_id" id="demande_id">
     @csrf
     <!-- Modal -->
@@ -194,48 +185,6 @@
         </div>
     </div>
 </form>
-
-<form action="" id="form1" method="POST">
-    @csrf
-    @method('put')
-    <div class="modal fade" id="ModifierModal" tabindex="-1" role="dialog" aria-labelledby="ModifierModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="ModifierModalLabel">Modifier la ligne</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="form-group form-primary">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>
-                    <select title="Groupe Sanguin" name="groupement_id" id="groupement_idUpdate" class="form-control">
-                        @foreach($groupements as $groupement)
-                            <option value="{{ $groupement->id }}">
-                                {{ $groupement->groupe_sanguin }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="form-group form-primary">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                    <input title="Quantité demandée" type="text" name="quantite_demandee" id="quantite_demandeeUpdate" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <button type="submit" class="btn btn-primary">Modifier</button>
-        </div>
-        </div>
-    </div>
-    </div>
-</form>
-
 <form action="" id="form2" method="POST">
     @csrf
     <div class="modal fade" id="LivreerModal" tabindex="-1" role="dialog" aria-labelledby="LivreerModal" aria-hidden="true">
@@ -305,64 +254,10 @@
 
 @section('js')
 <script>
-
-    function update(ligneId) {
-            $('#quantite_demandeeUpdate').val($(ligneId).attr('data-quantite'))
-            $('#groupement_idUpdate').val($(ligneId).attr('data-group_sanguin'))
-            $('#form1').attr('action', $(ligneId).attr('data-route'))
-    }
     function updateL(ligneLId) {
             $('#quantite_demandeeLivree').val($(ligneLId).attr('data-quantiteL'))
             $('#groupement_idLivree').val($(ligneLId).attr('data-group_sanguinL'))
             $('#form2').attr('action', $(ligneLId).attr('data-route'))
     }
-    jQuery(document).ready(function(){
-        jQuery('#ajaxSubmit').click(function(e){
-            e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
-                }
-            });
-            jQuery.ajax({
-                url: "{{ url('/demande/lignestore') }}",
-                method: 'post',
-                data: {
-                    groupement_id: jQuery('#groupement_id').val(),
-                    quantite_demandee: jQuery('#quantite_demandee').val(),
-                    demande_id: jQuery('#demande_id').val()
-                },
-                success: function(result){
-                   /*  if(result.errors)
-                    {
-                        jQuery('.alert-danger').html('');
-                        jQuery.each(result.errors, function(key, value){
-s
-                            jQuery('.alert-danger').show();
-
-                            jQuery('.alert-danger').append('<li>'+value+'</li>');
-                        });
-                    }
-                    else
-                    {
-                    jQuery('.alert-danger').hide();
-                        $('#open').hide();
-                        $('#Modal').modal('hide');
-                    } */
-
-                    $('#bodyLignes').append(`<tr class='border-bottom-primary'>
-                                        <td>${result.ligne.groupement.groupe_sanguin}</td>
-                                        <td>${result.ligne.quantite_demandee}</td>
-                                        <td>
-                                            <a href='#' data-toggle='modal' data-target='#myModal' class='btn btn-warning btn-outline-warning'><i class='icofont icofont-ui-edit'></i></a>
-                                            <a href='#' class='btn btn-danger btn-outline-danger'><i class='icofont icofont-ui-delete'></i></a>
-                                        </td>
-                                    </tr>`)
-                        Query('.alert-danger').hide();
-                        $('#open').hide();
-                        $('#Modal').modal('hide');
-                }});
-        });
-    });
 </script>
 @endsection

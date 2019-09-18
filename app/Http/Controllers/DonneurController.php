@@ -49,8 +49,7 @@ class DonneurController extends Controller
     {
         $donneurs = Donneur::with('typedonneur','situationmats','organisation','dossierMedicals')->get();
 
-       /*  $donneurs = $donneurs->filter(function($donneur) {
-
+        $donneursapreleves = $donneurs->filter(function($donneur) {
             $last = $donneur->dossierMedicals->last();
             if($last)
             {
@@ -62,8 +61,9 @@ class DonneurController extends Controller
                 return true;
             }
 
-        }); */
-        return view('donneurs.index', compact('donneurs'));
+        });
+        //dd($donneurs, $donneursapreleves);
+        return view('donneurs.index', compact('donneurs','donneursapreleves'));
     }
     public function destroy($id)
     {
