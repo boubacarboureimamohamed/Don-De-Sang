@@ -100,6 +100,11 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::get('showdonrefuse/{don}', 'DossierMedicalValidationController@show_donrefuse')->name('validation.showdonrefuse');
 
+        Route::get('listegroupage', 'DossierMedicalValidationController@index_groupage')->name('validation.indexgroupage');
+
+       
+       Route::PUT('update/{groupement}', 'DossierMedicalValidationController@update_seuil')->name('validation.updateseuil');
+
         Route::get('validation/donneur_valider', 'DossierMedicalValidationController@donneur_valider')->name('validation.donneur_valider');
 
         Route::get('validation/{dossier}', 'DossierMedicalValidationController@validation')->name('validation.validation');

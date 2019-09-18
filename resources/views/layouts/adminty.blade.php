@@ -222,7 +222,7 @@
                                     </ul>
                                 </li>
                                 <li class="">
-                                    <a href="navbar-light.htm">
+                                    <a href="">
                                         <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
                                         <span class="pcoded-mtext">Dossiers Médicaux </span>
                                     </a>

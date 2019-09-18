@@ -69,7 +69,11 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Approbation </th>
-                                        <td>{{ $don->approbation }}</td>
+                                        @if($don->approbation == 1)
+                                        <td>{{ $don->approbation = 'Apte' }}</td>
+                                        @elseif($don->approbation == 0)
+                                        <td>{{ $don->approbation = 'Inapte' }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <th scope="row">numéro du don</th>
@@ -108,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-                                   <a href="{{ route('donneurs.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
+                                   <a href="{{ route('validation.donaccepter')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
 
             </div>
         </div>

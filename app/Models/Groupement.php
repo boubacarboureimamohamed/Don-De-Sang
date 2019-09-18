@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Groupement extends Model
 {
-    protected $fillable =['groupe_sanguin'];
+    protected $fillable =['seuil'];
 
     public function ligne_demande()
     {

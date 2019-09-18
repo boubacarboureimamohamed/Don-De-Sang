@@ -15,7 +15,7 @@
     <div class="page-body">
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center txt-primary">{{ ('Détail sur le don accepé') }}</h3>
+                <h3 class="text-center txt-primary">{{ ('Détail sur le don refusé') }}</h3>
             </div>
             <div class="card-block">
                 <div class="row">
@@ -69,7 +69,11 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Approbation </th>
-                                        <td>{{ $don->approbation }}</td>
+                                        @if($don->approbation == 1)
+                                        <td>{{ $don->approbation = 'Apte'}}</td>
+                                        @elseif($don->approbation == 0)
+                                        <td>{{ $don->approbation = 'Inapte' }}</td>
+                                        @endif
                                     </tr>
                                     <tr>
                                         <th scope="row">numéro du don</th>
@@ -86,6 +90,10 @@
                                     <tr>
                                         <th scope="row">type de prelevement</th>
                                         <td>{{ $don->type_prelevement }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Motif du rejet</th>
+                                        <td>{{ $don->motif_rejet }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -108,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                                   <a href="{{ route('donneurs.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
+                                   <a href="{{ route('validation.donrejete') }}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
 
             </div>
         </div>

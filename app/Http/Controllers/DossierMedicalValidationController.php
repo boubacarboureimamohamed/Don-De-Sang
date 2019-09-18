@@ -86,4 +86,20 @@ class DossierMedicalValidationController extends Controller
         $don =  DossierMedical::with('donneur')->find($id);
         return view('validation.showdonrefuse', compact('don'));
     }
+    public function index_groupage()
+    {
+       
+        $groupes = Groupement::all();
+        return view('validation.indexgroupage', compact('groupes'));
+    }
+    
+    public function update_seuil(Request $request, Groupement $groupement)
+    {
+       
+        $groupement->update([
+       'seuil'=>$request->seuil
+      ]);
+
+      return redirect()->back();
+    }
 }

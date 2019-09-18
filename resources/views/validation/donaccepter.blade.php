@@ -52,7 +52,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a href="" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
+                <a href="{{ route('validation.donneur_valider') }}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
     </div>
