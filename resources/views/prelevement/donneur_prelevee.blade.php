@@ -27,9 +27,15 @@
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
+                                @can('consulter_prelevement')
                             <th>Detail</th>
+                                @endcan
+                                @can('editer_prelevement')
                             <th>Modifier</th>
-                            <th>Analyser</th>
+                                @endcan
+                                @can('valider_prelevement')
+                            <th>Valider</th>
+                                @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -38,27 +44,27 @@
                                 <td>{{ $prelevement->donneur->num_donneur }}</td>
                                 <td>{{ $prelevement->donneur->nom }}</td>
                                 <td>{{ $prelevement->donneur->prenom }}</td>
-                                <td>
                                     @can('consulter_prelevement')
-                                        <a href="{{ route('prelevement.show_prelevement', $prelevement) }}" class="btn btn-info btn-outline-info">
-                                            <i class="icofont icofont-eye-alt icofont-lg"></i>
-                                        </a>
-                                    @endcan
-                                </td>
                                 <td>
+                                    <a href="{{ route('prelevement.show_prelevement', $prelevement) }}" class="btn btn-info btn-outline-info">
+                                        <i class="icofont icofont-eye-alt icofont-lg"></i>
+                                    </a>
+                                </td>
+                                    @endcan
                                     @can('editer_prelevement')
-                                         <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-warning btn-outline-warning">
-                                            <i class="icofont icofont-ui-edit icofont-lg"></i></i>
-                                        </a>
-                                    @endcan
-                                </td>
                                 <td>
-                                    @can('valider_prelevement')
-                                        <a href="{{ route('validation.validation', $prelevement)}}" class="btn btn-primary btn-outline-primary">
-                                            <i class="icofont icofont- icofont-lg"></i>
-                                        </a>
-                                    @endcan
+                                    <a href="{{ route('prelevement.edit', $prelevement) }}" class="btn btn-warning btn-outline-warning">
+                                         <i class="icofont icofont-ui-edit icofont-lg"></i></i>
+                                    </a>
                                 </td>
+                                    @endcan
+                                    @can('valider_prelevement')
+                                <td>
+                                    <a href="{{ route('validation.validation', $prelevement)}}" class="btn btn-primary btn-outline-primary">
+                                        <i class="icofont icofont-verification-checked icofont-lg"></i>
+                                    </a>
+                                </td>
+                                    @endcan
                             </tr>
                         @endforeach
                     </tbody>

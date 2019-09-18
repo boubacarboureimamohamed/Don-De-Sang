@@ -58,7 +58,7 @@
                             @break;
                         @case('AB-')
                             @php
-                            $color = 'purple';
+                            $color = 'Purple';
                             @endphp
                             @break;
                         @case('O-')

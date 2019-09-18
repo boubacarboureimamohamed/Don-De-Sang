@@ -19,7 +19,5 @@ class DatabaseSeeder extends Seeder
       $this->call(TyperdvsTableSeeder::class);
       $this->call(GroupementsTableSeeder::class); */
 
-
-
     }
 }

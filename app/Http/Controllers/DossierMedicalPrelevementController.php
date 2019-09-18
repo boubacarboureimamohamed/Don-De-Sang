@@ -31,10 +31,11 @@ class DossierMedicalPrelevementController extends Controller
     }
     public function store(Request $request, DossierMedical $dossier)
     {
+        $quantite_prelevve = $dossier->quantite_a_prelevee;
         $this->validate($request, [
             'type_prelevement' => 'required|string',
             'type_poche' => 'required|string',
-            'quantite_prelevee' => 'required|integer',
+            'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve,
             'observation_prelevement' => 'required|string'
         ]);
         $dossier->update([
@@ -70,7 +71,15 @@ class DossierMedicalPrelevementController extends Controller
 //             echo "Error: " . $e->getMessage();
 //         } 
 
-
+ Mail::send(['title' => "remerciement", 'content' => "merci monsieur"], function ($message)
+        {
+ 
+            $message->from('ammahamadou94@gmail.com', 'Christian Nwamba');
+ 
+            $message->to('momlaouali@gmail.com');
+ 
+        });
+ 
 
 
         return redirect(route('prelevement.donneur_apte_a_prelevee'));

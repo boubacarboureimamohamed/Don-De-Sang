@@ -45,30 +45,26 @@
 
 @endforeach
 </td>
-<td>
-
     @can('editer_user')
-        <a href="{{ route('users.edit', $user) }}" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
-            <span class="icofont icofont-ui-edit"></span>
-        </a>
-    @endcan
-
-</td>
 <td>
-
-    @can('supprimer_user')
-        <form method="POST" action="{{ route('users.destroy', $user) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
-
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
-
-            <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
-                <span class="icofont icofont-ui-delete"></span>
-            </button>
-        </form>
-    @endcan
-
+    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
+        <span class="icofont icofont-ui-edit"></span>
+    </a>
 </td>
+    @endcan
+    @can('supprimer_user')
+<td>
+    <form method="POST" action="{{ route('users.destroy', $user) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+
+        <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
+            <span class="icofont icofont-ui-delete"></span>
+        </button>
+    </form>
+</td>
+    @endcan
 </tr>
 @endforeach
 

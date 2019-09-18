@@ -67,8 +67,8 @@
                                                             <div class="card-header">
                                                                 <h5 class="card-header-text">A propos de l'utilisateur</h5>
                                                                 <button id="edit-btn" type="button" class="btn btn-sm btn-primary waves-effect waves-light f-right">
-                                            <i class="icofont icofont-edit"></i>
-                                        </button>
+                                                                    <i class="icofont icofont-edit"></i>
+                                                                </button>
                                                             </div>
                                                             <div class="card-block">
                                                                 <div class="view-info">
@@ -85,16 +85,16 @@
                                                                                                         <td>{{ Auth::user()->name }}</td>
                                                                                                     </tr>
                                                                                                     <tr>
-                                                                                                        <th scope="row">Sexe</th>
-                                                                                                        <td>Female</td>
-                                                                                                    </tr>
-                                                                                                    <tr>
                                                                                                         <th scope="row">Date de naissance</th>
-                                                                                                        <td>October 25th, 1990</td>
+                                                                                                        <td></td>
                                                                                                     </tr>
                                                                                                     <tr>
                                                                                                         <th scope="row">Adresse</th>
-                                                                                                        <td>Haro Banda</td>
+                                                                                                        <td> </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <th scope="row">Profession</th>
+                                                                                                        <td></td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>
@@ -110,16 +110,16 @@
                                                                                                         <td><a href="#!"><span class="__cf_email__" data-cfemail="4206272f2d02273a232f322e276c212d2f">{{ Auth::user()->email }}</span></a></td>
                                                                                                     </tr>
                                                                                                     <tr>
-                                                                                                        <th scope="row">Téléphone</th>
-                                                                                                        <td>(0123) - 4567891</td>
-                                                                                                    </tr>
-                                                                                                    <tr>
                                                                                                         <th scope="row">Lieu de naissance</th>
-                                                                                                        <td>Niamey</td>
+                                                                                                        <td></td>
                                                                                                     </tr>
                                                                                                     <tr>
-                                                                                                        <th scope="row">Profession</th>
-                                                                                                        <td>Docteur</td>
+                                                                                                        <th scope="row">Téléphone</th>
+                                                                                                        <td></td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <th scope="row">Sexe</th>
+                                                                                                        <td></td>
                                                                                                     </tr>
                                                                                                 </tbody>
                                                                                             </table>
@@ -137,6 +137,9 @@
                                                                 </div>
                                                                 <!-- end of view-info -->
                                                                 <div class="edit-info">
+                                                                <form method="POST" action="{{ route('users.update', Auth::user()->id) }}" class="md-float-material form-material">
+                                                                    {{ csrf_field() }}
+                                                                    {{ method_field('PUT') }}
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
                                                                             <div class="general-info">
@@ -145,52 +148,33 @@
                                                                                         <table class="table">
                                                                                             <tbody>
                                                                                                 <tr>
-                                                                                                    <td>
-                                                                                                        <div class="input-group">
-                                                                                                            <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                                                                            <input type="text" class="form-control" placeholder="Full Name">
-                                                                                                        </div>
-                                                                                                    </td>
+                                                                                                    <div class="input-group">
+                                                                                                        <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
+                                                                                                        <input id="name" type="text" @error('name') is-invalid @enderror" name="name" value="{{ Auth::user()->name }}" required="" title="Votre Username" class="form-control" placeholder="Votre Username">
+                                                                                                        @error('name')
+                                                                                                            <span class="form-bar" role="alert">
+                                                                                                                <strong>{{ $message }}</strong>
+                                                                                                            </span>
+                                                                                                        @enderror
+                                                                                                    </div>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td>
-                                                                                                        <div class="form-radio">
-                                                                                                            <div class="group-add-on">
-                                                                                                                <div class="radio radiofill radio-inline">
-                                                                                                                    <label>
-                                                                                                <input type="radio" name="radio" checked=""><i class="helper"></i> Male
-                                                                                            </label>
-                                                                                                                </div>
-                                                                                                                <div class="radio radiofill radio-inline">
-                                                                                                                    <label>
-                                                                                                <input type="radio" name="radio"><i class="helper"></i> Female
-                                                                                            </label>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </td>
+                                                                                                    <div class="input-group">
+                                                                                                        <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
+                                                                                                        <input type="date" title="Votre Date de Naissance" class="form-control" required="" placeholder="Votre Date de Naissance">
+                                                                                                    </div>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td>
-                                                                                                        <input id="dropper-default" class="form-control" type="text" placeholder="Select Your Birth Date">
-                                                                                                    </td>
+                                                                                                    <div class="input-group">
+                                                                                                        <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
+                                                                                                        <input type="email" title="Votre Adresse" class="form-control" placeholder="Votre Adresse">
+                                                                                                    </div>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td>
-                                                                                                        <select id="hello-single" class="form-control">
-                                                                                    <option value="">---- Marital Status ----</option>
-                                                                                    <option value="married">Married</option>
-                                                                                    <option value="unmarried">Unmarried</option>
-                                                                                </select>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td>
-                                                                                                        <div class="input-group">
-                                                                                                            <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                                                                                            <input type="text" class="form-control" placeholder="Address">
-                                                                                                        </div>
-                                                                                                    </td>
+                                                                                                    <div class="input-group">
+                                                                                                        <span class="input-group-addon"><i class="icofont icofont-"></i></span>
+                                                                                                        <input type="text" class="form-control" title="Votre Profession" required="" placeholder="Votre Profession">
+                                                                                                    </div>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>
@@ -200,36 +184,43 @@
                                                                                         <table class="table">
                                                                                             <tbody>
                                                                                                 <tr>
-                                                                                                    <td>
-                                                                                                        <div class="input-group">
-                                                                                                            <span class="input-group-addon"><i class="icofont icofont-mobile-phone"></i></span>
-                                                                                                            <input type="text" class="form-control" placeholder="Mobile Number">
-                                                                                                        </div>
-                                                                                                    </td>
+                                                                                                    <div class="input-group">
+                                                                                                        <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
+                                                                                                        <input id="email" type="email" title="Votre Adresse Mail" @error('email') is-invalid @enderror" name="email" required="" value="{{ Auth::user()->email }}" class="form-control" placeholder="Votre Adresse Mail">
+                                                                                                        @error('email')
+                                                                                                            <span class="form-bar" role="alert">
+                                                                                                            <strong>{{ $message }}</strong>
+                                                                                                            </span>
+                                                                                                        @enderror
+                                                                                                    </div>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td>
-                                                                                                        <div class="input-group">
-                                                                                                            <span class="input-group-addon"><i class="icofont icofont-social-twitter"></i></span>
-                                                                                                            <input type="text" class="form-control" placeholder="Twitter Id">
-                                                                                                        </div>
-                                                                                                    </td>
+                                                                                                    <div class="input-group">
+                                                                                                        <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
+                                                                                                        <input type="text" title="Votre Lieu de Naissance" class="form-control" placeholder="Votre Lieu de Naissance">
+                                                                                                    </div>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td>
-                                                                                                        <div class="input-group">
-                                                                                                            <span class="input-group-addon"><i class="icofont icofont-social-skype"></i></span>
-                                                                                                            <input type="email" class="form-control" placeholder="Skype Id">
-                                                                                                        </div>
-                                                                                                    </td>
+                                                                                                    <div class="input-group">
+                                                                                                        <span class="input-group-addon"><i class="icofont icofont-mobile-phone"></i></span>
+                                                                                                        <input type="email" title="Votre Numéro de Téléphone" class="form-control" placeholder="Votre Numéro de Téléphone">
+                                                                                                    </div>
                                                                                                 </tr>
                                                                                                 <tr>
-                                                                                                    <td>
-                                                                                                        <div class="input-group">
-                                                                                                            <span class="input-group-addon"><i class="icofont icofont-earth"></i></span>
-                                                                                                            <input type="text" class="form-control" placeholder="website">
+                                                                                                    <div class="form-radio">
+                                                                                                        <div class="group-add-on">
+                                                                                                            <div class="radio radiofill radio-inline">
+                                                                                                                <label>
+                                                                                                                    <input type="radio" name="radio" checked=""><i class="helper"></i> Male
+                                                                                                                </label>
+                                                                                                            </div>
+                                                                                                            <div class="radio radiofill radio-inline">
+                                                                                                                <label>
+                                                                                                                        <input type="radio" name="radio"><i class="helper"></i> Female
+                                                                                                                    </label>
+                                                                                                            </div>
                                                                                                         </div>
-                                                                                                    </td>
+                                                                                                    </div>
                                                                                                 </tr>
                                                                                             </tbody>
                                                                                         </table>
@@ -238,8 +229,10 @@
                                                                                 </div>
                                                                                 <!-- end of row -->
                                                                                 <div class="text-center">
-                                                                                    <a href="#!" class="btn btn-primary waves-effect waves-light m-r-20">Save</a>
-                                                                                    <a href="#!" id="edit-cancel" class="btn btn-default waves-effect">Cancel</a>
+                                                                                    <a href="#!" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
+                                                                                    <button type="submit" class="btn btn-primary ">
+                                                                                        {{ __('Modifier') }}
+                                                                                    </button>
                                                                                 </div>
                                                                             </div>
                                                                             <!-- end of edit info -->
@@ -247,6 +240,7 @@
                                                                         <!-- end of col-lg-12 -->
                                                                     </div>
                                                                     <!-- end of row -->
+                                                                    </form>
                                                                 </div>
                                                                 <!-- end of edit-info -->
                                                             </div>
@@ -276,9 +270,12 @@
                                                                             <div class="card-block">
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12">
-
-                                                                                        <p class="task-detail">Monsieur {{ Auth::user()->name }},<br> Vous avez le rôle d'un </p>
-
+                                                                                        <p class="task-detail">Monsieur {{ Auth::user()->name }},<br> Vous avez le rôle d'un
+                                                                                                @foreach (Auth::user()->roles as $role)
+                                                                                                    {{ $role->name }}<br>
+                                                                                                @endforeach
+                                                                                             Avec les permissions suivantes qui vous sont attribuées :
+                                                                                          </p>
                                                                                     </div>
                                                                                     <!-- end of col-sm-8 -->
                                                                                 </div>
@@ -299,7 +296,13 @@
                                                                             <div class="card-block">
                                                                                 <div class="row">
                                                                                     <div class="col-sm-12">
-                                                                                        <p class="task-detail">Les permissions qui vous sont attribuées sont :<br></p>
+                                                                                        <p class="task-detail">
+                                                                                            @foreach (Auth::user()->roles->first()->permissions as $permission)
+                                                                                                <button class="btn btn-primary btn-round btn-mini">
+                                                                                                    {{ $permission->name  }}
+                                                                                                </button>
+                                                                                            @endforeach
+                                                                                        </p>
                                                                                     </div>
                                                                                     <!-- end of col-sm-8 -->
                                                                                 </div>
