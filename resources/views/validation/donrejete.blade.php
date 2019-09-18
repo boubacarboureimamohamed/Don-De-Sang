@@ -29,30 +29,30 @@
                             <th>Prénom</th>
                             <th>Numéro du don</th>
                             <th>Detail</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($dons as $don)
-                           
+
 
                             <tr>
                                 <td>{{ $don->donneur->num_donneur }}</td>
                                 <td>{{ $don->donneur->nom }}</td>
                                 <td>{{ $don->donneur->prenom }}</td>
                                 <td>{{ $don->num_don }}</td>
-                               
-                                
+
+
                                 <td>
                                     <a href="" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
                                 </td>
-                                
+
                             </tr>
-                           
+
                         @endforeach
                     </tbody>
                 </table>
-                <a href="" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
+                <a href="{{ route('validation.donneur_valider') }}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
     </div>
