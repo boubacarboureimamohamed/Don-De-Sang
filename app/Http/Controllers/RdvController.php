@@ -55,14 +55,14 @@ class RdvController extends Controller
             'typerdv_id' => $request->typerdv_id,
             'organisation_id' => $organisation->id
         ]);
-        
+
         if($request->typerdv_id == 1)
         {
-            return redirect(route('rdvs.rdv_fixe_liste'))->with('success', 'l enregistrement a ete effetue avec succes');
+            return redirect(route('rdvs.rdv_fixe_liste'))->with('success', 'Lenregistrement a ete effetue avec succes');
         }
         elseif($request->typerdv_id == 2)
         {
-            return redirect(route('rdvs.rdv_mobile_liste'))->with('success', 'l enregistrement a ete effetue avec succes');
+            return redirect(route('rdvs.rdv_mobile_liste'))->with('success', 'Lenregistrement a ete effetue avec succes');
         }
     }
 
@@ -89,7 +89,7 @@ class RdvController extends Controller
         $organisations = Organisation::all();
         $rdv = Rdv::find($id);
         return view('rdvs.edit', compact('typerdvs', 'rdv', 'organisations'));
-      
+
     }
 
     /**
@@ -117,11 +117,11 @@ class RdvController extends Controller
 
         if($request->typerdv_id == 1)
         {
-            return redirect(route('rdvs.rdv_fixe_liste'));
+            return redirect(route('rdvs.rdv_fixe_liste'))->with('success', 'La modification a été effetué avec succés!');
         }
         elseif($request->typerdv_id == 2)
         {
-            return redirect(route('rdvs.rdv_mobile_liste'));
+            return redirect(route('rdvs.rdv_mobile_liste'))->with('success', 'La modification a été effetué avec succés!');
         }
     }
 

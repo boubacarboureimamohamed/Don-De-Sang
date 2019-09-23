@@ -46,9 +46,6 @@ class DossierMedicalPrelevementController extends Controller
             'date_heure_prelevement' => date('Y-m-d')
         ]);
 
-        Mail::send('welcome', [], function ($message){
-            $message->to('momlaouali@gmail.com')->subject('Testing mail');
-        });
 //         $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
 //         $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
 //         $client = new Client($accountSid, $authToken);
@@ -71,15 +68,17 @@ class DossierMedicalPrelevementController extends Controller
 //             echo "Error: " . $e->getMessage();
 //         } 
 
- Mail::send(['title' => "remerciement", 'content' => "merci monsieur"], function ($message)
-        {
+
+$data = ['link' => ''];
  
-            $message->from('ammahamadou94@gmail.com', 'Christian Nwamba');
+    \Mail::send('prelevement.message', $data, function ($message) use($dossier) {
  
-            $message->to('momlaouali@gmail.com');
+        $message->from('ammahamadou94@gmail.com', 'team synetcom');
  
-        });
+        $message->to($dossier->donneur->email)->subject('Notification');
  
+    });
+
 
 
         return redirect(route('prelevement.donneur_apte_a_prelevee'));

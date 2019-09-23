@@ -13,7 +13,7 @@
           <div class="card-block">
                <div class="row m-b-30">
                      <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Modification d\'un nouveau donneur') }}</h3>
+                          <h3 class="text-center txt-primary">{{ ('Modification d\'un donneur') }}</h3>
                      </div>
                </div>
                 <div class="row">
@@ -32,7 +32,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="typedonneur_id" title="Entrer le type de donneur" data-toggle="tooltip" id="typedonneur_id" class="form-control">
+                                    <select name="typedonneur_id" title="Entrer le type de donneur"  size="1" onChange="mafonction(this.selectedIndex);" data-toggle="tooltip" id="typedonneur_id" class="form-control">
                                         @foreach($ts as $t)
                                             <option value="{{ $t->id }}" @if($t->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
                                                {{ $t->type_donneur }}
@@ -92,12 +92,12 @@
                             <div class="form-radio">
                                 <div class="group-add-on">
                                     <div class="radio radiofill radio-inline">
-                                      <label>
+                                      <label id="homme">
                                         <input type="radio" id="sexe" name="sexe" value="{{ $donneur->sexe }}"><i class="helper"></i> Homme
                                       </label>
                                     </div>
                                     <div class="radio radiofill radio-inline">
-                                       <label>
+                                       <label >
                                           <input type="radio" id="sexe" name="sexe" value="{{ $donneur->sexe }}"><i class="helper"></i> Femme
                                         </label>
                                     </div>
@@ -122,6 +122,19 @@
                             </div>
                          </div>
                      </div>
+                     <div class="col-sm-6">
+                         <div class="form-group form-primary">
+                             <div class="input-group">
+                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <select name="situation_matrimoniale" title="Selectionner la situation matrimonial du donneur" value="{{ $donneur->situation_matrimoniale }}" onChange="mafonction1(this.selectedIndex);" data-toggle="tooltip" id="situation_matrimoniale" class="form-control">
+                                   <option value="Célibataire">Célibataire</option>
+                                   <option value="Veuf(ve)">Veuf(ve)</option>
+                                   <option value="Divorcé(e)">Divorcé(e)</option>
+                                   <option value="Marié(e)">Marié(e)</option>
+                                </select>
+                            </div>
+                         </div>
+                     </div> 
                 </div>
                 <div class="row">
                      <div class="col-sm-6">
@@ -150,11 +163,11 @@
                             </div>
                          </div>
                      </div>
-                    <div class="col-sm-6">
+                     <div class="col-sm-6" style="display:none;" id="divorg">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                  <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="organisation_id" name="organisation_id" title="Entrer l'organisation du donneur" data-toggle="tooltip" id="organisation_id" class="form-control">
+                                    <select name="organisation_id" name="organisation_id" title="Modifier l'organisation du donneur" data-toggle="tooltip" id="organisation_id" class="form-control">
                                         @foreach($os as $o)
                                             <option value="{{ $o->id }}" @if($o->id == $donneur->organisation_id) {{ 'selected' }} @else {{ '' }} @endif>
                                                {{ $o->libelle }}
@@ -196,6 +209,41 @@
 @endsection
 
 @section('js')
+
+<script type="text/javascript">
+	function mafonction(i) {
+		var divorg = document.getElementById('divorg');
+		switch(i) {
+			case 2 : divorg.style.display = ''; break;
+			default: divorg.style.display = 'none'; break;
+		}
+	}
+</script>
+ <script type="text/javascript">
+	function mafonction1(i) {
+		var divS = document.getElementById('divS');
+		switch(i) {
+            case 0 : divS.style.display = 'none'; break;
+            case 1 : divS.style.display = 'none'; break;
+            case 2 : divS.style.display = 'none'; break;
+            case 3 : divS.style.display = ''; break;
+			default: divS.style.display = 'none'; break;
+		}
+	}
+</script>
+
+<script>
+$(document).ready(function(){
+  $('#divS').hide();
+$('#femme').click(function(){
+$('#divS').hide();
+});
+$('#homme').click(function(){
+$('#divS').show();
+});
+});
+
+</script>
 
 
 @endsection

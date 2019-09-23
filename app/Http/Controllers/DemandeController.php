@@ -38,7 +38,7 @@ class DemandeController extends Controller
             'groupement_id' => $request->groupement[$j]
         ]);
         }
-        return redirect('demande');
+        return redirect('demande')->with('success', 'Lenregistrement a été effetué avec succés!');
     }
     public function index()
     {
@@ -73,7 +73,7 @@ class DemandeController extends Controller
             'date' => $request->date,
             'beneficiaire_id' => $benefi->id
         ]);
-        return redirect(route('demande.index'));
+        return redirect(route('demande.index'))->with('success', 'La modification a été effetué avec succés!');
     }
     public function lignestore(Request $request)
     {

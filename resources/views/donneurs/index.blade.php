@@ -11,6 +11,11 @@
                 <h2 style="text-align: center;">Liste des donneurs</h2>
             </div>
             <div class="card-block">
+                @can('ajouter_donneur')
+                    <a href="{{ route('donneurs.add') }}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
+                    <span class="icofont icofont-plus"></span> {{ (' Nouveau') }}
+                    </a>
+                @endcan
                 <div class="dt-responsive table-responsive">
                     <table id="simpletable" class="table table-striped table-bordered nowrap">
                         <thead>
@@ -70,26 +75,26 @@
                                     </a>
                                 </td>
                                     @endcan
-                                <td>
                                     @can('supprimer_donneur')
-                                        <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
-                                                <span class="icofont icofont-ui-delete"></span>
-                                            </button>
-                                        </form>
-                                    @endcan
-                                </td>
                                 <td>
-                                    @can('examiner_donneur')
-                                        @if($donneursapreleves->contains($donneur))
-                                            <a href="{{ route('dossierM.examiner', $donneur) }}" class="btn btn-primary btn-outline-primary waves-effect waves-light">
-                                                <span class="icofont icofont-stethoscope-alt"></span>
-                                            </a>
-                                        @endif
-                                    @endcan
+                                    <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                            <span class="icofont icofont-ui-delete"></span>
+                                        </button>
+                                    </form>
                                 </td>
+                                    @endcan
+                                    @can('examiner_donneur')
+                                <td>
+                                    @if($donneursapreleves->contains($donneur))
+                                        <a href="{{ route('dossierM.examiner', $donneur) }}" class="btn btn-primary btn-outline-primary waves-effect waves-light">
+                                            <span class="icofont icofont-stethoscope-alt"></span>
+                                        </a>
+                                    @endif
+                                </td>
+                                    @endcan
                             </tr>
                             @endforeach
                         </tbody>

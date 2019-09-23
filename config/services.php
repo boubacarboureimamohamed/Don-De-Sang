@@ -13,13 +13,13 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
-/* 
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
- */
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

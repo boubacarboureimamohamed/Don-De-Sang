@@ -98,21 +98,21 @@
                             <div class="table-responsive">
                                 <table class="table m-0">
                                     <tbody>
-                                        
+
                                         <tr>
                                             <th scope="row">poche de poche</th>
                                             <td>{{ $don->type_poche }}</td>
                                         </tr>
-                                       
-                                        
-                                        
+
+
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                                   <a href="{{ route('validation.donaccepter')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
+                    <a href="{{ route('validation.donaccepter')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
 
             </div>
         </div>

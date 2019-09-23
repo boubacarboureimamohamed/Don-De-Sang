@@ -29,26 +29,26 @@
                             <th>Prénom</th>
                             <th>Numéro du don</th>
                             <th>Detail</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($dons as $don)
-                           
+
 
                             <tr>
                                 <td>{{ $don->donneur->num_donneur }}</td>
                                 <td>{{ $don->donneur->nom }}</td>
                                 <td>{{ $don->donneur->prenom }}</td>
                                 <td>{{ $don->num_don }}</td>
-                               
-                                
+
+
                                 <td>
                                     <a href="{{ route('validation.showdonaccepter', $don) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
                                 </td>
-                                
+
                             </tr>
-                           
+
                         @endforeach
                     </tbody>
                 </table>

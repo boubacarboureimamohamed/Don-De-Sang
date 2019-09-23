@@ -21,7 +21,7 @@ class DonneurController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+       /*  $this->validate($request, [
             'nom' => 'required|max:255',
             'prenom' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:donneurs',
@@ -30,9 +30,8 @@ class DonneurController extends Controller
             'adresse' => 'required|string',
             'nationalite' => 'required|string',
             'profession' => 'required|string',
-            /* 'telephone' => 'required|integer|max:8|min:8', */
-
-        ]);
+             'telephone' => 'required|integer|max:8|min:8'
+        ]); */
         $donneur= Donneur::create($request->all());
         $donneur->update([
             'num_donneur' => 'DO/' . date('Ymd') . '/' . $donneur->id
@@ -42,8 +41,8 @@ class DonneurController extends Controller
                 'situationmariee'=>$request->situationmariee
         ]);
         $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);
-       
-        return redirect(route('donneurs.index'));
+
+        return redirect(route('donneurs.index'))->with('success', 'Lenregistrement a été effetué avec succés!');
     }
     public function index()
     {
@@ -82,17 +81,17 @@ class DonneurController extends Controller
 
     public function update(Request $request, Donneur $donneur)
     {
-        $this->validate($request, [
-            'nom' => 'required|max:255',
-            'prenom' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:donneurs',
-            'lieu_naiss' => 'required|string|max:255',
-            'sexe' => 'required',
-            'adresse' => 'required|string',
-            'nationalite' => 'required|string',
-            'profession' => 'required|string',
-            /* 'telephone' => 'required|integer|max:8|min:8', */
-        ]);
+        // $this->validate($request, [
+        //     'nom' => 'required|max:255',
+        //     'prenom' => 'required|string|max:255',
+        //     'email' => 'required|email|max:255|unique:donneurs',
+        //     'lieu_naiss' => 'required|string|max:255',
+        //     'sexe' => 'required',
+        //     'adresse' => 'required|string',
+        //     'nationalite' => 'required|string',
+        //     'profession' => 'required|string',
+        //      'telephone' => 'required|integer|max:8|min:8'
+        // ]);
         $donneur->update([
             'nom' => $request->nom,
             'PrenomA' => $request->PrenomA,
@@ -110,7 +109,7 @@ class DonneurController extends Controller
         ]);
 
         $donneur->situationmats()->updateExistingPivot($request->situation_mat_id,['date' => date('Y-m-d')]);
-        return redirect(route('donneurs.index'));
+        return redirect(route('donneurs.index'))->with('success', 'La modification a été effetué avec succés!');
     }
 
     public function show(Donneur $donneur)

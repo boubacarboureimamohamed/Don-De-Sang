@@ -40,7 +40,7 @@ class RolesController extends Controller
     {
         $role = Role::create(['name'=> $request->role]);
         $role->syncPermissions($request->permissions);
-        return redirect(route('roles.index'));
+        return redirect(route('roles.index'))->with('success', 'L enregistrement a été effetué avec succés!');
     }
 
     /**
@@ -78,7 +78,7 @@ class RolesController extends Controller
     {
         $role->update(['name'=>$request->role]);
         $role->syncPermissions($request->permissions);
-        return redirect(route('roles.index'));
+        return redirect(route('roles.index'))->with('success', 'La modification a été effetué avec succés!');
     }
 
     /**
