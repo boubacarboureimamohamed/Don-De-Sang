@@ -72,7 +72,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->prenom }}" readonly="" required="" placeholder="">
                             </div>
                          </div>
                      </div>
@@ -87,16 +87,16 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
+                        <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
                                 <select type="text"title="Entrer le type de poche" data-toggle="tooltip" class="form-control" placeholder="Type de poche" name="type_poche" required="" placeholder="Type de Poche" class="form-control form-control-default">
                                     <option value="Double">Double</option>
                                     <option value="Simple">Simple</option>
                                 </select>
-                                </div>
-                         </div>
-                     </div>
+                            </div>
+                        </div>
+                    </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">

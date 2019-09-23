@@ -34,7 +34,7 @@ class UsersController extends Controller
     {
 
         $roles = Role::all();
-        return view('users.create', compact('roles'));
+        return view('users.create', compact('roles'))->with('success', "L'enregistrement a été effetué avec succés!");
     }
 
     public function edit($id)
@@ -48,10 +48,16 @@ class UsersController extends Controller
     {
         $user->update([
             'name'=>$request->name,
-            'email'=>$request->email
+            'email'=>$request->email,
+            'date_naiss'=>$request->date_naiss,
+            'lieu_naiss_'=>$request->lieu_naiss,
+            'sexe'=>$request->sexe,
+            'profession'=>$request->profession,
+            'adresse'=>$request->adresse,
+            'telephone'=>$request->telephone
         ]);
         $user->syncRoles($request->roles);
-        return redirect(route('users.index'));
+        return redirect(route('users.index'))->with('success', 'La modification a été effetué avec succés!');
     }
 
     public function destroy($id)

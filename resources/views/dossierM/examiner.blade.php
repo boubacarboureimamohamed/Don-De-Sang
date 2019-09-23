@@ -24,7 +24,7 @@
           <div class="card-block">
                <div class="row m-b-30">
                      <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Entretien médical') }}</h3>
+                          <h3 tovenclass="text-center txt-primary">{{ ('Entretien médical') }}</h3>
                      </div>
                </div>
                 <div class="row">
@@ -41,7 +41,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->num_donneur }}" readonly="" required="" placeholder="">
                             </div>
                         </div>
                     </div>

@@ -37,17 +37,18 @@ class DonneurController extends Controller
         $donneur->update([
             'num_donneur' => 'DO/' . date('Ymd') . '/' . $donneur->id
         ]);
-       SituationMat::create([
+       $situation = SituationMat::create([
                 'situation_matrimoniale'=>$request->situation_matrimoniale,
                 'situationmariee'=>$request->situationmariee
         ]);
-        $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);
-       
-        return redirect(route('donneurs.index'));
+        $donneur->typedonneurs()->attach($request->typedonneur_id,['date' => date('Y-m-d')]);
+        $donneur->situationmats()->attach($situation->id,['date' => date('Y-m-d')]);
+
+        return redirect(route('donneurs.index'))->with('success', 'Lenregistrement a été effetué avec succés!');
     }
     public function index()
     {
-        $donneurs = Donneur::with('typedonneur','situationmats','organisation','dossierMedicals')->get();
+        $donneurs = Donneur::with('typedonneurs','situationmats','organisation','dossierMedicals')->get();
 
         $donneursapreleves = $donneurs->filter(function($donneur) {
             $last = $donneur->dossierMedicals->last();
@@ -110,14 +111,31 @@ class DonneurController extends Controller
         ]);
 
         $donneur->situationmats()->updateExistingPivot($request->situation_mat_id,['date' => date('Y-m-d')]);
-        return redirect(route('donneurs.index'));
+        return redirect(route('donneurs.index'))->with('success', 'La modification a été effetué avec succés!');
     }
 
     public function show(Donneur $donneur)
     {
-        $as = Donneur::with('situationmats')->whereId($donneur->id)->get()[0];
-        $ls = Donneur::with('typedonneur','organisation')->whereId($donneur->id)->get()[0];
-        return view('donneurs.show', compact('as','ls'));
+        $ts = Typedonneur::all();
+        $as = Donneur::with('situationmats','typedonneurs')->whereId($donneur->id)->get()[0];
+        $ls = Donneur::with('organisation')->whereId($donneur->id)->get()[0];
+        return view('donneurs.show', compact('as','ls','ts'));
     }
-
+    
+    public function storesituation(Request $request) 
+    {
+        $donneur = Donneur::find($request->donneur);
+        $situation = SituationMat::create([
+            'situation_matrimoniale'=>$request->situation_matrimoniale,
+            'situationmariee'=>$request->situationmariee
+        ]);
+    $donneur->situationmats()->attach($situation->id,['date' => date('Y-m-d')]);
+    return back();
+    }
+    public function storetypedonneur(Request $request) 
+    {
+        $donneur = Donneur::find($request->donneur);
+        $donneur->typedonneurs()->attach($request->typedonneur_id,['date' => date('Y-m-d')]);
+    return back();
+    }
 }

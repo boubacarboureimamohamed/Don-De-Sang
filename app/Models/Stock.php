@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
 {
-    protected $fillable = ['quantite_sortie','quantite_reelle','groupement_id'];
+    protected $fillable = ['quantite_sortie','quantite_reelle','type_poche','groupement_id'];
 
     public function groupement()
     {

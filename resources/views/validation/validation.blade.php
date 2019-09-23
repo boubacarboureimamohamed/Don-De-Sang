@@ -18,7 +18,7 @@
 
 <div class="col-sm-12">
    <form role="form" action="{{ route('validation.store', $dossier) }}" method="POST">
-
+        <input type="hidden" value="{{ $dossier->type_poche }}" name="type_poche" id="type_poche">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
  
@@ -72,7 +72,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->typedonneur->type_donneur }}" readonly="" placeholder="">
+                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->prenom }}" readonly="" placeholder="">
                             </div>
                          </div>
                      </div>

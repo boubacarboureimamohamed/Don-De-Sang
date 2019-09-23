@@ -93,6 +93,7 @@
                 <thead>
                     <tr>
                         <th>Groupe sanguin</th>
+                        <th>Type Poche</th>
                         <th>Quantitée demandé</th>
                         <th>Quantitée livrée</th>
                         <th>Date de livraison</th>
@@ -106,6 +107,7 @@
                     @foreach ($lignes as $ligne)
                     <tr>
                         <td>{{ $ligne->groupement->groupe_sanguin }}</td>
+                        <td>{{ $ligne->type_poche }}</td>
                         <td>{{ $ligne->quantite_demandee }}</td>
                         <td>{{ $ligne->livraison ? $ligne->livraison->quantite_livree : '' }}</td>
                         <td>{{ $ligne->livraison ? $ligne->livraison->date : ''}}</td>
@@ -174,6 +176,17 @@
                         <div class="input-group">
                             <span class="input-group-addon"></span>
                             <input title="Quantité demandée" type="text" name="quantite_demandee" id="quantite_demandee" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <select title="Type de poche" name="type_poche" id="type_poche" class="form-control">
+                                    <option value="Double">Double</option>
+                                    <option value="Simple">Simple</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

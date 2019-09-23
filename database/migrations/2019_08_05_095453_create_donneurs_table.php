@@ -26,8 +26,6 @@ class CreateDonneursTable extends Migration
             $table->string('profession');
             $table->string('telephone')->unique();
             $table->string('email')->unique();
-            $table->bigInteger('typedonneur_id')->unsigned()->index();
-            $table->foreign('typedonneur_id')->references('id')->on('typedonneurs');
             $table->bigInteger('organisation_id')->unsigned()->index()->nullable();
             $table->foreign('organisation_id')->references('id')->on('organisations');
             $table->timestamps();

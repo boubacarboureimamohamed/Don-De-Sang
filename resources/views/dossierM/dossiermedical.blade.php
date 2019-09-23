@@ -17,42 +17,33 @@
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h2 style="text-align: center;">Liste des dons Refusés</h2>
+            <h3 style="text-align: center;">Liste des donneurs</h3>
         </div>
         <div class="card-block">
-            <div class="table-responsive">
+            <div  class="dt-responsive table-responsive">
                 <table id="simpletable" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
-                            <th>N° de donneur</th>
+                            <th>Numéro du donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Numéro du don</th>
                             <th>Detail</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($dons as $don)
-
-
+                        @foreach($donneurs as $donneur)
                             <tr>
-                                <td>{{ $don->donneur->num_donneur }}</td>
-                                <td>{{ $don->donneur->nom }}</td>
-                                <td>{{ $don->donneur->prenom }}</td>
-                                <td>{{ $don->num_don }}</td>
-
-
+                                <td>{{ $donneur->num_donneur }}</td>
+                                <td>{{ $donneur->nom }}</td>
+                                <td>{{ $donneur->prenom }}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
+                                    <a href="{{ route('dossierM.show_dossiermedical', $donneur->id) }}" class="btn btn-info btn-outline-info" style="float: none;margin: 5px;">
+                                    <span class="icofont icofont-eye-alt"></span></a>
                                 </td>
-
                             </tr>
-
                         @endforeach
                     </tbody>
                 </table>
-                <a href="{{ route('validation.donneur_valider') }}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
     </div>

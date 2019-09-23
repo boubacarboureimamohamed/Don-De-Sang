@@ -113,12 +113,10 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
                                 <select name="typedonneur_id" title="Selectionner le type de donneur" size="1" onChange="mafonction(this.selectedIndex);" data-toggle="tooltip" id="typedonneur_id"  class="form-control">
-                                        @foreach($ts as $t)
-                                       
-                                            <option value="{{ $t->id }}"> {{ $t->type_donneur }} </option>
-                                        @endforeach
-                                       
-                                    </select>
+                                    @foreach($ts as $t)
+                                        <option value="{{ $t->id }}"> {{ $t->type_donneur }} </option>
+                                    @endforeach
+                                </select>
                             </div>
                          </div>
                      </div>
@@ -140,7 +138,7 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                              <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
                                 <select name="situation_matrimoniale" title="Selectionner la situation matrimonial du donneur" onChange="mafonction1(this.selectedIndex);" data-toggle="tooltip" id="situation_matrimoniale" class="form-control">
                                    <option value="Célibataire">Célibataire</option>
                                    <option value="Veuf(ve)">Veuf(ve)</option>

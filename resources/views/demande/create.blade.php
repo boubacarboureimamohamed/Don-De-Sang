@@ -70,6 +70,7 @@
                             <tr>
                                 <th>Group sanguin:</th>
                                 <th>Quantité demandée:</th>
+                                <th>Type de poche:</th>
                                 <th style="text-align: center"><a href="#" class="btn btn-success btn-outline-success" id="addLigne"><i class="icofont icofont-plus"></i></a></th>
                             </tr>
                         </thead>
@@ -97,6 +98,19 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>
                                             <input type="text" name="quantite_demandee[]" id="quantite_demandee[]" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                </td>
+                                <td>
+                                <div class="col-sm-6">
+                                    <div class="form-group form-primary">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                            <select name="type_poche[]" id="type_poche[]" class="form-control">
+                                                <option value="Double">Double</option>
+                                                <option value="Simple">Simple</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -156,6 +170,19 @@ function addLigne() {
                     '<div class="input-group">'+
                         ' <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>'+
                         '<input type="text" name="quantite_demandee[]" id="quantite_demandee" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">'+
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</td>' +
+        '<td>' +
+            '<div class="col-sm-6">'+
+                '<div class="form-group form-primary">'+
+                    '<div class="input-group">'+
+                        '<span class="input-group-addon"><i class="icofont icofont"></i></span>'+
+                        '<select name="type_poche[]" id="type_poche[]" class="form-control">'+
+                            '<option value="Double">Double</option>'+
+                            '<option value="Simple">Simple</option>'+
+                        ' </select>'+
                     '</div>' +
                 '</div>' +
             '</div>' +

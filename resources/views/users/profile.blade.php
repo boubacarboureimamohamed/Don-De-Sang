@@ -1,5 +1,14 @@
 @extends('layouts.adminty')
 
+@section('css')
+
+    <!-- Multi Select css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap-multiselect.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/multiselect/css/multi-select.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/select2/css/select2.min.css') }}">
+
+@endsection
+
 @section('content')
 
 <div class="col-sm-12">
@@ -161,19 +170,19 @@
                                                                                                 <tr>
                                                                                                     <div class="input-group">
                                                                                                         <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                                                                                        <input type="date" title="Votre Date de Naissance" class="form-control" required="" placeholder="Votre Date de Naissance">
+                                                                                                        <input type="date" name="date_naiss" title="Votre Date de Naissance" value="{{ Auth::user()->date_naiss }}" class="form-control" required="" placeholder="Votre Date de Naissance">
                                                                                                     </div>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <div class="input-group">
                                                                                                         <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                                                                                        <input type="email" title="Votre Adresse" class="form-control" placeholder="Votre Adresse">
+                                                                                                        <input type="text" name="adresse" title="Votre Adresse" value="{{ Auth::user()->adresse }}" class="form-control" placeholder="Votre Adresse">
                                                                                                     </div>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <div class="input-group">
                                                                                                         <span class="input-group-addon"><i class="icofont icofont-"></i></span>
-                                                                                                        <input type="text" class="form-control" title="Votre Profession" required="" placeholder="Votre Profession">
+                                                                                                        <input type="text" class="form-control" name="profession" value="{{ Auth::user()->profession }}" title="Votre Profession" required="" placeholder="Votre Profession">
                                                                                                     </div>
                                                                                                 </tr>
                                                                                             </tbody>
@@ -197,13 +206,13 @@
                                                                                                 <tr>
                                                                                                     <div class="input-group">
                                                                                                         <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                                                                                        <input type="text" title="Votre Lieu de Naissance" class="form-control" placeholder="Votre Lieu de Naissance">
+                                                                                                        <input type="text" title="Votre Lieu de Naissance" name="lieu_naiss" value="{{ Auth::user()->lieu_naiss }}" class="form-control" placeholder="Votre Lieu de Naissance">
                                                                                                     </div>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <div class="input-group">
                                                                                                         <span class="input-group-addon"><i class="icofont icofont-mobile-phone"></i></span>
-                                                                                                        <input type="email" title="Votre Numéro de Téléphone" class="form-control" placeholder="Votre Numéro de Téléphone">
+                                                                                                        <input type="text" title="Votre Numéro de Téléphone" name="telephone" value="{{ Auth::user()->telephone }}" class="form-control" placeholder="Votre Numéro de Téléphone">
                                                                                                     </div>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -211,17 +220,35 @@
                                                                                                         <div class="group-add-on">
                                                                                                             <div class="radio radiofill radio-inline">
                                                                                                                 <label>
-                                                                                                                    <input type="radio" name="radio" checked=""><i class="helper"></i> Male
+                                                                                                                    <input type="radio" name="sexe" value="{{ Auth::user()->sexe }}" checked=""><i class="helper"></i> Homme
                                                                                                                 </label>
                                                                                                             </div>
                                                                                                             <div class="radio radiofill radio-inline">
                                                                                                                 <label>
-                                                                                                                        <input type="radio" name="radio"><i class="helper"></i> Female
+                                                                                                                        <input type="radio" name="sexe" value="{{ Auth::user()->sexe }}"><i class="helper"></i> Femme
                                                                                                                     </label>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </tr>
+                                                                                                {{-- <tr>
+                                                                                                    <!-- Multi-select start -->
+                                                                                                    <div class="card">
+                                                                                                        <div class="card-block">
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-sm-12">
+                                                                                                                    <h4 class="sub-title">Rôles</h4>
+                                                                                                                    <select id='custom-headers' class="searchable" name="roles[]" multiple='multiple'>
+                                                                                                                        @foreach (Auth::user()->roles as $role)
+                                                                                                                            <option @if(in_array($role->id, Auth::user()->roles->pluck('id')->toArray())) {{ 'selected' }} @endif value='{{ $role->id }}'>{{ $role->name }}</option>
+                                                                                                                        @endforeach
+                                                                                                                    </select>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <!-- Multi-select end -->
+                                                                                                </tr> --}}
                                                                                             </tbody>
                                                                                         </table>
                                                                                     </div>
@@ -377,13 +404,15 @@
 
 @section('js')
 
-
+    <!-- Multiselect js -->
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap-multiselect.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.quicksearch.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/select2/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/select2/js/select2-custom.js') }}"></script>
     <script src="{{ asset('js/user-profile.js') }}"></script>
     <!-- ck editor -->
     <script type="text/javascript" src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/ckeditor/ckeditor-custom.js') }}"></script>
-        <!-- data-table js -->
-    <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 
 @endsection

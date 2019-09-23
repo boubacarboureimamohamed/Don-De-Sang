@@ -15,6 +15,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "milon/barcode": "^6.0",
         "spatie/laravel-permission": "^2.37",
         "twilio/sdk": "^5.35"
     },
@@ -73,6 +74,6 @@
           "url": "https://packagist.org"
         }
       }
-    
+
 
 }
