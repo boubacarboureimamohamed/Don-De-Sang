@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::post('donneurs/situation', 'DonneurController@storesituation')->name('donneurs.storesituation');
 
+        Route::post('donneurs/{situation}/situation', 'DonneurController@updatesituation')->name('donneurs.updatesituation');
+
         Route::post('donneurs/typedonneur', 'DonneurController@storetypedonneur')->name('donneurs.storetypedonneur');
 
         Route::get('donneurs', 'DonneurController@index')->name('donneurs.index');

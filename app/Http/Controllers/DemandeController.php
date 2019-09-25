@@ -115,7 +115,8 @@ class DemandeController extends Controller
     public function livraison(Request $request, LigneDemande $ligne)
     {
         $quantite = $ligne->quantite_demandee;
-        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->get();
+        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
+        //dd($last);
         $this->validate($request, [
             'quantite_livree' => 'required|integer|max:'.$quantite,
         ]);
@@ -127,18 +128,19 @@ class DemandeController extends Controller
                         'date' => $request->date
                     ]);
 
-                    Stock::create([
+                   $t= Stock::create([
                         'groupement_id' => $request->groupement_id,
+                        'type_poche' => $request->type_poche,
                         'quantite_sortie' => $request->quantite_livree,
                         'quantite_reelle' => $last[0]->quantite_reelle - $request->quantite_livree
                     ]);
                     $ligne->update([
                         'livraison_id' => $livraison->id
                     ]);
-                }else { return $request->session()->flash('warning', 'c pas marché'); }
+                }else { return back()->with('error', 'La quantité en stock et inférieur à la quantité livrée!'); }
             }else{
-                return $request->session()->flash('warning', 'c pas marché');
+                return back()->with('error', 'Le stock n!');
             }
-        return redirect()->back();
+        return back();
     }
 }

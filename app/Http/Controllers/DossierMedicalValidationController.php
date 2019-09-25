@@ -61,7 +61,7 @@ class DossierMedicalValidationController extends Controller
     {
         $stocks = DB::select(" SELECT * FROM
         (
-            select t1.groupe_sanguin AS 'groupe_sanguin',t1.type_poche AS 'simple',t1.quantite_reelle AS 	           'simple_qte',t2.type_poche AS 'double',t2.quantite_reelle AS 'double_qte'
+            select t1.groupe_sanguin AS 'groupe_sanguin',t1.type_poche AS 'simple',t1.quantite_reelle AS 'simple_qte',t2.type_poche AS 'double',t2.quantite_reelle AS 'double_qte'
             from
             (SELECT g.groupe_sanguin, s.type_poche, s.quantite_reelle
                     FROM stocks s, groupements g
