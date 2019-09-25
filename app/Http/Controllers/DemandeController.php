@@ -34,6 +34,7 @@ class DemandeController extends Controller
         for($j=0; $j < count($request->groupement); $j++) {
         LigneDemande::create([
             'quantite_demandee' => $request->quantite_demandee[$j],
+            'type_poche' => $request->type_poche[$j],
             'demande_id' => $demande->id,
             'groupement_id' => $request->groupement[$j]
         ]);
@@ -48,11 +49,13 @@ class DemandeController extends Controller
     }
     public function show(Demande $demande)
     {
-        $lignes = LigneDemande::where('demande_id',$demande->id)->with('groupement')->where('livraison_id',null)->get();
+        $lignes = LigneDemande::where('demande_id',$demande->id)->with('groupement','livraison')->get();
         $groupements = Groupement::all();
+        $lignenonlivree = LigneDemande::with('livraison','groupement')->where('livraison_id', null)->get();
+        /* dd($demandelivrees); */
         /* $de = Demande::with('beneficiaire')->whereId($demande->id)->get(); */
         /* dd($lignes); */
-        return view('demande.show',compact('lignes','demande','groupements'));
+        return view('demande.show',compact('lignes','lignenonlivree','groupements','demande'));
     }
     public function edit($id)
     {
@@ -77,7 +80,7 @@ class DemandeController extends Controller
     }
     public function lignestore(Request $request)
     {
-       $ligne = LigneDemande::where('demande_id', $request->demande_id)->where('groupement_id', $request->groupement_id)->get();
+       $ligne = LigneDemande::where('demande_id', $request->demande_id)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
 
        if(isset($ligne[0]))
        {
@@ -125,6 +128,7 @@ class DemandeController extends Controller
                     ]);
 
                     Stock::create([
+                        'groupement_id' => $request->groupement_id,
                         'quantite_sortie' => $request->quantite_livree,
                         'quantite_reelle' => $last[0]->quantite_reelle - $request->quantite_livree
                     ]);
@@ -136,10 +140,5 @@ class DemandeController extends Controller
                 return $request->session()->flash('warning', 'c pas marché');
             }
         return redirect()->back();
-    }
-    public function demandelivree()
-    {
-        $demandelivrees = LigneDemande::with('livraison')->whereNotNull('livraison_id');
-        return view('demande.demandelivree', compact('demandelivrees'));
     }
 }

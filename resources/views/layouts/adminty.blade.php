@@ -42,6 +42,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
     <!-- sweet alert framework -->
     <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/css/sweetalert.css') }}">
+    <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/animate.css/css/animate.css') }}">
+    <!-- Notification.css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/notification/notification.css') }}">
     <!-- animation nifty modal window effects css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/component.css') }}">
     <!-- Data Table Css -->
@@ -340,6 +344,9 @@
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
 <!-- sweet alert js -->
 <script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert.min.js') }}"></script>
+ <!-- notification js -->
+ <script type="text/javascript" src="{{ asset('bower_components/notification/notification.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap-growl.min.js') }}"></script>
 <script src="{{ asset('js/modal.js') }}"></script>
     <!-- sweet alert modal.js intialize js -->
     <!-- modalEffects js nifty modal window effects -->

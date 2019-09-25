@@ -89,8 +89,22 @@ class SeuilSmsController extends Controller
      */
     public function store(Request $request)
     {
+        if(empty($request->groupe))
+        {
+            return redirect(route('seuilsms.create'))->with('error', 'Vous devez sélectionner au moins un groupe sanguin!', 'error');
+        }
         $message = $request->message;
         $groupe = implode("," , $request->groupe);
+        
+    
+        $messageErreur = [
+            'message.required' => 'Le message ne doit pas être vide!'
+            
+        ];
+        $validation =  $this->validate($request, [
+            'message' => 'required'
+        ],  $messageErreur);
+      
 
         $donneurs = DB::select("select donneurs.telephone, donneurs.nom, donneurs.prenom, dossier_medicals.created_at as date_dernier_don from donneurs, dossier_medicals 
         where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id in (select max(id) 

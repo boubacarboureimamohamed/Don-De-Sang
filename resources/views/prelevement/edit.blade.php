@@ -75,7 +75,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select id="" title="Entrer le type de prélèvement" data-toggle="tooltip" type="text" class="form-control" placeholder="type de prélèment" name="type_prelevement" required="" placeholder="Type de Prélèvement" class="form-control form-control-default">
+                                <select id="" title="Entrer le type de prélèvement" data-toggle="tooltip" type="text" class="form-control" placeholder="type de prélèment" name="type_prelevement"  placeholder="Type de Prélèvement" class="form-control form-control-default">
                                     <option value="Normale">Normal</option>
                                     <option value="Anormale">Anormale</option>
                                 </select>
@@ -96,7 +96,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                  <span class="input-group-addon"><i class="icofont icofont"></i></i></span>
-                                 <select type="text" title="Entrer le type de poche" data-toggle="tooltip" class="form-control" placeholder="Type de poche" name="type_poche" required="" placeholder="Type de Poche" class="form-control form-control-default">
+                                 <select type="text" title="Entrer le type de poche" data-toggle="tooltip" class="form-control" placeholder="Type de poche" name="type_poche"  placeholder="Type de Poche" class="form-control form-control-default">
                                     <option value="Double">Double</option>
                                     <option value="Simple">Simple</option>
                                 </select>

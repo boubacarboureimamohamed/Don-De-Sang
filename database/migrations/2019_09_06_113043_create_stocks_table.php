@@ -17,6 +17,7 @@ class CreateStocksTable extends Migration
             $table->bigIncrements('id');
             $table->integer('quantite_sortie')->nullable();
             $table->integer('quantite_reelle');
+            $table->string('type_poche');
             $table->bigInteger('groupement_id')->unsigned()->index();
             $table->foreign('groupement_id')->references('id')->on('groupements');
             $table->timestamps();

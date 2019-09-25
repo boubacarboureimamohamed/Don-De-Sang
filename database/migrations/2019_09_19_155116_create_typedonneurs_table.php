@@ -18,6 +18,16 @@ class CreateTypedonneursTable extends Migration
             $table->string('type_donneur');
             $table->timestamps();
         });
+
+        Schema::create('typedonneur_donneur', function (Blueprint $table) {
+            $table->increments('id');
+            $table->date('date');
+            $table->bigInteger('typedonneur_id')->unsigned()->index();
+            $table->foreign('typedonneur_id')->references('id')->on('typedonneurs')->onDelete('cascade');
+            $table->bigInteger('donneur_id')->unsigned()->index();
+            $table->foreign('donneur_id')->references('id')->on('donneurs')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**

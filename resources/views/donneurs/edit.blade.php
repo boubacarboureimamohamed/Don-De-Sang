@@ -149,7 +149,25 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                        <input type="text" title="Entrer l'adresse du donneur" data-toggle="tooltip" id="adresse" name="adresse" class="form-control" value="{{ $donneur->adresse }}" required="" placeholder="Adresse domicile">
+                                <input type="text" title="Entrer l'adresse du donneur" data-toggle="tooltip" id="adresse" name="adresse" class="form-control" value="{{ $donneur->adresse }}" required="" placeholder="Adresse domicile">
+                            </div>
+                         </div>
+                     </div>
+                     <div class="col-sm-6"> 
+                         <div class="form-group form-primary">
+                            <div class="form-radio">
+                                <div class="group-add-on">
+                                    <div class="radio radiofill radio-inline">
+                                      <label >
+                                        <input type="radio"  id="homme" name="situationmariee" value="homme"><i class="helper"></i> Monogame
+                                      </label>
+                                    </div>
+                                    <div class="radio radiofill radio-inline" id="femme">
+                                       <label >
+                                          <input type="radio" name="situationmariee" id="sexe"  name="sexe" value="femme"><i class="helper"></i> Polygame
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                          </div>
                      </div>
@@ -163,7 +181,7 @@
                             </div>
                          </div>
                      </div>
-                     <div class="col-sm-6" style="display:none;" id="divorg">
+                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                  <span class="input-group-addon"><i class="icofont icofont"></i></span>
@@ -210,40 +228,7 @@
 
 @section('js')
 
-<script type="text/javascript">
-	function mafonction(i) {
-		var divorg = document.getElementById('divorg');
-		switch(i) {
-			case 2 : divorg.style.display = ''; break;
-			default: divorg.style.display = 'none'; break;
-		}
-	}
-</script>
- <script type="text/javascript">
-	function mafonction1(i) {
-		var divS = document.getElementById('divS');
-		switch(i) {
-            case 0 : divS.style.display = 'none'; break;
-            case 1 : divS.style.display = 'none'; break;
-            case 2 : divS.style.display = 'none'; break;
-            case 3 : divS.style.display = ''; break;
-			default: divS.style.display = 'none'; break;
-		}
-	}
-</script>
 
-<script>
-$(document).ready(function(){
-  $('#divS').hide();
-$('#femme').click(function(){
-$('#divS').hide();
-});
-$('#homme').click(function(){
-$('#divS').show();
-});
-});
-
-</script>
 
 
 @endsection

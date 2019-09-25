@@ -28,7 +28,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                <textarea name="message" id="" cols="60" title="entrez le message a envoyer" rows="2" placeholder="Ecrivez le message" ></textarea>
+                                <textarea name="message" id="" value="{{ old('message') }}" cols="60" title="entrez le message a envoyer" rows="1" placeholder="Ecrivez le message" ></textarea>
                             </div>
                                <h4 class="sub-title">Groupe Sanguin</h4>
                                 <select id='custom-headers' class="searchable" name="groupe[]" multiple='multiple'>
@@ -51,42 +51,7 @@
             </div>
             
         </div>
-        <div class="col-lg-6">
-            <div class="card user-card">
-                <div class="card-header">
-                    <h5>Stock des poches de sang</h5>
-                </div>
-                <div class="card-block">
-                    <div class="top-cap-text">
-                        <div class="dt-responsive table-responsive">
-                        <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Groupe Sanguin</th>
-                            <th>Quantité en stock</th>
-                            <th>Seuil</th>
-                            <th>Modifier</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($stocks as $stock)
-                            <tr>
-                                <td>{{ $stock->groupe_sanguin }}</td>
-                                <td>{{ $stock->quantite_reelle }}</td>
-                                <td>{{ $stock->seuil }}</td>
-                                 <td>
-                                    <a href="#" class="btn btn-primary btn-outline-primary" style="float: none;margin: 5px;">
-                                    <span class="icofont icofont-ui-edit"></span></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
     <!-- end of row -->
     <!-- Inverse Image Caps card end -->

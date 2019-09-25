@@ -31,13 +31,27 @@ class DossierMedicalPrelevementController extends Controller
     }
     public function store(Request $request, DossierMedical $dossier)
     {
+        $messageErreur = [
+            'quantite_prelevee.required' => 'La quantité prélevée est obligatoire!',
+            'quantite_prelevee.integer' => 'La quantité prélevée ne doit contenir que des chiffres!',
+            'quantite_prelevee.max' => 'La quantité prélevée doit inférieur ou égale à la quantité à prélevée!'
+        ];
+
         $quantite_prelevve = $dossier->quantite_a_prelevee;
-        $this->validate($request, [
-            'type_prelevement' => 'required|string',
-            'type_poche' => 'required|string',
-            'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve,
-            'observation_prelevement' => 'required|string'
-        ]);
+      $validation =  $this->validate($request, [
+            'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve
+        ],  $messageErreur);
+
+        if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
+
+
+
         $dossier->update([
             'type_prelevement' => $request->type_prelevement,
             'type_poche' => $request->type_poche,
@@ -45,6 +59,7 @@ class DossierMedicalPrelevementController extends Controller
             'quantite_prelevee' => $request->quantite_prelevee,
             'date_heure_prelevement' => date('Y-m-d')
         ]);
+
 
 //         $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
 //         $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
@@ -68,17 +83,14 @@ class DossierMedicalPrelevementController extends Controller
 //             echo "Error: " . $e->getMessage();
 //         } 
 
-
-$data = ['link' => ''];
  
-    \Mail::send('prelevement.message', $data, function ($message) use($dossier) {
+    \Mail::send('prelevement.message', [ ], function ($message) use($dossier) {
  
         $message->from('ammahamadou94@gmail.com', 'team synetcom');
  
         $message->to($dossier->donneur->email)->subject('Notification');
  
     });
-
 
 
         return redirect(route('prelevement.donneur_apte_a_prelevee'));
@@ -99,12 +111,24 @@ $data = ['link' => ''];
     }
     public function update(Request $request, DossierMedical $prelevement)
     {
-        $this->validate($request, [
-            'type_prelevement' => 'required|string',
-            'type_poche' => 'required|string',
-            'quantite_prelevee' => 'required|integer',
-            'observation_prelevement' => 'required|string'
-        ]);
+        $messageErreur = [
+            'quantite_prelevee.required' => 'La quantité prélevée est obligatoire!',
+            'quantite_prelevee.integer' => 'La quantité prélevée ne doit contenir que des chiffres!',
+            'quantite_prelevee.max' => 'La quantité prélevée doit inférieur ou égale à la quantité à prélevée!'
+            
+        ];
+        $quantite_prelevve = $dossier->quantite_a_prelevee;
+         $validation =   $this->validate($request, [
+        'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve
+     ], $messageErreur);
+
+     if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
         $prelevement->update([
             'type_prelevement' => $request->type_prelevement,
             'type_poche' => $request->type_poche,

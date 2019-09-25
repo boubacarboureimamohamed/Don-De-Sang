@@ -1,6 +1,5 @@
 @extends('layouts.adminty')
 @section('css')
-
   <!-- jpro forms css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
@@ -13,7 +12,6 @@
 @section('content')
 <div class="col-sm-12">
 <div class="page-body">
-
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-block">

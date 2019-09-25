@@ -6,12 +6,15 @@
 
             <div class="card user-card">
                 <div class="card-header">
-                    <h3>Groupe sanguin avec leurs seuil minimal</h3>
+                <div class="col-md-12">
+                          <h3 class="text-center txt-primary">{{ ('Groupe sanguin avec leurs seuil minimal') }}</h3>
+                     </div>
+                    
                 </div>
                 <div class="card-block">
                     <div class="top-cap-text">
                         <div class="table-responsive">
-                <table class="table table-sm">
+                <table  class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
                             <th scope="row">Groupe Sanguin</th>

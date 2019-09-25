@@ -30,6 +30,7 @@
                             @php
                             $color = 'pink';
                             @endphp
+
                             @break;
                         @case('B+')
                             @php
@@ -48,17 +49,17 @@
                             @break;
                         @case('A-')
                             @php
-                            $color = 'orange';
+                            $color = 'pink';
                             @endphp
                             @break;
                         @case('B-')
                             @php
-                            $color = 'white';
+                            $color = 'yellow';
                             @endphp
                             @break;
                         @case('AB-')
                             @php
-                            $color = 'Purple';
+                            $color = 'green';
                             @endphp
                             @break;
                         @case('O-')
@@ -82,7 +83,8 @@
                                 <div class="card-footer bg-c-{{$color}}">
                                     <div class="row align-items-center">
                                         <div class="col-9">
-                                            <p class="text-white m-b-0">{{ $stock->quantite_reelle }}</p>
+                                            <p class="text-white m-b-0">{{ $stock->simple}} : {{ $stock->simple_qte }}</p>
+                                            <p class="text-white m-b-0">{{ $stock->double}} : {{ $stock->double_qte }}</p>
                                         </div>
                                     </div>
                                 </div>

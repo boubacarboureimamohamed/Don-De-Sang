@@ -16,6 +16,7 @@ class CreateLigneDemandesTable extends Migration
         Schema::create('ligne_demandes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('quantite_demandee');
+            $table->string('type_poche');
             $table->bigInteger('demande_id')->unsigned()->index();
             $table->foreign('demande_id')->references('id')->on('demandes');
             $table->bigInteger('groupement_id')->unsigned()->index();

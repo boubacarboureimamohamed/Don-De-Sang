@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Donneur;
 use App\Models\DossierMedical;
@@ -11,7 +12,7 @@ class DossierMedicalRSMController extends Controller
 {
     public function index()
     {
-        $donneurs = Donneur::with('typedonneur','situationmats','organisation','dossierMedicals')->get();
+        $donneurs = Donneur::with('typedonneurs','situationmats','organisation','dossierMedicals')->get();
 
         $donneurs = $donneurs->filter(function($donneur) {
 
@@ -36,14 +37,44 @@ class DossierMedicalRSMController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, [
+        
+        $messageErreur = 
+        [
+            'poid.required' => 'Le poid du donnneur est réquis!',
+            'poid.integer' => 'Le poid du donneur ne doit contenir que des chiffres!',
+            'temperature.required' => 'La témperature du donneur est réquise',
+            'temperature.numeric' => 'La température du donneur ne doit contenir que des chiffres ou des chiffres à virgule!',
+            'temperature.max' => 'La température du donneur ne doit pas dépasser 3 caracteres!',
+            'tension_arterielle.integer' => 'La tension artérielle du donneur ne doit contenir que des chiffres!',
+            'tension_arterielle.required' => 'La tension artérielle du donneur est réquise!',
+            'tension_arterielle.max' => 'La tension artérielle du donneur ne doit pas dépasser 3 chiffres',
+            'quantite_a_prelevee.integer' => 'La quantité à prelevée ne doit contenir que des chiffres!',
+            'quantite_a_prelevee.required' => 'La quantité à prélevée est réquise!',
+            'quantite_a_prelevee.max' => 'La quantité à prélevée ne doit pas dépasser 3 caracteres!',
+            'quantite_a_prelevee.min' => 'La quantité à prélevée doit contenir au moins 3 caracteres !',
+            'approbation.required' => 'L approbation est réquis!'
+               
+        ];
+
+        $validation = $this->validate($request, [
             'poid' => 'required|integer',
-            'temperature' => 'required|integer',
-            'tension_arterielle' => 'required|integer',
-            'observation_approbation' => 'required|string',
-            'quantite_a_prelevee' => 'required|integer',
+            'temperature' => 'required|numeric|max:3',
+            'tension_arterielle' => 'required|integer|max:3',
+            'observation_approbation' => 'string',
+            'quantite_a_prelevee' => 'required|integer|max:3',
             'approbation' => 'required',
-        ]);
+        ], $messageErreur);
+
+        if($validation->fails())
+        {
+            $returnData = array(
+                'status'=>'error',
+                'message'=>'veuillez revoir les champs',
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
+
         $dossier = DossierMedical::create([
             'poid' => $request->poid,
             'temperature' => $request->temperature,
@@ -102,14 +133,40 @@ class DossierMedicalRSMController extends Controller
 
     public function update_donneursexaminer(Request $request, DossierMedical $donneurexaminer)
     {
+        $messageErreur = 
+        [
+            'poid.required' => 'Le poid du donnneur est réquis!',
+            'poid.integer' => 'Le poid du donneur ne doit contenir que des chiffres!',
+            'temperature.required' => 'La témperature du donneur est réquise',
+            'temperature.integer' => 'La température du donneur ne doit contenir que des chiffres ou des chiffres à virgule!',
+            'temperature.max' => 'La température du donneur ne doit pas dépasser 3 caracteres!',
+            'tension_arterielle.integer' => 'La tension artérielle du donneur ne doit contenir que des chiffres!',
+            'tension_arterielle.required' => 'La tension artérielle du donneur est réquise!',
+            'tension_arterielle.max' => 'La tension artérielle du donneur ne doit pas dépasser 3 chiffres',
+            'quantite_a_prelevee.integer' => 'La quantité à prelevée ne doit contenir que des chiffres!',
+            'quantite_a_prelevee.required' => 'La quantité à prélevée est réquise!',
+            'quantite_a_prelevee.max' => 'La quantité à prélevée ne doit pas dépasser 3 caracteres!',
+            'quantite_a_prelevee.min' => 'La quantité à prélevée doit contenir au moins 3 caracteres !',
+            'approbation.required' => 'L approbation est réquis!',    
+        ];
         $this->validate($request, [
             'poid' => 'required|integer',
-            'temperature' => 'required|integer',
-            'tension_arterielle' => 'required|integer',
-            'observation_approbation' => 'required|string',
-            'quantite_a_prelevee' => 'required|integer',
+            'temperature' => 'required|integer|max:3',
+            'tension_arterielle' => 'required|integer|max:3',
+            'observation_approbation' => 'string',
+            'quantite_a_prelevee' => 'required|integer|max:3|min:3',
             'approbation' => 'required',
-        ]);
+        ], $messageErreur);
+
+        if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
+
+
         $donneurexaminer->update([
         'poid'=>$request->poid,
         'temperature'=>$request->temperature,
@@ -127,6 +184,22 @@ class DossierMedicalRSMController extends Controller
     public function destroy($id)
     {
         Donneur::destroy($id);
+    }
+    
+    public function dossiermedical()
+    {
+        $donneurs = DB::select("SELECT  DISTINCT d.id, d.num_donneur, d.nom, d.prenom 
+                                FROM donneurs d, dossier_medicals dm 
+                                WHERE dm.donneur_id =d.id" 
+                              );
+        return view('dossierM.dossiermedical', compact('donneurs'));
+    }
+    public function show_dossiermedical(DossierMedical $donneur)
+    {
+        $dossiers = DossierMedical::with('donneur')->where('donneur_id', $donneur->id)->get();
+        $donneur = Donneur::where('id', $donneur->id)->get()[0];
+        //dd($dossiers);
+        return view('dossierM.show_dossiermedical',compact('dossiers','donneur'));
     }
 
 }

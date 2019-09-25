@@ -21,32 +21,68 @@ class DonneurController extends Controller
 
     public function store(Request $request)
     {
-       /*  $this->validate($request, [
-            'nom' => 'required|max:255',
-            'prenom' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:donneurs',
-            'lieu_naiss' => 'required|string|max:255',
+        
+        $messageErreur = 
+        [
+            'nom.required' => 'Le nom du donnneur est réquis!',
+            'nom.alpha' => 'Le nom du donneur ne doit contenir que des lettres!',
+            'nom.max' => 'Le nom du donneur ne doit pas dépasser 50 caracteres!',
+            'prenom.required' => 'Le prénom du donnneur est réquis!',
+            'prenom.alpha' => 'Le prenom du donneur ne doit contenir que des lettres!',
+            'prenom.max' => 'Le prénom du donneur ne doit pas dépasser 50 caracteres!',
+            'email.max' => 'Adresse mail ne doit pas dépasser 30 caracteres!',
+            'email.unique' => 'Adresse mail doit être unique!',
+            'email.email' => 'Adresse mail doit être valide!',
+            'lieu_naiss.required' => 'Le lieu de naissance du donneur est réquis!',
+            'lieu_naiss.max' => 'Le lieu de naissance du donneur ne doit pas dépasser 20 caracteres!',
+            'sexe.required' => 'Le sexe du donneur est réquis!',
+            'adresse.required' =>'Adresse du donneur est réquis!',
+            'nationalite.required' => 'La nationnalité du donneur est réquis!',
+            'nationalite.alpha' => 'La nationalité du donneur ne doit contenir que des lettres!',
+            'profession.required' => 'La profession du donneur est réquis!',
+            'profession.alpha' => 'La profession du donneur ne doit contenir que des lettres!',
+            'telephone.required' => 'Le numero du telephone du donneur est réquis!',
+            'telephone.max' => 'Le numéro du telephone du donneur ne doit pas dépasser 8 chiffres!',
+            'date_naiss.required' => 'La date de naissance de donneur est réquise!'
+            
+        ];
+      $validation =  $this->validate($request, 
+      [
+            'nom' => 'required|alpha|max:50',
+            'prenom' => 'required|alpha|max:50',
+            'email' => 'email|max:30|unique:donneurs',
+            'lieu_naiss' => 'required|string',
             'sexe' => 'required',
             'adresse' => 'required|string',
-            'nationalite' => 'required|string',
-            'profession' => 'required|string',
-             'telephone' => 'required|integer|max:8|min:8'
-        ]); */
+            'nationalite' => 'required|alpha',
+            'profession' => 'required|alpha',
+            'telephone' => 'required|string|max:15|',
+            'date_naiss' => 'required|date'
+
+        ], $messageErreur);
+        if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
         $donneur= Donneur::create($request->all());
         $donneur->update([
             'num_donneur' => 'DO/' . date('Ymd') . '/' . $donneur->id
         ]);
-       SituationMat::create([
+       $situation = SituationMat::create([
                 'situation_matrimoniale'=>$request->situation_matrimoniale,
                 'situationmariee'=>$request->situationmariee
         ]);
-        $donneur->situationmats()->attach($request->situation_mat_id,['date' => date('Y-m-d')]);
+        $donneur->typedonneurs()->attach($request->typedonneur_id,['date' => date('Y-m-d')]);
+        $donneur->situationmats()->attach($situation->id,['date' => date('Y-m-d')]);
 
         return redirect(route('donneurs.index'))->with('success', 'Lenregistrement a été effetué avec succés!');
     }
     public function index()
     {
-        $donneurs = Donneur::with('typedonneur','situationmats','organisation','dossierMedicals')->get();
+        $donneurs = Donneur::with('typedonneurs','situationmats','organisation','dossierMedicals')->get();
 
         $donneursapreleves = $donneurs->filter(function($donneur) {
             $last = $donneur->dossierMedicals->last();
@@ -81,17 +117,53 @@ class DonneurController extends Controller
 
     public function update(Request $request, Donneur $donneur)
     {
-        // $this->validate($request, [
-        //     'nom' => 'required|max:255',
-        //     'prenom' => 'required|string|max:255',
-        //     'email' => 'required|email|max:255|unique:donneurs',
-        //     'lieu_naiss' => 'required|string|max:255',
-        //     'sexe' => 'required',
-        //     'adresse' => 'required|string',
-        //     'nationalite' => 'required|string',
-        //     'profession' => 'required|string',
-        //      'telephone' => 'required|integer|max:8|min:8'
-        // ]);
+        $messageErreur = 
+        [
+            'nom.required' => 'Le nom du donnneur est réquis!',
+            'nom.alpha' => 'Le nom du donneur ne doit contenir que des lettres!',
+            'nom.max' => 'Le nom du donneur ne doit pas dépasser 50 caracteres!',
+            'prenom.required' => 'Le prénom du donnneur est réquis!',
+            'prenom.alpha' => 'Le prenom du donneur ne doit contenir que des lettres!',
+            'prenom.max' => 'Le prénom du donneur ne doit pas dépasser 50 caracteres!',
+            'email.max' => 'Adresse mail ne doit pas dépasser 30 caracteres!',
+            'email.unique' => 'Adresse mail doit être unique!',
+            'email.email' => 'Adresse mail doit être valide!',
+            'lieu_naiss.required' => 'Le lieu de naissance du donneur est réquis!',
+            'lieu_naiss.max' => 'Le lieu de naissance du donneur ne doit pas dépasser 20 caracteres!',
+            'sexe.required' => 'Le sexe du donneur est réquis!',
+            'adresse.required' =>'Adresse du donneur est réquis!',
+            'nationalite.required' => 'La nationnalité du donneur est réquis!',
+            'nationalite.alpha' => 'La nationalité du donneur ne doit contenir que des lettres!',
+            'profession.required' => 'La profession du donneur est réquis!',
+            'profession.alpha' => 'La profession du donneur ne doit contenir que des lettres!',
+            'telephone.required' => 'Le numero du telephone du donneur est réquis!',
+            'telephone.max' => 'Le numéro du telephone du donneur ne doit pas dépasser 8 chiffres!',
+            'date_naiss.required' => 'La date de naissance de donneur est réquise!'
+        ];
+
+        $validation = $this->validate($request, [
+            'nom' => 'required|alpha|max:50',
+            'prenom' => 'required|alpha|max:50',
+            'email' => 'email|max:30|unique:donneurs',
+            'lieu_naiss' => 'required|string',
+            'sexe' => 'required',
+            'adresse' => 'required|string',
+            'nationalite' => 'required|alpha',
+            'profession' => 'required|alpha',
+            'telephone' => 'required|string|max:15|',
+            'date_naiss' => 'required|date'
+        ],$messageErreur);
+
+        if($validation->fails())
+        {
+            $returnData = array(
+                'status'=>'error',
+                'message'=>'veuillez revoir les champs',
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
+
         $donneur->update([
             'nom' => $request->nom,
             'PrenomA' => $request->PrenomA,
@@ -99,6 +171,8 @@ class DonneurController extends Controller
             'lieu_naiss' => $request->lieu_naiss,
             'date_naiss,' => $request->date_naiss,
             'sexe' => $request->sexe,
+            'situationmariee' => $request->situationmariee,
+            'situation_matrimoniale' => $request->situation_matrimoniale,
             'adresse' => $request->adresse,
             'nationalite' => $request->nationalite,
             'profession' => $request->profession,
@@ -114,9 +188,26 @@ class DonneurController extends Controller
 
     public function show(Donneur $donneur)
     {
-        $as = Donneur::with('situationmats')->whereId($donneur->id)->get()[0];
-        $ls = Donneur::with('typedonneur','organisation')->whereId($donneur->id)->get()[0];
-        return view('donneurs.show', compact('as','ls'));
+        $ts = Typedonneur::all();
+        $as = Donneur::with('situationmats','typedonneurs')->whereId($donneur->id)->get()[0];
+        $ls = Donneur::with('organisation')->whereId($donneur->id)->get()[0];
+        return view('donneurs.show', compact('as','ls','ts'));
     }
-
+    
+    public function storesituation(Request $request) 
+    {
+        $donneur = Donneur::find($request->donneur);
+        $situation = SituationMat::create([
+            'situation_matrimoniale'=>$request->situation_matrimoniale,
+            'situationmariee'=>$request->situationmariee
+        ]);
+    $donneur->situationmats()->attach($situation->id,['date' => date('Y-m-d')]);
+    return back();
+    }
+    public function storetypedonneur(Request $request) 
+    {
+        $donneur = Donneur::find($request->donneur);
+        $donneur->typedonneurs()->attach($request->typedonneur_id,['date' => date('Y-m-d')]);
+    return back();
+    }
 }

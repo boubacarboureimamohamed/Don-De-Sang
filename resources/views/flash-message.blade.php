@@ -20,11 +20,16 @@ $(document).ready(function(){
 	@endif
 
 	@if (Session::has('success'))
-	swal('succès', '{{Session::get("success")}}', 'success')
+	swal('Succés!', '{{Session::get("success")}}', 'success')
 	@endif
 
 	@if (Session::has('error'))
-	swal('error', '{{Session::get("error")}}', 'error')
+	swal('Erreur', '{{Session::get("error")}}', 'error')
+	@endif
+
+
+	@if ($errors->any())
+	swal('Erreur!', `@foreach($errors->all() as $error) {{ $error . "\n" }} @endforeach`, 'error')
 	@endif
 
  $('#sms').click(function(){

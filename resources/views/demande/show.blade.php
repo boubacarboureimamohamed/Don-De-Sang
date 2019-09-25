@@ -73,12 +73,6 @@
                                                         @endcan
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row"> </th>
-                                                    <td>
-                                                        <button type="button" class="btn btn-success btn-outline-success" data-toggle="modal" data-target="#Modaldemandelivree" id="open">Ligne Livrée</button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -99,7 +93,10 @@
                 <thead>
                     <tr>
                         <th>Groupe sanguin</th>
+                        <th>Type Poche</th>
                         <th>Quantitée demandé</th>
+                        <th>Quantitée livrée</th>
+                        <th>Date de livraison</th>
                             @can('supprimer_ligne_demande')
                         <th>supprimer</th>
                             @endcan
@@ -110,7 +107,10 @@
                     @foreach ($lignes as $ligne)
                     <tr>
                         <td>{{ $ligne->groupement->groupe_sanguin }}</td>
+                        <td>{{ $ligne->type_poche }}</td>
                         <td>{{ $ligne->quantite_demandee }}</td>
+                        <td>{{ $ligne->livraison ? $ligne->livraison->quantite_livree : '' }}</td>
+                        <td>{{ $ligne->livraison ? $ligne->livraison->date : ''}}</td>
                             @can('supprimer_ligne_demande')
                         <td>
                             <form method="POST" action="{{ route('ligne.lignedestroy', $ligne) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
@@ -123,17 +123,19 @@
                         </td>
                             @endcan
                         <td>
+                         @if($lignenonlivree->contains($ligne))
                             <a href="#"
                             id="l{{ $ligne->id }}" data-toggle="modal" data-target="#LivreerModal"
                             data-route="{{ route('demande.livraison', $ligne->id) }}"
                             data-group_sanguinL="{{ $ligne->groupement_id}}"
                             data-quantiteL="{{ $ligne->quantite_demandee }}"
                             onclick="updateL('#l{{ $ligne->id }}')"
-                            class="btn btn-success btn-outline-success"><i class="icofont icofont-"></i>
+                            class="btn btn-success btn-outline-success"><i class="icofont icofont-truck-loaded"></i>
                             </a>
+                        @endif
                         </td>
                     </tr>
-                    @endforeach
+                @endforeach
                 </tbody>
                 </table>
                 <a href="{{ route('demande.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
@@ -172,8 +174,19 @@
                     </div>
                     <div class="form-group form-primary">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                            <span class="input-group-addon"></span>
                             <input title="Quantité demandée" type="text" name="quantite_demandee" id="quantite_demandee" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <select title="Type de poche" name="type_poche" id="type_poche" class="form-control">
+                                    <option value="Double">Double</option>
+                                    <option value="Simple">Simple</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -215,7 +228,7 @@
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                            <span class="input-group-addon"></span>
                             <input title="Quantité demandée" type="text" name="quantite_demandee" id="quantite_demandeeLivree" readonly="" class="form-control">
                         </div>
                     </div>
@@ -225,7 +238,7 @@
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                            <span class="input-group-addon"></span>
                             <input title="Quantité livrée" type="text" name="quantite_livree" id="livreeLivreer" class="form-control">
                         </div>
                     </div>
@@ -233,7 +246,7 @@
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
+                            <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
                             <input title="Date de livraison" type="date" name="date" id="date_livraisonLivreer" class="form-control">
                         </div>
                     </div>
@@ -248,8 +261,6 @@
     </div>
     </div>
 </form>
-
-
 @endsection
 
 @section('js')

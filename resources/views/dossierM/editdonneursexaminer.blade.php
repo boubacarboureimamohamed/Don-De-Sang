@@ -27,6 +27,11 @@
                      <div class="col-md-12">
                           <h3 class="text-center txt-primary">{{ ('Modification de donneur examiner') }}</h3>
                      </div>
+                     <div class="notifications">
+                        @if(session('error'))
+                        <button class="btn btn-danger waves-effect" data-type="danger" data-from="top" data-align="right" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">{{ session('error') }}</button>
+                        @endif
+                   </div>
                </div>
                
                 

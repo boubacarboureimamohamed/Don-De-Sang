@@ -18,7 +18,7 @@
 
 <div class="col-sm-12">
    <form role="form" action="{{ route('validation.store', $dossier) }}" method="POST">
-
+        <input type="hidden" value="{{ $dossier->type_poche }}" name="type_poche" id="type_poche">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
  
@@ -72,7 +72,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->typedonneur->type_donneur }}" readonly="" placeholder="">
+                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->prenom }}" readonly="" placeholder="">
                             </div>
                          </div>
                      </div>
@@ -115,7 +115,7 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
                                 <input id="" title="Entrer l'Observation" data-toggle="tooltip" type="text" class="form-control" value="{{ $dossier->observation_prelevement }}" readonly="" name="observation_prelevement">
                             </div>
                          </div>
@@ -143,8 +143,8 @@
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" title="Entrer l'Observation" data-toggle="tooltip" type="text" class="form-control" name="motif_rejet">
+                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
+                               <textarea id="" title="Entrer l'Observation" placeholder="observation" data-toggle="tooltip" type="text" class="form-control" name="motif_rejet"  rows="1"></textarea>
                             </div>
                          </div>
                      </div>
