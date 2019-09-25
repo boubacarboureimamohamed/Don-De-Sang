@@ -31,6 +31,16 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/partials/menu/_pcmenu.htm') }}">
+    <!-- Date-Dropper css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datedropper/css/datedropper.min.css') }}">
+<!-- Color Picker css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/spectrum/css/spectrum.css') }}">
+    <!-- Mini-color css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/jquery-minicolors/css/jquery.minicolors.css') }}">
+<!-- Date-time picker css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/advance-elements/css/bootstrap-datetimepicker.css') }}">
+    <!-- Date-range picker css  -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-daterangepicker/css/daterangepicker.css') }}">
 
     <!-- jquery-toast plugin js-->
     <link rel="stylesheet" href="{{ asset('toast/dist/jquery.toast.min.css') }}">
@@ -40,8 +50,8 @@
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
-    <!-- sweet alert framework -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/css/sweetalert.css') }}">
+    <!-- sweet alert framework-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/css/sweetalert2.min.css') }}">
     <!-- animation nifty modal window effects css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/component.css') }}">
     <!-- Data Table Css -->
@@ -256,7 +266,7 @@
                                 <li class="">
                                     <a href="{{ route('validation.stock') }}">
                                         <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
-                                        <span class="pcoded-mtext">Banque De Sang</span>
+                                        <span class="pcoded-mtext">Banque Du Sang</span>
                                     </a>
                                 </li>
                                 @endrole
@@ -264,7 +274,7 @@
                                 <li class="">
                                     <a href="{{ route('demande.index') }}">
                                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                                        <span class="pcoded-mtext">Demande De Sang</span>
+                                        <span class="pcoded-mtext">Demande Du Sang</span>
                                     </a>
                                 </li>
                                 @endrole
@@ -338,13 +348,21 @@
 <!-- modernizr js -->
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
-<!-- sweet alert js -->
-<script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert.min.js') }}"></script>
-<script src="{{ asset('js/modal.js') }}"></script>
-    <!-- sweet alert modal.js intialize js -->
-    <!-- modalEffects js nifty modal window effects -->
-<script src="{{ asset('js/modalEffects.js') }}"></script>
-<script src="{{ asset('js/classie.js') }}"></script>
+<!-- sweet alert js-->
+<script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert2.min.js') }}"></script>
+<!-- Date-dropper js -->
+<script type="text/javascript" src="{{ asset('bower_components/datedropper/js/datedropper.min.js') }}"></script>
+  <!-- Color picker js -->
+    <script type="text/javascript" src="{{ asset('bower_components/spectrum/js/spectrum.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jscolor/js/jscolor.js') }}"></script>
+    <!-- Mini-color js -->
+    <script type="text/javascript" src="{{ asset('bower_components/jquery-minicolors/js/jquery.minicolors.min.js') }}"></script>
+    <!-- Bootstrap date-time-picker js -->
+    <script type="text/javascript" src="{{ asset('bower_components/advance-elements/moment-with-locales.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/advance-elements/bootstrap-datetimepicker.min.js') }}"></script>
+    <!-- Date-range picker js -->
+    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-daterangepicker/js/daterangepicker.js') }}"></script>
 
   <!-- data-table js -->
     <script type="text/javascript" src="{{ asset('bower_components/data-table/js/jszip.min.js') }}"></script>
@@ -364,6 +382,9 @@
 <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
+<!-- Custom js -->
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+<script type="text/javascript" src="asset('bower_components/advance-elements/custom-picker.js') }}"></script>
 <script src="{{ asset('js/pcoded.min.js') }}"></script>
 <script src="{{ asset('js/vartical-layout.min.js') }}"></script>
 <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
@@ -372,8 +393,6 @@
 <script src="{{ asset('toast/dist/jquery.toast.min.js') }}"></script>
 @include('flash-message')
 
-    <!-- Custom js -->
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 
     <!-- select2 -->
 

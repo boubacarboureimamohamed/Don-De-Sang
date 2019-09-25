@@ -67,7 +67,7 @@ class UsersController extends Controller
         else {
 
             User::destroy($id);
-            return redirect(route('users.index'));
+            return redirect(route('users.index'))->with('success', 'La suppression a été effetué avec succés!');
         }
     }
 

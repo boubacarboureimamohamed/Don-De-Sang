@@ -134,13 +134,13 @@ class RdvController extends Controller
     public function destroy($id)
     {
         Rdv::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
 
     public function rdvfixeliste()
     {
         $rdvsfixes = Rdv::with('typerdv')->with('organisation')->get();
-        return view('rdvs.rdv_fixe_liste', compact('rdvsfixes'))->with('error', 'la supression a ete effetue avec succes');
+        return view('rdvs.rdv_fixe_liste', compact('rdvsfixes'));
     }
 
     public function rdvmobileliste()

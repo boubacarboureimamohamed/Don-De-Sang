@@ -90,6 +90,6 @@ class RolesController extends Controller
     public function destroy($id)
     {
        Role::destroy($id);
-       return redirect(route('roles.index'));
+       return redirect(route('roles.index'))->with('success', 'La suppression a été effetué avec succés!');
     }
 }

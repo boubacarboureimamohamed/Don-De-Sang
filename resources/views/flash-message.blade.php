@@ -10,13 +10,13 @@
 $(document).ready(function(){
 
 	@if (Session::has('critique'))
-	$.toast({ 
+	$.toast({
 		heading: 'Avertissement',
-		text : '{{ Session::get("critique") }}', 
+		text : '{{ Session::get("critique") }}',
 		icon: 'warning',
 		position : 'top-right'       // bottom-left or bottom-right or bottom-center or top-left or top-right or top-center or mid-center or an object representing the left, right, top, bottom values to position the toast on page
 		})
-	
+
 	@endif
 
 	@if (Session::has('success'))
@@ -24,7 +24,7 @@ $(document).ready(function(){
 	@endif
 
 	@if (Session::has('error'))
-	swal('error', '{{Session::get("error")}}', 'error')
+
 	@endif
 
  $('#sms').click(function(){

@@ -45,11 +45,11 @@
 
                             @can('supprimer_planification')
                         <td>
-                            <form action="{{ route('rdvs.destroy', $rdvsmobile) }}" method="post" onsubmit=" return confirm('voulez vous supprimer cet enregistrement?');">
+                            <form action="{{ route('rdvs.destroy', $rdvsmobile) }}" method="post" id="form{{ $rdvsmobile->id }}">
                             {{ csrf_field()}}
                             {{ method_field('Delete') }}
 
-                            <button  class="btn btn-danger btn-outline-danger"><span class="icofont icofont-ui-delete"></span></button>
+                            <button type="button" onclick="confirmation('#form{{ $rdvsmobile->id }}')" class="btn btn-danger btn-outline-danger"><span class="icofont icofont-ui-delete"></span></button>
                             </form>
                         </td>
                             @endcan
@@ -73,3 +73,25 @@
 
 
 @endsection
+
+@section('js')
+    <script>
+
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
+
+    </script>
+@endsection
+

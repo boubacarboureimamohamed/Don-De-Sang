@@ -228,6 +228,69 @@
                                                 </div>
                                             </div>
 
+<!-- Date-Dropper card start -->
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5>Date-Dropper</h5>
+                                                        <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Default</h4>
+                                                                <p>Add <code>id="#dropper-default"</code></p>
+                                                                <input id="dropper-default" class="form-control" type="text" placeholder="Select your date">
+                                                            </div>
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">With Animation</h4>
+                                                                <p>Add <code>id="#dropper-animation"</code></p>
+                                                                <input id="dropper-animation" class="form-control" type="text" placeholder="Select your animation">
+                                                            </div>
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Date format</h4>
+                                                                <p>Add <code>id="#dropper-format"</code></p>
+                                                                <input id="dropper-format" class="form-control" type="text" placeholder="Select your format">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Language Support</h4>
+                                                                <p>Add <code>id="#dropper-lang"</code></p>
+                                                                <input id="dropper-lang" class="form-control" type="text" placeholder="Language Support">
+                                                            </div>
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Lock Support</h4>
+                                                                <p>Add <code>id="#dropper-lock"</code></p>
+                                                                <input id="dropper-lock" class="form-control" type="text" placeholder="Select your date">
+                                                            </div>
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Max Year</h4>
+                                                                <p>Add <code>id="#dropper-max-year"</code></p>
+                                                                <input id="dropper-max-year" class="form-control" type="text" placeholder="Max Year 2020">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Min Year</h4>
+                                                                <p>Add <code>id="#dropper-min-year"</code></p>
+                                                                <input id="dropper-min-year" class="form-control" type="text" placeholder="Min Year 1990">
+                                                            </div>
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Year-range</h4>
+                                                                <p>Add <code>id="#year-range"</code></p>
+                                                                <input id="year-range" class="form-control" type="text" placeholder="Select your date">
+                                                            </div>
+                                                            <div class="col-sm-12 col-xl-4">
+                                                                <h4 class="sub-title">Custom Width</h4>
+                                                                <p>Add <code>id="#dropper-width"</code></p>
+                                                                <input id="dropper-width" class="form-control" type="text" placeholder="Select your date">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Date-Dropper card end -->
+
                                             <!-- Sweet alert start -->
                                             <div class="col-sm-12">
                                                 <div class="card">
@@ -245,7 +308,7 @@
                                                                 <button type="button" class="btn btn-success alert-success-msg m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success']);">Success</button>
                                                             </li>
                                                             <li>
-                                                                <button type="button" class="btn btn-warning alert-confirm m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-confirm']);">Confirm</button>
+                                                                <button type="button" class="btn btn-warning alert-confirm m-b-10" onclick="_gbaq.push(['_trackEvent', 'example', 'try', 'alert-confirm']);">Confirm</button>
                                                             </li>
                                                             <li>
                                                                 <button type="button" class="btn btn-danger alert-success-cancel m-b-10" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'alert-success-cancel']);">Success or Cancel</button>

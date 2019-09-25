@@ -49,12 +49,12 @@
     @endcan
     @can('supprimer_role')
 <td>
-    <form method="POST" action="{{ route('roles.destroy', $role) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+    <form method="POST" action="{{ route('roles.destroy', $role) }}" id="form{{ $role->id }}">
 
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
 
-        <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
+        <button type="button" onclick="confirmation('#form{{ $role->id }}')" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
             <span class="icofont icofont-ui-delete"></span>
         </button>
     </form>
@@ -72,15 +72,24 @@
 
 @endsection
 
+
 @section('js')
-    <!-- Editable-table js -->
-    <script type="text/javascript" src="{{ asset('js/edit-table/jquery.tabledit.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('jsedit-table/editable.js') }}"></script>
-    <!-- sweet alert js -->
-    <script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/modal.js') }}"></script>
-    <!-- sweet alert modal.js intialize js -->
-    <!-- modalEffects js nifty modal window effects -->
-    <script type="text/javascript" src="{{ asset('js/modalEffects.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/classie.js') }}"></script>
+    <script>
+
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
+
+    </script>
 @endsection

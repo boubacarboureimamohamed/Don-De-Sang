@@ -77,10 +77,10 @@
                                     @endcan
                                     @can('supprimer_donneur')
                                 <td>
-                                    <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                                    <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" id="form{{ $donneur->id }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                        <button type="button" onclick="confirmation('#form{{ $donneur->id }}')" class="btn btn-danger btn-outline-danger waves-effect waves-light">
                                             <span class="icofont icofont-ui-delete"></span>
                                         </button>
                                     </form>
@@ -103,4 +103,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script>
+
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
+
+    </script>
 @endsection

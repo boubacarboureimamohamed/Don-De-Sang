@@ -59,6 +59,7 @@ class DossierMedicalRSMController extends Controller
             $dossier->update([
                 'num_don' => 'DON-' . date('Y-m-d') . '-' . $dossier->id
             ]);
+
         }
         return redirect(route('donneurs.index'));
     }
@@ -123,7 +124,7 @@ class DossierMedicalRSMController extends Controller
      return redirect(route('dossierM.donneursexaminer'));
     }
 
-    
+
     public function destroy($id)
     {
         Donneur::destroy($id);

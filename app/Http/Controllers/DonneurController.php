@@ -69,7 +69,7 @@ class DonneurController extends Controller
     {
         Donneur::destroy($id);
         /* flash("success, Le donneur a été suprimée.")->success(); */
-        return redirect()->back();
+        return redirect(route('donneurs.index'))->with('success', 'La suppression a été effetué avec succés!');
     }
     public function edit($id)
     {

@@ -132,5 +132,11 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::post('livraison/{ligne}', 'DemandeController@livraison')->name('demande.livraison');
 
+        Route::get('codebar', 'CodebarController@barcode')->name('codebar');
+
+
+
 });
+
+
 
