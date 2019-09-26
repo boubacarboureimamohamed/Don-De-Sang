@@ -154,10 +154,15 @@
                                     <tr>
                                         <td>{{ $a->pivot->date }}</td>
                                         <td>{{ $a->type_donneur }}</td>
+                                        <td>@foreach($as->organisations as $organisation) @if($a->pivot->date == $organisation->pivot->date) {{ $organisation->libelle }}@endif  @endforeach</td>
+                                    <td>
+                                        <a href="#"
+                                            class="btn btn-warning btn-outline-warning waves-effect waves-light">
+                                            <span class="icofont icofont-ui-edit"></span>
+                                        </a>
+                                    </td>
                                     @endforeach
-                                    @foreach ($as->organisations as $a)
-                                        <td>{{ $a->libelle }}</td>
-                                    @endforeach
+                                    
                                 </tr>
                                 </tbody>
                             </table>

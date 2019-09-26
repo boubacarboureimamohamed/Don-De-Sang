@@ -117,6 +117,7 @@ class DonneurController extends Controller
         $os = Organisation::all();
         $as = Donneur::with('situationmats','typedonneurs','organisations')->whereId($donneur->id)->get()[0];
         $ls = Donneur::with('organisations')->whereId($donneur->id)->get()[0];
+        //dd($as);
         return view('donneurs.show', compact('as','ls','ts','os'));
     }
 
