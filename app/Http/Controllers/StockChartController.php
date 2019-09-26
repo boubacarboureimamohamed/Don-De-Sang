@@ -1,30 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\User;
+
+use Illuminate\Http\Request;
 use App\Charts\StockChart;
 use Illuminate\Support\Facades\DB;
 use App\Models\Groupement;
-use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class StockChartController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the resource.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
     public function index()
     {
         $labels = [];
@@ -43,7 +32,7 @@ class HomeController extends Controller
         {
             $data[] = $stock->quantite_reelle;
         }
-        return view('home',compact('labels','data'));
+        return view('stocks',compact('labels','data'));
     }
 
 }

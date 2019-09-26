@@ -23,7 +23,7 @@
                                 <th>Numéro</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
-                                <th>Type de donneur</th>
+                                <th>Adresse</th>
                                     @can('consulter_donneur')
                                 <th>Detail</th>
                                     @endcan
@@ -58,7 +58,7 @@
                                 </td>
                                 <td class="tabledit-view-mode">
                                     <span class="tabledit-span" style="">
-                                        {{ $donneur->typedonneur->type_donneur }}
+                                        {{ $donneur->adresse }}
                                     </span>
                                 </td>
                                     @can('consulter_donneur')
@@ -75,7 +75,7 @@
                                     </a>
                                 </td>
                                     @endcan
-                                    @can('supprimer_donneur')
+                                    @can('supprimer_donneur') 
                                 <td>
                                     <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" id="form{{ $donneur->id }}">
                                         {{ csrf_field() }}

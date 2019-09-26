@@ -31,24 +31,26 @@ class DossierMedicalValidationController extends Controller
             'groupement_id' => $request->groupement_id
         ]);
 
-        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->get();
+        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
 
         if ($request->rejet == 1)
         {
             if(isset($last[0])){
                 Stock::create([
                     'groupement_id' => $request->groupement_id,
-                    'quantite_reelle' => $last[0]->quantite_reelle + 1
+                    'quantite_reelle' => $last[0]->quantite_reelle + 1,
+                    'type_poche' => $request->type_poche
                 ]);
             }else {
                 Stock::create([
                     'groupement_id' => $request->groupement_id,
-                    'quantite_reelle' => 1
+                    'quantite_reelle' => 1,
+                    'type_poche' => $request->type_poche
                 ]);
             }
 
         }
-        return redirect(route('prelevement.donneur_prelevee'));
+        return redirect(route('prelevement.donneur_prelevee'))->with('success', 'La validation a été effectué avec succés!');;
     }
     public function donneur_valider()
     {
@@ -57,11 +59,26 @@ class DossierMedicalValidationController extends Controller
     }
     public function stock()
     {
-        $stocks = DB::select("SELECT g.groupe_sanguin,  s.quantite_reelle
-                             FROM stocks s, groupements g
-                            WHERE s.groupement_id = g.id and s.id in
-                            (select max(id) from stocks where groupement_id in
-                            (select id from groupements) group by groupement_id)");
+        $stocks = DB::select(" SELECT * FROM
+        (
+            select t1.groupe_sanguin AS 'groupe_sanguin',t1.type_poche AS 'simple',t1.quantite_reelle AS 'simple_qte',t2.type_poche AS 'double',t2.quantite_reelle AS 'double_qte'
+            from
+            (SELECT g.groupe_sanguin, s.type_poche, s.quantite_reelle
+                    FROM stocks s, groupements g
+                   WHERE s.groupement_id = g.id and s.id in
+                   (select max(id) from stocks where type_poche in ('Simple','Double')
+                   and groupement_id in (select id from groupements) group by groupement_id, type_poche)
+            ) t1
+            join
+            (SELECT g.groupe_sanguin, s.type_poche, s.quantite_reelle
+                    FROM stocks s, groupements g
+                   WHERE s.groupement_id = g.id and s.id in
+                   (select max(id) from stocks where type_poche in ('Simple','Double')
+                   and groupement_id in (select id from groupements) group by groupement_id, type_poche)
+            ) t2
+            where ((t2.groupe_sanguin = t1.groupe_sanguin) and (t2.type_poche <> t1.type_poche))
+        ) vs WHERE vs.simple = 'simple' ");
+
         return view('validation.stock',compact('stocks'));
 
     }

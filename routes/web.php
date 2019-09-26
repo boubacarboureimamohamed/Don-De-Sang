@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::get('user/profile', 'UsersController@profile')->name('profile');
 
+        Route::put('user/{user}/edit', 'UsersController@updateperso')->name('users.updateperso');
+
         Route::resource('roles', 'RolesController');
 
         Route::resource('permissions', 'PermissionsController');
@@ -43,6 +45,12 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
         Route::get('donneurs.add', 'DonneurController@adddonneur')->name('donneurs.add');
 
         Route::post('donneurs', 'DonneurController@store')->name('donneurs.store');
+
+        Route::post('donneurs/situation', 'DonneurController@storesituation')->name('donneurs.storesituation');
+
+        Route::post('donneurs/{situation}/situation', 'DonneurController@updatesituation')->name('donneurs.updatesituation');
+
+        Route::post('donneurs/typedonneur', 'DonneurController@storetypedonneur')->name('donneurs.storetypedonneur');
 
         Route::get('donneurs', 'DonneurController@index')->name('donneurs.index');
 
@@ -65,6 +73,10 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
         Route::get('dossier/donneur_inapte', 'DossierMedicalRSMController@donneur_inapte')->name('dossierM.donneur_inapte');
 
         Route::get('dossier/show_inapte', 'DossierMedicalRSMController@show_inapte')->name('dossierM.show_inapte');
+
+        Route::get('dossier/{donneur}/show_dossiermedical', 'DossierMedicalRSMController@show_dossiermedical')->name('dossierM.show_dossiermedical');
+
+        Route::get('dossiermedical', 'DossierMedicalRSMController@dossiermedical')->name('dossierM.dossiermedical');
 
         Route::get('dossier/{donneur_apte}/show_apte', 'DossierMedicalRSMController@show_apte')->name('dossierM.show_apte');
 
@@ -139,4 +151,6 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 });
 
 
+
+Route::get('stocks', 'StockChartController@index');
 

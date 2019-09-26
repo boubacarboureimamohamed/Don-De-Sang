@@ -28,20 +28,6 @@
                             </div>
                          </div>
                      </div>
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="typedonneur_id" title="Entrer le type de donneur" data-toggle="tooltip" id="typedonneur_id" class="form-control">
-                                        @foreach($ts as $t)
-                                            <option value="{{ $t->id }}" @if($t->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
-                                               {{ $t->type_donneur }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                            </div>
-                         </div>
-                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
@@ -108,20 +94,6 @@
                             </div>
                          </div>
                      </div>
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select name="situation_mat_id" title="Entrer la situation matrimonial du donneur" data-toggle="tooltip" id="situation_mat_id" class="form-control">
-                                    @foreach($ps as $p)
-                                        <option value="{{ $p->id }}" @if($p->id == $donneur->typedonneur_id) {{ 'selected' }} @endif>
-                                            {{ $p->situation_matrimoniale }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                         </div>
-                     </div>
                 </div>
                 <div class="row">
                      <div class="col-sm-6">
@@ -147,20 +119,6 @@
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont"></i></span>
                                         <input type="text" title="Entrer la profession du donneur" data-toggle="tooltip" id="" name="profession" class="form-control" value="{{ $donneur->profession }}" required="" placeholder="Profession">
-                            </div>
-                         </div>
-                     </div>
-                    <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="organisation_id" name="organisation_id" title="Entrer l'organisation du donneur" data-toggle="tooltip" id="organisation_id" class="form-control">
-                                        @foreach($os as $o)
-                                            <option value="{{ $o->id }}" @if($o->id == $donneur->organisation_id) {{ 'selected' }} @else {{ '' }} @endif>
-                                               {{ $o->libelle }}
-                                            </option>
-                                        @endforeach
-                                   </select>
                             </div>
                          </div>
                      </div>

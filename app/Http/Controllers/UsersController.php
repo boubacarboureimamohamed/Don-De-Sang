@@ -48,16 +48,26 @@ class UsersController extends Controller
     {
         $user->update([
             'name'=>$request->name,
+            'email'=>$request->email
+        ]);
+        $user->syncRoles($request->roles);
+        return redirect(route('users.index'))->with('success', 'La modification a été effetué avec succés!');
+    }
+
+    public function updateperso(Request $request, User $user)
+    {
+        //dd($request->all());
+        $user->update([
+            'name'=>$request->name,
             'email'=>$request->email,
             'date_naiss'=>$request->date_naiss,
-            'lieu_naiss_'=>$request->lieu_naiss,
+            'lieu_naiss'=>$request->lieu_naiss,
             'sexe'=>$request->sexe,
             'profession'=>$request->profession,
             'adresse'=>$request->adresse,
             'telephone'=>$request->telephone
         ]);
-        $user->syncRoles($request->roles);
-        return redirect(route('users.index'))->with('success', 'La modification a été effetué avec succés!');
+        return redirect(route('profile'))->with('success', 'La modification a été effetué avec succés!');
     }
 
     public function destroy($id)

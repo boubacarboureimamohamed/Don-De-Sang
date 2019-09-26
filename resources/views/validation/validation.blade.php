@@ -17,11 +17,11 @@
 @section('content')
 
 <div class="col-sm-12">
-   <form role="form" action="{{ route('validation.store', $dossier) }}" method="POST">
-
+   <form role="form" action="{{ route('validation.store', $dossier) }}" method="POST" id="formvalide">
+        <input type="hidden" value="{{ $dossier->type_poche }}" name="type_poche" id="type_poche">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
- 
+
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
@@ -72,7 +72,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->typedonneur->type_donneur }}" readonly="" placeholder="">
+                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->prenom }}" readonly="" placeholder="">
                             </div>
                          </div>
                      </div>
@@ -168,11 +168,11 @@
 
                       </div>
                       <div class="col-md-7">
-                         <a href="{{ route('prelevement.donneur_apte_a_prelevee') }}" class="btn btn-grd-disabled">
+                         <a href="{{ route('prelevement.donneur_prelevee') }}" class="btn btn-default">
                                {{ ('Annuler') }}
                          </a>
-                          <button type="submit" class="btn btn-success">
-                               {{ __('Effectuer') }}
+                          <button type="button" onclick="confirmation()" class="btn btn-primary">
+                               {{ ('Valider') }}
                           </button>
                       </div>
                  </div>
@@ -218,20 +218,36 @@
     <script type="text/javascript" src="{{ asset('assets\js\modalEffects.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets\js\classie.js') }}"></script>
 
+    <script>
+            $(document).ready(function(){
+            $('#groupe').hide();
+            $('#accepter').click(function(){
+            $('#groupe').show();
+            $('#refuser').click(function(){
+            $('#groupe').hide();
+            });
+            });
+            });
+    </script>
 
     <script>
-    $(document).ready(function(){
-     $('#groupe').hide();
-     $('#accepter').click(function(){
-      $('#groupe').show();
-     $('#refuser').click(function(){
-      $('#groupe').hide();
-     });
-     });
-    });
 
+     function confirmation()
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois validé, la poche de sang est directement envoyé en stock! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
 
-</script>
+            }).then(function() {
+                $('#formvalide').submit();
+            });
+        }
+
+    </script>
 
 
 @endsection

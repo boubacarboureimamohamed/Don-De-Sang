@@ -1,55 +1,14 @@
 @extends('layouts.adminty')
 
-@section('css')
-
-@endsection
-
 @section('content')
+<h1>Stock Graphs</h1>
 
-<div class="col-sm-12">
-    @php
-         $color = 'pink';
-    @endphp
-   <div class="card bg-c-{{$color}}"">
-        <div class="card-header">
-          <h3 class="text-center text-white">
-                <i class="icofont icofont-blood-drop f-30 text-white"></i>
-                    {{ ('Evolution du don de sang') }}
-                <i class="icofont icofont-blood-drop f-30 text-white"></i>
-          </h3>
-        </div>
-    </div>
+<div class="card-block" style="width: 50%">
+<canvas class="card-block" id="myChart" data-labels="{{ implode(', ', $labels) }}" data-stocks="{{ implode(', ', $data) }}" width="600" height="400"></canvas>
 </div>
-<div class="col-sm-6">
-    <div class="page-body">
-        <div class="card">
-            <div class="card-header">
-            <h5 class="text-center txt-primary">{{ ('Double Poche') }}</h5>
-            </div>
-            <div class="card-block">
-                <canvas class="card-block" id="myChart" data-labels="{{ implode(', ', $labels) }}" data-stocks="{{ implode(', ', $data) }}" width="600" height="400">
-                </canvas>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-sm-6">
-    <div class="page-body">
-        <div class="card">
-            <div class="card-header">
-            <h5 class="text-center txt-primary">{{ ('Simple Poche') }}</h5>
-            </div>
-            <div class="card-block">
-                <canvas class="card-block" id="myChart" data-labels="{{ implode(', ', $labels) }}" data-stocks="{{ implode(', ', $data) }}" width="600" height="400">
-                </canvas>
-            </div>
-        </div>
-    </div>
-</div>
-
 @endsection
-
 @section('js')
+
 <script src="{{ asset('assets/js/Chart.js') }}"></script>
 <script src="{{ asset('assets/js/Chart.BarFunnel.js') }}"></script>
 

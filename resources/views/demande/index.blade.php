@@ -1,6 +1,5 @@
 @extends('layouts.adminty')
 @section('css')
-
   <!-- jpro forms css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
@@ -13,7 +12,6 @@
 @section('content')
 <div class="col-sm-12">
 <div class="page-body">
-
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-block">
@@ -67,10 +65,10 @@
                                 @endcan
                                 @can('supprimer_demande')
                             <td>
-                                <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                                <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" id="">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                    <button type="button" onclick="confirmation()" class="btn btn-danger btn-outline-danger waves-effect waves-light">
                                         <span class="icofont icofont-ui-delete"></span>
                                     </button>
                                 </form>
@@ -85,4 +83,27 @@
     </div>
 </div>
     <!-- Extra Large table end -->
+@endsection
+
+@section('js')
+
+<script>
+
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
+
+    </script>
+
 @endsection

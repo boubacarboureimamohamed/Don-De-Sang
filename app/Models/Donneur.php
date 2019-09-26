@@ -9,17 +9,7 @@ class Donneur extends Model
 {
     /* use AutoNumberTrait; */
     protected $fillable =['num_donneur', 'nom', 'prenom','date_naiss','lieu_naiss','sexe','adresse',
-    'nationalite','profession','telephone', 'email','typedonneur_id','organisation_id'];
-
-    public function organisation()
-    {
-        return $this->belongsTo('App\Models\Organisation');
-    }
-
-    public function typedonneur()
-    {
-        return $this->belongsTo('App\Models\Typedonneur');
-    }
+    'nationalite','profession','telephone', 'email'];
 
     public function situationmats()
     {
@@ -35,5 +25,18 @@ class Donneur extends Model
     public function historisations()
     {
         return $this->hasMany('App\Models\Historisation');
+    }
+
+    public function typedonneurs()
+    {
+        return $this->belongsToMany('App\Models\Typedonneur', 'typedonneur_donneur')->withPivot([
+            'date'
+        ]);
+    }
+    public function organisations()
+    {
+        return $this->belongsToMany('App\Models\Organisation', 'donneur_organisation')->withPivot([
+            'date'
+        ]);
     }
 }

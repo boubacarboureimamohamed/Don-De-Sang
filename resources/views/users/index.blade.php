@@ -6,12 +6,18 @@
 @endsection
 
 @section('content')
-
+<div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+    <h1 class="text-center text-white bg-c-{{$color}}">
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+            {{ ('Liste des utilisateurs') }}
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+    </h1>
+</div>
 <div class="col-sm-12">
 <div class="card">
-<div class="card-header">
-<h3 style="text-align: center;">Liste des utilisateurs</h3>
-</div>
 <div class="card-block">
 <div class="btn-group btn-group-sm">
      @can('creer_user')

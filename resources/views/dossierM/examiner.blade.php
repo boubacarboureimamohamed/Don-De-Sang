@@ -41,7 +41,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->typedonneur->type_donneur }}" readonly="" required="" placeholder="">
+                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->num_donneur }}" readonly="" required="" placeholder="">
                             </div>
                         </div>
                     </div>

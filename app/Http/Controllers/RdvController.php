@@ -48,7 +48,6 @@ class RdvController extends Controller
             'adresse'=>$request->adresse,
             'email'=>$request->email
         ]);
-
         Rdv::create([
             'date_heure' => $request->date_heure,
             'lieu' => $request->lieu,

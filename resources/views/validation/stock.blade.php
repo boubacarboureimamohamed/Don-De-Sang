@@ -12,12 +12,26 @@
 @endsection
 @section('content')
 <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}"">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Banque de sang') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
 <div class="page-body">
 
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Le stock</h5>
+            <h4 class="text-center">{{ ('La quantité en stock par groupe sanguin :') }}</h4>
         </div>
         <div class="page-body">
             <div class="row">
@@ -30,6 +44,7 @@
                             @php
                             $color = 'pink';
                             @endphp
+
                             @break;
                         @case('B+')
                             @php
@@ -48,22 +63,22 @@
                             @break;
                         @case('A-')
                             @php
-                            $color = 'orange';
+                            $color = 'pink';
                             @endphp
                             @break;
                         @case('B-')
                             @php
-                            $color = 'white';
+                            $color = 'blue';
                             @endphp
                             @break;
                         @case('AB-')
                             @php
-                            $color = 'Purple';
+                            $color = 'green';
                             @endphp
                             @break;
                         @case('O-')
                             @php
-                            $color = 'pink';
+                            $color = 'yellow';
                             @endphp
                             @break;
                     @endswitch
@@ -75,14 +90,15 @@
                                             <h4 class="text-c-{{ $color }} f-w-600">{{ $stock->groupe_sanguin }}</h4>
                                         </div>
                                         <div class="col-4 text-right">
-                                            <i class="feather icon-calendar f-28"></i>
+                                            <i class="icofont icofont-blood-drop f-30 text-c-{{$color}}"></i>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-c-{{$color}}">
                                     <div class="row align-items-center">
                                         <div class="col-9">
-                                            <p class="text-white m-b-0">{{ $stock->quantite_reelle }}</p>
+                                            <p class="text-white m-b-0">{{ $stock->simple}} : {{ $stock->simple_qte }}</p>
+                                            <p class="text-white m-b-0">{{ $stock->double}} : {{ $stock->double_qte }}</p>
                                         </div>
                                     </div>
                                 </div>

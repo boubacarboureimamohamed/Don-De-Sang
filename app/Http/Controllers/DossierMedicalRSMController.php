@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Donneur;
 use App\Models\DossierMedical;
@@ -11,7 +12,7 @@ class DossierMedicalRSMController extends Controller
 {
     public function index()
     {
-        $donneurs = Donneur::with('typedonneur','situationmats','organisation','dossierMedicals')->get();
+        $donneurs = Donneur::with('typedonneurs','situationmats','organisation','dossierMedicals')->get();
 
         $donneurs = $donneurs->filter(function($donneur) {
 
@@ -128,6 +129,22 @@ class DossierMedicalRSMController extends Controller
     public function destroy($id)
     {
         Donneur::destroy($id);
+    }
+    
+    public function dossiermedical()
+    {
+        $donneurs = DB::select("SELECT  DISTINCT d.id, d.num_donneur, d.nom, d.prenom 
+                                FROM donneurs d, dossier_medicals dm 
+                                WHERE dm.donneur_id =d.id" 
+                              );
+        return view('dossierM.dossiermedical', compact('donneurs'));
+    }
+    public function show_dossiermedical(DossierMedical $donneur)
+    {
+        $dossiers = DossierMedical::with('donneur')->where('donneur_id', $donneur->id)->get();
+        $donneur = Donneur::where('id', $donneur->id)->get()[0];
+        //dd($dossiers);
+        return view('dossierM.show_dossiermedical',compact('dossiers','donneur'));
     }
 
 }

@@ -9,15 +9,17 @@ class Organisation extends Model
 
 {
   protected $fillable = ['libelle', 'email', 'adresse', 'telephone'];
+  
    public function rdv()
    {
 
      return $this->belongsToMany('App\Models\Rdv');
    }
 
-    public function donneur()
+    public function donneurs()
     {
-    	return $this->hasOne('App\Models\Donneur');
+    	return $this->belongsToMany('App\Models\Donneur', 'donneur_organisation')->withPivot([
+        'date'
+      ]);
     }
-
 }

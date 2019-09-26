@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LigneDemande extends Model
 {
-    protected $fillable =['quantite_demandee', 'demande_id', 'groupement_id','livraison_id'];
+    protected $fillable =['quantite_demandee','type_poche', 'demande_id', 'groupement_id','livraison_id'];
 
     public function demande()
     {

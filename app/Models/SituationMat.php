@@ -10,9 +10,7 @@ class SituationMat extends Model
     protected $fillable = ['situation_matrimoniale','situationmariee'];
     public function donneurs()
     {
-       
-
-        return $this->belongsToMany('App\Donneur', 'situation_mat_donneur')->withPivot([
+        return $this->belongsToMany('App\Models\Donneur', 'situation_mat_donneur')->withPivot([
             'date'
         ]);
     }

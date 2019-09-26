@@ -34,6 +34,7 @@ class DemandeController extends Controller
         for($j=0; $j < count($request->groupement); $j++) {
         LigneDemande::create([
             'quantite_demandee' => $request->quantite_demandee[$j],
+            'type_poche' => $request->type_poche[$j],
             'demande_id' => $demande->id,
             'groupement_id' => $request->groupement[$j]
         ]);
@@ -48,11 +49,13 @@ class DemandeController extends Controller
     }
     public function show(Demande $demande)
     {
-        $lignes = LigneDemande::where('demande_id',$demande->id)->with('groupement')->where('livraison_id',null)->get();
+        $lignes = LigneDemande::where('demande_id',$demande->id)->with('groupement','livraison')->get();
         $groupements = Groupement::all();
+        $lignenonlivree = LigneDemande::with('livraison','groupement')->where('livraison_id', null)->get();
+        /* dd($demandelivrees); */
         /* $de = Demande::with('beneficiaire')->whereId($demande->id)->get(); */
         /* dd($lignes); */
-        return view('demande.show',compact('lignes','demande','groupements'));
+        return view('demande.show',compact('lignes','lignenonlivree','groupements','demande'));
     }
     public function edit($id)
     {
@@ -77,7 +80,7 @@ class DemandeController extends Controller
     }
     public function lignestore(Request $request)
     {
-       $ligne = LigneDemande::where('demande_id', $request->demande_id)->where('groupement_id', $request->groupement_id)->get();
+       $ligne = LigneDemande::where('demande_id', $request->demande_id)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
 
        if(isset($ligne[0]))
        {
@@ -89,7 +92,7 @@ class DemandeController extends Controller
        /*
         $success->load('groupement'); */
         //return response()->json(['ligne'=> $success]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Lenregistrement a été effetué avec succés!');
     }
     public function ligneupdate(Request $request, LigneDemande $ligne)
     {
@@ -102,17 +105,18 @@ class DemandeController extends Controller
     public function demandedestroy($id)
     {
         Demande::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
     public function lignedestroy($id)
     {
         LigneDemande::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
     public function livraison(Request $request, LigneDemande $ligne)
     {
         $quantite = $ligne->quantite_demandee;
-        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->get();
+        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
+        //dd($last);
         $this->validate($request, [
             'quantite_livree' => 'required|integer|max:'.$quantite,
         ]);
@@ -124,22 +128,19 @@ class DemandeController extends Controller
                         'date' => $request->date
                     ]);
 
-                    Stock::create([
+                   $t= Stock::create([
+                        'groupement_id' => $request->groupement_id,
+                        'type_poche' => $request->type_poche,
                         'quantite_sortie' => $request->quantite_livree,
                         'quantite_reelle' => $last[0]->quantite_reelle - $request->quantite_livree
                     ]);
                     $ligne->update([
                         'livraison_id' => $livraison->id
                     ]);
-                }else { return $request->session()->flash('warning', 'c pas marché'); }
+                }else { return back()->with('error', 'La quantité en stock et inférieur à la quantité livrée!'); }
             }else{
-                return $request->session()->flash('warning', 'c pas marché');
+                return back()->with('error', 'Le stock n!');
             }
-        return redirect()->back();
-    }
-    public function demandelivree()
-    {
-        $demandelivrees = LigneDemande::with('livraison')->whereNotNull('livraison_id');
-        return view('demande.demandelivree', compact('demandelivrees'));
+        return back();
     }
 }

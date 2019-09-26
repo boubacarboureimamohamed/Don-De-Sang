@@ -68,15 +68,16 @@
                 <table id="example-2" class="table table-striped table-bordered nowrap">
                         <thead>
                             <tr>
-                                <th>Group sanguin:</th>
-                                <th>Quantité demandée:</th>
+                                <th>Group sanguin</th>
+                                <th>Type de poche</th>
+                                <th>Quantité demandée</th>
                                 <th style="text-align: center"><a href="#" class="btn btn-success btn-outline-success" id="addLigne"><i class="icofont icofont-plus"></i></a></th>
                             </tr>
                         </thead>
                         <tbody id="ligne">
                             <tr>
                                 <td>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-10">
                                         <div class="form-group form-primary">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>
@@ -92,7 +93,20 @@
                                     </div>
                                 </td>
                                 <td>
-                                <div class="col-sm-6">
+                                <div class="col-sm-10">
+                                    <div class="form-group form-primary">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                            <select name="type_poche[]" id="type_poche[]" class="form-control">
+                                                <option value="Double">Double</option>
+                                                <option value="Simple">Simple</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                </td>
+                                <td>
+                                <div class="col-sm-8">
                                     <div class="form-group form-primary">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>
@@ -135,7 +149,7 @@ $('#addLigne').on('click', function (f) {
 function addLigne() {
     var tr = '<tr>'+
         '<td>'+
-            '<div class="col-sm-8">'+
+            '<div class="col-sm-10">'+
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
                         ' <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>'+
@@ -151,7 +165,20 @@ function addLigne() {
             '</div>'+
         '</td>'+
         '<td>' +
-            '<div class="col-sm-6">'+
+            '<div class="col-sm-10">'+
+                '<div class="form-group form-primary">'+
+                    '<div class="input-group">'+
+                        '<span class="input-group-addon"><i class="icofont icofont"></i></span>'+
+                        '<select name="type_poche[]" id="type_poche[]" class="form-control">'+
+                            '<option value="Double">Double</option>'+
+                            '<option value="Simple">Simple</option>'+
+                        ' </select>'+
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</td>' +
+        '<td>' +
+            '<div class="col-sm-8">'+
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
                         ' <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>'+

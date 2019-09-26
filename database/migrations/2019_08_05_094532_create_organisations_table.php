@@ -19,7 +19,6 @@ class CreateOrganisationsTable extends Migration
             $table->string('adresse');
             $table->string('telephone');
             $table->string('email');
-
             $table->timestamps();
         });
     }

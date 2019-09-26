@@ -31,21 +31,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/partials/menu/_pcmenu.htm') }}">
-    <!-- Date-Dropper css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/datedropper/css/datedropper.min.css') }}">
-<!-- Color Picker css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/spectrum/css/spectrum.css') }}">
-    <!-- Mini-color css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/jquery-minicolors/css/jquery.minicolors.css') }}">
-<!-- Date-time picker css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/advance-elements/css/bootstrap-datetimepicker.css') }}">
-    <!-- Date-range picker css  -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap-daterangepicker/css/daterangepicker.css') }}">
-
     <!-- jquery-toast plugin js-->
     <link rel="stylesheet" href="{{ asset('toast/dist/jquery.toast.min.css') }}">
-    <!-- Animate.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/animate.css/css/animate.css') }}">
      <!-- Select2 -->
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
     <!-- feather Awesome -->
@@ -141,7 +128,7 @@
                                 <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                     <li>
                                         <a href="{{ route('profile') }}">
-                                            <i class="feather icon-user"></i> {{ __('Mon profile') }}
+                                            <i class="feather icon-user"></i> {{ ('Mon profile') }}
                                         </a>
                                     </li>
                                     <li>
@@ -224,7 +211,7 @@
                                 @endrole
                                 @role('Responsable Selection Médical')
                                 <li class="">
-                                    <a href="#">
+                                    <a href="{{ route('dossierM.dossiermedical')}}">
                                         <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
                                         <span class="pcoded-mtext">Gestion Des Dossiers Médicales </span>
                                     </a>
@@ -266,7 +253,7 @@
                                 <li class="">
                                     <a href="{{ route('validation.stock') }}">
                                         <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
-                                        <span class="pcoded-mtext">Banque Du Sang</span>
+                                        <span class="pcoded-mtext">Banque De Sang</span>
                                     </a>
                                 </li>
                                 @endrole
@@ -274,7 +261,7 @@
                                 <li class="">
                                     <a href="{{ route('demande.index') }}">
                                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                                        <span class="pcoded-mtext">Demande Du Sang</span>
+                                        <span class="pcoded-mtext">Demande De Sang</span>
                                     </a>
                                 </li>
                                 @endrole
@@ -350,19 +337,6 @@
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
 <!-- sweet alert js-->
 <script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert2.min.js') }}"></script>
-<!-- Date-dropper js -->
-<script type="text/javascript" src="{{ asset('bower_components/datedropper/js/datedropper.min.js') }}"></script>
-  <!-- Color picker js -->
-    <script type="text/javascript" src="{{ asset('bower_components/spectrum/js/spectrum.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/jscolor/js/jscolor.js') }}"></script>
-    <!-- Mini-color js -->
-    <script type="text/javascript" src="{{ asset('bower_components/jquery-minicolors/js/jquery.minicolors.min.js') }}"></script>
-    <!-- Bootstrap date-time-picker js -->
-    <script type="text/javascript" src="{{ asset('bower_components/advance-elements/moment-with-locales.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/advance-elements/bootstrap-datetimepicker.min.js') }}"></script>
-    <!-- Date-range picker js -->
-    <script type="text/javascript" src="{{ asset('bower_components/bootstrap-daterangepicker/js/daterangepicker.js') }}"></script>
 
   <!-- data-table js -->
     <script type="text/javascript" src="{{ asset('bower_components/data-table/js/jszip.min.js') }}"></script>
@@ -384,7 +358,6 @@
 <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
 <!-- Custom js -->
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-<script type="text/javascript" src="asset('bower_components/advance-elements/custom-picker.js') }}"></script>
 <script src="{{ asset('js/pcoded.min.js') }}"></script>
 <script src="{{ asset('js/vartical-layout.min.js') }}"></script>
 <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
