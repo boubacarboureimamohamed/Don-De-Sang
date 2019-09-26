@@ -9,12 +9,7 @@ class Donneur extends Model
 {
     /* use AutoNumberTrait; */
     protected $fillable =['num_donneur', 'nom', 'prenom','date_naiss','lieu_naiss','sexe','adresse',
-    'nationalite','profession','telephone', 'email','organisation_id'];
-
-    public function organisation()
-    {
-        return $this->belongsTo('App\Models\Organisation');
-    }
+    'nationalite','profession','telephone', 'email'];
 
     public function situationmats()
     {
@@ -35,6 +30,12 @@ class Donneur extends Model
     public function typedonneurs()
     {
         return $this->belongsToMany('App\Models\Typedonneur', 'typedonneur_donneur')->withPivot([
+            'date'
+        ]);
+    }
+    public function organisations()
+    {
+        return $this->belongsToMany('App\Models\Organisation', 'donneur_organisation')->withPivot([
             'date'
         ]);
     }

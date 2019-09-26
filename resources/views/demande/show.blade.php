@@ -128,6 +128,7 @@
                             id="l{{ $ligne->id }}" data-toggle="modal" data-target="#LivreerModal"
                             data-route="{{ route('demande.livraison', $ligne->id) }}"
                             data-group_sanguinL="{{ $ligne->groupement_id}}"
+                            data-type_pocheL="{{ $ligne->type_poche}}"
                             data-quantiteL="{{ $ligne->quantite_demandee }}"
                             onclick="updateL('#l{{ $ligne->id }}')"
                             class="btn btn-success btn-outline-success"><i class="icofont icofont-truck-loaded"></i>
@@ -228,6 +229,17 @@
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                            <select title="Type de poche" name="type_poche" id="type_pocheLivree" readonly="" class="form-control">
+                                <option value="Double">Double</option>
+                                <option value="Simple">Simple</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group form-primary">
+                        <div class="input-group">
                             <span class="input-group-addon"></span>
                             <input title="Quantité demandée" type="text" name="quantite_demandee" id="quantite_demandeeLivree" readonly="" class="form-control">
                         </div>
@@ -268,6 +280,7 @@
     function updateL(ligneLId) {
             $('#quantite_demandeeLivree').val($(ligneLId).attr('data-quantiteL'))
             $('#groupement_idLivree').val($(ligneLId).attr('data-group_sanguinL'))
+            $('#type_pocheLivree').val($(ligneLId).attr('data-type_pocheL'))
             $('#form2').attr('action', $(ligneLId).attr('data-route'))
     }
 </script>

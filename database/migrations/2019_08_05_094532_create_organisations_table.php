@@ -17,9 +17,8 @@ class CreateOrganisationsTable extends Migration
             $table->bigIncrements('id');
             $table->string('libelle');
             $table->string('adresse');
-            $table->string('telephone');
-            $table->string('email');
-
+            $table->string('telephone')->unique();
+            $table->string('email')->unique()->nullable();
             $table->timestamps();
         });
     }

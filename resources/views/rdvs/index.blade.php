@@ -22,7 +22,7 @@
                     @endcan
                 </div>
             <div class="data_table_main table-responsive dt-responsive">
-               <table id="simpletable" class="table table-striped table-bordered nowrap">
+               <table id="table" class="table table-striped table-bordered nowrap">
                     <thead>
                     <tr>
                         <th>Date et Heure</th>
@@ -83,21 +83,25 @@
  </div>
 
 @endsection
-
 @section('js')
 
-
-<!-- data-table js -->
-
-<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
+<script>
 
 
+$(document).ready(function () {
 
+$('#table').DataTable({
 
+language: {
 
+    url: "{{ asset('bower_components/data-table/French.json') }}"
 
+}
+
+});
+
+});
+
+</script>
 
 @endsection

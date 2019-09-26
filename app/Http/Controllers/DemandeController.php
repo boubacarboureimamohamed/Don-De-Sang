@@ -20,6 +20,37 @@ class DemandeController extends Controller
     }
     public function store(Request $request)
     {
+        $messageErreur = [
+            'telephone.required' => 'Le numéro de télephone du bénéficiaire  est obligatoire!',
+            'telephone.max' => 'Le numéro de télephone du bénéficiaire ne doit pas dépasser 15 caracteres!',
+            'adresse.required' => 'Adresse du bénéficiaire est obligatoire!',
+            'email.email' => 'Adresse mail du bénéficaire doit être valide!',
+            'date.required' => 'La date de la demande est obligatoire!',
+            'quantite_demandee.required' => 'La quanité de poche de sang demandée est obligatoire',
+            'quantite_demandee.integer' => 'La quantité de poche de sang demandée ne doit contenir que des chiffres!',
+            'quantite_demandee.max' => 'La quantité de poche de sang demandée ne doit pas dépasser 3 caracteres!' ,
+            'telephone.unique' => 'Le numéro de télephone du bénéficiaire doit être unique',
+            'email.unique' => 'Adresse mail du bénéficaire doit être unique'
+ 
+        ];
+/* 
+      $validation =  $this->validate($request, [
+            'libelle' => 'string',
+            'telephone' => 'required|string|max:15|unique:demandes',
+            'adresse' => 'string|required',
+            'email' => 'email|string|unique:demandes',
+            'date' => 'required|date',
+            'quantite_demandee' => 'required|integer|max:3'
+        ],  $messageErreur);
+
+        if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        } */
+
         $beneficiaire = Beneficiaire::firstOrCreate([
             'libelle'=>$request->libelle,
             'telephone'=>$request->telephone,
@@ -44,7 +75,6 @@ class DemandeController extends Controller
     public function index()
     {
         $demandes = Demande::with('ligne_demandes.groupement','beneficiaire')->get();
-       /*  dd($demandes); */
         return view('demande.index',compact('demandes'));
     }
     public function show(Demande $demande)
@@ -115,7 +145,8 @@ class DemandeController extends Controller
     public function livraison(Request $request, LigneDemande $ligne)
     {
         $quantite = $ligne->quantite_demandee;
-        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->get();
+        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
+        //dd($last);
         $this->validate($request, [
             'quantite_livree' => 'required|integer|max:'.$quantite,
         ]);
@@ -127,18 +158,19 @@ class DemandeController extends Controller
                         'date' => $request->date
                     ]);
 
-                    Stock::create([
+                   $t= Stock::create([
                         'groupement_id' => $request->groupement_id,
+                        'type_poche' => $request->type_poche,
                         'quantite_sortie' => $request->quantite_livree,
                         'quantite_reelle' => $last[0]->quantite_reelle - $request->quantite_livree
                     ]);
                     $ligne->update([
                         'livraison_id' => $livraison->id
                     ]);
-                }else { return $request->session()->flash('warning', 'c pas marché'); }
+                }else { return back()->with('error', 'La quantité en stock et inférieur à la quantité livrée!'); }
             }else{
-                return $request->session()->flash('warning', 'c pas marché');
+                return back()->with('error', 'Le stock n!');
             }
-        return redirect()->back();
+        return back();
     }
 }

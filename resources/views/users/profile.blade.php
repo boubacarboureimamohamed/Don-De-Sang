@@ -353,7 +353,7 @@
                                                                             </div>
                                                                             <div class="card-block contact-details">
                                                                                 <div class="table-responsive">
-                                                                                    <table id="example-2" class="table table-striped table-bordered">
+                                                                                    <table id="table" class="table table-striped table-bordered">
                                                                                         <thead>
                                                                                             <tr>
                                                                                                 <th>Nom et Prénom</th>
@@ -414,5 +414,26 @@
     <!-- ck editor -->
     <script type="text/javascript" src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/ckeditor/ckeditor-custom.js') }}"></script>
+
+
+
+    <script>
+
+
+$(document).ready(function () {
+
+$('#table').DataTable({
+
+language: {
+
+    url: "{{ asset('bower_components/data-table/French.json') }}"
+
+}
+
+});
+
+});
+
+</script>
 
 @endsection

@@ -357,7 +357,6 @@
     <script type="text/javascript" src="{{ asset('bower_components/data-table/js/jszip.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/data-table/js/pdfmake.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/data-table/js/vfs_fonts.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/data-table/js/data-table-custom.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -385,6 +384,18 @@
     <!-- select2 -->
 
     <script src="{{ asset('dist/js/select2.full.min.js') }}"></script>
+
+         <!-- Masking js -->
+    <script src="{{ asset('assets/pages/form-masking/inputmask.js') }}"></script>
+    <script src="{{ asset('assets/pages/form-masking/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset('assets/pages/form-masking/autoNumeric.js') }}"></script>
+    <script src="{{ asset('assets/pages/form-masking/form-mask.js') }}"></script>
+
+
+
+
+
+
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>

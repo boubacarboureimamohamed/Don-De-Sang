@@ -17,8 +17,8 @@ class CreateBeneficiairesTable extends Migration
             $table->bigIncrements('id');
             $table->string('libelle');
             $table->string('adresse');
-            $table->integer('telephone');
-            $table->string('email');
+            $table->integer('telephone')->unique();
+            $table->string('email')->nullable()->unique();
             $table->timestamps();
         });
     }

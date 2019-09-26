@@ -17,7 +17,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                <input type="datetime-local" class="form-control" name="date_heure"  placeholder="Date et Heure">
+                                <input type="datetime-local"class="form-control" name="date_heure"  placeholder="Date et Heure">
                             </div>
                          </div>
                      </div>
@@ -69,7 +69,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                    <input type="text" class="form-control" id="telephone" name="telephone" placeholder="Telephone">
+                                    <input type="text" class="form-control phone" data-mask="9999-99-99-99-99" id="telephone" name="telephone" placeholder="Telephone">
                             </div>
                          </div>
                      </div>

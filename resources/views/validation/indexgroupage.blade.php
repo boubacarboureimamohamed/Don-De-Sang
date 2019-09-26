@@ -14,7 +14,7 @@
                 <div class="card-block">
                     <div class="top-cap-text">
                         <div class="table-responsive">
-                <table  class="table table-striped table-bordered nowrap">
+                <table class="table table-striped table-bordered nowrap" id="table">
                     <thead>
                         <tr>
                             <th scope="row">Groupe Sanguin</th>
@@ -96,6 +96,26 @@ function update(goupeid) {
             $('#seuil').val($(goupeid).attr('data-seuil'))
             $('#form').attr('action', $(goupeid).attr('data-route'))
     }
+</script>
+
+
+<script>
+
+
+$(document).ready(function () {
+
+$('#table').DataTable({
+
+language: {
+
+    url: "{{ asset('bower_components/data-table/French.json') }}"
+
+}
+
+});
+
+});
+
 </script>
 
 @endsection

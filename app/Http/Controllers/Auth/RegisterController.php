@@ -65,12 +65,29 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $messagErreurs = 
-        [ ''];
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        [ 
+            'name.required' => 'Le nom d utilisation est obligatoire!',
+            'name.max' => 'Le nom d utilisateur ne doit pas dépasser 100 caracteres!',
+            'email.required' => 'Adresse mail est obligatoire',
+            'email.email' => 'Adresse mail doit être valide',
+            'email.max' => 'Adresse mail ne doit pas dépasser 50 caracteres!',
+            'email.unique' => 'Adresse mail est unique!',
+            'password.required' => 'Le mot de passe est obligatoire!',
+            'password.confirmed' => 'Confirmez le mot de passe!',
+            'password.min' => 'Le mot de passe doit avoir au moins 8 caracteres!'
+    ];
+       return Validator::make($data, [
+            'name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+       ], $messagErreurs);
+       if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
     }
 
     /**

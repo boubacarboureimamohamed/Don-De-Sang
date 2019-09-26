@@ -20,7 +20,7 @@ class CreateDossierMedicalsTable extends Migration
             $table->integer('tension_arterielle');
             $table->date('date_dossier_medical');
             $table->boolean('approbation');
-            $table->string('observation_approbation');
+            $table->string('observation_approbation')->nullable();
             $table->string('num_don')->nullable();
             $table->integer('quantite_a_prelevee')->nullable();
             $table->dateTime('date_heure_prelevement')->nullable();

@@ -29,12 +29,8 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required="" placeholder="Username">
-                                    @error('name')
-                                    <span class="form-bar" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  placeholder="Username">
+                                    
                             </div>
                          </div>
                      </div>
@@ -42,12 +38,8 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required="" placeholder="Your Email Address">
-                                    @error('email')
-                                        <span class="form-bar" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  placeholder="Your Email Address">
+                                    
                             </div>
                          </div>
                      </div>
@@ -57,12 +49,8 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-lock"></i></span>
-                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required="" placeholder="New Password">
-                                    @error('password')
-                                    <span class="form-bar" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                         <input id="password" type="password" class="form-control" name="password"  placeholder="New Password">
+                                  
                             </div>
                          </div>
                      </div>
@@ -70,7 +58,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-lock"></i></span>
-                                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required="" placeholder="Confirm New Password">
+                                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Confirm New Password">
                             </div>
                          </div>
                      </div>

@@ -30,25 +30,16 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required="" placeholder="Username">
-                                 @error('name')
-                                   <span class="form-bar" role="alert">
-                                      <strong>{{ $message }}</strong>
-                                   </span>
-                                @enderror
-                            </div>
+                                 <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}"  placeholder="Username">
+                                                             </div>
                          </div>
                      </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required="" placeholder="Your Email Address">
-                                  @error('email')
-                                    <span class="form-bar" role="alert">
-                                       <strong>{{ $message }}</strong>
-                                    </span>
-                                  @enderror
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}"  placeholder="Your Email Address">
+                                  
                              </div>
                          </div>
                      </div>

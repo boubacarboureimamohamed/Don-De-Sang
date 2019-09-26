@@ -42,13 +42,49 @@ class RdvController extends Controller
      */
     public function store(Request $request)
     {
+        $messageErreur = 
+        [
+            'libelle.required' => 'Le nom de l organisation est obligatoire!',
+            'libelle.max' => 'Le nom de l organisation ne doit pas dépasser 50 caracteres!',
+            'email.max' => 'Adresse mail ne doit pas dépasser 30 caracteres!',
+            'email.unique' => 'Adresse mail doit être unique!',
+            'email.email' => 'Adresse mail doit être valide!',
+            'adresse.required' =>'Adresse du donneur est obligatoire!',
+            'telephone.required' => 'Le numero du telephone du donneur est obligatoire!',
+            'telephone.max' => 'Le numéro du telephone de l organisation ne doit pas dépasser 15 chiffres!',
+            'telephone.unique' => 'Le numéro de telephone de l organisation doit être unique',
+            'date_heure.required' => 'La et heure de rendez vous est obligatoire!',
+            'lieu.required' => 'Le lieu de rendez vous est obligatoire',
+            'adresse.string' => 'Adresse de l organisation peut contenir des lettre, des chiffres'
+        ];
+
+        $validation = $this->validate($request, [
+            'libelle' => 'required|string|max:50',
+            'telephone' => 'required|string|max:15|unique:organisations',
+            'adresse' => 'string|required',
+            'email' => 'email|max:30|unique:organisations',
+            'date_heure' => 'required|string',
+            'lieu' => 'required|string'
+            
+            
+        ],$messageErreur);
+
+        if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
+
+
+
         $organisation = Organisation::firstOrCreate([
             'libelle'=>$request->libelle,
             'telephone'=>$request->telephone,
             'adresse'=>$request->adresse,
             'email'=>$request->email
         ]);
-
         Rdv::create([
             'date_heure' => $request->date_heure,
             'lieu' => $request->lieu,
@@ -101,6 +137,43 @@ class RdvController extends Controller
      */
     public function update(Request $request, Rdv $rdv, Organisation $org)
     {
+
+        $messageErreur = 
+        [
+            'libelle.required' => 'Le nom de l organisation est obligatoire!',
+            'libelle.max' => 'Le nom de l organisation ne doit pas dépasser 50 caracteres!',
+            'email.max' => 'Adresse mail ne doit pas dépasser 30 caracteres!',
+            'email.unique' => 'Adresse mail doit être unique!',
+            'email.email' => 'Adresse mail doit être valide!',
+            'adresse.required' =>'Adresse du donneur est obligatoire!',
+            'telephone.required' => 'Le numero du telephone du donneur est obligatoire!',
+            'telephone.max' => 'Le numéro du telephone de l organisation ne doit pas dépasser 15 chiffres!',
+            'telephone.unique' => 'Le numéro de telephone de l organisation doit être unique',
+            'date_heure.required' => 'La et heure de rendez vous est obligatoire!',
+            'lieu.required' => 'Le lieu de rendez vous est obligatoire',
+            'adresse.string' => 'Adresse de l organisation peut contenir des lettre, des chiffres...etc'
+        ];
+
+        $validation = $this->validate($request, [
+            'libelle' => 'required|string|max:50',
+            'telephone' => 'required|string|max:15|unique:organisations',
+            'adresse' => 'string|required',
+            'email' => 'email|max:30|unique:organisations',
+            'date_heure' => 'required|string',
+            'lieu' => 'required|string'
+            
+            
+        ],$messageErreur);
+
+        if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
+
+
         $organisation = $org->updateOrCreate([
             'libelle'=>$request->libelle,
             'telephone'=>$request->telephone,

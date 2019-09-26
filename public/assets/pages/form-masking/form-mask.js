@@ -10,7 +10,7 @@ $(function() {
 
     /*phone no*/
     $(".mob_no").inputmask({ mask: "9999-999-999"});
-    $(".phone").inputmask({ mask: "9999-9999"});
+    $(".phone").inputmask({ mask: "+227 99 99 99 99"});
     $(".telphone_with_code").inputmask({ mask: "(99) 9999-9999"});
     $(".us_telephone").inputmask({ mask: "(999) 999-9999"});
     $(".ip").inputmask({ mask: "999.999.999.999"});

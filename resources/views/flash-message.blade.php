@@ -23,6 +23,10 @@ $(document).ready(function(){
 	swal('Succés!', '{{Session::get("success")}}', 'success')
 	@endif
 
+	@if (Session::has('erreur'))
+	swal('erreur', '{{Session::get("erreur")}}', 'erreur')
+	@endif
+
 	@if (Session::has('error'))
 	swal('Erreur', '{{Session::get("error")}}', 'error')
 	@endif

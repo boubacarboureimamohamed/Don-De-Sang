@@ -69,7 +69,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                    <input type="text" class="form-control" id="telephone" name="telephone" value="{{ $rdv->organisation->telephone}}" placeholder="Telephone">
+                                    <input type="text" class="form-control phone" data-mask="9999-99-99-99-99" id="telephone" name="telephone" value="{{ $rdv->organisation->telephone}}" placeholder="Telephone">
                             </div>
                          </div>
                      </div>

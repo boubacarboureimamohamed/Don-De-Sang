@@ -25,9 +25,16 @@ class CreateDonneursTable extends Migration
             $table->string('nationalite');
             $table->string('profession');
             $table->string('telephone')->unique();
-            $table->string('email')->unique();
-            $table->bigInteger('organisation_id')->unsigned()->index()->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('donneur_organisation', function (Blueprint $table) {
+            $table->increments('id');
+            $table->date('date');$table->bigInteger('organisation_id')->unsigned()->index()->nullable();
             $table->foreign('organisation_id')->references('id')->on('organisations');
+            $table->bigInteger('donneur_id')->unsigned()->index();
+            $table->foreign('donneur_id')->references('id')->on('donneurs')->onDelete('cascade');
             $table->timestamps();
         });
     }

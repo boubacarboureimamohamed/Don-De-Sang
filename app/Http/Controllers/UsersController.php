@@ -46,6 +46,44 @@ class UsersController extends Controller
 
     public function update(Request $request, User $user)
     {
+        $messagErreurs = 
+        [ 
+            'name.required' => 'Le nom d utilisation est obligatoire!',
+            'name.max' => 'Le nom d utilisateur ne doit pas dépasser 100 caracteres!',
+            'name.alpha' => 'Le nom d utilisateur ne doit que des lettres!',
+            'email.required' => 'Adresse mail est obligatoire',
+            'email.email' => 'Adresse mail doit être valide',
+            'email.max' => 'Adresse mail ne doit pas dépasser 50 caracteres!',
+            'email.unique' => 'Adresse mail est unique!',
+            'date_naiss.required' => 'La date de naissance est obligatoire!',
+            'sexe.required' => 'Le sexe est obligatoire!',
+            'profession.required' => 'La profession est obligatoire!',
+            'profession.alpha' => 'La profession ne doit contenir lettres!',
+            'adresse.required' => 'Adresse est obligatoire!',
+            'telephone.required' => 'Le numéro est obligatoire!',
+            'telephone.unique' => 'Le numéro de telephone est unique!', 
+            'telephone.min' => 'Le numéro de telephone doit avoir 8 caracteres!',
+            'telephone.max' => 'Le numéro de téléphone ne doit pas dépasser 15 caracteres!'
+    ];
+       return Validator::make($data, [
+            'name' => 'alpha|required|max:100',
+            'email' => 'email|required|unique:users|max:50',
+            'date_naiss' => 'required|date', 
+            'lieu_naiss' => 'required',
+            'sexe' => 'required',
+            'profession' => 'required|alpha',
+            'adresse' => 'required',
+            'telephone' => 'required|unique:users|min:8|max:15'
+
+       ], $messagErreurs);
+       if($validation->fails())
+        {
+            $returnData = array(
+                'error'=>$validation->errors()->all()
+            );
+            return redirect()->back()->with(['error' =>$validation->errors()->all()]);
+        }
+        
         $user->update([
             'name'=>$request->name,
             'email'=>$request->email,
