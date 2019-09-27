@@ -6,10 +6,15 @@
 
 @section('content')
     <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+    <h1 class="text-center text-white bg-c-{{$color}}">
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+            {{ ('Liste des donneurs') }}
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+    </h1>
         <div class="card">
-            <div class="card-header">
-                <h2 style="text-align: center;">Liste des donneurs</h2>
-            </div>
             <div class="card-block">
                 @can('ajouter_donneur')
                     <a href="{{ route('donneurs.add') }}" class="btn btn-success btn-outline-success"  style="float: none;margin: 5px;">
@@ -23,7 +28,7 @@
                                 <th>Numéro</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
-                                <th>Adresse</th>
+                                <th>Profession</th>
                                     @can('consulter_donneur')
                                 <th>Detail</th>
                                     @endcan
@@ -58,7 +63,7 @@
                                 </td>
                                 <td class="tabledit-view-mode">
                                     <span class="tabledit-span" style="">
-                                        {{ $donneur->adresse }}
+                                        {{ $donneur->profession }}
                                     </span>
                                 </td>
                                     @can('consulter_donneur')
@@ -75,12 +80,12 @@
                                     </a>
                                 </td>
                                     @endcan
-                                    @can('supprimer_donneur')
+                                    @can('supprimer_donneur') 
                                 <td>
-                                    <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                                    <form method="POST" action="{{ route('donneurs.destroy', $donneur) }}" id="form{{ $donneur->id }}">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                        <button type="button" onclick="confirmation('#form{{ $donneur->id }}')" class="btn btn-danger btn-outline-danger waves-effect waves-light">
                                             <span class="icofont icofont-ui-delete"></span>
                                         </button>
                                     </form>
@@ -104,6 +109,7 @@
         </div>
     </div>
 @endsection
+
 @section('js')
 
 <script>
@@ -126,6 +132,23 @@ language: {
 
 </script>
 
+<script>
 
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
+
+    </script>
 
 @endsection

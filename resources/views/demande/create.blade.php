@@ -2,15 +2,24 @@
 @section('content')
 
 <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Ajout d\'une demande de sang') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
         <form id="main" method="post" action="{{ route('demande.store')}}" novalidate="">
                             {{ csrf_field() }}
            <div class="auth-box card">
           <div class="card-block">
-          <div class="row m-b-30">
-                     <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Demande des poches de sang') }}</h3>
-                     </div>
-          </div>
            <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
@@ -68,16 +77,16 @@
                 <table id="example-2" class="table table-striped table-bordered nowrap">
                         <thead>
                             <tr>
-                                <th>Group sanguin:</th>
-                                <th>Quantité demandée:</th>
-                                <th>Type de poche:</th>
+                                <th>Group sanguin</th>
+                                <th>Type de poche</th>
+                                <th>Quantité demandée</th>
                                 <th style="text-align: center"><a href="#" class="btn btn-success btn-outline-success" id="addLigne"><i class="icofont icofont-plus"></i></a></th>
                             </tr>
                         </thead>
                         <tbody id="ligne">
                             <tr>
                                 <td>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-10">
                                         <div class="form-group form-primary">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>
@@ -93,17 +102,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                <div class="col-sm-6">
-                                    <div class="form-group form-primary">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>
-                                            <input type="text" name="quantite_demandee[]" id="quantite_demandee[]" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                </td>
-                                <td>
-                                <div class="col-sm-6">
+                                <div class="col-sm-10">
                                     <div class="form-group form-primary">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont"></i></span>
@@ -115,14 +114,32 @@
                                     </div>
                                 </div>
                                 </td>
+                                <td>
+                                <div class="col-sm-8">
+                                    <div class="form-group form-primary">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>
+                                            <input type="text" name="quantite_demandee[]" id="quantite_demandee[]" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                </td>
                                 <td style="text-align: center"><a href="#" class="btn btn-danger btn-outline-danger remove"><i class="icofont icofont-minus"></i></i></a></td>
                             </tr>
                         </tbody>
                     </table>
                 <div class="text-center">
                     <a href="{{  route('demande.index')}}" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
-                    <button type="submit" class="btn btn-success m-b-0">Enregistrer</button>
-                </div>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div><hr>
+                  <div class="row">
+                      <div class="col-md-11">
+                        <p class="text-inverse text-left m-b-0">Don Du Sang</p>
+                        <p class="text-inverse text-left">Blood Donation</a></p>
+                      </div>
+                      <div class="col-md-1">
+                         <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
+                      </div>
              </div>
            </div>
          </div>
@@ -149,7 +166,7 @@ $('#addLigne').on('click', function (f) {
 function addLigne() {
     var tr = '<tr>'+
         '<td>'+
-            '<div class="col-sm-8">'+
+            '<div class="col-sm-10">'+
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
                         ' <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>'+
@@ -165,17 +182,7 @@ function addLigne() {
             '</div>'+
         '</td>'+
         '<td>' +
-            '<div class="col-sm-6">'+
-                '<div class="form-group form-primary">'+
-                    '<div class="input-group">'+
-                        ' <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>'+
-                        '<input type="text" name="quantite_demandee[]" id="quantite_demandee" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">'+
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-        '</td>' +
-        '<td>' +
-            '<div class="col-sm-6">'+
+            '<div class="col-sm-10">'+
                 '<div class="form-group form-primary">'+
                     '<div class="input-group">'+
                         '<span class="input-group-addon"><i class="icofont icofont"></i></span>'+
@@ -183,6 +190,16 @@ function addLigne() {
                             '<option value="Double">Double</option>'+
                             '<option value="Simple">Simple</option>'+
                         ' </select>'+
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</td>' +
+        '<td>' +
+            '<div class="col-sm-8">'+
+                '<div class="form-group form-primary">'+
+                    '<div class="input-group">'+
+                        ' <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>'+
+                        '<input type="text" name="quantite_demandee[]" id="quantite_demandee" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">'+
                     '</div>' +
                 '</div>' +
             '</div>' +

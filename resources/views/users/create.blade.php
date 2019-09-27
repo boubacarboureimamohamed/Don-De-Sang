@@ -12,6 +12,21 @@
 @section('content')
 
 <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Ajout d\'un nouveau utilisateur') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
    <form method="POST" action="{{ route('register') }}" class="md-float-material form-material">
 
          @csrf
@@ -19,17 +34,12 @@
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
-               <div class="row m-b-30">
-                     <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Ajout d\'un nouveau utilisateur') }}</h3>
-                     </div>
-               </div>
                 <div class="row">
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  placeholder="Username">
+                                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  placeholder="Nom et Prénom">
                                     
                             </div>
                          </div>
@@ -38,7 +48,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  placeholder="Your Email Address">
+                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  placeholder="Adresse mail">
                                     
                             </div>
                          </div>
@@ -49,7 +59,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-lock"></i></span>
-                                         <input id="password" type="password" class="form-control" name="password"  placeholder="New Password">
+                                         <input id="password" type="password" class="form-control" name="password"  placeholder="Nouveau mot de pass">
                                   
                             </div>
                          </div>
@@ -58,51 +68,50 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-lock"></i></span>
-                                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Confirm New Password">
+                                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Confirmer le mot de pass">
                             </div>
                          </div>
                      </div>
                 </div>
 <!-- Multi-select start -->
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <h4 class="sub-title">Rôles</h4>
-                                                            <select id='custom-headers' class="searchable" name="roles[]" multiple='multiple'>
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4 class="sub-title">Rôles</h4>
+                                <select id='custom-headers' class="searchable" name="roles[]" multiple='multiple'>
 
-                                                            @foreach ($roles as $role)
+                                @foreach ($roles as $role)
 
-                                                                <option value='{{ $role->id }}'>{{ $role->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                    <option value='{{ $role->id }}'>{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
 
-                                                </div>
-                                            </div>
-                                            <!-- Multi-select end -->
+                    </div>
+                </div>
+                <!-- Multi-select end -->
                 <div class="row m-t-30">
                       <div class="col-md-5">
 
                       </div>
                       <div class="col-md-7">
-                                <a href="{{ route('users.index') }}" class="btn btn-grd-disabled">
-                                    {{ ('Annuler') }}
-                                </a>
-
-                                <button type="submit" class="btn btn-success alert-success-msg m-b-10">
-                                    {{ ('Enregistrer') }}
-                                </button>
+                         <a href="{{ route('users.index') }}" class="btn btn-default">
+                               {{ ('Annuler') }}
+                         </a>
+                          <button type="submit" class="btn btn-primary">
+                               {{ ('Enregistrer') }}
+                          </button>
                       </div>
                  </div>
                  </div> <hr>
                   <div class="row">
-                      <div class="col-md-10">
+                      <div class="col-md-11">
                         <p class="text-inverse text-left m-b-0">Don Du Sang</p>
                         <p class="text-inverse text-left">Blood Donation</a></p>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-1">
                          <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
                       </div>
                  </div>

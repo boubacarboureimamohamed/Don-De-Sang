@@ -122,7 +122,7 @@ class DemandeController extends Controller
        /*
         $success->load('groupement'); */
         //return response()->json(['ligne'=> $success]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Lenregistrement a été effetué avec succés!');
     }
     public function ligneupdate(Request $request, LigneDemande $ligne)
     {
@@ -135,23 +135,31 @@ class DemandeController extends Controller
     public function demandedestroy($id)
     {
         Demande::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
     public function lignedestroy($id)
     {
         LigneDemande::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
     public function livraison(Request $request, LigneDemande $ligne)
     {
         $quantite = $ligne->quantite_demandee;
         $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
         //dd($last);
+
+        $messageErreur = [
+            'quantite_livree.required' => 'La qauntité livrée est requise!',
+            'quantite_livree.max' => 'La qauntité livrée doit être inférieur ou égale à la quantité demandée!',
+            'quantite_livree.integer' => 'La qauntité livrée doit être un nombre entier!'
+ 
+        ];
+
         $this->validate($request, [
             'quantite_livree' => 'required|integer|max:'.$quantite,
-        ]);
+        ],$messageErreur);
             if(isset($last[0])){
-                if($last[0]->quantite_reelle > $request->quantite_livree )
+                if($last[0]->quantite_reelle >= $request->quantite_livree )
                 {
                     $livraison = Livraison::create([
                         'quantite_livree' => $request->quantite_livree,
@@ -167,10 +175,10 @@ class DemandeController extends Controller
                     $ligne->update([
                         'livraison_id' => $livraison->id
                     ]);
-                }else { return back()->with('error', 'La quantité en stock et inférieur à la quantité livrée!'); }
+                }else { return back()->with('error', 'La quantité en stock est inférieur à la quantité livrée!'); }
             }else{
                 return back()->with('error', 'Le stock n!');
             }
-        return back();
+        return back()->with('success', 'La ligne de demande a été livrée!');;
     }
 }

@@ -25,10 +25,10 @@ class DonneurController extends Controller
         $messageErreur = 
         [
             'nom.required' => 'Le nom du donnneur est réquis!',
-            'nom.alpha' => 'Le nom du donneur ne doit contenir que des lettres!',
+            'nom.string' => 'Le nom du donneur ne doit contenir que des lettres!',
             'nom.max' => 'Le nom du donneur ne doit pas dépasser 50 caracteres!',
             'prenom.required' => 'Le prénom du donnneur est réquis!',
-            'prenom.alpha' => 'Le prenom du donneur ne doit contenir que des lettres!',
+            'prenom.string' => 'Le prenom du donneur ne doit contenir que des lettres!',
             'prenom.max' => 'Le prénom du donneur ne doit pas dépasser 50 caracteres!',
             'email.max' => 'Adresse mail ne doit pas dépasser 30 caracteres!',
             'email.unique' => 'Adresse mail doit être unique!',
@@ -45,28 +45,28 @@ class DonneurController extends Controller
             'telephone.max' => 'Le numéro du telephone du donneur ne doit pas dépasser 8 chiffres!',
             'date_naiss.required' => 'La date de naissance de donneur est réquise!'
             
-        ];
+        ]; 
       $validation =  $this->validate($request, 
       [
-            'nom' => 'required|alpha|max:50',
-            'prenom' => 'required|alpha|max:50',
+            'nom' => 'required|string|max:50',
+            'prenom' => 'required|string|max:50',
             'email' => 'email|max:30|unique:donneurs',
             'lieu_naiss' => 'required|string',
             'sexe' => 'required',
             'adresse' => 'required|string',
             'nationalite' => 'required|alpha',
             'profession' => 'required|alpha',
-            'telephone' => 'required|string|max:15|',
+            'telephone' => 'required|string|max:20|',
             'date_naiss' => 'required|date'
 
         ], $messageErreur);
-        if($validation->fails())
+        /* if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
         $donneur= Donneur::create($request->all());
         $donneur->update([
             'num_donneur' => 'DO/' . date('Ymd') . '/' . $donneur->id
@@ -106,7 +106,7 @@ class DonneurController extends Controller
     {
         Donneur::destroy($id);
         /* flash("success, Le donneur a été suprimée.")->success(); */
-        return redirect()->back();
+        return redirect(route('donneurs.index'))->with('success', 'La suppression a été effetué avec succés!');
     }
     public function edit($id)
     {
@@ -119,13 +119,12 @@ class DonneurController extends Controller
         $messageErreur = 
         [
             'nom.required' => 'Le nom du donnneur est réquis!',
-            'nom.alpha' => 'Le nom du donneur ne doit contenir que des lettres!',
+            'nom.string' => 'Le nom du donneur ne doit contenir que des lettres!',
             'nom.max' => 'Le nom du donneur ne doit pas dépasser 50 caracteres!',
             'prenom.required' => 'Le prénom du donnneur est réquis!',
-            'prenom.alpha' => 'Le prenom du donneur ne doit contenir que des lettres!',
+            'prenom.string' => 'Le prenom du donneur ne doit contenir que des lettres!',
             'prenom.max' => 'Le prénom du donneur ne doit pas dépasser 50 caracteres!',
             'email.max' => 'Adresse mail ne doit pas dépasser 30 caracteres!',
-            'email.unique' => 'Adresse mail doit être unique!',
             'email.email' => 'Adresse mail doit être valide!',
             'lieu_naiss.required' => 'Le lieu de naissance du donneur est réquis!',
             'lieu_naiss.max' => 'Le lieu de naissance du donneur ne doit pas dépasser 20 caracteres!',
@@ -141,19 +140,19 @@ class DonneurController extends Controller
         ];
 
         $validation = $this->validate($request, [
-            'nom' => 'required|alpha|max:50',
-            'prenom' => 'required|alpha|max:50',
-            'email' => 'email|max:30|unique:donneurs',
+            'nom' => 'required|string|max:50',
+            'prenom' => 'required|string|max:50',
+            'email' => 'email|max:30',
             'lieu_naiss' => 'required|string',
             'sexe' => 'required',
             'adresse' => 'required|string',
             'nationalite' => 'required|alpha',
             'profession' => 'required|alpha',
-            'telephone' => 'required|string|max:15|',
+            'telephone' => 'required|string|max:20|',
             'date_naiss' => 'required|date'
         ],$messageErreur);
 
-        if($validation->fails())
+        /* if($validation->fails())
         {
             $returnData = array(
                 'status'=>'error',
@@ -161,7 +160,7 @@ class DonneurController extends Controller
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
 
         $donneur->update([
             'nom' => $request->nom,
@@ -189,6 +188,7 @@ class DonneurController extends Controller
         $os = Organisation::all();
         $as = Donneur::with('situationmats','typedonneurs','organisations')->whereId($donneur->id)->get()[0];
         $ls = Donneur::with('organisations')->whereId($donneur->id)->get()[0];
+        //dd($as);
         return view('donneurs.show', compact('as','ls','ts','os'));
     }
 

@@ -1,35 +1,34 @@
 @extends('layouts.adminty')
+
 @section('css')
 
-  <!-- jpro forms css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\j-pro-modern.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\advance-elements\css\bootstrap-datetimepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\bootstrap-daterangepicker\css\daterangepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\datedropper\css\datedropper.min.css') }}">
-
-    <!-- sweet alert framework -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\sweetalert\css\sweetalert.css') }}">
-    <!-- animation nifty modal window effects css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css\component.css') }}">
 @endsection
+
 @section('content')
 
 <div class="col-sm-12">
-   <form role="form" action="{{ route('validation.store', $dossier) }}" method="POST">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Le don / La validation') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
+   <form role="form" action="{{ route('validation.store', $dossier) }}" method="POST" id="formvalide">
         <input type="hidden" value="{{ $dossier->type_poche }}" name="type_poche" id="type_poche">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
- 
+
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
-               <div class="row m-b-30">
-                     <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Le don / La validation') }}</h3>
-                     </div>
-               </div>
                 <div class="row">
                      <input type="text"value="{{ $dossier->donneur->id }}"name="donneur_id" hidden>
                     <div class="col-sm-6">
@@ -71,16 +70,16 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Le type du donneur" data-toggle="tooltip" class="form-control" value="{{ $dossier->donneur->prenom }}" readonly="" placeholder="">
+                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
+                                <input id="" type="text" title="La quantité à prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_a_prelevee }}" readonly="" placeholder="">
                             </div>
                          </div>
                      </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="La quantité à prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_a_prelevee }}" readonly="" placeholder="">
+                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
+                                <input id="" type="text" title="Entrer la quantité prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_prelevee }}" readonly="" name="quantite_prelevee">
                             </div>
                          </div>
                      </div>
@@ -97,8 +96,8 @@
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Entrer la quantité prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_prelevee }}" readonly="" name="quantite_prelevee">
+                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" title="Entrer le type de prélèvement" data-toggle="tooltip" type="text" class="form-control" value="{{ $dossier->type_prelevement }}" readonly="" name="type_prelevement" class="form-control form-control-default">
                             </div>
                          </div>
                      </div>
@@ -107,8 +106,8 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" title="Entrer le type de prélèvement" data-toggle="tooltip" type="text" class="form-control" value="{{ $dossier->type_prelevement }}" readonly="" name="type_prelevement" class="form-control form-control-default">
+                                 <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
+                                <input id="" title="Entrer l'Observation" data-toggle="tooltip" type="text" class="form-control" value="{{ $dossier->observation_prelevement }}" readonly="" name="observation_prelevement">
                             </div>
                          </div>
                      </div>
@@ -116,7 +115,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
-                                <input id="" title="Entrer l'Observation" data-toggle="tooltip" type="text" class="form-control" value="{{ $dossier->observation_prelevement }}" readonly="" name="observation_prelevement">
+                               <textarea id="" title="Entrer l'Observation" placeholder="observation de la validation" data-toggle="tooltip" type="text" class="form-control" name="motif_rejet"  rows="1"></textarea>
                             </div>
                          </div>
                      </div>
@@ -133,56 +132,48 @@
                                 </div>
                                 <div class="radio radiofill radio-inline" id="refuser">
                                         <label>
-                                        <input type="radio" value="0" name="rejet"><i class="helper"></i> Refuser
+                                        <input type="radio" value="0" name="rejet"><i class="helper"></i> Rejeter
                                         </label>
                                 </div>
                               </div>
                           </div>
                      </div>
                    </div>
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
+                    <div class="col-sm-6" id="groupe">
+                        <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
-                               <textarea id="" title="Entrer l'Observation" placeholder="observation" data-toggle="tooltip" type="text" class="form-control" name="motif_rejet"  rows="1"></textarea>
-                            </div>
-                         </div>
-                     </div>
-                     <div class="col-sm-6" id="groupe">
-                            <div class="form-group form-primary">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                    <select name="groupement_id" id="groupement_id" class="form-control">
-                                        @foreach($groupements as $groupement)
-                                            <option value="{{ $groupement->id }}">
-                                                {{ $groupement->groupe_sanguin }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>
+                                <select name="groupement_id" id="groupement_id" class="form-control">
+                                    @foreach($groupements as $groupement)
+                                        <option value="{{ $groupement->id }}">
+                                            {{ $groupement->groupe_sanguin }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
+                    </div>
                 </div>
                 <div class="row m-t-30">
                       <div class="col-md-5">
 
                       </div>
                       <div class="col-md-7">
-                         <a href="{{ route('prelevement.donneur_apte_a_prelevee') }}" class="btn btn-grd-disabled">
+                         <a href="{{ route('prelevement.donneur_prelevee') }}" class="btn btn-default">
                                {{ ('Annuler') }}
                          </a>
-                          <button type="submit" class="btn btn-success">
-                               {{ __('Effectuer') }}
+                          <button type="button" onclick="confirmation()" class="btn btn-primary">
+                               {{ ('Valider') }}
                           </button>
                       </div>
                  </div>
-                 </div> <hr>
+                 </div><hr>
                   <div class="row">
-                      <div class="col-md-10">
+                      <div class="col-md-11">
                         <p class="text-inverse text-left m-b-0">Don Du Sang</p>
                         <p class="text-inverse text-left">Blood Donation</a></p>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-1">
                          <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
                       </div>
                  </div>
@@ -195,43 +186,37 @@
 @endsection
 
 @section('js')
- <!-- j-pro js -->
-    <script type="text/javascript" src="{{ asset('js\j-pro\js\jquery.ui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js\j-pro\js\jquery.j-pro.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('js\advance-elements\custom-picker.js') }}"></script>
-
-
-    <!-- Bootstrap date-time-picker js -->
-    <script type="text/javascript" src="{{ asset('js\advance-elements\moment-with-locales.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components\bootstrap-datepicker\js\bootstrap-datepicker.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js\advance-elements\bootstrap-datetimepicker.min.js') }}"></script>
-    <!-- Date-range picker js -->
-    <script type="text/javascript" src="{{ asset('bower_components\bootstrap-daterangepicker\js\daterangepicker.js') }}"></script>
-    <!-- Date-dropper js -->
-
-    <!-- sweet alert js -->
-    <script type="text/javascript" src="{{ asset('bower_components\sweetalert\js\sweetalert.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js\modal.js') }}"></script>
-    <!-- sweet alert modal.js intialize js -->
-    <!-- modalEffects js nifty modal window effects -->
-    <script type="text/javascript" src="{{ asset('assets\js\modalEffects.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets\js\classie.js') }}"></script>
-
 
     <script>
-    $(document).ready(function(){
-     $('#groupe').hide();
-     $('#accepter').click(function(){
-      $('#groupe').show();
-     $('#refuser').click(function(){
-      $('#groupe').hide();
-     });
-     });
-    });
+            $(document).ready(function(){
+            $('#groupe').hide();
+            $('#accepter').click(function(){
+            $('#groupe').show();
+            $('#refuser').click(function(){
+            $('#groupe').hide();
+            });
+            });
+            });
+    </script>
 
+    <script>
 
-</script>
+     function confirmation()
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois validé, la poche de sang est directement envoyé en stock! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $('#formvalide').submit();
+            });
+        }
+
+    </script>
 
 
 @endsection

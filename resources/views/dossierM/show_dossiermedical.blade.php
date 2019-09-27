@@ -17,9 +17,9 @@
             <div class="card-header">
                 <h3 style="text-align: center;">Donneur N°{{ $donneur->num_donneur }}</h5>
             </div>
-            <div class="card-block">
+             <div class="card-block">
                 <div class="row">
-                    <div class="col-lg-12 col-xl-12">
+                    <div class="col-lg-12 col-xl-6">
                         <div class="table-responsive">
                             <table class="table m-0">
                                 <tbody>
@@ -28,23 +28,55 @@
                                         <td>{{ $donneur->nom }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Prénom </th>
-                                        <td>{{ $donneur->prenom }}</td>
+                                        <th scope="row">Date de naissance</th>
+                                        <td>{{ $donneur->date_naiss }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Sexe</th>
-                                        <td>{{ $donneur->sexe }}</td>
+                                        <th scope="row">Nationalite</th>
+                                        <td>{{ $donneur->nationalite }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Type de donneur</th>
-                                        <td>{{ $donneur->typedonneur->type_donneur }}</td>
+                                        <th scope="row">Téléphone</th>
+                                        <td>{{ $donneur->telephone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Email</th>
+                                        <td>{{ $donneur->email }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="col-lg-12 col-xl-6">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Profession</th>
+                                        <td>{{ $donneur->profession }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Prénom </th>
+                                        <td>{{ $donneur->prenom }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Lieu de naissance</th>
+                                        <td>{{ $donneur->lieu_naiss }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Sexe</th>
+                                        <td>{{ $donneur->sexe }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
                 </div>
+                <a href="{{ route('dossierM.dossiermedical')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
+        </div>
+    </div>
         </div>
     </div>
 </div>
@@ -73,8 +105,8 @@
                                     <th>Type de prelevement</th>
                                     <th>Type de poche</th>
                                     <th>Observation du prelevement</th>
-                                    <th>......</th>
-                                    <th>Motif...</th>
+                                    <th>Validation</th>
+                                    <th>Observation du validation</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -133,7 +165,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <a href="{{ route('dossierM.dossiermedical') }}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>        
                     </div>
                 </div>
             </div>

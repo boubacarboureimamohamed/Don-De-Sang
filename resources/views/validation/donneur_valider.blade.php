@@ -1,24 +1,21 @@
 @extends('layouts.adminty')
+
 @section('css')
 
-  <!-- jpro forms css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\j-pro-modern.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\advance-elements\css\bootstrap-datetimepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\bootstrap-daterangepicker\css\daterangepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\datedropper\css\datedropper.min.css') }}">
-
 @endsection
+
 @section('content')
 <div class="col-sm-12">
+@php
+         $color = 'pink';
+    @endphp
+    <h1 class="text-center text-white bg-c-{{$color}}">
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+            {{ ('Liste des prélèvements validés') }}
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+    </h1>
 <div class="page-body">
-
-    <!-- Extra Large table start -->
     <div class="card">
-        <div class="card-header">
-            <h3 style="text-align: center;">Liste des prélèvements validés</h3>
-        </div>
         <div class="card-block">
             <div class="btn-group btn-group-sm" style="float: none; ">
                 @can('don_accepte')
@@ -58,7 +55,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
     <!-- Extra Large table end -->
 @endsection

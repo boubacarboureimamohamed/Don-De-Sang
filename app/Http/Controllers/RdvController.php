@@ -51,7 +51,7 @@ class RdvController extends Controller
             'email.email' => 'Adresse mail doit être valide!',
             'adresse.required' =>'Adresse du donneur est obligatoire!',
             'telephone.required' => 'Le numero du telephone du donneur est obligatoire!',
-            'telephone.max' => 'Le numéro du telephone de l organisation ne doit pas dépasser 15 chiffres!',
+            'telephone.max' => 'Le numéro du telephone de l organisation ne doit pas dépasser 8 chiffres!',
             'telephone.unique' => 'Le numéro de telephone de l organisation doit être unique',
             'date_heure.required' => 'La et heure de rendez vous est obligatoire!',
             'lieu.required' => 'Le lieu de rendez vous est obligatoire',
@@ -60,7 +60,7 @@ class RdvController extends Controller
 
         $validation = $this->validate($request, [
             'libelle' => 'required|string|max:50',
-            'telephone' => 'required|string|max:15|unique:organisations',
+            'telephone' => 'required|string|max:20|unique:organisations',
             'adresse' => 'string|required',
             'email' => 'email|max:30|unique:organisations',
             'date_heure' => 'required|string',
@@ -69,15 +69,13 @@ class RdvController extends Controller
             
         ],$messageErreur);
 
-        if($validation->fails())
+       /*  if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
-
-
+        } */
 
         $organisation = Organisation::firstOrCreate([
             'libelle'=>$request->libelle,
@@ -143,12 +141,10 @@ class RdvController extends Controller
             'libelle.required' => 'Le nom de l organisation est obligatoire!',
             'libelle.max' => 'Le nom de l organisation ne doit pas dépasser 50 caracteres!',
             'email.max' => 'Adresse mail ne doit pas dépasser 30 caracteres!',
-            'email.unique' => 'Adresse mail doit être unique!',
             'email.email' => 'Adresse mail doit être valide!',
             'adresse.required' =>'Adresse du donneur est obligatoire!',
             'telephone.required' => 'Le numero du telephone du donneur est obligatoire!',
-            'telephone.max' => 'Le numéro du telephone de l organisation ne doit pas dépasser 15 chiffres!',
-            'telephone.unique' => 'Le numéro de telephone de l organisation doit être unique',
+            'telephone.max' => 'Le numéro du telephone de l organisation ne doit pas dépasser 8 chiffres!',
             'date_heure.required' => 'La et heure de rendez vous est obligatoire!',
             'lieu.required' => 'Le lieu de rendez vous est obligatoire',
             'adresse.string' => 'Adresse de l organisation peut contenir des lettre, des chiffres...etc'
@@ -156,23 +152,22 @@ class RdvController extends Controller
 
         $validation = $this->validate($request, [
             'libelle' => 'required|string|max:50',
-            'telephone' => 'required|string|max:15|unique:organisations',
+            'telephone' => 'required|string|max:20',
             'adresse' => 'string|required',
-            'email' => 'email|max:30|unique:organisations',
+            'email' => 'email|max:30',
             'date_heure' => 'required|string',
             'lieu' => 'required|string'
             
             
         ],$messageErreur);
 
-        if($validation->fails())
+        /* if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
-
+        } */
 
         $organisation = $org->updateOrCreate([
             'libelle'=>$request->libelle,
@@ -207,13 +202,13 @@ class RdvController extends Controller
     public function destroy($id)
     {
         Rdv::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
 
     public function rdvfixeliste()
     {
         $rdvsfixes = Rdv::with('typerdv')->with('organisation')->get();
-        return view('rdvs.rdv_fixe_liste', compact('rdvsfixes'))->with('error', 'la supression a ete effetue avec succes');
+        return view('rdvs.rdv_fixe_liste', compact('rdvsfixes'));
     }
 
     public function rdvmobileliste()

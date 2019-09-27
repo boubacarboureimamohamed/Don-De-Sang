@@ -2,15 +2,26 @@
 @section('content')
 
 <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Modification d\'une demande de sang') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
  <form id="main" method="post" action="{{ route('demande.demandeupdate', $demande) }}" novalidate="">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
     <div class="auth-box card">
         <div class="card-block">
             <div class="row m-b-30">
-                <div class="col-md-12">
-                    <h3 class="text-center txt-primary">{{ ('Modification d\'une Demande') }}</h3>
-                </div>
                 <div class="notifications">
                         @if(session('error'))
                         <button class="btn btn-danger waves-effect" data-type="danger" data-from="top" data-align="right" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">{{ session('error') }}</button>
@@ -69,7 +80,15 @@
             <div class="text-center">
                 <a href="{{  route('demande.index')}}" id="edit-cancel" class="btn btn-default waves-effect">Annuler</a>
                 <button type="submit" class="btn btn-primary m-b-0">Modifier</button>
-            </div>
+            </div><hr>
+                  <div class="row">
+                      <div class="col-md-11">
+                        <p class="text-inverse text-left m-b-0">Don Du Sang</p>
+                        <p class="text-inverse text-left">Blood Donation</a></p>
+                      </div>
+                      <div class="col-md-1">
+                         <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
+                      </div>
       </div>
     </div>
 </form>

@@ -55,7 +55,7 @@
                                             </div>
                                             <div class="forgot-phone text-right f-right">
                                                 @if (Route::has('password.request'))
-                                                <a href="{{ route('password.request') }}" class="text-right f-w-600"> {{ __('Mot de Pass Oublié?') }} </a>
+                                                <a href="{{ route('password.request') }}" class="text-right f-w-600"> {{ ('Mot de Pass Oublié?') }} </a>
                                                 @endif
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
                                             <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">
-                                            {{ __('Se Connecter') }}
+                                            {{ ('Se Connecter') }}
                                             </button>
                                         </div>
                                     </div>

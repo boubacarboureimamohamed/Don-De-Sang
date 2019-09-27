@@ -42,15 +42,13 @@ class DossierMedicalPrelevementController extends Controller
             'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve
         ],  $messageErreur);
 
-        if($validation->fails())
+        /* if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
-
-
+        } */
 
         $dossier->update([
             'type_prelevement' => $request->type_prelevement,
@@ -61,7 +59,7 @@ class DossierMedicalPrelevementController extends Controller
         ]);
 
 
-        $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
+        /* $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
         $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
         $client = new Client($accountSid, $authToken);
         try
@@ -77,11 +75,11 @@ class DossierMedicalPrelevementController extends Controller
                  'body' => 'Bonjour M./Mme ' .$dossier->donneur->nom. ' ' .$dossier->donneur->prenom. ' nous vous remercions du don effectué. Sachez que vous sauvez une vie!'
              )
          );
-   }
+        }
         catch (Exception $e)
         {
             echo "Error: " . $e->getMessage();
-        } 
+        }  */
 
  
     \Mail::send('prelevement.message', [ ], function ($message) use($dossier) {
@@ -93,11 +91,12 @@ class DossierMedicalPrelevementController extends Controller
     });
 
 
-        return redirect(route('prelevement.donneur_apte_a_prelevee'));
+        return redirect(route('prelevement.donneur_apte_a_prelevee'))->with('success', 'Le prélévement a été effetué avec succés!');
     }
     public function donneur_prelevee()
     {
-        $prelevements = DossierMedical::with('donneur')->whereNotNull('quantite_prelevee')->where('rejet', null)->get();
+        //DossierMedical::with('donneur')->whereNotNull('rejet')->get();
+        $prelevements = DossierMedical::with('donneur')->whereNotNull('quantite_prelevee')->where('rejet',null)->get();
         return view('prelevement.donneur_prelevee', compact('prelevements'));
     }
     public function show_prelevement(DossierMedical $prelevement)
@@ -122,13 +121,13 @@ class DossierMedicalPrelevementController extends Controller
         'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve
      ], $messageErreur);
 
-     if($validation->fails())
+     /* if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
         $prelevement->update([
             'type_prelevement' => $request->type_prelevement,
             'type_poche' => $request->type_poche,
@@ -136,7 +135,7 @@ class DossierMedicalPrelevementController extends Controller
             'quantite_prelevee' => $request->quantite_prelevee,
             'date_heure_prelevement' => date('Y-m-d')
         ]);
-        return redirect(route('prelevement.donneur_prelevee'));
+        return redirect(route('prelevement.donneur_prelevee'))->with('success', 'La modification a été effetué avec succés!');
     }
 
 

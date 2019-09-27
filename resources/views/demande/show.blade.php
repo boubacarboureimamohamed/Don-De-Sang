@@ -1,21 +1,14 @@
 @extends('layouts.adminty')
 @section('css')
 
-  <!-- jpro forms css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\j-pro-modern.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\advance-elements\css\bootstrap-datetimepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\bootstrap-daterangepicker\css\daterangepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\datedropper\css\datedropper.min.css') }}">
-
 @endsection
+
 @section('content')
 <div class="col-sm-12">
     <div class="page-body">
         <div class="card">
             <div class="card-header">
-                <h3 class="text-center txt-primary">{{ ('Détail sur la demande') }}</h3>
+                <h3 class="text-center">{{ ('Détail sur la demande') }}</h3>
             </div>
             <div class="card-block">
             <div class="view-info">
@@ -100,7 +93,9 @@
                             @can('supprimer_ligne_demande')
                         <th>supprimer</th>
                             @endcan
+                            @can('livrer_ligne_demande')
                         <th>Livrer</th>
+                            @endcan
                     </tr>
                 </thead>
                 <tbody id="bodyLignes">
@@ -113,15 +108,16 @@
                         <td>{{ $ligne->livraison ? $ligne->livraison->date : ''}}</td>
                             @can('supprimer_ligne_demande')
                         <td>
-                            <form method="POST" action="{{ route('ligne.lignedestroy', $ligne) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+                            <form method="POST" action="{{ route('ligne.lignedestroy', $ligne) }}" id="form{{ $ligne->id }}">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                <button type="button" onclick="confirmation('#form{{ $ligne->id }}')" class="btn btn-danger btn-outline-danger waves-effect waves-light">
                                     <span class="icofont icofont-ui-delete"></span>
                                 </button>
                             </form>
                         </td>
                             @endcan
+                            @can('livrer_ligne_demande')
                         <td>
                          @if($lignenonlivree->contains($ligne))
                             <a href="#"
@@ -135,13 +131,14 @@
                             </a>
                         @endif
                         </td>
+                            @endcan
                     </tr>
                 @endforeach
                 </tbody>
                 </table>
-                <a href="{{ route('demande.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
+        <a href="{{ route('demande.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
         </div>
     </div>
 </div>
@@ -175,19 +172,17 @@
                     </div>
                     <div class="form-group form-primary">
                         <div class="input-group">
-                            <span class="input-group-addon"></span>
-                            <input title="Quantité demandée" type="text" name="quantite_demandee" id="quantite_demandee" class="form-control">
+                            <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                            <select title="Type de poche" name="type_poche" id="type_poche" class="form-control">
+                                <option value="Double">Double</option>
+                                <option value="Simple">Simple</option>
+                            </select>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group form-primary">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select title="Type de poche" name="type_poche" id="type_poche" class="form-control">
-                                    <option value="Double">Double</option>
-                                    <option value="Simple">Simple</option>
-                                </select>
-                            </div>
+                    <div class="form-group form-primary">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>
+                            <input title="Quantité demandée" type="text" name="quantite_demandee" id="quantite_demandee" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -199,13 +194,14 @@
         </div>
     </div>
 </form>
+
 <form action="" id="form2" method="POST">
     @csrf
     <div class="modal fade" id="LivreerModal" tabindex="-1" role="dialog" aria-labelledby="LivreerModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="LivreerModalLabel">Livrée la ligne</h5>
+        <div class="modal-header text-center">
+            <h5 class="modal-title" id="LivreerModalLabel">Livrer une ligne de demande</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -237,6 +233,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
@@ -245,8 +243,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
@@ -255,20 +251,22 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-6">
-                    <div class="form-group form-primary">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                            <input title="Date de livraison" type="date" name="date" id="date_livraisonLivreer" class="form-control">
+                        <div class="form-group form-primary">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
+                                <input title="Date de livraison" type="date" name="date" id="date_livraisonLivreer" class="form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
+             </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Livreer</button>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-            <button type="submit" class="btn btn-primary">Livreer</button>
-        </div>
         </div>
     </div>
     </div>
@@ -276,12 +274,33 @@
 @endsection
 
 @section('js')
-<script>
-    function updateL(ligneLId) {
-            $('#quantite_demandeeLivree').val($(ligneLId).attr('data-quantiteL'))
-            $('#groupement_idLivree').val($(ligneLId).attr('data-group_sanguinL'))
-            $('#type_pocheLivree').val($(ligneLId).attr('data-type_pocheL'))
-            $('#form2').attr('action', $(ligneLId).attr('data-route'))
-    }
-</script>
+
+    <script>
+        function updateL(ligneLId) {
+                $('#quantite_demandeeLivree').val($(ligneLId).attr('data-quantiteL'))
+                $('#groupement_idLivree').val($(ligneLId).attr('data-group_sanguinL'))
+                $('#type_pocheLivree').val($(ligneLId).attr('data-type_pocheL'))
+                $('#form2').attr('action', $(ligneLId).attr('data-route'))
+        }
+    </script>
+
+     <script>
+
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
+
+    </script>
+
 @endsection

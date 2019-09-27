@@ -41,22 +41,22 @@ class RolesController extends Controller
         $messageErreur = 
         [
             'name.required' => 'Le nom du role est obligatoire!',
-            'name.alpha' => 'Le role ne doit contenir que des lettres!',
-            'seuil.unique' => 'Le role doit être unique!'
+            'name.unique' => 'Le nom du role doit être unique!'
         ];
       $validation =  $this->validate($request, [
-            'name' => 'required|alpha|unique:roles'
+            'name' => 'required|string|unique:roles'
         ], $messageErreur);
-        if($validation->fails())
+        /* if($validation)
         {
             $returnData = array(              
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
 
-        $role = Role::create(['name'=> $request->role]);
+        $role = Role::create(['name'=> $request->name]);
         $role->syncPermissions($request->permissions);
+    
         return redirect(route('roles.index'))->with('success', 'L enregistrement a été effetué avec succés!');
     }
 
@@ -95,22 +95,20 @@ class RolesController extends Controller
     {
         $messageErreur = 
         [
-            'name.required' => 'Le nom du role est obligatoire!',
-            'name.alpha' => 'Le role ne doit contenir que des lettres!',
-            'seuil.unique' => 'Le role doit être unique!'
+            'name.required' => 'Le nom du role est obligatoire!'
         ];
       $validation =  $this->validate($request, [
-            'name' => 'required|alpha|unique:roles'
+            'name' => 'required'
         ], $messageErreur);
-        if($validation->fails())
+        /* if($validation)
         {
             $returnData = array(              
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
 
-        $role->update(['name'=>$request->role]);
+        $role->update(['name'=>$request->name]);
         $role->syncPermissions($request->permissions);
         return redirect(route('roles.index'))->with('success', 'La modification a été effetué avec succés!');
     }
@@ -124,6 +122,6 @@ class RolesController extends Controller
     public function destroy($id)
     {
        Role::destroy($id);
-       return redirect(route('roles.index'));
+       return redirect(route('roles.index'))->with('success', 'La suppression a été effetué avec succés!');
     }
 }

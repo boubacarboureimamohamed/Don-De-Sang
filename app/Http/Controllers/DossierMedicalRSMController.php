@@ -58,14 +58,14 @@ class DossierMedicalRSMController extends Controller
 
         $validation = $this->validate($request, [
             'poid' => 'required|integer',
-            'temperature' => 'required|numeric|max:3',
-            'tension_arterielle' => 'required|integer|max:3',
+            'temperature' => 'required|numeric',
+            'tension_arterielle' => 'required|integer',
             'observation_approbation' => 'string',
-            'quantite_a_prelevee' => 'required|integer|max:3',
+            'quantite_a_prelevee' => 'required|integer',
             'approbation' => 'required',
         ], $messageErreur);
 
-        if($validation->fails())
+       /*  if($validation->fails())
         {
             $returnData = array(
                 'status'=>'error',
@@ -73,7 +73,7 @@ class DossierMedicalRSMController extends Controller
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
 
         $dossier = DossierMedical::create([
             'poid' => $request->poid,
@@ -90,6 +90,7 @@ class DossierMedicalRSMController extends Controller
             $dossier->update([
                 'num_don' => 'DON-' . date('Y-m-d') . '-' . $dossier->id
             ]);
+
         }
         return redirect(route('donneurs.index'));
     }
@@ -127,8 +128,9 @@ class DossierMedicalRSMController extends Controller
     public function edit_donneursexaminer($id)
     {
       $donneurexaminer = DossierMedical::with('donneur')->find($id);
+      $donneur = Donneur::find($id);
 
-      return view('dossierM.editdonneursexaminer', compact('donneurexaminer'));
+      return view('dossierM.editdonneursexaminer', compact('donneurexaminer','donneur'));
     }
 
     public function update_donneursexaminer(Request $request, DossierMedical $donneurexaminer)
@@ -151,27 +153,27 @@ class DossierMedicalRSMController extends Controller
         ];
         $this->validate($request, [
             'poid' => 'required|integer',
-            'temperature' => 'required|integer|max:3',
-            'tension_arterielle' => 'required|integer|max:3',
+            'temperature' => 'required|integer',
+            'tension_arterielle' => 'required|integer',
             'observation_approbation' => 'string',
-            'quantite_a_prelevee' => 'required|integer|max:3|min:3',
+            'quantite_a_prelevee' => 'required|integer',
             'approbation' => 'required',
         ], $messageErreur);
 
-        if($validation->fails())
+        /* if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
 
 
         $donneurexaminer->update([
         'poid'=>$request->poid,
         'temperature'=>$request->temperature,
         'tension_arterielle'=>$request->tension_arterielle,
-        'date_dossier_medical'=>$request->date_dossier_medical,
+        'date_dossier_medical' => date('Y-m-d'),
         'approbation'=> $request->approbation,
         'quantite_a_prelevee'=>$request->quantite_a_prelevee
 
@@ -180,7 +182,7 @@ class DossierMedicalRSMController extends Controller
      return redirect(route('dossierM.donneursexaminer'));
     }
 
-    
+
     public function destroy($id)
     {
         Donneur::destroy($id);

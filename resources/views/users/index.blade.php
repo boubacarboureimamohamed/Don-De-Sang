@@ -6,12 +6,18 @@
 @endsection
 
 @section('content')
-
+<div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+    <h1 class="text-center text-white bg-c-{{$color}}">
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+            {{ ('Liste des utilisateurs') }}
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+    </h1>
+</div>
 <div class="col-sm-12">
 <div class="card">
-<div class="card-header">
-<h3 style="text-align: center;">Liste des utilisateurs</h3>
-</div>
 <div class="card-block">
 <div class="btn-group btn-group-sm">
      @can('creer_user')
@@ -54,12 +60,12 @@
     @endcan
     @can('supprimer_user')
 <td>
-    <form method="POST" action="{{ route('users.destroy', $user) }}" onsubmit="return confirm('Êtes-vous sûr de supprimer cet enregistrement ?');">
+    <form method="POST" action="{{ route('users.destroy', $user) }}" id="form{{ $user->id }}">
 
         {{ csrf_field() }}
         {{ method_field('DELETE') }}
 
-        <button type="submit" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
+        <button type="button" onclick="confirmation('#form{{ $user->id }}')" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
             <span class="icofont icofont-ui-delete"></span>
         </button>
     </form>
@@ -79,8 +85,22 @@
 @endsection
 
 @section('js')
+    <script>
 
-<script>
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
 
 
 $(document).ready(function () {

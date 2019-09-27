@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBeneficiairesTable extends Migration
+class CreateCodebarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateBeneficiairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('beneficiaires', function (Blueprint $table) {
+        Schema::create('codebars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('libelle');
-            $table->string('adresse');
-            $table->string('telephone')->unique();
-            $table->string('email')->nullable()->unique();
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateBeneficiairesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('beneficiaires');
+        Schema::dropIfExists('codebars');
     }
 }

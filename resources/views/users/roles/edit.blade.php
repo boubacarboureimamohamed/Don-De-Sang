@@ -12,6 +12,20 @@
 @section('content')
 
 <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Modification d\'un rôle') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
    <form method="POST" action="{{ route('roles.update', $role) }}" class="md-float-material form-material">
 
         {{ csrf_field() }}
@@ -20,37 +34,32 @@
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
-               <div class="row m-b-30">
-                     <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Modification d\'un rôle') }}</h3>
-                     </div>
-               </div>
                 <div class="row">
                     <div class="col-sm-12">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                     <input id="name" type="text" class="form-control" name="role" value="{{ $role->name }}"  required="" placeholder="Rôle">
+                                     <input id="name" type="text" class="form-control" name="name" value="{{ $role->name }}"  placeholder="Rôle">
                             </div>
 
 <!-- Multi-select start -->
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <h4 class="sub-title">Permissions</h4>
-                                                            <select id='custom-headers' class="searchable" name="permissions[]" multiple='multiple'>
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4 class="sub-title">Permissions</h4>
+                                            <select id='custom-headers' class="searchable" name="permissions[]" multiple='multiple'>
 
-                                                               @foreach ($permissions as $permission)
-                                                                  <option @if(in_array($permission->id, $role->permissions->pluck('id')->toArray())) {{ 'selected' }} @endif value='{{ $permission->id }}'>{{ $permission->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                @foreach ($permissions as $permission)
+                                                    <option @if(in_array($permission->id, $role->permissions->pluck('id')->toArray())) {{ 'selected' }} @endif value='{{ $permission->id }}'>{{ $permission->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
 
-                                                </div>
-                                            </div>
-                                            <!-- Multi-select end -->
+                                </div>
+                            </div>
+                            <!-- Multi-select end -->
                          </div>
                      </div>
                 </div>
@@ -59,21 +68,21 @@
 
                       </div>
                       <div class="col-md-7">
-                         <a href="{{ route('roles.index') }}" class="btn btn-grd-disabled">
+                         <a href="{{ route('roles.index') }}" class="btn btn-default">
                                {{ ('Annuler') }}
                          </a>
                           <button type="submit" class="btn btn-primary ">
-                               {{ __('Modifier') }}
+                               {{ ('Modifier') }}
                           </button>
                       </div>
                  </div>
                  </div> <hr>
                   <div class="row">
-                      <div class="col-md-10">
+                      <div class="col-md-11">
                         <p class="text-inverse text-left m-b-0">Don Du Sang</p>
                         <p class="text-inverse text-left">Blood Donation</a></p>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-1">
                          <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
                       </div>
                  </div>

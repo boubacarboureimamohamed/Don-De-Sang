@@ -12,6 +12,21 @@
 @section('content')
 
 <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Ajout d\'un nouveau rôle') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
+
    <form method="POST" action="{{ route('roles.store') }}" class="md-float-material form-material">
 
          @csrf
@@ -19,38 +34,33 @@
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
-               <div class="row m-b-30">
-                     <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Ajout d\'un nouveau rôle') }}</h3>
-                     </div>
-               </div>
                 <div class="row">
                     <div class="col-sm-12">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                     <input id="name" type="text" class="form-control" name="role" required="" placeholder="Rôle">
+                                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Rôle">
                             </div>
 
 <!-- Multi-select start -->
-                                            <div class="card">
-                                                <div class="card-block">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <h4 class="sub-title">Permissions</h4>
-                                                            <select id='custom-headers' class="searchable" name="permissions[]" multiple='multiple'>
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4 class="sub-title">Permissions</h4>
+                                            <select id='custom-headers' class="searchable" name="permissions[]" multiple='multiple'>
 
-                                                            @foreach ($permissions as $permission)
+                                            @foreach ($permissions as $permission)
 
-                                                                <option value='{{ $permission->id }}'>{{ $permission->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                <option value='{{ $permission->id }}'>{{ $permission->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
 
-                                                </div>
-                                            </div>
-                                            <!-- Multi-select end -->
+                                </div>
+                            </div>
+                            <!-- Multi-select end -->
                          </div>
                      </div>
                 </div>
@@ -59,21 +69,21 @@
 
                       </div>
                       <div class="col-md-7">
-                         <a href="{{ route('roles.index') }}" class="btn btn-grd-disabled">
+                         <a href="{{ route('roles.index') }}" class="btn btn-default">
                                {{ ('Annuler') }}
                          </a>
-                          <button type="submit" class="btn btn-success">
+                          <button type="submit" class="btn btn-primary">
                                {{ ('Enregistrer') }}
                           </button>
                       </div>
                  </div>
                  </div> <hr>
                   <div class="row">
-                      <div class="col-md-10">
+                      <div class="col-md-11">
                         <p class="text-inverse text-left m-b-0">Don Du Sang</p>
                         <p class="text-inverse text-left">Blood Donation</a></p>
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-1">
                          <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
                       </div>
                  </div>

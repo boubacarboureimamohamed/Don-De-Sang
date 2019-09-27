@@ -69,7 +69,6 @@
                                                 <tr>
                                                     <th scope="row"></th>
                                                     <td>
-                                                        <a href="{{ route('prelevement.donneur_prelevee')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -87,7 +86,8 @@
                 <!-- end of row -->
             </div>
             <!-- end of view-info -->
-            </div>
+            </div>       
+             <a href="{{ route('prelevement.donneur_prelevee')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
     </div>

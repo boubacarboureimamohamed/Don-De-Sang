@@ -73,6 +73,27 @@ class PermissionsTableSeeder extends Seeder
                 'name' => "supprimer_ligne_demande"]);
 
         Permission::create([
+            'name' => "ajouter_situation_matrimoniale"]);
+
+        Permission::create([
+            'name' => "editer_situation_matrimoniale"]);
+
+        Permission::create([
+            'name' => "ajouter_type"]);
+
+        Permission::create([
+            'name' => "editer_type"]);
+
+        Permission::create([
+            'name' => "signaler_alerte"]);
+
+        Permission::create([
+            'name' => "editer_seuil"]);
+
+        Permission::create([
+            'name' => "etat_sms"]);
+
+        Permission::create([
             'name' => "livrer_ligne_demande"]);
 
         Permission::create([

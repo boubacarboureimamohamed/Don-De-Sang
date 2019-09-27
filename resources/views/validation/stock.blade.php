@@ -12,12 +12,26 @@
 @endsection
 @section('content')
 <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}"">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Banque de sang') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
 <div class="page-body">
 
     <!-- Extra Large table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Le stock</h5>
+            <h4 class="text-center">{{ ('La quantité en stock par groupe sanguin ') }}</h4>
         </div>
         <div class="page-body">
             <div class="row">
@@ -54,7 +68,7 @@
                             @break;
                         @case('B-')
                             @php
-                            $color = 'yellow';
+                            $color = 'blue';
                             @endphp
                             @break;
                         @case('AB-')
@@ -64,7 +78,7 @@
                             @break;
                         @case('O-')
                             @php
-                            $color = 'pink';
+                            $color = 'yellow';
                             @endphp
                             @break;
                     @endswitch
@@ -76,7 +90,7 @@
                                             <h4 class="text-c-{{ $color }} f-w-600">{{ $stock->groupe_sanguin }}</h4>
                                         </div>
                                         <div class="col-4 text-right">
-                                            <i class="feather icon-calendar f-28"></i>
+                                            <i class="icofont icofont-blood-drop f-30 text-c-{{$color}}"></i>
                                         </div>
                                     </div>
                                 </div>

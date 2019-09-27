@@ -28,24 +28,20 @@
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"> 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss/partials/menu/_pcmenu.htm') }}">
-
     <!-- jquery-toast plugin js-->
     <link rel="stylesheet" href="{{ asset('toast/dist/jquery.toast.min.css') }}">
-    <!-- Animate.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/animate.css/css/animate.css') }}">
      <!-- Select2 -->
      <link rel="stylesheet" type="text/css" href="{{ asset('dist/css/select2.min.css') }}">
     <!-- feather Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ asset('icon/feather/css/feather.css') }}">
-    <!-- sweet alert framework -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/css/sweetalert.css') }}">
-    <!-- Animate.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/animate.css/css/animate.css') }}">
-    <!-- Notification.css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/notification/notification.css') }}">
+        <!-- Multi Select css -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap-multiselect.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/multiselect/css/multi-select.css') }}">
+    <!-- sweet alert framework-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/css/sweetalert2.min.css') }}">
     <!-- animation nifty modal window effects css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/component.css') }}">
     <!-- Data Table Css -->
@@ -135,7 +131,7 @@
                                 <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                     <li>
                                         <a href="{{ route('profile') }}">
-                                            <i class="feather icon-user"></i> {{ __('Mon profile') }}
+                                            <i class="feather icon-user"></i> {{ ('Mon profile') }}
                                         </a>
                                     </li>
                                     <li>
@@ -218,7 +214,7 @@
                                 @endrole
                                 @role('Responsable Selection Médical')
                                 <li class="">
-                                    <a href="#">
+                                    <a href="{{ route('dossierM.dossiermedical')}}">
                                         <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
                                         <span class="pcoded-mtext">Gestion Des Dossiers Médicales </span>
                                     </a>
@@ -294,7 +290,7 @@
                                 @endrole
                                 @role('Admin')
                                 <li class="">
-                                    <a href="#">
+                                    <a href="{{ route('validation.indexgroupage') }}">
                                         <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
                                         <span class="pcoded-mtext">Paramétrages</span>
                                     </a>
@@ -302,7 +298,7 @@
                                 @endrole
                                 @role('Admin')
                                 <li class="">
-                                    <a href="#">
+                                    <a href="{{ route('seuilsms.create') }}">
                                         <span class="pcoded-micon"><i class="feather icon-mail"></i></span>
                                         <span class="pcoded-mtext">Notifications</span>
                                     </a>
@@ -342,16 +338,13 @@
 <!-- modernizr js -->
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/modernizr.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/modernizr/js/css-scrollbars.js') }}"></script>
-<!-- sweet alert js -->
-<script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert.min.js') }}"></script>
- <!-- notification js -->
- <script type="text/javascript" src="{{ asset('bower_components/notification/notification.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/bootstrap-growl.min.js') }}"></script>
-<script src="{{ asset('js/modal.js') }}"></script>
-    <!-- sweet alert modal.js intialize js -->
+
     <!-- modalEffects js nifty modal window effects -->
 <script src="{{ asset('js/modalEffects.js') }}"></script>
 <script src="{{ asset('js/classie.js') }}"></script>
+<!-- sweet alert js-->
+<script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert2.min.js') }}"></script>
+
 
   <!-- data-table js -->
     <script type="text/javascript" src="{{ asset('bower_components/data-table/js/jszip.min.js') }}"></script>
@@ -370,6 +363,8 @@
 <script type="text/javascript" src="{{ asset('bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bower_components/jquery-i18next/js/jquery-i18next.min.js') }}"></script>
+<!-- Custom js -->
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/pcoded.min.js') }}"></script>
 <script src="{{ asset('js/vartical-layout.min.js') }}"></script>
 <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
@@ -378,12 +373,14 @@
 <script src="{{ asset('toast/dist/jquery.toast.min.js') }}"></script>
 @include('flash-message')
 
-    <!-- Custom js -->
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-
+ <!-- Multiselect js -->
+ <script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap-multiselect.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.quicksearch.js') }}"></script>
     <!-- select2 -->
 
-    <script src="{{ asset('dist/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/select2/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/select2/js/select2-custom.js') }}"></script>
 
          <!-- Masking js -->
     <script src="{{ asset('assets/pages/form-masking/inputmask.js') }}"></script>

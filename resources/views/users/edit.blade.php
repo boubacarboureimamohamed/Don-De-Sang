@@ -12,6 +12,20 @@
 @section('content')
 
 <div class="col-sm-12">
+    @php
+         $color = 'pink';
+    @endphp
+   <div class="card bg-c-{{$color}}">
+        <div class="card-header">
+          <h3 class="text-center text-white">
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+                    {{ ('Modification d\'un utilisateur') }}
+                <i class="icofont icofont-blood-drop f-30 text-white"></i>
+          </h3>
+        </div>
+    </div>
+</div>
+<div class="col-sm-12">
    <form method="POST" action="{{ route('users.update', $user) }}" class="md-float-material form-material">
 
         {{ csrf_field() }}
@@ -20,11 +34,6 @@
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
-               <div class="row m-b-30">
-                     <div class="col-md-12">
-                          <h3 class="text-center txt-primary">{{ ('Modification d\'un utilisateur') }}</h3>
-                     </div>
-               </div>
                 <div class="row">
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
@@ -65,11 +74,11 @@
 
                       </div>
                       <div class="col-md-7">
-                         <a href="{{ route('users.index') }}" class="btn btn-grd-disabled">
+                         <a href="{{ route('users.index') }}" class="btn btn-default">
                                {{ ('Annuler') }}
                          </a>
                            <button type="submit" class="btn btn-primary ">
-                               {{ __('Modifier') }}
+                               {{ ('Modifier') }}
                           </button>
                       </div>
                  </div>
@@ -80,7 +89,7 @@
                         <p class="text-inverse text-left">Blood Donation</a></p>
                       </div>
                       <div class="col-md-1">
-                         <img src="{{ asset('images\auth\Logo-small-bottom.png') }}" alt="small-logo.png">
+                         <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
                       </div>
                  </div>
              </div>

@@ -2,11 +2,15 @@
 @section('content')
 
 <div class="col-sm-12">
-            <!-- Zero config.table start -->
+@php
+         $color = 'pink';
+    @endphp
+    <h1 class="text-center text-white bg-c-{{$color}}">
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+            {{ ('Liste des planifications mobiles') }}
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+    </h1>
             <div class="card">
-            <div class="card-header">
-                <h2 style="text-align: center;">Liste des planifications mobiles</h2>
-            </div>
             <div class="card-block">
                 <div class="btn-group btn-group-sm" style="float: none;">
                     @can('planifier_collecte')
@@ -45,11 +49,11 @@
 
                             @can('supprimer_planification')
                         <td>
-                            <form action="{{ route('rdvs.destroy', $rdvsmobile) }}" method="post" onsubmit=" return confirm('voulez vous supprimer cet enregistrement?');">
+                            <form action="{{ route('rdvs.destroy', $rdvsmobile) }}" method="post" id="form{{ $rdvsmobile->id }}">
                             {{ csrf_field()}}
                             {{ method_field('Delete') }}
 
-                            <button  class="btn btn-danger btn-outline-danger"><span class="icofont icofont-ui-delete"></span></button>
+                            <button type="button" onclick="confirmation('#form{{ $rdvsmobile->id }}')" class="btn btn-danger btn-outline-danger"><span class="icofont icofont-ui-delete"></span></button>
                             </form>
                         </td>
                             @endcan
@@ -89,4 +93,24 @@ language: {
 
 </script>
 
+<script>
+
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
+
+    </script>
+
 @endsection
+

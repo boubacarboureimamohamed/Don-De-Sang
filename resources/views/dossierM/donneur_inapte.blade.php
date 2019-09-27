@@ -44,6 +44,9 @@
                 </table>
            </div>
         </div>
+        <a href="{{ route('dossierM.donneursexaminer') }}" class="btn btn-xs pull-right btn-inverse">
+            <i class="icofont icofont-arrow-left"></i>Retour
+        </a>
     </div>
 </div>
     <!-- Extra Large table end -->

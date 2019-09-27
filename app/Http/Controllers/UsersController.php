@@ -50,7 +50,7 @@ class UsersController extends Controller
         [ 
             'name.required' => 'Le nom d utilisation est obligatoire!',
             'name.max' => 'Le nom d utilisateur ne doit pas dépasser 100 caracteres!',
-            'name.alpha' => 'Le nom d utilisateur ne doit que des lettres!',
+            'name.string' => 'Le nom d utilisateur ne doit que des lettres!',
             'email.required' => 'Adresse mail est obligatoire',
             'email.email' => 'Adresse mail doit être valide',
             'email.max' => 'Adresse mail ne doit pas dépasser 50 caracteres!',
@@ -66,7 +66,7 @@ class UsersController extends Controller
             'telephone.max' => 'Le numéro de téléphone ne doit pas dépasser 15 caracteres!'
     ];
        return Validator::make($data, [
-            'name' => 'alpha|required|max:100',
+            'name' => 'string|required|max:100',
             'email' => 'email|required|unique:users|max:50',
             'date_naiss' => 'required|date', 
             'lieu_naiss' => 'required',
@@ -86,16 +86,26 @@ class UsersController extends Controller
         
         $user->update([
             'name'=>$request->name,
+            'email'=>$request->email
+        ]);
+        $user->syncRoles($request->roles);
+        return redirect(route('users.index'))->with('success', 'La modification a été effetué avec succés!');
+    }
+
+    public function updateperso(Request $request, User $user)
+    {
+        //dd($request->all());
+        $user->update([
+            'name'=>$request->name,
             'email'=>$request->email,
             'date_naiss'=>$request->date_naiss,
-            'lieu_naiss_'=>$request->lieu_naiss,
+            'lieu_naiss'=>$request->lieu_naiss,
             'sexe'=>$request->sexe,
             'profession'=>$request->profession,
             'adresse'=>$request->adresse,
             'telephone'=>$request->telephone
         ]);
-        $user->syncRoles($request->roles);
-        return redirect(route('users.index'))->with('success', 'La modification a été effetué avec succés!');
+        return redirect(route('profile'))->with('success', 'La modification a été effetué avec succés!');
     }
 
     public function destroy($id)
@@ -105,7 +115,7 @@ class UsersController extends Controller
         else {
 
             User::destroy($id);
-            return redirect(route('users.index'));
+            return redirect(route('users.index'))->with('success', 'La suppression a été effetué avec succés!');
         }
     }
 

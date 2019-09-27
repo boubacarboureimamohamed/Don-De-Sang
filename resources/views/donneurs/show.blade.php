@@ -1,14 +1,6 @@
 @extends('layouts.adminty')
 @section('css')
 
-  <!-- jpro forms css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\demo.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\j-pro\css\j-pro-modern.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('js\advance-elements\css\bootstrap-datetimepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\bootstrap-daterangepicker\css\daterangepicker.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components\datedropper\css\datedropper.min.css') }}">
-
 @endsection
 @section('content')
 <div class="col-sm-12">
@@ -71,10 +63,6 @@
                                         <th scope="row">Email</th>
                                         <td>{{ $as->email }}</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">Organisation</th>
-                                        <td>{{ $ls->organisation ? $ls->organisation->libelle : '' }}</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -114,7 +102,7 @@
                                         <td class="tabledit-view-mode">{{$a->situationmariee = 'Monogame'}} </td>
                                         @endif
                                     @else
-                                    <td class="tabledit-view-mode">{{ $a->situationmariee = ''}}  </td> 
+                                    <td class="tabledit-view-mode">{{ $a->situationmariee = ''}}  </td>
                                     @endif
                                     <td>
                                         <a href="{{ route('donneurs.updatesituation', $a) }}"
@@ -158,10 +146,15 @@
                                     <tr>
                                         <td>{{ $a->pivot->date }}</td>
                                         <td>{{ $a->type_donneur }}</td>
+                                        <td>@foreach($as->organisations as $organisation) @if($a->pivot->date == $organisation->pivot->date) {{ $organisation->libelle }}@endif  @endforeach</td>
+                                    <td>
+                                        <a href="#"
+                                            class="btn btn-warning btn-outline-warning waves-effect waves-light">
+                                            <span class="icofont icofont-ui-edit"></span>
+                                        </a>
+                                    </td>
                                     @endforeach
-                                    @foreach ($as->organisations as $a)
-                                        <td>{{ $a->libelle }}</td>
-                                    @endforeach
+                                    
                                 </tr>
                                 </tbody>
                             </table>
@@ -170,7 +163,7 @@
                 </div>
             </div>
         </div>
-            
+
     <form method="post" action="{{ route('donneurs.storesituation')}}" id="form">
             <input type="hidden" value="{{ $as->id }}" name="donneur" id="donneur">
             @csrf

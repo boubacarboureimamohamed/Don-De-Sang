@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::get('user/profile', 'UsersController@profile')->name('profile');
 
+        Route::put('user/{user}/edit', 'UsersController@updateperso')->name('users.updateperso');
+
         Route::resource('roles', 'RolesController');
 
         Route::resource('permissions', 'PermissionsController');
@@ -59,7 +61,7 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
         Route::PUT('donneurs/{donneur}', 'DonneurController@update')->name('donneurs.update');
 
         Route::get('donneurs/{donneur}/show', 'DonneurController@show')->name('donneurs.show');
-
+ 
         Route::get('dossier', 'DossierMedicalRSMController@index')->name('dossierM.index');
 
         Route::get('dossier/{donneur}/examiner', 'DossierMedicalRSMController@examiner')->name('dossierM.examiner');
@@ -147,6 +149,13 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::post('livraison/{ligne}', 'DemandeController@livraison')->name('demande.livraison');
 
+        Route::get('codebar', 'CodebarController@barcode')->name('codebar');
+
+
+
 });
 
+
+
 Route::get('stocks', 'StockChartController@index');
+

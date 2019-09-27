@@ -38,14 +38,14 @@ class DossierMedicalValidationController extends Controller
             'motif_rejet' => $request->motif_rejet,
             'groupement_id' => $request->groupement_id
         ]);
-        if($validation->fails())
+        /* if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
         }
-
+ */
         $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
 
         if ($request->rejet == 1)
@@ -65,7 +65,7 @@ class DossierMedicalValidationController extends Controller
             }
 
         }
-        return redirect(route('prelevement.donneur_prelevee'));
+        return redirect(route('prelevement.donneur_prelevee'))->with('success', 'La validation a été effectué avec succés!');;
     }
     public function donneur_valider()
     {
@@ -130,23 +130,22 @@ class DossierMedicalValidationController extends Controller
         $messageErreur = 
         [
             'seuil.required' => 'Le seuil du stock est obligatoire!',
-            'seuil.integer' => 'Le seuil ne doit contenir que des chiffres!',
-            'seuil.max' => 'Le seuil ne doit pas dépasser 3 caracteres!'
+            'seuil.integer' => 'Le seuil ne doit contenir que des chiffres!'
         ];
       $validation =  $this->validate($request, [
-            'seuil' => 'required|integer|max:3',
+            'seuil' => 'required|integer',
         ], $messageErreur);
-        if($validation->fails())
+        /* if($validation->fails())
         {
             $returnData = array(              
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
         $groupement->update([
        'seuil'=>$request->seuil
       ]);
 
-      return redirect()->back();
+      return redirect()->back()->with('success','La modification a été effectué avec succés!');
     }
 }

@@ -27,8 +27,6 @@
                             <th>N° de donneur</th>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Detail</th>
-                            <th>Modifier</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,20 +40,16 @@
                                 <td>{{ $donneur->num_donneur }}</td>
                                 <td>{{ $donneur->nom }}</td>
                                 <td>{{ $donneur->prenom }}</td>
-                                <td>
-                                    <a href="{{ route('dossierM.show_apte', $donneur) }}" class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt icofont-lg"></i></a>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-sm btn-primary"><i class="icofont icofont-ui-edit icofont-lg"></i></i></a>
-                                </td>
                             </tr>
                             @endif
                         @endforeach
                     </tbody>
                 </table>
-                <a href="{{ route('dossierM.index')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
+        <a href="{{ route('dossierM.donneursexaminer') }}" class="btn btn-xs pull-right btn-inverse">
+            <i class="icofont icofont-arrow-left"></i>Retour
+        </a>
     </div>
 </div>
     <!-- Extra Large table end -->

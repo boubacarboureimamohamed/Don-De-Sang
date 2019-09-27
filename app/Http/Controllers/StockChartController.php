@@ -30,7 +30,7 @@ class StockChartController extends Controller
         $data = [];
         foreach($stocks as $stock)
         {
-            $data[] = $stock->quantite_reelle; 
+            $data[] = $stock->quantite_reelle;
         }
         return view('stocks',compact('labels','data'));
     }

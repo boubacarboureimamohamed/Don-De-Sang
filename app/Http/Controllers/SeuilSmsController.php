@@ -135,7 +135,7 @@ class SeuilSmsController extends Controller
             }
         }
         
-    
+        return redirect()->back();
         
     }
 

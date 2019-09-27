@@ -8,10 +8,15 @@
 @section('content')
 
 <div class="col-sm-12">
+@php
+         $color = 'pink';
+    @endphp
+    <h1 class="text-center text-white bg-c-{{$color}}">
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+            {{ ('Liste des donneurs examinés') }}
+        <i class="icofont icofont-blood-drop f-30 text-white"></i>
+    </h1>
         <div class="card">
-            <div class="card-header">
-            <h3 style="text-align: center;">Liste des donneurs examinés</h3>
-            </div>
             <div class="card-block">
                 <div class="btn-group btn-group-sm" style="float: none; ">
                     @can('ajouter_donneur')
@@ -21,7 +26,7 @@
                     @endcan
 
                     @can('donneur_apte')
-                        <a href="{{ route('prelevement.donneur_apte_a_prelevee')}}" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
+                        <a href="{{ route('dossierM.donneur_apte')}}" class="btn btn-success btn-outline-success" style="float: none;margin: 5px;">
                             <span class="icofont icofont-check-circled"></span> {{ (' Donneurs Aptes') }}
                         </a>
                     @endcan
@@ -59,8 +64,13 @@
                 <span class="icofont icofont-ui-edit"></span></a>
             </td>
             <td>
-                <a href="" class="btn btn-danger btn-outline-danger" style="float: none;margin: 5px;">
-                <span class="icofont icofont-ui-delete"></span></a>
+                 <form method="POST" action="#" id="">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="button" onclick="confirmation()" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                        <span class="icofont icofont-ui-delete"></span>
+                    </button>
+                </form>
             </td>
             </tr>
             @endforeach
@@ -95,5 +105,24 @@ language: {
 });
 
 </script>
+
+<script>
+
+     function confirmation(target)
+        {
+            swal({
+                title: "Êtes-vous sûr ???",
+                text: "Une fois supprimé, vous ne pourrez plus récupérer cet enregistrement! ",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText:'Oui',
+                cancelButtonText:'Non'
+
+            }).then(function() {
+                $(target).submit();
+            });
+        }
+
+    </script>
 
 @endsection
