@@ -94,7 +94,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                <input type="text" title="Entrer le numéro de téléphone du donneur" value="{{ $donneur->telephone }}" data-toggle="tooltip-effect-9 tooltip-content-3" id="telephone" name="telephone" class="form-control phone" data-mask="9999-99-99-99-99"  placeholder="Téléphone">
+                                <input type="text" title="Entrer le numéro de téléphone du donneur" value="{{ $donneur->telephone }}" data-toggle="tooltip" id="telephone" name="telephone" class="form-control phone" data-mask="9999-99-99-99-99"  placeholder="Téléphone">
                             </div>
                          </div>
                      </div>

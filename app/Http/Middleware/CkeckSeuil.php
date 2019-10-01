@@ -36,7 +36,6 @@ class CkeckSeuil
         {
 
             $request->session()->flash('critique', ' Le groupe a atteint le seuil minimale');
-
         }
 
 

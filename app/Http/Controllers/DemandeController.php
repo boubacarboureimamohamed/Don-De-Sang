@@ -20,6 +20,12 @@ class DemandeController extends Controller
     }
     public function store(Request $request)
     {
+        $datedemenade = $request->date;
+        $date=strtotime(date("Y-m-d H:i:s"));
+        if($date >= strtotime($datedemenade))
+        {
+  
+            
         $messageErreur = [
             'telephone.required' => 'Le numéro de télephone du bénéficiaire  est obligatoire!',
             'telephone.max' => 'Le numéro de télephone du bénéficiaire ne doit pas dépasser 15 caracteres!',
@@ -71,6 +77,13 @@ class DemandeController extends Controller
         ]);
         }
         return redirect('demande')->with('success', 'Lenregistrement a été effetué avec succés!');
+
+        }
+  
+        else
+        {
+            return back()->with('error', 'La date de la demande doit etre inférieur ou egale a la date du jour');
+        }
     }
     public function index()
     {
@@ -144,16 +157,20 @@ class DemandeController extends Controller
     }
     public function livraison(Request $request, LigneDemande $ligne)
     {
-        $quantite = $ligne->quantite_demandee;
-        $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
-        //dd($last);
+        $datedemande = $request->datedemande;
+        $datelivraison = $request->date;
+        if($datelivraison <= $datedemande)
+            {
+            $quantite = $ligne->quantite_demandee;
+            $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
+            //dd($last);
 
-        $messageErreur = [
-            'quantite_livree.required' => 'La qauntité livrée est requise!',
-            'quantite_livree.max' => 'La qauntité livrée doit être inférieur ou égale à la quantité demandée!',
-            'quantite_livree.integer' => 'La qauntité livrée doit être un nombre entier!'
- 
-        ];
+            $messageErreur = [
+                'quantite_livree.required' => 'La qauntité livrée est requise!',
+                'quantite_livree.max' => 'La qauntité livrée doit être inférieur ou égale à la quantité demandée!',
+                'quantite_livree.integer' => 'La qauntité livrée doit être un nombre entier!'
+    
+            ];
 
         $this->validate($request, [
             'quantite_livree' => 'required|integer|max:'.$quantite,
@@ -180,5 +197,10 @@ class DemandeController extends Controller
                 return back()->with('error', 'Le stock n!');
             }
         return back()->with('success', 'La ligne de demande a été livrée!');;
+        }
+        else
+        {
+            return back()->with('error', 'La date de la demande doit etre inférieur ou egale a la date de livriason!');
+        }
     }
 }

@@ -78,7 +78,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                   <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                <input type="text" class="form-control" title="Entrer le quantité prélevée" value="{{ $prelevement->quantite_prelevee }}" name="quantite_prelevee">                            </div>
+                                <input type="text" class="form-control" title="Entrer le quantité prélevée" data-toggle="tooltip" value="{{ $prelevement->quantite_prelevee }}" name="quantite_prelevee">                            </div>
                          </div>
                      </div>
                 </div>
@@ -111,7 +111,7 @@
                          <div class="form-group form-primary">
                              <div class="input-group">
                                  <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-file-text"></i></span>
-                                <input type="text" class="form-control" title="Observation sur le prélèvement" value="{{ $prelevement->observation_prelevement }}" name="observation_prelevement">
+                                <input type="text" class="form-control" title="Observation sur le prélèvement" data-toggle="tooltip" value="{{ $prelevement->observation_prelevement }}" name="observation_prelevement">
                             </div>
                          </div>
                      </div>

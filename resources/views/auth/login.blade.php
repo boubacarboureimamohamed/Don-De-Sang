@@ -23,7 +23,7 @@
                                     <div class="form-group form-primary">
                                         <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required="" placeholder="Votre Adresse Mail">
+                                                   <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  placeholder="Votre Adresse Mail">
 
                                                     @error('email')
                                                     <span class="form-bar" role="alert">
@@ -35,7 +35,7 @@
                                     <div class="form-group form-primary">
                                         <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-lock"></i></span>
-                                                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required="" placeholder="Votre Mot de Pass">
+                                                   <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  placeholder="Votre Mot de Pass">
 
                                                     @error('password')
                                                     <span class="form-bar" role="alert">

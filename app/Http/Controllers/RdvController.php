@@ -42,7 +42,11 @@ class RdvController extends Controller
      */
     public function store(Request $request)
     {
-        $messageErreur = 
+        $date_heure = $request->date_heure;
+        $date = strtotime(date("Y-m-d H:i:s"));
+        if($date <= strtotime($date_heure))
+        {
+            $messageErreur = 
         [
             'libelle.required' => 'Le nom de l organisation est obligatoire!',
             'libelle.max' => 'Le nom de l organisation ne doit pas dépasser 50 caracteres!',
@@ -97,6 +101,11 @@ class RdvController extends Controller
         elseif($request->typerdv_id == 2)
         {
             return redirect(route('rdvs.rdv_mobile_liste'))->with('success', 'Lenregistrement a ete effetue avec succes');
+        }
+        }
+        else
+        {
+            return back()->with('error', 'la date du rendez vous doit être supérerieur ou égal à la date du jour!');
         }
     }
 

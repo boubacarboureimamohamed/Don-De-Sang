@@ -39,7 +39,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text" title="Le nom du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->nom }}" readonly=""  placeholder="Username">
+                                <input id="" type="text"  class="form-control" value="{{ $donneur->nom }}" readonly=""  placeholder="Username">
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text"  title="Le prénom du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->prenom }}" readonly=""  placeholder="">
+                                <input id="" type="text" class="form-control" value="{{ $donneur->prenom }}" readonly=""  placeholder="">
                             </div>
                          </div>
                      </div>
@@ -57,7 +57,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Entrer le poid du donneur" value="{{ old('poid') }}" data-toggle="tooltip" class="form-control" placeholder="Poid du Donneur" name="poid">
+                                <input id="" type="text"  title="Entrer le poid du donneur" value="{{ old('poid') }}" data-toggle="tooltip" class="form-control" placeholder="Poid du Donneur" name="poid">
                             </div>
                          </div>
                      </div>

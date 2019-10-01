@@ -35,12 +35,12 @@
                    </div>
                </div>
                <div class="row">
-                    <input type="text"value="{{ $donneur->id }}"name="donneur_id" hidden>
+                    <input type="text"value="{{ $donneurexaminer->donneur->id }}"name="donneur_id" hidden>
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                 <input id="" type="text" title="Le numéro du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->num_donneur }}" placeholder="{{ $donneur->nom }}" readonly="" placeholder="">
+                                 <input id="" type="text" title="Le numéro du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneurexaminer->donneur->num_donneur }}"  readonly="">
                             </div>
                          </div>
                      </div>
@@ -48,7 +48,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text" title="Le nom du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->nom }}" readonly=""  placeholder="Username">
+                                <input id="" type="text" title="Le nom du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneurexaminer->donneur->nom }}" readonly="">
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                <input id="" type="text"  title="Le prénom du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneur->prenom }}" readonly=""  placeholder="">
+                                <input id="" type="text"  title="Le prénom du donneur" data-toggle="tooltip" class="form-control" value="{{ $donneurexaminer->donneur->prenom }}" readonly=""  placeholder="">
                             </div>
                          </div>
                      </div>

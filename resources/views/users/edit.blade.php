@@ -39,7 +39,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                 <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}"  placeholder="Username">
+                                 <input id="name" type="text" title="Modifier le nom de l'utilisateur" data-toggle="tooltip" class="form-control" name="name" value="{{ $user->name }}"  placeholder="Username">
                                                              </div>
                          </div>
                      </div>
@@ -47,7 +47,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}"  placeholder="Your Email Address">
+                                <input id="email" title="Modifier l'Aderesse mail de l'utilisateur" data-toggle="tooltip" type="email" class="form-control" name="email" value="{{ $user->email }}"  placeholder="Your Email Address">
                                   
                              </div>
                          </div>
@@ -59,7 +59,7 @@
                          <div class="row">
                               <div class="col-sm-12">
                                   <h4 class="sub-title">Rôles</h4>
-                                  <select id='custom-headers' class="searchable" name="roles[]" multiple='multiple'>
+                                  <select id='custom-headers' title="Modifier le ou les roles de l'utilisateur" data-toggle="tooltip" class="searchable" name="roles[]" multiple='multiple'>
                                      @foreach ($roles as $role)
                                         <option @if(in_array($role->id, $user->roles->pluck('id')->toArray())) {{ 'selected' }} @endif value='{{ $role->id }}'>{{ $role->name }}</option>
                                      @endforeach

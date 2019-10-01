@@ -64,7 +64,6 @@ class DossierMedicalRSMController extends Controller
             'poid' => 'required|integer',
             'temperature' => 'required|numeric',
             'tension_arterielle' => 'required|integer',
-            'observation_approbation' => 'string',
             'quantite_a_prelevee' => 'required|integer',
             'approbation' => 'required',
         ], $messageErreur);
@@ -132,9 +131,10 @@ class DossierMedicalRSMController extends Controller
     public function edit_donneursexaminer($id)
     {
       $donneurexaminer = DossierMedical::with('donneur')->find($id);
-      $donneur = Donneur::find($id);
+      //dd($donneurexaminer);
 
-      return view('dossierM.editdonneursexaminer', compact('donneurexaminer','donneur'));
+
+      return view('dossierM.editdonneursexaminer', compact('donneurexaminer'));
     }
 
     public function update_donneursexaminer(Request $request, DossierMedical $donneurexaminer)
@@ -143,6 +143,8 @@ class DossierMedicalRSMController extends Controller
         [
             'poid.required' => 'Le poid du donnneur est réquis!',
             'poid.integer' => 'Le poid du donneur ne doit contenir que des chiffres!',
+            'poid.min' => 'le poid du donneur doit etre de 2 chiffres au minimum',
+            'poid.max' => 'le poid du donneur ne doit pas dépasser 3 chiffres',
             'temperature.required' => 'La témperature du donneur est réquise',
             'temperature.integer' => 'La température du donneur ne doit contenir que des chiffres ou des chiffres à virgule!',
             'temperature.max' => 'La température du donneur ne doit pas dépasser 3 caracteres!',
@@ -153,15 +155,14 @@ class DossierMedicalRSMController extends Controller
             'quantite_a_prelevee.required' => 'La quantité à prélevée est réquise!',
             'quantite_a_prelevee.max' => 'La quantité à prélevée ne doit pas dépasser 3 caracteres!',
             'quantite_a_prelevee.min' => 'La quantité à prélevée doit contenir au moins 3 caracteres !',
-            'approbation.required' => 'L approbation est réquis!',
+            'approbation.required' => 'L approbation est réquis!'
         ];
         $this->validate($request, [
             'poid' => 'required|integer',
             'temperature' => 'required|integer',
             'tension_arterielle' => 'required|integer',
-            'observation_approbation' => 'string',
             'quantite_a_prelevee' => 'required|integer',
-            'approbation' => 'required',
+            'approbation' => 'required'
         ], $messageErreur);
 
         /* if($validation->fails())
@@ -179,7 +180,8 @@ class DossierMedicalRSMController extends Controller
         'tension_arterielle'=>$request->tension_arterielle,
         'date_dossier_medical' => date('Y-m-d'),
         'approbation'=> $request->approbation,
-        'quantite_a_prelevee'=>$request->quantite_a_prelevee
+        'quantite_a_prelevee'=>$request->quantite_a_prelevee,
+        'observation_approbation'=>$request->observation_approbation
 
      ]);
 
@@ -206,6 +208,16 @@ class DossierMedicalRSMController extends Controller
         $donneur = Donneur::where('id', $donneur->id)->get()[0];
         //dd($dossiers);
         return view('dossierM.show_dossiermedical',compact('dossiers','donneur'));
+    }
+    public function show_donneursexaminer($id)
+    {
+        $donneursexaminer = DossierMedical::with('donneur')->find($id);
+        return view('dossierM.showdonneursexaminer', compact('donneursexaminer'));
+    }
+    public function destroy_donneurexaminer($id)
+    {
+        DossierMedical::destroy($id);
+        return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
 
 }
