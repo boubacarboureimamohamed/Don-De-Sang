@@ -33,14 +33,14 @@
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                            <input type="date" title="Date de la demande" class="form-control" value="{{ $demande->date }}" name="date" id="date" placeholder="Date et Heure">
+                            <input type="date" title="Date de la demande" data-toggle="tooltip" class="form-control" value="{{ $demande->date }}" name="date" id="date" placeholder="Date et Heure">
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group form-primary">
                         <div class="input-group">
-                            <select class="form-control select2" name="libelle">
+                            <select class="form-control select2" title="sélectionner le bénéficaire" data)toogle="tooltip" name="libelle">
                                 @foreach($beneficiaires as $beneficiaire)
                                     <option  title="Bénéficiaire" value="{{ $beneficiaire->libelle }}" @if($beneficiaire->id == $demande->beneficiaire_id) {{ 'selected' }} @endif>{{ $beneficiaire->libelle }}</option>
                                 @endforeach
@@ -54,7 +54,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                <input type="text" title="Téléphone Bénéficiaire"  value="{{ $demande->beneficiaire->telephone}}" class="form-control phone" data-mask="9999-99-99-99-99" id="telephone" name="telephone" placeholder="Telephone">
+                                <input type="text" title="Téléphone Bénéficiaire" data-toggle="tooltip"  value="{{ $demande->beneficiaire->telephone}}" class="form-control phone" data-mask="9999-99-99-99-99" id="telephone" name="telephone" placeholder="Telephone">
                             </div>
                          </div>
                      </div>
@@ -62,7 +62,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                                <input type="email" title="Email Bénéficiaire" class="form-control" value="{{ $demande->beneficiaire->email}}" id="email" name="email" placeholder="Email">
+                                <input type="email" title="Email du Bénéficiaire" data-toggle="tooltip" class="form-control" value="{{ $demande->beneficiaire->email}}" id="email" name="email" placeholder="Email">
                             </div>
                         </div>
                      </div>
@@ -72,7 +72,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                <input type="text" title="Adresse Bénéficiaire" class="form-control" value="{{ $demande->beneficiaire->adresse }}" id="adresse" name="adresse" placeholder="Adresse">
+                                <input type="text" title="Adresse du Bénéficiaire" data-toggle="tooltip" class="form-control" value="{{ $demande->beneficiaire->adresse }}" id="adresse" name="adresse" placeholder="Adresse">
                             </div>
                         </div>
                      </div>

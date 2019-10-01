@@ -29,13 +29,13 @@
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-"></i></span>
-                            <input title="Groupe sanguin" type="text" name="groupe_sanguin" id="groupe_sanguin" readonly="" value="{{ $groupement->groupe_sanguin }}" class="form-control">
+                            <input title="Groupe sanguin" type="text" title="Le groupe sanguin" data-toggle="tooltip" name="groupe_sanguin" id="groupe_sanguin" readonly="" value="{{ $groupement->groupe_sanguin }}" class="form-control">
                         </div>
                     </div>
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                            <input title="modifier le seuil du groupe sanguin" type="text" name="seuil" id="seuil" value="{{ $groupement->seuil }}" class="form-control">
+                            <input title="modifier le seuil du groupe sanguin" data-toggle="tooltip" type="text" name="seuil" id="seuil" value="{{ $groupement->seuil }}" class="form-control">
                         </div>
                     </div>
                 </div>

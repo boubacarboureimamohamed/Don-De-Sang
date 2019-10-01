@@ -35,7 +35,7 @@ class CkeckSeuil
         if (!empty($groupes))
         {
             
-            $request->session()->flash('critique', ' Le groupe a atteint le seuil minimale');
+            $request->session()->flash('critique', 'Le(s) groupe(s) sanguin à atteint le seuil minimale' . `<a href="seuilsms.index"> Envoyer le message </a>`);
             
         }
  

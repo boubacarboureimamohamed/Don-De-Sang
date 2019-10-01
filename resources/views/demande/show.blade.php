@@ -145,6 +145,7 @@
 
 <form method="post" action="{{ route('ligne.lignestore') }}" id="form">
     <input type="hidden" value="{{ $demande->id }}" name="demande_id" id="demande_id">
+    <input type="hidden" value="{{ $demande->date }}" name="datedemande">
     @csrf
     <!-- Modal -->
     <div class="modal" tabindex="-1" role="dialog" id="Modal">
@@ -152,16 +153,17 @@
             <div class="modal-content">
                 <div class="alert alert-danger" style="display:none"></div>
                 <div class="modal-header">
-                    <h5 class="modal-title">Ajout d'un ligne</h5>
+                    <h5 class="modal-title">Ajout d'une ligne de demande</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    
                 </div>
                 <div class="modal-body">
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>
-                            <select title="Groupe Sanguin" name="groupement_id" id="groupement_id" class="form-control">
+                            <select title="Groupe Sanguin" title="selectionner le groupe sanguin" data-toggle="tooltip" name="groupement_id" id="groupement_id" class="form-control">
                                 @foreach($groupements as $groupement)
                                     <option value="{{ $groupement->id }}">
                                         {{ $groupement->groupe_sanguin }}
@@ -173,7 +175,7 @@
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                            <select title="Type de poche" name="type_poche" id="type_poche" class="form-control">
+                            <select title="selectionner le type de poche" data-toggle="tooltip" name="type_poche" id="type_poche" class="form-control">
                                 <option value="Double">Double</option>
                                 <option value="Simple">Simple</option>
                             </select>
@@ -182,7 +184,7 @@
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>
-                            <input title="Quantité demandée" type="text" name="quantite_demandee" id="quantite_demandee" class="form-control">
+                            <input title="Quantité demandée" title="Entrez la quantité demandée" data-toggle="tooltip" type="text" name="quantite_demandee" id="quantite_demandee" class="form-control">
                         </div>
                     </div>
                 </div>

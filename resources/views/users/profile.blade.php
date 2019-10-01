@@ -158,25 +158,25 @@
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                                        <input id="name" type="text" name="name" value="{{ Auth::user()->name }}" required="" title="Votre Username" class="form-control" placeholder="Votre Username">
+                                                                        <input id="name" type="text" title="date et heure du rdv" data-toggle="tooltip" name="name" value="{{ Auth::user()->name }}"  title="Votre nom d'ulisateur" data-toggle="tooltip" class="form-control" placeholder="Votre Username">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                                                        <input type="date" name="date_naiss" title="Votre Date de Naissance" value="{{ Auth::user()->date_naiss }}" class="form-control" required="" placeholder="Votre Date de Naissance">
+                                                                        <input type="date" name="date_naiss" title="Date de Naissance de l'utilisateur" data-toggle="tooltip" value="{{ Auth::user()->date_naiss }}" class="form-control"  placeholder="Votre Date de Naissance">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                                                        <input type="text" name="adresse" title="Votre Adresse" value="{{ Auth::user()->adresse }}" class="form-control" placeholder="Votre Adresse">
+                                                                        <input type="text" name="adresse" title="Adresse de l'utilisateur" data-toggle="tooltip" value="{{ Auth::user()->adresse }}" class="form-control" placeholder="Votre Adresse">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-"></i></span>
-                                                                        <input type="text" class="form-control" name="profession" value="{{ Auth::user()->profession }}" title="Votre Profession" required="" placeholder="Votre Profession">
+                                                                        <input type="text" class="form-control"  name="profession" value="{{ Auth::user()->profession }}" title="Votre Profession"  placeholder="Profession de l'utilisateur" data-toggle="tooltip">
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
@@ -218,19 +218,19 @@
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                                                        <input id="email" type="email" title="Votre Adresse Mail" name="email" required="" value="{{ Auth::user()->email }}" class="form-control" placeholder="Votre Adresse Mail">
+                                                                        <input id="email" type="email" title="Adresse Mail de l'utilisateur" data-toggle="tooltip" name="email"  value="{{ Auth::user()->email }}" class="form-control" placeholder="Votre Adresse Mail">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                                                        <input type="text" title="Votre Lieu de Naissance" name="lieu_naiss" value="{{ Auth::user()->lieu_naiss }}" class="form-control" placeholder="Votre Lieu de Naissance">
+                                                                        <input type="text" title="Lieu de Naissance de l'utilisateur" data-toggle="tooltip" name="lieu_naiss" value="{{ Auth::user()->lieu_naiss }}" class="form-control" placeholder="Votre Lieu de Naissance">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-mobile-phone"></i></span>
-                                                                        <input type="text" title="Votre Numéro de Téléphone" name="telephone" value="{{ Auth::user()->telephone }}" class="form-control" placeholder="Votre Numéro de Téléphone">
+                                                                        <input type="text" title="Numéro de Téléphone" data-toggle="tooltip" class="form-control phone" data-mask="9999-99-99-99-99" name="telephone" value="{{ Auth::user()->telephone }}"  placeholder="Votre Numéro de Téléphone">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>

@@ -64,10 +64,10 @@
                 <span class="icofont icofont-ui-edit"></span></a>
             </td>
             <td>
-                 <form method="POST" action="#" id="">
+                 <form method="POST" action="{{ route('dossierM.destroydonneurexaminer', $donneursexaminer) }}" id="form{{ $donneursexaminer->donneur->id }}">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button type="button" onclick="confirmation()" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                    <button type="button" onclick="confirmation('#form{{ $donneursexaminer->donneur->id }}')" class="btn btn-danger btn-outline-danger waves-effect waves-light">
                         <span class="icofont icofont-ui-delete"></span>
                     </button>
                 </form>

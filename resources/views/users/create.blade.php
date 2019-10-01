@@ -39,7 +39,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  placeholder="Nom et Prénom">
+                                        <input id="name" type="text" title="Nom de l'utilisateur" data-toggle="tooltip" class="form-control" name="name" value="{{ old('name') }}"  placeholder="Nom et Prénom">
                                     
                             </div>
                          </div>
@@ -48,7 +48,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"  placeholder="Adresse mail">
+                                        <input id="email" type="email" title="Adresse mail de l'utilisateur" data-toggle="tooltip" class="form-control" name="email" value="{{ old('email') }}"  placeholder="Adresse mail">
                                     
                             </div>
                          </div>
@@ -59,7 +59,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-lock"></i></span>
-                                         <input id="password" type="password" class="form-control" name="password"  placeholder="Nouveau mot de pass">
+                                         <input id="password" title="Le mot de passe de l'utilisateur" data-toggle="tooltip" type="password" class="form-control" name="password"  placeholder="Nouveau mot de pass">
                                   
                             </div>
                          </div>
@@ -68,7 +68,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-lock"></i></span>
-                                          <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  placeholder="Confirmer le mot de pass">
+                                          <input id="password-confirm" title="Confirmez le mot de passe de l'utilisateur" data-toggle="tooltip" type="password" class="form-control" name="password_confirmation"  placeholder="Confirmer le mot de pass">
                             </div>
                          </div>
                      </div>
@@ -79,7 +79,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <h4 class="sub-title">Rôles</h4>
-                                <select id='custom-headers' class="searchable" name="roles[]" multiple='multiple'>
+                                <select id='custom-headers' title="Selectionner le ou les roles de l'utilisateur" data-toggle="tooltip" class="searchable" name="roles[]" multiple='multiple'>
 
                                 @foreach ($roles as $role)
 

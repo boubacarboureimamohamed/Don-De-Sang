@@ -36,7 +36,7 @@
                             <div class="form-group form-primary">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                    <textarea name="message" id="" value="{{ old('message') }}" cols="60" title="entrez le message a envoyer" rows="11" placeholder="Ecrivez le message" ></textarea>
+                                    <textarea name="message" title="Le message à envoyer" data-toggle="tooltip" id="" value="{{ old('message') }}" cols="60" title="entrez le message a envoyer" rows="11" placeholder="Ecrivez le message" ></textarea>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="card-block">
                             <div class="form-group form-primary">
-                                <select id='custom-headers' class="searchable" name="groupe[]" multiple='multiple'>
+                                <select id='custom-headers' title="Sélectionner le ou les groupes sanguin" data-toggle="tooltip" class="searchable" name="groupe[]" multiple='multiple'>
 
                                     @foreach ($groupes as $groupe)
                                     <option value='{{ $groupe->id }}'>{{ $groupe->groupe_sanguin }}</option>

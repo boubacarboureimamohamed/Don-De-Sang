@@ -26,7 +26,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                <input type="datetime-local"class="form-control" value="{{ old('date_heure') }}" name="date_heure" title="Date et heure du RDV" placeholder="Date et Heure">
+                                <input type="datetime-local"class="form-control" value="{{ old('date_heure') }}" name="date_heure" title="Date et heure du RDV" data-toggle="tooltip" placeholder="Date et Heure">
                             </div>
                          </div>
                      </div>
@@ -34,7 +34,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select name="typerdv_id" title="Type du RDV" id="typerdv_id" value="{{ old('typerdv_id') }}" class="form-control">
+                                    <select name="typerdv_id" title="Type du RDV" data-toggle="tooltip" id="typerdv_id" value="{{ old('typerdv_id') }}" class="form-control">
                                             @foreach($typerdvs as $typerdv)
                                                 <option value="{{ $typerdv->id }}">{{ $typerdv->type_rdv }}</option>
                                             @endforeach
@@ -47,7 +47,7 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <select class="form-control select2" title="Organisation" value="{{ old('libelle') }}" name="libelle">
+                                <select class="form-control select2" title="Organisation" data-toggle="tooltip" value="{{ old('libelle') }}" name="libelle">
                                             @foreach($organisations as $organisation)
                                                 <option value="{{ $organisation->libelle }}">{{ $organisation->libelle }}</option>
                                             @endforeach
@@ -59,7 +59,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                <input type="text" class="form-control" title="Lieu du RDV" value="{{ old('lieu') }}" id="lieu" name="lieu" placeholder="Lieu de Rendez Vous">
+                                <input type="text" class="form-control" title="Lieu du RDV" data-toggle="tooltip" value="{{ old('lieu') }}" id="lieu" name="lieu" placeholder="Lieu de Rendez Vous">
                             </div>
                          </div>
                      </div>
@@ -70,7 +70,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                                    <input type="email" class="form-control" title="Adresse mail de l'organisation" value="{{ old('email') }}" id="email" name="email" placeholder="Email">
+                                    <input type="email" class="form-control" title="Adresse mail de l'organisation" data-toggle="tooltip" value="{{ old('email') }}" id="email" name="email" placeholder="Email">
                             </div>
                          </div>
                      </div>
@@ -78,7 +78,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                    <input type="text" class="form-control phone" title="Numéro de téléphone" value="{{ old('telephone') }}" data-mask="9999-99-99-99-99" id="telephone" name="telephone" placeholder="Telephone">
+                                    <input type="text" class="form-control phone" title="Numéro de téléphone" data-toggle="tooltip" value="{{ old('telephone') }}" data-mask="9999-99-99-99-99" id="telephone" name="telephone" placeholder="Telephone">
                             </div>
                          </div>
                      </div>
@@ -88,7 +88,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                  <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                    <input type="text" class="form-control" title="Adresse de l'organisation" value="{{ old('adresse') }}" id="adresse" name="adresse" placeholder="Adresse">
+                                    <input type="text" class="form-control" title="Adresse de l'organisation" data-toggle="tooltip" value="{{ old('adresse') }}" id="adresse" name="adresse" placeholder="Adresse">
                             </div>
                          </div>
                      </div>

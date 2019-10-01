@@ -88,6 +88,8 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::get('detailsdonneurexaminer/{donneursexaminer}', 'DossierMedicalRSMController@show_donneursexaminer')->name('dossierM.showdonneursexaminer');
 
+        Route::delete('examination/{donneursexaminer}', 'DossierMedicalRSMController@destroy_donneurexaminer')->name('dossierM.destroydonneurexaminer');
+
         Route::get('prelevement/donneur_apte_a_prelevee', 'DossierMedicalPrelevementController@donneur_apte_a_prelevee')->name('prelevement.donneur_apte_a_prelevee');
 
         Route::get('prelevement/{donneur}/prelever', 'DossierMedicalPrelevementController@prelever')->name('prelevement.prelever');

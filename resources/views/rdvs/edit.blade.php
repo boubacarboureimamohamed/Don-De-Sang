@@ -26,7 +26,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                <input type="text" class="form-control" name="date_heure" id="date_heure" value="{{ $rdv->date_heure }}" placeholder="Date et Heure">
+                                <input type="text" class="form-control" title="date et heure du rdv" data-toggle="tooltip" name="date_heure" id="date_heure" value="{{ $rdv->date_heure }}" placeholder="Date et Heure">
                             </div>
                          </div>
                      </div>
@@ -34,7 +34,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                    <select id="typerdv_id" name="typerdv_id" class="form-control">
+                                    <select id="typerdv_id" title="Type de rdv" data-toggle="tooltip" name="typerdv_id" class="form-control">
                                             @foreach( $typerdvs as $typerdv )
                                                 <option value="{{ $typerdv->id }}" @if($typerdv->id == $rdv->typerdv_id) {{ 'selected' }} @endif>{{ $typerdv->type_rdv }}                                                </option>
                                             @endforeach
@@ -47,7 +47,7 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <select class="form-control select2" name="libelle">
+                                <select class="form-control select2" title="organisation" data-toggle="tooltip" name="libelle">
                                         @foreach($organisations as $organisation)
                                             <option value="{{ $organisation->libelle }}" @if($organisation->id == $rdv->organisation_id) {{ 'selected' }} @endif>{{ $organisation->libelle }}</option>
                                         @endforeach
@@ -59,7 +59,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                <input type="text" class="form-control" id="lieu" name="lieu" value="{{ $rdv->lieu }}" placeholder="Lieu de Rendez Vous">
+                                <input type="text" class="form-control" title="lieu du rdv" data-toggle="tooltip" id="lieu" name="lieu" value="{{ $rdv->lieu }}" placeholder="Lieu de Rendez Vous">
                             </div>
                          </div>
                      </div>
@@ -70,7 +70,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ $rdv->organisation->email}}" placeholder="Email">
+                                    <input type="email" class="form-control" title="Adresse mail de l'organisation" data-toggle="tooltip" id="email" name="email" value="{{ $rdv->organisation->email}}" placeholder="Email">
                             </div>
                          </div>
                      </div>
@@ -78,7 +78,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                    <input type="text" class="form-control phone" data-mask="9999-99-99-99-99" id="telephone" name="telephone" value="{{ $rdv->organisation->telephone}}" placeholder="Telephone">
+                                    <input type="text" class="form-control phone" title="Numéro de téléphone de l'organisation" data-toggle="tooltip" data-mask="9999-99-99-99-99" id="telephone" name="telephone" value="{{ $rdv->organisation->telephone}}" placeholder="Telephone">
                             </div>
                          </div>
                      </div>
@@ -88,7 +88,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                  <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                    <input type="text" class="form-control" id="adresse" name="adresse" value="{{ $rdv->organisation->adresse }}" placeholder="Adresse">
+                                    <input type="text" class="form-control" title="Adresse de l'organisation" data-toggle="tooltip" id="adresse" name="adresse" value="{{ $rdv->organisation->adresse }}" placeholder="Adresse">
                             </div>
                          </div>
                      </div>
