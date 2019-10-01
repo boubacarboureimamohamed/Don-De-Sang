@@ -37,8 +37,8 @@ class DossierMedicalRSMController extends Controller
     }
     public function store(Request $request)
     {
-        
-        $messageErreur = 
+
+        $messageErreur =
         [
             'poid.required' => 'Le poid du donnneur est réquis!',
             'poid.integer' => 'Le poid du donneur ne doit contenir que des chiffres!',
@@ -53,9 +53,13 @@ class DossierMedicalRSMController extends Controller
             'quantite_a_prelevee.max' => 'La quantité à prélevée ne doit pas dépasser 3 caracteres!',
             'quantite_a_prelevee.min' => 'La quantité à prélevée doit contenir au moins 3 caracteres !',
             'approbation.required' => 'L approbation est réquis!'
-               
+
         ];
 
+        if($request->poid < 50 && $request->approbation == 1)
+        {
+            return back()->with('error', 'Le poid est inférieur à 50, il ne peux pas être apte!');
+        }
         $validation = $this->validate($request, [
             'poid' => 'required|integer',
             'temperature' => 'required|numeric',
@@ -128,14 +132,14 @@ class DossierMedicalRSMController extends Controller
     {
       $donneurexaminer = DossierMedical::with('donneur')->find($id);
       //dd($donneurexaminer);
-      
+
 
       return view('dossierM.editdonneursexaminer', compact('donneurexaminer'));
     }
 
     public function update_donneursexaminer(Request $request, DossierMedical $donneurexaminer)
     {
-        $messageErreur = 
+        $messageErreur =
         [
             'poid.required' => 'Le poid du donnneur est réquis!',
             'poid.integer' => 'Le poid du donneur ne doit contenir que des chiffres!',
@@ -151,7 +155,7 @@ class DossierMedicalRSMController extends Controller
             'quantite_a_prelevee.required' => 'La quantité à prélevée est réquise!',
             'quantite_a_prelevee.max' => 'La quantité à prélevée ne doit pas dépasser 3 caracteres!',
             'quantite_a_prelevee.min' => 'La quantité à prélevée doit contenir au moins 3 caracteres !',
-            'approbation.required' => 'L approbation est réquis!'   
+            'approbation.required' => 'L approbation est réquis!'
         ];
         $this->validate($request, [
             'poid' => 'required|integer',
@@ -189,12 +193,12 @@ class DossierMedicalRSMController extends Controller
     {
         Donneur::destroy($id);
     }
-    
+
     public function dossiermedical()
     {
-        $donneurs = DB::select("SELECT  DISTINCT d.id, d.num_donneur, d.nom, d.prenom 
-                                FROM donneurs d, dossier_medicals dm 
-                                WHERE dm.donneur_id =d.id" 
+        $donneurs = DB::select("SELECT  DISTINCT d.id, d.num_donneur, d.nom, d.prenom
+                                FROM donneurs d, dossier_medicals dm
+                                WHERE dm.donneur_id =d.id"
                               );
         return view('dossierM.dossiermedical', compact('donneurs'));
     }

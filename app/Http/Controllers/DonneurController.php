@@ -21,8 +21,8 @@ class DonneurController extends Controller
 
     public function store(Request $request)
     {
-        
-        $messageErreur = 
+
+        $messageErreur =
         [
             'nom.required' => 'Le nom du donnneur est réquis!',
             'nom.string' => 'Le nom du donneur ne doit contenir que des lettres!',
@@ -44,9 +44,15 @@ class DonneurController extends Controller
             'telephone.required' => 'Le numero du telephone du donneur est réquis!',
             'telephone.max' => 'Le numéro du telephone du donneur ne doit pas dépasser 8 chiffres!',
             'date_naiss.required' => 'La date de naissance de donneur est réquise!'
-            
-        ]; 
-      $validation =  $this->validate($request, 
+
+        ];
+        $current = Carbon::today();
+        $date = $current->subYear(18);
+        if($request->date_naiss > $date )
+        {
+            return back()->with('error', 'L age du donneur et inférieur à 18 ans, donc il est inapte au don!');
+        }
+      $validation =  $this->validate($request,
       [
             'nom' => 'required|string|max:50',
             'prenom' => 'required|string|max:50',
@@ -116,7 +122,7 @@ class DonneurController extends Controller
 
     public function update(Request $request, Donneur $donneur)
     {
-        $messageErreur = 
+        $messageErreur =
         [
             'nom.required' => 'Le nom du donnneur est réquis!',
             'nom.string' => 'Le nom du donneur ne doit contenir que des lettres!',
