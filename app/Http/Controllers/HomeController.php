@@ -33,17 +33,28 @@ class HomeController extends Controller
         {
             $labels[] = $groupe->groupe_sanguin;
         }
-        $stocks = DB::select("SELECT s.quantite_reelle
-                             FROM stocks s, groupements g
+        $stock_doubles = DB::select("SELECT s.quantite_reelle
+                                FROM stocks s, groupements g
                             WHERE s.groupement_id = g.id and s.id in
-                            (select max(id) from stocks where groupement_id in
+                            (select max(id) from stocks where type_poche = 'Double' and groupement_id in
                             (select id from groupements) group by groupement_id)");
-        $data = [];
-        foreach($stocks as $stock)
+        $stock_simples = DB::select("SELECT s.quantite_reelle
+                                    FROM stocks s, groupements g
+                                WHERE s.groupement_id = g.id and s.id in
+                                (select max(id) from stocks where type_poche = 'Simple' and groupement_id in
+                                (select id from groupements) group by groupement_id)");
+        $data_double = [];
+        foreach($stock_doubles as $stock_double)
         {
-            $data[] = $stock->quantite_reelle;
+            $data_double[] = $stock_double->quantite_reelle;
         }
-        return view('home',compact('labels','data'));
+        $data_simple = [];
+        foreach($stock_simples as $stock_simple)
+        {
+            $data_simple[] = $stock_simple->quantite_reelle;
+        }
+        //dd($data_double,$data_simple);
+        return view('home',compact('labels','data_simple', 'data_double'));
     }
 
 }

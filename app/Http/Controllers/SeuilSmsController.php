@@ -25,16 +25,25 @@ class SeuilSmsController extends Controller
         WHERE s.groupement_id = g.id and s.id in
        (select max(id) from stocks s where groupement_id in
        (select id from groupements where seuil > s.quantite_reelle) group by groupement_id)");
-        
-        $donneurs = DB::select("select donneurs.telephone, donneurs.nom, donneurs.prenom, dossier_medicals.created_at as date_dernier_don from donneurs, dossier_medicals 
-        where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id in (select max(id) 
-        from dossier_medicals where donneur_id in (select id from donneurs) and dossier_medicals.groupement_id in (
-        SELECT g.id
-        FROM stocks s, groupements g
-        WHERE s.groupement_id = g.id and s.id in
-        (select max(id) from stocks s where groupement_id in
-        (select id from groupements where seuil > s.quantite_reelle) group by groupement_id)) 
-        group by donneur_id) and DATEDIFF(CURRENT_DATE, dossier_medicals.created_at) >= 90");
+
+        $donneurs = DB::select("select donneurs.telephone, donneurs.nom, donneurs.prenom, dossier_medicals.created_at as date_dernier_don from donneurs, dossier_medicals
+        where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id
+            in (select max(id)
+              from dossier_medicals
+              where donneur_id
+                 in (select id from donneurs) and dossier_medicals.groupement_id
+                     in (SELECT g.id FROM stocks s, groupements g WHERE s.groupement_id = g.id and s.id
+                             in (select max(id) from stocks where groupement_id
+                                 in(
+                                    select groupement_id from (select stocks.groupement_id , groupements.seuil , sum(stocks.quantite_reelle) as qte
+                                     from groupements, stocks
+                                     where stocks.groupement_id = groupements.id
+                                     GROUP BY stocks.groupement_id) as temp
+                                     where temp.seuil >= temp.qte
+                                 ) group by groupement_id)
+                            ) group by donneur_id
+                        )
+        and DATEDIFF(CURRENT_DATE, dossier_medicals.created_at) >= 90");
 
         // foreach($donneurs as $donneur)
         // {
@@ -45,7 +54,7 @@ class SeuilSmsController extends Controller
         //     {
         //         //Utilisez le client pour faire des choses amusantes comme envoyer des messages texte!
         //         $client->messages->create(
-        //         //le numéro auquel vous souhaitez envoyer le message 
+        //         //le numéro auquel vous souhaitez envoyer le message
         //             $donneur->telephone,
         //      array(
         //             // le numéro de téléphone Twilio que vous avez acheté sur twilio.com/console
@@ -78,7 +87,7 @@ class SeuilSmsController extends Controller
         (select max(id) from stocks where groupement_id in
         (select id from groupements) group by groupement_id)");
       return view('seuilsms.create', compact('groupes', 'stocks'));
-     
+
     }
 
     /**
@@ -95,20 +104,20 @@ class SeuilSmsController extends Controller
         }
         $message = $request->message;
         $groupe = implode("," , $request->groupe);
-        
-    
+
+
         $messageErreur = [
             'message.required' => 'Le message ne doit pas être vide!'
-            
+
         ];
         $validation =  $this->validate($request, [
             'message' => 'required'
         ],  $messageErreur);
-      
 
-        $donneurs = DB::select("select donneurs.telephone, donneurs.nom, donneurs.prenom, dossier_medicals.created_at as date_dernier_don from donneurs, dossier_medicals 
-        where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id in (select max(id) 
-        from dossier_medicals where donneur_id in (select id from donneurs) and dossier_medicals.groupement_id in ($groupe) 
+
+        $donneurs = DB::select("select donneurs.telephone, donneurs.nom, donneurs.prenom, dossier_medicals.created_at as date_dernier_don from donneurs, dossier_medicals
+        where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id in (select max(id)
+        from dossier_medicals where donneur_id in (select id from donneurs) and dossier_medicals.groupement_id in ($groupe)
         group by donneur_id) and DATEDIFF(CURRENT_DATE, dossier_medicals.created_at) >= 90;");
         foreach($donneurs as $donneur)
         {
@@ -119,7 +128,7 @@ class SeuilSmsController extends Controller
             {
                 //Utilisez le client pour faire des choses amusantes comme envoyer des messages texte!
                 $client->messages->create(
-                //le numéro auquel vous souhaitez envoyer le message 
+                //le numéro auquel vous souhaitez envoyer le message
                     $donneur->telephone,
             array(
                     // le numéro de téléphone Twilio que vous avez acheté sur twilio.com/console
@@ -134,9 +143,9 @@ class SeuilSmsController extends Controller
                 echo "Error: " . $e->getMessage();
             }
         }
-        
+
         return redirect()->back();
-        
+
     }
 
     /**
@@ -183,5 +192,5 @@ class SeuilSmsController extends Controller
     {
         //
     }
-   
+
 }
