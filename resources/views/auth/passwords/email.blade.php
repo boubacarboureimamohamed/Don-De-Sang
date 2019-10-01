@@ -22,12 +22,12 @@
                             <div class="card-block">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
-                                        <h3 class="text-center"> {{ __('Recover your password') }}</h3>
+                                        <h3 class="text-center"> {{ ('Récupèrer votre mot de passe') }}</h3>
                                     </div>
                                 </div>
 
                                 <div class="form-group form-primary">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required="" placeholder="Your Email Address">
+                                    <input id="email" type="email" title="Votre adresse mail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" data-toggle="tooltip"  placeholder="Votre adresse mail">
 
                                     @error('email')
                                     <span class="form-bar" role="alert">
@@ -39,18 +39,18 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">
-                                        {{ __('Send Password Reset Link') }}
+                                        {{ __('Envoyer le lien de réinitialisation du mot de passe') }}
                                         </button>
                                     </div>
                                 </div>
                                 <hr>
                                     <div class="row">
-                                        <div class="col-md-10">
+                                        <div class="col-md-9">
                                             <p class="text-inverse text-left m-b-0">Don Du Sang</p>
                                             <p class="text-inverse text-left">Blood Donation</a></p>
                                         </div>
-                                        <div class="col-md-2">
-                                            <img src="{{ asset('images\auth\Logo-small-bottom.png') }}" alt="small-logo.png">
+                                        <div class="col-md-3">
+                                            <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="logo">
                                         </div>
                                     </div>
                             </div>

@@ -6,7 +6,7 @@ $(document).ready(function(){
 	@if (Session::has('critique'))
 	$.toast({
 		heading: 'Avertissement',
-		text : '{{ Session::get("critique") }}',
+		text : '{{ Session::get("critique") }}', 
 		icon: 'warning',
 		position : 'top-right'       
 		})

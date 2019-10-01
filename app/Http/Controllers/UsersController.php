@@ -76,13 +76,13 @@ class UsersController extends Controller
             'telephone' => 'required|unique:users|min:8|max:15'
 
        ], $messagErreurs);
-       if($validation->fails())
+       /* if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
+        } */
         
         $user->update([
             'name'=>$request->name,
@@ -94,7 +94,36 @@ class UsersController extends Controller
 
     public function updateperso(Request $request, User $user)
     {
-        //dd($request->all());
+
+        $messageErreur = 
+        [
+            'nom.required' => 'Le nom de l utilisateur est réquis!',
+            'nom.string' => 'Le nom de l utilisateur ne doit contenir que des lettres!',
+            'nom.max' => 'Le nom de l utilisateur ne doit pas dépasser 50 caracteres!',
+            'email.max' => 'Adresse mail ne doit pas dépasser 30 caracteres!',
+            'email.email' => 'Adresse mail doit être valide!',
+            'lieu_naiss.required' => 'Le lieu de naissance de l utilisateur est réquis!',
+            'lieu_naiss.max' => 'Le lieu de naissance de l utilisateur ne doit pas dépasser 20 caracteres!',
+            'sexe.required' => 'Le sexe de l utilisateur est réquis!',
+            'adresse.required' =>'Adresse de l utilisateur est réquis!',
+            'profession.required' => 'La profession de l utilisateur est réquis!',
+            'profession.alpha' => 'La profession de l utilisateur ne doit contenir que des lettres!',
+            'telephone.required' => 'Le numero du telephone de l utilisateur est réquis!',
+            'telephone.max' => 'Le numéro du telephone de l utilisateur ne doit pas dépasser 8 chiffres!',
+            'date_naiss.required' => 'La date de naissance de l utilisateur est réquise!'
+        ];
+
+        $validation = $this->validate($request, [
+            'name' => 'required|string|max:50',
+            'email' => 'email|max:30',
+            'lieu_naiss' => 'required|string',
+            'sexe' => 'required',
+            'adresse' => 'required|string',
+            'profession' => 'required|alpha',
+            'telephone' => 'required|string|max:20|',
+            'date_naiss' => 'required|date'
+        ],$messageErreur);
+
         $user->update([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -107,6 +136,7 @@ class UsersController extends Controller
         ]);
         return redirect(route('profile'))->with('success', 'La modification a été effetué avec succés!');
     }
+
 
     public function destroy($id)
     {

@@ -2,11 +2,6 @@
 
 @section('css')
 
-    <!-- Multi Select css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/css/bootstrap-multiselect.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/multiselect/css/multi-select.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/select2/css/select2.min.css') }}">
-
 @endsection
 
 @section('content')
@@ -158,59 +153,30 @@
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-user"></i></span>
-                                                                        <input id="name" type="text" title="date et heure du rdv" data-toggle="tooltip" name="name" value="{{ Auth::user()->name }}"  title="Votre nom d'ulisateur" data-toggle="tooltip" class="form-control" placeholder="Votre Username">
+                                                                        <input id="name" type="text" name="name" value="{{ Auth::user()->name }}" data-toggle="tooltip" title="Votre Username" class="form-control" placeholder="Votre Username">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                                                                        <input type="date" name="date_naiss" title="Date de Naissance de l'utilisateur" data-toggle="tooltip" value="{{ Auth::user()->date_naiss }}" class="form-control"  placeholder="Votre Date de Naissance">
+                                                                        <input type="date" name="date_naiss" title="Votre Date de Naissance" data-toggle="tooltip" value="{{ Auth::user()->date_naiss }}" class="form-control" data-toggle="tooltip" placeholder="Votre Date de Naissance">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                                                        <input type="text" name="adresse" title="Adresse de l'utilisateur" data-toggle="tooltip" value="{{ Auth::user()->adresse }}" class="form-control" placeholder="Votre Adresse">
+                                                                        <input type="text" name="adresse" title="Votre Adresse" data-toggle="tooltip" value="{{ Auth::user()->adresse }}" class="form-control" placeholder="Votre Adresse">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-"></i></span>
-                                                                        <input type="text" class="form-control"  name="profession" value="{{ Auth::user()->profession }}" title="Votre Profession"  placeholder="Profession de l'utilisateur" data-toggle="tooltip">
+                                                                        <input type="text" class="form-control" name="profession" data-toggle="tooltip" value="{{ Auth::user()->profession }}" title="Votre Profession" data-toggle="tooltip" placeholder="Votre Profession">
                                                                     </div>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
-                                                    <!-- tab pane info end -->
-                                                    <!-- tab pane contact start -->
-                                                    <div class="tab-pane" id="contacts" role="tabpanel">
-                                        <!-- contact data table card start -->
-                                                                        <div class="card">
-                                                                            <div class="card-header">
-                                                                                <h5 class="card-header-text">Liste de mes contacts</h5>
-                                                                            </div>
-                                                                            <div class="card-block contact-details">
-                                                                                <div class="table-responsive">
-                                                                                    <table id="table" class="table table-striped table-bordered">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>Nom et Prénom</th>
-                                                                                                <th>Email</th>
-                                                                                                <th>Téléphone</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody>
-                                                                                            @foreach ($users as $user)
-                                                                                            <tr>
-                                                                                                <td>{{ $user->name }}</td>
-                                                                                                <td>{{ $user->email }}</td>
-                                                                                                <td>9989988988</td>
-                                                                                            </tr>
-                                                                                            @endforeach
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
                                                     <!-- end of table col-lg-6 -->
                                                     <div class="col-lg-6">
                                                         <table class="table">
@@ -218,19 +184,19 @@
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-envelope"></i></span>
-                                                                        <input id="email" type="email" title="Adresse Mail de l'utilisateur" data-toggle="tooltip" name="email"  value="{{ Auth::user()->email }}" class="form-control" placeholder="Votre Adresse Mail">
+                                                                        <input id="email" type="email" title="Votre Adresse Mail" data-toggle="tooltip" name="email" data-toggle="tooltip" value="{{ Auth::user()->email }}" class="form-control" placeholder="Votre Adresse Mail">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                                                        <input type="text" title="Lieu de Naissance de l'utilisateur" data-toggle="tooltip" name="lieu_naiss" value="{{ Auth::user()->lieu_naiss }}" class="form-control" placeholder="Votre Lieu de Naissance">
+                                                                        <input type="text" title="Votre Lieu de Naissance" data-toggle="tooltip" name="lieu_naiss" value="{{ Auth::user()->lieu_naiss }}" class="form-control" placeholder="Votre Lieu de Naissance">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
                                                                     <div class="input-group">
                                                                         <span class="input-group-addon"><i class="icofont icofont-mobile-phone"></i></span>
-                                                                        <input type="text" title="Numéro de Téléphone" data-toggle="tooltip" class="form-control phone" data-mask="9999-99-99-99-99" name="telephone" value="{{ Auth::user()->telephone }}"  placeholder="Votre Numéro de Téléphone">
+                                                                        <input type="text" title="Votre Numéro de Téléphone" data-toggle="tooltip" name="telephone" value="{{ Auth::user()->telephone }}" class="form-control phone" data-mask="9999 99 99 99 99" placeholder="Votre Numéro de Téléphone">
                                                                     </div>
                                                                 </tr>
                                                                 <tr>
@@ -366,7 +332,7 @@
                                         <tr>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>9989988988</td>
+                                            <td>{{ $user->telephone }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -403,37 +369,5 @@
 @endsection
 
 @section('js')
-
-    <!-- Multiselect js -->
-    <script type="text/javascript" src="{{ asset('bower_components/bootstrap/js/bootstrap-multiselect.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.multi-select.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/multiselect/js/jquery.quicksearch.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/select2/js/select2.full.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/select2/js/select2-custom.js') }}"></script>
     <script src="{{ asset('js/user-profile.js') }}"></script>
-    <!-- ck editor -->
-    <script type="text/javascript" src="{{ asset('bower_components/ckeditor/ckeditor.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/ckeditor/ckeditor-custom.js') }}"></script>
-
-
-
-    <script>
-
-
-$(document).ready(function () {
-
-$('#table').DataTable({
-
-language: {
-
-    url: "{{ asset('bower_components/data-table/French.json') }}"
-
-}
-
-});
-
-});
-
-</script>
-
 @endsection

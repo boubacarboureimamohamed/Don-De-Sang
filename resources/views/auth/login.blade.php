@@ -18,7 +18,7 @@
                                         <div class="col-md-12">
                                        
                                             <h3 class="text-center">{{ ('Authentification') }}</h3>
-                                        </div>
+                                        </div> 
                                     </div>
                                     <div class="form-group form-primary">
                                         <div class="input-group">
