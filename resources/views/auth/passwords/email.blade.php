@@ -43,8 +43,9 @@
                                         </button>
                                     </div>
                                 </div>
+                                <p class="f-w-600 text-right">Retour à la page de <a href="{{ route('login') }}">connexion.</a></p>
                                 <hr>
-                                    <div class="row">
+                                <div class="row">
                                         <div class="col-md-9">
                                             <p class="text-inverse text-left m-b-0">Don Du Sang</p>
                                             <p class="text-inverse text-left">Blood Donation</a></p>
