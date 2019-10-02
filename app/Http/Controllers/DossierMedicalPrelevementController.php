@@ -59,7 +59,7 @@ class DossierMedicalPrelevementController extends Controller
         ]);
 
 
-        /* $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
+         $accountSid = config('app.twilio')['TWILIO_ACCOUNT_SID'];
         $authToken  = config('app.twilio')['TWILIO_AUTH_TOKEN'];
         $client = new Client($accountSid, $authToken);
         try
@@ -78,18 +78,24 @@ class DossierMedicalPrelevementController extends Controller
         }
         catch (Exception $e)
         {
-            echo "Error: " . $e->getMessage();
-        }  */
+            echo "Erreur: " . $e->getMessage();
+        }  
 
  
-    \Mail::send('prelevement.message', [ ], function ($message) use($dossier) {
+    try
+    {
+        \Mail::send('prelevement.message', [ ], function ($message) use($dossier) {
  
-        $message->from('ammahamadou94@gmail.com', 'team synetcom');
- 
-        $message->to($dossier->donneur->email)->subject('Notification');
- 
-    });
-
+            $message->from('ammahamadou94@gmail.com', 'team synetcom');
+     
+            $message->to($dossier->donneur->email)->subject('Notification');
+     
+        });
+    }
+    catch(Exception $e)
+    {
+        echo "Erreur: " . $e->getMessage();
+    }
 
         return redirect(route('prelevement.donneur_apte_a_prelevee'))->with('success', 'Le prélévement a été effetué avec succés!');
     }

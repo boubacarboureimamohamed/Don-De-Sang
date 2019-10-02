@@ -216,7 +216,7 @@
                                 <li class="">
                                     <a href="{{ route('dossierM.dossiermedical')}}">
                                         <span class="pcoded-micon"><i class="feather icon-folder"></i></span>
-                                        <span class="pcoded-mtext">Gestion Des Dossiers Médicales </span>
+                                        <span class="pcoded-mtext">Dossiers Médicaux</span>
                                     </a>
                                 </li>
                                 @endrole

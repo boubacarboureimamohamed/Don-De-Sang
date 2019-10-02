@@ -10,42 +10,60 @@
     @php
          $color = 'pink';
     @endphp
-   <div class="card bg-c-{{$color}}"">
+   <div class="card bg-c-{{$color}}">
         <div class="card-header">
           <h3 class="text-center text-white">
                 <i class="icofont icofont-blood-drop f-30 text-white"></i>
-                    {{ ('Evolution du don de sang') }}
+                    {{ (' SITUATION DU STOCK ') }}
                 <i class="icofont icofont-blood-drop f-30 text-white"></i>
           </h3>
         </div>
     </div>
 </div>
-<div class="col-sm-6">
-    <div class="page-body">
-        <div class="card">
-            <div class="card-header">
-            <h5 class="text-center txt-primary">{{ ('Double Poche') }}</h5>
-            </div>
-            <div class="card-block">
-                <canvas class="card-block" id="myChart_D" data-labels="{{ implode(', ', $labels) }}" dataD-stocks="{{ implode(', ', $data_double) }}" width="600" height="400">
-                </canvas>
-            </div>
-        </div>
-    </div>
-</div>
 
+<div class="col-sm-12"> 
+   <div class="card">
+        <div class="card-block">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                             <h4 class="text-center">{{ ('Double Poche') }}</h4>
+                        </div>
+                        <div class="card-block">
+                            <canvas class="card-block" id="myChart_D" data-labels="{{ implode(', ', $labels) }}" dataD-stocks="{{ implode(', ', $data_double) }}" width="600" height="400">
+                            </canvas>
+                        </div>
+                        <div class="card-footer">
 
-<div class="col-sm-6">
-    <div class="page-body">
-        <div class="card">
-            <div class="card-header">
-            <h5 class="text-center txt-primary">{{ ('Simple Poche') }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                             <h4 class="text-center">{{ ('Simple Poche') }}</h4>
+                        </div>
+                        <div class="card-block">
+                             <canvas class="card-block" id="myChart" data-labels="{{ implode(', ', $labels) }}" dataS-stocks="{{ implode(', ', $data_simple) }}" width="600" height="400">
+                            </canvas>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div> <hr>
+            <div class="row">
+                <div class="col-md-11">
+                    <p class="text-inverse text-left m-b-0">Don Du Sang</p>
+                    <p class="text-inverse text-left">Blood Donation</a></p>
+                </div>
+                <div class="col-md-1">
+                    <img src="{{ asset('images/DDS/logo-blue.png') }}" alt="small-logo.png">
+                </div>
             </div>
-            <div class="card-block">
-                <canvas class="card-block" id="myChart" data-labels="{{ implode(', ', $labels) }}" dataS-stocks="{{ implode(', ', $data_simple) }}" width="600" height="400">
-                </canvas>
             </div>
-        </div>
     </div>
 </div>
 

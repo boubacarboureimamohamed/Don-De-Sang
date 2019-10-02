@@ -92,6 +92,9 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::create([
             'name' => "etat_sms"]);
+        
+            Permission::create([
+                'name' => "sms_alerte" ]);    
 
         Permission::create([
             'name' => "livrer_ligne_demande"]);
@@ -125,6 +128,7 @@ class PermissionsTableSeeder extends Seeder
 
         Permission::create([
             'name' => "supprimer_role" ]);
+
 
 
     }

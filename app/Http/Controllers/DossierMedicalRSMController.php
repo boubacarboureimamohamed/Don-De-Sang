@@ -58,7 +58,7 @@ class DossierMedicalRSMController extends Controller
 
         if($request->poid < 50 && $request->approbation == 1)
         {
-            return back()->with('error', 'Le poid est inférieur à 50, il ne peux pas être apte!');
+            return back()->with('error', 'Le poid est inférieur à 50 KG, il ne peux pas être apte!');
         }
         $validation = $this->validate($request, [
             'poid' => 'required|integer',
@@ -95,7 +95,7 @@ class DossierMedicalRSMController extends Controller
             ]);
 
         }
-        return redirect(route('donneurs.index'));
+        return redirect(route('donneurs.index'))->with('success', 'Le donneur a bien été examiné!');
     }
     public function donneur_apte()
     {
@@ -157,6 +157,10 @@ class DossierMedicalRSMController extends Controller
             'quantite_a_prelevee.min' => 'La quantité à prélevée doit contenir au moins 3 caracteres !',
             'approbation.required' => 'L approbation est réquis!'
         ];
+        if($request->poid < 50 && $request->approbation == 1)
+        {
+            return back()->with('error', 'Le poid est inférieur à 50 KG, il ne peux pas être apte!');
+        }
         $this->validate($request, [
             'poid' => 'required|integer',
             'temperature' => 'required|integer',

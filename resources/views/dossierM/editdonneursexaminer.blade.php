@@ -27,13 +27,6 @@
        <div class="auth-box card">
           <div class="card-block">
           <div class="card-block">
-               <div class="row m-b-30">
-                     <div class="notifications">
-                        @if(session('error'))
-                        <button class="btn btn-danger waves-effect" data-type="danger" data-from="top" data-align="right" data-animation-in="animated bounceIn" data-animation-out="animated bounceOut">{{ session('error') }}</button>
-                        @endif
-                   </div>
-               </div>
                <div class="row">
                     <input type="text"value="{{ $donneurexaminer->donneur->id }}"name="donneur_id" hidden>
                     <div class="col-sm-6">

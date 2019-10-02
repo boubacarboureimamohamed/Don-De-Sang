@@ -39,7 +39,7 @@ class DemandeController extends Controller
             'email.unique' => 'Adresse mail du bénéficaire doit être unique'
  
         ];
-/* 
+
       $validation =  $this->validate($request, [
             'libelle' => 'string',
             'telephone' => 'required|string|max:15|unique:demandes',
@@ -49,14 +49,14 @@ class DemandeController extends Controller
             'quantite_demandee' => 'required|integer|max:3'
         ],  $messageErreur);
 
-        if($validation->fails())
+      /*   if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        } */
-
+        }
+ */
         $beneficiaire = Beneficiaire::firstOrCreate([
             'libelle'=>$request->libelle,
             'telephone'=>$request->telephone,
@@ -160,7 +160,10 @@ class DemandeController extends Controller
         $datedemande = $request->datedemande;
         $datelivraison = $request->date;
         if($datelivraison <= $datedemande)
-            {
+        {
+            return back()->with('error', 'La date de la demande doit etre inférieur ou egale a la date de livriason!');
+        }
+            
             $quantite = $ligne->quantite_demandee;
             $last = Stock::latest()->limit(1)->where('groupement_id', $request->groupement_id)->where('type_poche', $request->type_poche)->get();
             //dd($last);
@@ -197,10 +200,7 @@ class DemandeController extends Controller
                 return back()->with('error', 'Le stock n!');
             }
         return back()->with('success', 'La ligne de demande a été livrée!');;
-        }
-        else
-        {
-            return back()->with('error', 'La date de la demande doit etre inférieur ou egale a la date de livriason!');
-        }
+        
+       
     }
 }

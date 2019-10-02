@@ -43,6 +43,7 @@ class DonneurController extends Controller
             'profession.alpha' => 'La profession du donneur ne doit contenir que des lettres!',
             'telephone.required' => 'Le numero du telephone du donneur est réquis!',
             'telephone.max' => 'Le numéro du telephone du donneur ne doit pas dépasser 8 chiffres!',
+            'telephone.unique' => 'Le numéro du telephone du donneur doit être unique!',
             'date_naiss.required' => 'La date de naissance de donneur est réquise!'
 
         ];
@@ -62,7 +63,7 @@ class DonneurController extends Controller
             'adresse' => 'required|string',
             'nationalite' => 'required|alpha',
             'profession' => 'required|alpha',
-            'telephone' => 'required|string|max:20|',
+            'telephone' => 'required|string|max:20|unique:donneurs',
             'date_naiss' => 'required|date'
 
         ], $messageErreur);
@@ -142,6 +143,7 @@ class DonneurController extends Controller
             'profession.alpha' => 'La profession du donneur ne doit contenir que des lettres!',
             'telephone.required' => 'Le numero du telephone du donneur est réquis!',
             'telephone.max' => 'Le numéro du telephone du donneur ne doit pas dépasser 8 chiffres!',
+            'telephone.unique' => 'Le numéro du telephone du donneur doit être unique!',
             'date_naiss.required' => 'La date de naissance de donneur est réquise!'
         ];
 
@@ -154,7 +156,7 @@ class DonneurController extends Controller
             'adresse' => 'required|string',
             'nationalite' => 'required|alpha',
             'profession' => 'required|alpha',
-            'telephone' => 'required|string|max:20|',
+            'telephone' => 'required|string|max:20|unique:donneurs',
             'date_naiss' => 'required|date'
         ],$messageErreur);
 

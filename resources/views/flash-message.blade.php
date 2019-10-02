@@ -6,9 +6,12 @@ $(document).ready(function(){
 	@if (Session::has('critique'))
 	$.toast({
 		heading: 'Avertissement',
-		text : '{{ Session::get("critique") }}', 
+		text : ('{{ Session::get("critique") }}', 'Un groupe sanguin a atteint le seuil minimal! @can('sms_alerte') <a href="{{ route('seuilsms.index') }}">Envoyer le message d\'alerte</a> @endcan'), 
 		icon: 'warning',
-		position : 'top-right'       
+		position : 'top-right',
+		hideAfter: 10000,
+		bgColor: '#DFAF2C',
+		textcolor: 'black'
 		})
 
 	@endif

@@ -25,7 +25,7 @@
                                 <div class="media-body row">
                                     <div class="col-lg-12">
                                         <div class="user-title">
-                                            <h2>Mon Profile</h2>
+                                            <h2>{{ Auth::user()->name }}</h2>
                                         </div>
                                     </div>
                                 </div>

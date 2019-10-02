@@ -66,7 +66,7 @@ class SeuilSmsController extends Controller
             }
             catch (Exception $e)
             {
-                echo "Error: " . $e->getMessage();
+                echo "Erreur: " . $e->getMessage();
             }
         Historisation::create([
             'date' => date('Y-m-d'),
