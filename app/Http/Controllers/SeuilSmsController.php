@@ -26,6 +26,7 @@ class SeuilSmsController extends Controller
         WHERE s.groupement_id = g.id and s.id in
        (select max(id) from stocks s where groupement_id in
        (select id from groupements where seuil > s.quantite_reelle) group by groupement_id)");
+
         $donneurs = DB::select("select donneurs.telephone, donneurs.nom, donneurs.prenom, dossier_medicals.created_at as date_dernier_don from donneurs, dossier_medicals
         where donneurs.id = dossier_medicals.donneur_id and dossier_medicals.id
             in (select max(id)
@@ -68,11 +69,7 @@ class SeuilSmsController extends Controller
             {
                 echo "Erreur: " . $e->getMessage();
             }
-        Historisation::create([
-            'date' => date('Y-m-d'),
-            'donneur_id' => $donneur->id
-        ]);
-
+      
         }
         return redirect()->back();
 

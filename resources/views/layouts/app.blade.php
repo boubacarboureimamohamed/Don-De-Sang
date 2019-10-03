@@ -37,6 +37,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css\jquery.mCustomScrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('scss\partials\menu\_pcmenu.htm') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/css/sweetalert2.min.css') }}">
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -72,6 +74,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Required Jquery -->
+    <script type="text/javascript" src="{{ asset('bower_components/sweetalert/js/sweetalert2.min.js') }}"></script>
+
+
     <script type="text/javascript" src="{{ asset('bower_components\jquery\js\jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components\jquery-ui\js\jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bower_components\popper.js\js\popper.min.js') }}"></script>
@@ -99,6 +104,10 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  @if ($errors->any())
+	swal('Erreur!', `@foreach($errors->all() as $error) {{ $error . "\n" }} @endforeach`, 'error')
+
+	@endif
 
   gtag('config', 'UA-23581568-13');
 </script>
