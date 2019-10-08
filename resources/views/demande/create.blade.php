@@ -25,7 +25,7 @@
                     <div class="form-group form-primary">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="icofont icofont-calendar"></i></span>
-                            <input type="date" data-toggle="tooltip" title="Entrez la date de la demande" class="form-control" name="date" id="date" placeholder="Date et Heure">
+                            <input type="date" data-toggle="tooltip" title="Entrez la date de la demande" class="form-control" value="{{ old('date') }}" name="date" id="date" placeholder="Date et Heure">
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-phone"></i></span>
-                                <input type="text" title="Entrer le numéro de téléphone du bénéficiaire" data-toggle="tooltip" class="form-control phone" data-mask="9999-99-99-99-99" id="telephone" name="telephone" placeholder="Telephone">
+                                <input type="text" title="Entrer le numéro de téléphone du bénéficiaire" data-toggle="tooltip" class="form-control phone" data-mask="9999-99-99-99-99" value="{{ old('telephone') }}" id="telephone" name="telephone" placeholder="Telephone">
                             </div>
                          </div>
                      </div>
@@ -54,7 +54,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-email"></i></span>
-                                <input type="email" title="Entrer l email du bénéficiaire" data-toggle="tooltip" class="form-control" id="email" name="email" placeholder="Email">
+                                <input type="email" title="Entrer l email du bénéficiaire" data-toggle="tooltip" class="form-control" value="{{ old('email') }}" id="email" name="email" placeholder="Email">
                             </div>
                         </div>
                      </div>
@@ -64,7 +64,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont-location-pin"></i></span>
-                                <input type="text" title="Entrer l'adresse du bénéficiaire" data-toggle="tooltip" class="form-control" id="adresse" name="adresse" placeholder="Adresse">
+                                <input type="text" title="Entrer l'adresse du bénéficiaire" data-toggle="tooltip" class="form-control" value="{{ old('adresse') }}" id="adresse" name="adresse" placeholder="Adresse">
                             </div>
                         </div>
                      </div>
@@ -90,7 +90,7 @@
                                         <div class="form-group form-primary">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="icofont icofont-blood-drop"></i></span>
-                                                <select name="groupement[]" title="sélectionner le groupe sanguin" data-toggle="tooltip" id="groupement[]" class="form-control">
+                                                <select name="groupement[]" title="sélectionner le groupe sanguin" value="{{ old('groupement[]') }}" data-toggle="tooltip" id="groupement[]" class="form-control">
                                                     @foreach($groupements as $groupement)
                                                         <option value="{{ $groupement->id }}">
                                                             {{ $groupement->groupe_sanguin }}
@@ -106,7 +106,7 @@
                                     <div class="form-group form-primary">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                            <select name="type_poche[]" title="sélectionner le type de poche de sang" data-toggle="tooltip" id="type_poche[]" class="form-control">
+                                            <select name="type_poche[]" title="sélectionner le type de poche de sang" data-toggle="tooltip" value="{{ old('type_poche[]') }}" id="type_poche[]" class="form-control">
                                                 <option value="Double">Double</option>
                                                 <option value="Simple">Simple</option>
                                             </select>
@@ -119,7 +119,7 @@
                                     <div class="form-group form-primary">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icofont icofont-test-tube-alt"></i></span>
-                                            <input type="text" name="quantite_demandee[]" title="Entrer la quantité demandée" data-toggle="tooltip" id="quantite_demandee[]" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">
+                                            <input type="text" name="quantite_demandee[]" title="Entrer la quantité demandée" data-toggle="tooltip" value="{{ old('quantite_demandee[]') }}" id="quantite_demandee[]" class="form-control" placeholder="Quantité demandée"value="{{ old('quantite_demandee') }}">
                                         </div>
                                     </div>
                                 </div>

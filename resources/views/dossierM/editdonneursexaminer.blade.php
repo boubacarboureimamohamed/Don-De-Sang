@@ -113,8 +113,11 @@
                 <div class="col-sm-6" id="quantite">
                     <div class="form-group form-primary">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                        <input id="" type="text" value="{{ $donneurexaminer->quantite_a_prelevee }}" title="Entrer la quantité à prélevée" data-toggle="tooltip" class="form-control" placeholder="Quantité à prélevée" name="quantite_a_prelevee">
+                        <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                        <select type="text"title="Entrer le type de poche" data-toggle="tooltip" class="form-control" value="{{ old('type_poche') }}" placeholder="Type de poche" name="type_poche"  placeholder="Type de Poche" class="form-control form-control-default">
+                            <option value="Double" >Double</option>
+                            <option value="Simple">Simple</option>
+                        </select>
                     </div>
                     </div>
                 </div>

@@ -34,10 +34,19 @@ class DossierMedicalPrelevementController extends Controller
         $messageErreur = [
             'quantite_prelevee.required' => 'La quantité prélevée est obligatoire!',
             'quantite_prelevee.integer' => 'La quantité prélevée ne doit contenir que des chiffres!',
-            'quantite_prelevee.max' => 'La quantité prélevée doit inférieur ou égale à la quantité à prélevée!'
+            'quantite_prelevee.max' => 'La quantité prélevée doit inférieur ou égale à la quantité de la poche!'
         ];
 
-        $quantite_prelevve = $dossier->quantite_a_prelevee;
+        $quantite_prelevve = 0;
+
+        if($dossier->type_poche == 'Double')
+        {
+            $quantite_prelevve = 450;
+        }
+        elseif($dossier->type_poche == 'Simple')
+        {
+            $quantite_prelevve = 350;
+        }
       $validation =  $this->validate($request, [
             'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve
         ],  $messageErreur);
@@ -52,7 +61,6 @@ class DossierMedicalPrelevementController extends Controller
 
         $dossier->update([
             'type_prelevement' => $request->type_prelevement,
-            'type_poche' => $request->type_poche,
             'observation_prelevement' => $request->observation_prelevement,
             'quantite_prelevee' => $request->quantite_prelevee,
             'date_heure_prelevement' => date('Y-m-d')
@@ -70,7 +78,7 @@ class DossierMedicalPrelevementController extends Controller
                 $dossier->donneur->telephone,
            array(
                  // A Twilio phone number you purchased at twilio.com/console
-                 'from' => '+12056512557',
+                 'from' => '+12056289869',
                  // the body of the text message you'd like to send
                  'body' => 'Bonjour M./Mme ' .$dossier->donneur->nom. ' ' .$dossier->donneur->prenom. ' nous vous remercions du don effectué. Sachez que vous sauvez une vie!'
              )
@@ -122,7 +130,18 @@ class DossierMedicalPrelevementController extends Controller
             'quantite_prelevee.max' => 'La quantité prélevée doit inférieur ou égale à la quantité à prélevée!'
             
         ];
-        $quantite_prelevve = $dossier->quantite_a_prelevee;
+
+        $quantite_prelevve = 0;
+
+        if($dossier->type_poche == 'Double')
+        {
+            $quantite_prelevve = 450;
+        }
+        elseif($dossier->type_poche == 'Simple')
+        {
+            $quantite_prelevve = 350;
+        }
+
          $validation =   $this->validate($request, [
         'quantite_prelevee' => 'required|integer|max:'.$quantite_prelevve
      ], $messageErreur);
@@ -136,7 +155,6 @@ class DossierMedicalPrelevementController extends Controller
         } */
         $prelevement->update([
             'type_prelevement' => $request->type_prelevement,
-            'type_poche' => $request->type_poche,
             'observation_prelevement' => $request->observation_prelevement,
             'quantite_prelevee' => $request->quantite_prelevee,
             'date_heure_prelevement' => date('Y-m-d')

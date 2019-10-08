@@ -69,8 +69,8 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                <input type="text" class="form-control" value="{{ $prelevement->quantite_a_prelevee }}" readonly="">
+                            <span class="input-group-addon"><i class="icofont icofont"></i></span>
+                                <input id="" type="text" title="Type de poche" data-toggle="tooltip" class="form-control" value="{{ $prelevement->type_poche }}" readonly=""  placeholder="">
                             </div>
                          </div>
                      </div>
@@ -97,11 +97,8 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></i></span>
-                                 <select type="text" title="Entrer le type de poche" data-toggle="tooltip" class="form-control" placeholder="Type de poche" name="type_poche"  placeholder="Type de Poche" class="form-control form-control-default">
-                                    <option value="Double">Double</option>
-                                    <option value="Simple">Simple</option>
-                                </select>
+                                 <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-file-text"></i></span>
+                                <input type="text" class="form-control" title="Observation sur le prélèvement" data-toggle="tooltip" value="{{ $prelevement->observation_prelevement }}" name="observation_prelevement">
                             </div>
                          </div>
                      </div>
@@ -110,8 +107,7 @@
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                              <div class="input-group">
-                                 <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-file-text"></i></span>
-                                <input type="text" class="form-control" title="Observation sur le prélèvement" data-toggle="tooltip" value="{{ $prelevement->observation_prelevement }}" name="observation_prelevement">
+                                
                             </div>
                          </div>
                      </div>

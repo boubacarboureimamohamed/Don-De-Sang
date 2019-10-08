@@ -99,7 +99,6 @@
                                     <th>Tension arterielle</th>
                                     <th>Approbation</th>
                                     <th>Observation d'approbation</th>
-                                    <th>Quantité à prelevée</th>
                                     <th>Date heure de prelevement</th>
                                     <th>Quantité prelevée</th>
                                     <th>Type de prelevement</th>
@@ -134,9 +133,6 @@
                                     @endif
                                     <td class="tabledit-view-mode">
                                             {{ $dossier->observation_approbation }}
-                                    </td>
-                                    <td class="tabledit-view-mode">
-                                            {{ $dossier->quantite_a_prelevee }}
                                     </td>
                                     <td class="tabledit-view-mode">
                                             {{ $dossier->date_heure_prelevement }}

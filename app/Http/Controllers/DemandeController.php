@@ -22,11 +22,11 @@ class DemandeController extends Controller
     {
         $datedemenade = $request->date;
         $date=strtotime(date("Y-m-d H:i:s"));
-        if($date >= strtotime($datedemenade))
-        {
-  
-            
-        $messageErreur = [
+        if($date <= strtotime($datedemenade))
+        { 
+            return back()->with('error', 'La date de la demande doit etre inférieur ou egale a la date du jour');
+        }
+        /* $messageErreur = [
             'telephone.required' => 'Le numéro de télephone du bénéficiaire  est obligatoire!',
             'telephone.max' => 'Le numéro de télephone du bénéficiaire ne doit pas dépasser 15 caracteres!',
             'adresse.required' => 'Adresse du bénéficiaire est obligatoire!',
@@ -38,32 +38,31 @@ class DemandeController extends Controller
             'telephone.unique' => 'Le numéro de télephone du bénéficiaire doit être unique',
             'email.unique' => 'Adresse mail du bénéficaire doit être unique'
  
-        ];
+        ]; */
 
-      $validation =  $this->validate($request, [
+     /*  $validation =  $this->validate($request, [
             'libelle' => 'string',
             'telephone' => 'required|string|max:15|unique:demandes',
             'adresse' => 'string|required',
-            'email' => 'email|string|unique:demandes',
+            
             'date' => 'required|date',
             'quantite_demandee' => 'required|integer|max:3'
         ],  $messageErreur);
 
-      /*   if($validation->fails())
+    if($validation->fails())
         {
             $returnData = array(
                 'error'=>$validation->errors()->all()
             );
             return redirect()->back()->with(['error' =>$validation->errors()->all()]);
-        }
- */
+        } */
+
         $beneficiaire = Beneficiaire::firstOrCreate([
             'libelle'=>$request->libelle,
             'telephone'=>$request->telephone,
             'adresse'=>$request->adresse,
             'email'=>$request->email
         ]);
-
         $demande = Demande::create([
             'date' => $request->date,
             'beneficiaire_id' => $beneficiaire->id
@@ -78,12 +77,7 @@ class DemandeController extends Controller
         }
         return redirect('demande')->with('success', 'Lenregistrement a été effetué avec succés!');
 
-        }
-  
-        else
-        {
-            return back()->with('error', 'La date de la demande doit etre inférieur ou egale a la date du jour');
-        }
+         
     }
     public function index()
     {
@@ -147,12 +141,23 @@ class DemandeController extends Controller
     }
     public function demandedestroy($id)
     {
+        $demande = Demande::with('ligne_demandes')->find($id);
+        if(!empty($demande->ligne_demandes))
+        {
+            return redirect()->back()->with('error', 'Vous ne pouvez pas supprimé cette demande car elle contient au moins une ligne!');
+        }
         Demande::destroy($id);
         return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
     public function lignedestroy($id)
     {
+        $lignedemande = LigneDemande::find($id);
+        if(!empty($lignedemande->livraison_id))
+        {
+            return redirect()->back()->with('error', 'Vous ne pouvez pas supprimé cette la ligne après avoir été livrée!');
+        }
         LigneDemande::destroy($id);
+        
         return redirect()->back()->with('success', 'La suppression a été effetué avec succés!');
     }
     public function livraison(Request $request, LigneDemande $ligne)

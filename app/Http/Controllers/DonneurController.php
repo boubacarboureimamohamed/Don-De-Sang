@@ -111,6 +111,12 @@ class DonneurController extends Controller
     }
     public function destroy($id)
     {
+        $donneur= Donneur::with('dossierMedicals')->find($id);
+
+        if($donneur->dossierMedicals)
+        {
+            return redirect(route('donneurs.index'))->with('error', 'Vous ne pouvez pas supprimer ce donneur car il a un dossier médical!');
+        }
         Donneur::destroy($id);
         /* flash("success, Le donneur a été suprimée.")->success(); */
         return redirect(route('donneurs.index'))->with('success', 'La suppression a été effetué avec succés!');

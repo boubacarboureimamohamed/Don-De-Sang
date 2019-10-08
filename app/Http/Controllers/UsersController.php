@@ -65,7 +65,7 @@ class UsersController extends Controller
             'telephone.min' => 'Le numéro de telephone doit avoir 8 caracteres!',
             'telephone.max' => 'Le numéro de téléphone ne doit pas dépasser 15 caracteres!'
     ];
-       return Validator::make($data, [
+    $validation = $this->validate($request, [
             'name' => 'string|required|max:100',
             'email' => 'email|required|unique:users|max:50',
             'date_naiss' => 'required|date', 
@@ -141,9 +141,12 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
-        if ($id == $user->id) { echo 'Vous ne pouvez pas supprimer votre propre compte, Désolé!!!'; }
-        else {
-
+        if ($id == $user->id) 
+        { 
+            return redirect()->back()->with('error', 'Vous ne pouvez pas supprimer votre propre compte, Désolé!!!');
+        }
+        else 
+        {
             User::destroy($id);
             return redirect(route('users.index'))->with('success', 'La suppression a été effetué avec succés!');
         }

@@ -81,7 +81,7 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="La quantité à prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_a_prelevee }}" readonly=""  placeholder="">
+                                <input id="" type="text" title="Type de poche" data-toggle="tooltip" class="form-control" value="{{ $dossier->type_poche }}" readonly=""  placeholder="">
                             </div>
                          </div>
                      </div>
@@ -91,10 +91,7 @@
                         <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select type="text"title="Entrer le type de poche" data-toggle="tooltip" class="form-control" value="{{ old('type_poche') }}" placeholder="Type de poche" name="type_poche"  placeholder="Type de Poche" class="form-control form-control-default">
-                                    <option value="Double">Double</option>
-                                    <option value="Simple">Simple</option>
-                                </select>
+                                <input id="" type="text" title="Entrer la quantité prélevée" data-toggle="tooltip" value="{{ old('quantite_prelevee') }}" class="form-control" placeholder="Quantité prélevée" name="quantite_prelevee"  placeholder="Quantité Prélèvée">
                             </div>
                         </div>
                     </div>
@@ -102,7 +99,10 @@
                          <div class="form-group form-primary">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" type="text" title="Entrer la quantité prélevée" data-toggle="tooltip" value="{{ old('quantite_prelevee') }}" class="form-control" placeholder="Quantité prélevée" name="quantite_prelevee"  placeholder="Quantité Prélèvée">
+                                <select id="" title="Entrer le type de prélèvement" value="{{ old('type_prelevement') }}" data-toggle="tooltip" type="text" class="form-control" placeholder="type de prélèment" name="type_prelevement"  placeholder="Type de Prélèvement" class="form-control form-control-default">
+                                    <option value="Normale">Normal</option>
+                                    <option value="Anormale">Anormale</option>
+                                </select>
                             </div>
                          </div>
                      </div>
@@ -111,19 +111,15 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <select id="" title="Entrer le type de prélèvement" value="{{ old('type_prelevement') }}" data-toggle="tooltip" type="text" class="form-control" placeholder="type de prélèment" name="type_prelevement"  placeholder="Type de Prélèvement" class="form-control form-control-default">
-                                    <option value="Normale">Normal</option>
-                                    <option value="Anormale">Anormale</option>
-                                </select>
-                               </div>
+                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
+                                <textarea placeholder="Observations" value="{{ old('observation_prelevement') }}" rows="1" title="Entrer votre observation" data-toggle="tooltip" class="form-control" spellcheck="false"  name="observation_prelevement"></textarea>
+                            </div>
                          </div>
                      </div>
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="icofont icofont-file-text"></i></span>
-                                <textarea placeholder="Observations" value="{{ old('observation_prelevement') }}" rows="1" title="Entrer votre observation" data-toggle="tooltip" class="form-control" spellcheck="false"  name="observation_prelevement"></textarea>
+                                
                             </div>
                          </div>
                      </div>

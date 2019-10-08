@@ -65,10 +65,10 @@
                                 @endcan
                                 @can('supprimer_demande')
                             <td>
-                                <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" id="">
+                                <form method="POST" action="{{ route('demande.demandedestroy', $demande) }}" id="form{{$demande->id}}">
                                     {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="button" onclick="confirmation()" class="btn btn-danger btn-outline-danger waves-effect waves-light">
+                                    {{ method_field('DELETE') }} 
+                                    <button type="button" onclick="confirmation('#form{{ $demande->id }}')" class="btn btn-danger btn-outline-danger waves-effect waves-light">
                                         <span class="icofont icofont-ui-delete"></span>
                                     </button>
                                 </form>

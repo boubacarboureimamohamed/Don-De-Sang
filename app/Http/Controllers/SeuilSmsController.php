@@ -59,7 +59,7 @@ class SeuilSmsController extends Controller
                     $donneur->telephone,
              array(
                     // le numéro de téléphone Twilio que vous avez acheté sur twilio.com/console
-                    'from' => '+12056512557',
+                    'from' => '+12056289869', 
                     // le corps du message texte que vous souhaitez envoyer
                     'body' => 'Bonjour, le CTS a urgement besoin du sang de votre groupe!'
                 )
@@ -133,7 +133,7 @@ class SeuilSmsController extends Controller
                     $donneur->telephone,
             array(
                     // le numéro de téléphone Twilio que vous avez acheté sur twilio.com/console
-                    'from' => '+12056512557',
+                    'from' => '+12056289869',
                     // le corps du message texte que vous souhaitez envoyer
                     'body' => $message
                 )
@@ -143,10 +143,7 @@ class SeuilSmsController extends Controller
             {
                 echo "Error: " . $e->getMessage();
             }
-            Historisation::create([
-                'date' => date('Y-m-d'),
-                'donneur_id' => $donneur->id
-            ]);
+            
         }
 
         return redirect()->back();

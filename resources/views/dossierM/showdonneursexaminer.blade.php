@@ -77,8 +77,8 @@
                                                     <td>{{ $donneursexaminer->tension_arterielle }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">Quantité à prélevée</th>
-                                                    <td>{{ $donneursexaminer->quantite_a_prelevee }}</td>
+                                                    <th scope="row">Type de poche</th>
+                                                    <td>{{ $donneursexaminer->type_poche }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Observation approbation</th>
@@ -87,7 +87,7 @@
                                                 <tr>
                                                     <th scope="row"></th>
                                                     <td>
-                                                        <a href="{{ route('dossierM.donneursexaminer')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
+                                                        
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -106,6 +106,7 @@
             </div>
             <!-- end of view-info -->
             </div>
+            <a href="{{ route('dossierM.donneursexaminer')}}" class="btn btn-xs pull-right btn-inverse"><i class="icofont icofont-arrow-left"></i>Retour</a>
             </div>
         </div>
     </div>

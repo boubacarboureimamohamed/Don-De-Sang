@@ -143,7 +143,7 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::post('ligne/lignestore', 'DemandeController@lignestore')->name('ligne.lignestore');
 
-        Route::delete('demande/{demande}', 'DemandeController@demande destroy')->name('demande.demandedestroy');
+        Route::delete('demande/{demande}', 'DemandeController@demandedestroy')->name('demande.demandedestroy');
 
         Route::delete('ligne/{ligne}', 'DemandeController@lignedestroy')->name('ligne.lignedestroy');
 

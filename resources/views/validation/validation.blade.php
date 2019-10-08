@@ -70,24 +70,6 @@
                     <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                <input id="" type="text" title="La quantité à prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_a_prelevee }}" readonly="" placeholder="">
-                            </div>
-                         </div>
-                     </div>
-                     <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
-                                <input id="" type="text" title="Entrer la quantité prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_prelevee }}" readonly="" name="quantite_prelevee">
-                            </div>
-                         </div>
-                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                         <div class="form-group form-primary">
-                            <div class="input-group">
                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
                                 <input id="" type="text"title="Entrer le type de poche" data-toggle="tooltip" class="form-control" name="type_poche" value="{{ $dossier->type_poche }}" readonly=""  class="form-control form-control-default">
                             </div>
@@ -96,8 +78,8 @@
                      <div class="col-sm-6">
                          <div class="form-group form-primary">
                             <div class="input-group">
-                                 <span class="input-group-addon"><i class="icofont icofont"></i></span>
-                                <input id="" title="Entrer le type de prélèvement" data-toggle="tooltip" type="text" class="form-control" value="{{ $dossier->type_prelevement }}" readonly="" name="type_prelevement" class="form-control form-control-default">
+                                 <span class="input-group-addon"><i class="icofont icofont-laboratory"></i></span>
+                                <input id="" type="text" title="Entrer la quantité prélevée" data-toggle="tooltip" class="form-control" value="{{ $dossier->quantite_prelevee }}" readonly="" name="quantite_prelevee">
                             </div>
                          </div>
                      </div>
