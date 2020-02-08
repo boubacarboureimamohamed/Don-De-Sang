@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                                 </td>
-                                <td style="text-align: center"><a href="#" class="btn btn-danger btn-outline-danger remove"><i class="icofont icofont-minus"></i></i></a></td>
+                                <td style="text-align: center" id="retirer" ><a href="#" class="btn btn-danger btn-outline-danger remove"><i class="icofont icofont-minus"></i></i></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -204,7 +204,6 @@ function addLigne() {
                 '</div>' +
             '</div>' +
         '</td>' +
-        '<td style="text-align: center"><a href="#" class="btn btn-danger btn-outline-danger remove"><i class="icofont icofont-minus"></i></a></td>'+
         '</tr>';
     $('#ligne').append(tr);
 };

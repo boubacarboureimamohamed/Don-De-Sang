@@ -149,8 +149,6 @@ Route::group(['middleware' => ['auth', 'verifier']], function() {
 
         Route::get('stock', 'DossierMedicalValidationController@stock')->name('validation.stock');
 
-        Route::post('livraison/{ligne}', 'DemandeController@livraison')->name('demande.livraison');
-
         Route::get('codebar', 'CodebarController@barcode')->name('codebar');
 
 

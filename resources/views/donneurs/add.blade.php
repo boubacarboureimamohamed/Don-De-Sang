@@ -149,7 +149,7 @@
                      </div>
                 </div>
                 <div class="row">
-                <div class="col-sm-6" id="statut" > 
+                 <div class="col-sm-6" id="statut" > 
                          <div class="form-group form-primary">
                             <div class="form-radio">
                                 <div class="group-add-on">
