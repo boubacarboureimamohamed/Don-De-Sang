@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?PowerDesigner signature="Workspace" version="15.1.0.2850"?>
+<!-- Veuillez ne pas modifier ce fichier -->
+
+<Workspace>
+	<Local Expanded="Yes">
+		<Model Expanded="Yes" ID="{903FB72C-40F7-4B31-910C-45DE297E1C2D}" Loaded="No" Name="UseCase" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="UseCase.moo"/>
+		<Model Expanded="Yes" ID="{64F6A5C2-9418-4AF8-B493-61AE970A8E87}" Loaded="No" Name="DiagrammeDeClasse" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="DiagrammeDeClasse.moo"/>
+		<Model Expanded="Yes" ID="{64F6A5C2-9418-4AF8-B493-61AE970A8E87}" Name="DiagrammeDeClasse" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="DiagrammeDeClasse.moo"/>
+	</Local>
+	<BrowserModule Name="Référentiel"/>
+</Workspace>
